@@ -6,6 +6,8 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
+const groupCreate = React.lazy(() => import('./views/group/form/create'))
+// const groupEdit = React.lazy(() => import('./views/group/form/edit'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -55,7 +57,12 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
+
+  // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
+  { path: '/group/create', name: 'Group Create', element: groupCreate },
+  // { path: '/group/edit', name: 'Group edit', element: groupEdit },
+
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
