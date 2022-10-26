@@ -115,6 +115,11 @@ let _nav = [
         name: '설문 리스트',
         to: '/',
       },
+      {
+        component: CNavItem,
+        name: '설문 분석',
+        to: '/',
+      },
     ],
   },
   {
