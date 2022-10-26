@@ -63,11 +63,11 @@ const Charts = () => {
           <CCardBody>
             <CChartDoughnut
               data={{
-                labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                labels: ['교육', '기업', '자영업/사업', '연애', '취미'],
                 datasets: [
                   {
-                    backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                    data: [40, 20, 80, 10],
+                    backgroundColor: ['#FFDDDD', '#DDFFDD', '#DDEEFF', '#EEDDFF', '#FFDDFF'],
+                    data: [40, 20, 80, 10, 30],
                   },
                 ],
               }}
