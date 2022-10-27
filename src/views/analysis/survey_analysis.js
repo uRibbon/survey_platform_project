@@ -1,20 +1,12 @@
 import React from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import { CChartBar, CChartDoughnut, CChartLine, CChartPie } from '@coreui/react-chartjs'
-import { DocsCallout } from 'src/components'
 
 const Charts = () => {
   const random = () => Math.round(Math.random() * 100)
 
   return (
     <CRow>
-      <CCol xs={12}>
-        <DocsCallout
-          name="Chart"
-          href="components/chart"
-          content="React wrapper component for Chart.js 3.0, the most popular charting library."
-        />
-      </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
           <CCardHeader>연령대 별 사용자</CCardHeader>
