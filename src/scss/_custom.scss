@@ -1,9 +1,18 @@
 // Here you can add other styles
 
+// 카카오 컬러
 .kyellow{
     background-color: #ffff00;
 }
 
+// _______________________________________________________________________________________________
+.custom_height {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+// _______________________________________________________________________________________________
+// 1라인 줄바꿈
 .text-ellipsis{
     width: 200px;
     text-overflow: ellipsis;
@@ -11,6 +20,7 @@
     overflow: hidden;
 }
 
+// 2라인 줄바꿈
 .twoline-ellipsis{
     width: 200px;
     overflow: hidden;
@@ -19,3 +29,4 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+// _______________________________________________________________________________________________

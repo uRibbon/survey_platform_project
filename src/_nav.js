@@ -85,18 +85,13 @@ let _nav = [
   {
     component: CNavGroup,
     name: 'Manage',
-    to: '/',
+    to: '/group',
     icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: '그룹 생성',
-        to: '/',
-      },
-      {
-        component: CNavItem,
-        name: '그룹 참여 허가',
-        to: '/',
+        to: '/group/create',
       },
     ],
   },
