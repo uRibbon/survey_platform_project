@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+//const Dashboard = React.lazy(() => import('./views/analysis/survey_analysis'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -8,6 +8,10 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const grouplist = React.lazy(() => import('./views/group/list/list'))
 const groupCreate = React.lazy(() => import('./views/group/form/create'))
 // const groupEdit = React.lazy(() => import('./views/group/form/edit'))
+
+// survey_analysis
+const survey_analysis = React.lazy(() => import('./views/analysis/survey_analysis'))
+const survey_list = React.lazy(() => import('./views/analysis/survey_list'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -63,7 +67,11 @@ const routes = [
   { path: '/group/create', name: 'Group Create', element: groupCreate },
   // { path: '/group/edit', name: 'Group edit', element: groupEdit },
 
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  // 설문 분석
+  { path: '/analysis/survey_analysis', name: 'Survey analysis', element: survey_analysis },
+  { path: '/analysis/survey_list', name: 'Survey list', element: survey_list },
+
+  //{ path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
