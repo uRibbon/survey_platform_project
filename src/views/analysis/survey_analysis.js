@@ -59,7 +59,7 @@ const Charts = () => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>카테고리별 설문 갯수</CCardHeader>
+          <CCardHeader>카테고리별 설문 개수</CCardHeader>
           <CCardBody>
             <CChartDoughnut
               data={{
