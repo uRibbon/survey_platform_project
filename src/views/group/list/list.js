@@ -35,23 +35,25 @@ const Grouplist = () => {
           <CCardBody>
             <CCard className="mb-2">
               <CCardBody>
-                <CCol lg={8}>
-                  <CInputGroup className="mb-1">
-                    <CInputGroupText id="basic-addon1">개설자</CInputGroupText>
-                    <CFormInput
-                      placeholder="Username"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-1">
-                    <CInputGroupText id="basic-addon1">그룹명</CInputGroupText>
-                    <CFormInput
-                      placeholder="Groupname"
-                      aria-label="Groupname"
-                      aria-describedby="basic-addon1"
-                    />
-                  </CInputGroup>
+                <CCol lg={12}>
+                  <CRow>
+                    <CInputGroup className="mb-1" lg={6}>
+                      <CInputGroupText id="basic-addon1">개설자</CInputGroupText>
+                      <CFormInput
+                        placeholder="Username"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                      />
+                    </CInputGroup>
+                    <CInputGroup className="mb-1" lg={6}>
+                      <CInputGroupText id="basic-addon1">그룹명</CInputGroupText>
+                      <CFormInput
+                        placeholder="Groupname"
+                        aria-label="Groupname"
+                        aria-describedby="basic-addon1"
+                      />
+                    </CInputGroup>
+                  </CRow>
                 </CCol>
                 <CCol lg={12} className="text-end">
                   <CButton color="primary" href="#">
@@ -62,11 +64,13 @@ const Grouplist = () => {
             </CCard>
             <CRow className="mb-4">
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }} className="mb-3">
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>클라우드 전용 그룹</CCardTitle>
-                    <CCardText>8팀 클라우드만 참여가능한 그룹이에요~</CCardText>
+                    <CCardText className="text-ellipsis">
+                      8팀 클라우드만 참여가능한 그룹이에요~
+                    </CCardText>
                   </CCardBody>
                   <CListGroup flush>
                     <CListGroupItem>개설자 : 고솔비 </CListGroupItem>
@@ -88,7 +92,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }} className="mb-3">
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 2</CCardTitle>
@@ -114,7 +118,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }} className="mb-3">
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 3</CCardTitle>
@@ -137,7 +141,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }} className="mb-3">
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 4</CCardTitle>
@@ -163,7 +167,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }}>
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 5</CCardTitle>
@@ -186,7 +190,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }}>
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 6</CCardTitle>
@@ -209,7 +213,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }}>
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 7</CCardTitle>
@@ -232,7 +236,7 @@ const Grouplist = () => {
                 </CCard>
               </CCol>
               <CCol lg={3}>
-                <CCard style={{ width: '18rem' }}>
+                <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg} />
                   <CCardBody>
                     <CCardTitle>그룹이름 8</CCardTitle>

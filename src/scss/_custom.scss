@@ -3,3 +3,19 @@
 .kyellow{
     background-color: #ffff00;
 }
+
+.text-ellipsis{
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.twoline-ellipsis{
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
