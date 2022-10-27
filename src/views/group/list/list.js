@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   CButton,
   CCard,
@@ -18,11 +18,46 @@ import {
   CFormInput,
   CPagination,
   CPaginationItem,
+  CModal,
+  CModalHeader,
+  CModalTitle,
+  CModalBody,
+  CModalFooter,
+  CFormLabel,
 } from '@coreui/react'
-import { DocsExample } from 'src/components'
 
 import ReactImg from 'src/assets/images/test_img.jpeg'
 
+const ClickParticipateBtn = () => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <>
+      <CButton color="success" variant="outline" onClick={() => setVisible(!visible)}>
+        participate
+      </CButton>
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>그룹 참여 요청</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          <CRow className="mb-3">
+            <CFormLabel htmlFor="groupCode" className="col-sm-2 col-form-label">
+              그룹코드
+            </CFormLabel>
+            <div className="col-sm-10">
+              <CFormInput type="password" id="groupCode" placeholder="그룹코드" />
+            </div>
+          </CRow>
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="primary" variant="outline">
+            participate
+          </CButton>
+        </CModalFooter>
+      </CModal>
+    </>
+  )
+}
 const Grouplist = () => {
   return (
     <CRow>
@@ -107,9 +142,7 @@ const Grouplist = () => {
                       <CButton color="primary" href="#/group/detail" variant="outline">
                         detail
                       </CButton>
-                      <CButton color="success" href="#" variant="outline">
-                        participate
-                      </CButton>
+                      {ClickParticipateBtn()}
                     </CButtonGroup>
                   </CCardBody>
                   <CCardFooter>
@@ -129,11 +162,7 @@ const Grouplist = () => {
                     <CListGroupItem>참여인원 : 0명</CListGroupItem>
                   </CListGroup>
                   <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="success" href="#" variant="outline">
-                        participate
-                      </CButton>
-                    </CButtonGroup>
+                    <CButtonGroup>{ClickParticipateBtn()}</CButtonGroup>
                   </CCardBody>
                   <CCardFooter>
                     <small className="text-medium-emphasis">생성일 : 2022-10-25</small>
@@ -163,98 +192,6 @@ const Grouplist = () => {
                   </CCardBody>
                   <CCardFooter>
                     <small className="text-medium-emphasis">생성일 : 2022-10-25</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 5</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 테스트</CListGroupItem>
-                    <CListGroupItem>참여인원 : 0명</CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="success" href="#" variant="outline">
-                        participate
-                      </CButton>
-                    </CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-26</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 6</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 테스트</CListGroupItem>
-                    <CListGroupItem>참여인원 : 0명</CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="success" href="#" variant="outline">
-                        participate
-                      </CButton>
-                    </CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-26</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 7</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 테스트</CListGroupItem>
-                    <CListGroupItem>참여인원 : 0명</CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="success" href="#" variant="outline">
-                        participate
-                      </CButton>
-                    </CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-26</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 8</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 테스트</CListGroupItem>
-                    <CListGroupItem>참여인원 : 0명</CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="success" href="#" variant="outline">
-                        participate
-                      </CButton>
-                    </CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-26</small>
                   </CCardFooter>
                 </CCard>
               </CCol>
