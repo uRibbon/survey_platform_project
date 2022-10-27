@@ -62,7 +62,7 @@ const FormControl = () => {
               </CRow>
               <CRow className="mb-3">
                 <CFormLabel htmlFor="groupDescription" className="col-sm-2 col-form-label">
-                  그룹 설명
+                  그룹 참여자
                 </CFormLabel>
                 <div className="col-sm-10">
                   <CRow>

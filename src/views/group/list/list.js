@@ -78,7 +78,7 @@ const Grouplist = () => {
                   </CListGroup>
                   <CCardBody className="text-end">
                     <CButtonGroup>
-                      <CButton color="primary" href="#" variant="outline">
+                      <CButton color="primary" href="#/group/detail" variant="outline">
                         detail
                       </CButton>
                       <CButton color="danger" href="#" variant="outline">
@@ -104,7 +104,7 @@ const Grouplist = () => {
                   </CListGroup>
                   <CCardBody className="text-end">
                     <CButtonGroup>
-                      <CButton color="primary" href="#" variant="outline">
+                      <CButton color="primary" href="#/group/detail" variant="outline">
                         detail
                       </CButton>
                       <CButton color="success" href="#" variant="outline">
@@ -153,7 +153,7 @@ const Grouplist = () => {
                   </CListGroup>
                   <CCardBody className="text-end">
                     <CButtonGroup>
-                      <CButton color="primary" href="#" variant="outline">
+                      <CButton color="primary" href="#/group/detail" variant="outline">
                         detail
                       </CButton>
                       <CButton color="danger" href="#" variant="outline">

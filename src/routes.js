@@ -7,6 +7,7 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
 const groupCreate = React.lazy(() => import('./views/group/form/create'))
+const groupDetail = React.lazy(() => import('./views/group/detail/detail'))
 // const groupEdit = React.lazy(() => import('./views/group/form/edit'))
 
 // survey_analysis
@@ -65,6 +66,7 @@ const routes = [
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
   { path: '/group/create', name: 'Group Create', element: groupCreate },
+  { path: '/group/detail', name: 'Group Deetail', element: groupDetail },
   // { path: '/group/edit', name: 'Group edit', element: groupEdit },
 
   // 설문 분석
