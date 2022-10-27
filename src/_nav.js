@@ -113,12 +113,12 @@ let _nav = [
       {
         component: CNavItem,
         name: '설문 리스트',
-        to: '/',
+        to: '/analysis/survey_list',
       },
       {
         component: CNavItem,
         name: '설문 분석',
-        to: '/',
+        to: '/analysis/survey_analysis',
       },
     ],
   },
