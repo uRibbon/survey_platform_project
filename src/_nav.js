@@ -30,7 +30,7 @@ let _nav = [
       {
         component: CNavItem,
         name: '설문검색',
-        to: '/',
+        to: '/search',
       },
     ],
   },
@@ -44,6 +44,11 @@ let _nav = [
         component: CNavItem,
         name: '설문생성',
         to: '/survey',
+      },
+      {
+        component: CNavItem,
+        name: '설문발송',
+        to: '/send',
       },
     ],
   },
@@ -61,7 +66,7 @@ let _nav = [
       {
         component: CNavItem,
         name: '작성목록',
-        to: '/',
+        to: '/surveyList',
       },
     ],
   },

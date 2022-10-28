@@ -13,7 +13,6 @@ import {
   CInputGroup,
   CListGroup,
   CListGroupItem,
-  CFormCheck,
   CFormSelect,
 } from '@coreui/react'
 
