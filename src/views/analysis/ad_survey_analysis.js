@@ -1,22 +1,22 @@
 import React from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
-import { CChartBar, CChartDoughnut, CChartLine, CChartPie } from '@coreui/react-chartjs'
+import { CChartBar, CChartPie, CChartLine } from '@coreui/react-chartjs'
 
 const Charts = () => {
-  const random = () => Math.round(Math.random() * 100)
+  //const random = () => Math.round(Math.random() * 100)
 
   return (
     <CRow>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>연령대 별 사용자</CCardHeader>
+          <CCardHeader>참여자 연령대</CCardHeader>
           <CCardBody>
             <CChartBar
               data={{
                 labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
                 datasets: [
                   {
-                    label: '연령대 별 사용자 수',
+                    label: '참여자 연령대',
                     backgroundColor: '#FFC314',
                     data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
                   },
@@ -29,19 +29,26 @@ const Charts = () => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>월별 설문 등록</CCardHeader>
+          <CCardHeader>참여자 설문 응답 시간대</CCardHeader>
           <CCardBody>
             <CChartLine
               data={{
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: [
+                  '00:00~04:00',
+                  '04:00~08:00',
+                  '08:00~12:00',
+                  '12:00~16:00',
+                  '16:00~20:00',
+                  '20:00~24:00',
+                ],
                 datasets: [
                   {
-                    label: '월별 설문 등록',
+                    label: '시간별 추이',
                     backgroundColor: 'rgba(151, 187, 205, 0.2)',
                     borderColor: 'rgba(151, 187, 205, 1)',
                     pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                     pointBorderColor: '#fff',
-                    data: [random(), random(), random(), random(), random(), random(), random()],
+                    data: [2, 3, 5, 40, 48, 96],
                   },
                 ],
               }}
@@ -51,25 +58,7 @@ const Charts = () => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>카테고리별 설문 개수</CCardHeader>
-          <CCardBody>
-            <CChartDoughnut
-              data={{
-                labels: ['교육', '기업', '자영업/사업', '연애', '취미'],
-                datasets: [
-                  {
-                    backgroundColor: ['#FFDDDD', '#DDFFDD', '#DDEEFF', '#EEDDFF', '#FFDDFF'],
-                    data: [40, 20, 80, 10, 30],
-                  },
-                ],
-              }}
-            />
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={6}>
-        <CCard className="mb-4">
-          <CCardHeader>남녀 사용자 비율</CCardHeader>
+          <CCardHeader>참여자 남여 비율</CCardHeader>
           <CCardBody>
             <CChartPie
               data={{

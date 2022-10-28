@@ -11,7 +11,8 @@ const groupDetail = React.lazy(() => import('./views/group/detail/detail'))
 // const groupEdit = React.lazy(() => import('./views/group/form/edit'))
 
 // survey_analysis
-const survey_analysis = React.lazy(() => import('./views/analysis/survey_analysis'))
+const ad_survey_analysis = React.lazy(() => import('./views/analysis/ad_survey_analysis'))
+const user_survey_analysis = React.lazy(() => import('./views/analysis/user_survey_analysis'))
 
 //category
 const category_list = React.lazy(() => import('./views/category/category_list'))
@@ -72,7 +73,10 @@ const routes = [
   // { path: '/group/edit', name: 'Group edit', element: groupEdit },
 
   // 설문 분석
-  { path: '/analysis/survey_analysis', name: 'Survey analysis', element: survey_analysis },
+  { path: '/analysis/ad_survey_analysis', name: 'Ad Survey analysis', element: ad_survey_analysis },
+  { path: '/analysis/user_survey_analysis', name: 'User Survey analysis', element: user_survey_analysis },
+
+  //카테고리 리스트 설정
   { path: '/category/category_list', name: 'Category list', element: category_list },
 
   //{ path: '/dashboard', name: 'Dashboard', element: Dashboard },

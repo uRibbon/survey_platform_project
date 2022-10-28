@@ -108,7 +108,7 @@ let _nav = [
       {
         component: CNavItem,
         name: '설문 분석',
-        to: '/analysis/survey_analysis',
+        to: '/analysis/user_survey_analysis',
       },
     ],
   },
@@ -139,6 +139,19 @@ let _nav = [
         component: CNavItem,
         name: '설문 카테고리 리스트',
         to: '/category/category_list',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Survey analysis',
+    to: '/',
+    icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: '설문 분석',
+        to: '/analysis/ad_survey_analysis',
       },
     ],
   },
