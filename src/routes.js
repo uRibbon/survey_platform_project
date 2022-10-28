@@ -86,7 +86,11 @@ const routes = [
   { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
   { path: '/survey', name: 'Survey', element: Survey },
   { path: '/survey/ModifySurveyAdmin', name: 'Survey Modify (Admin)', element: SurveyModifyAdmin },
-  { path: '/survey/ModifySurveySurveyer', name: 'Survey Modify (Surveyer)', element: SurveyModifySurveyer },
+  {
+    path: '/survey/ModifySurveySurveyer',
+    name: 'Survey Modify (Surveyer)',
+    element: SurveyModifySurveyer,
+  },
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
   { path: '/group/create', name: 'Group Create', element: groupCreate },
