@@ -154,7 +154,7 @@ let _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Survey analysis',
+    name: 'Survey Analysis',
     to: '/',
     icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
     items: [
