@@ -63,10 +63,10 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-// Chatbot
-const Search = React.lazy(() => import('./views/chatbot/Search'))
-const Send = React.lazy(() => import('./views/chatbot/Send'))
-const SurveyList = React.lazy(() => import('./views/chatbot/SurveyList'))
+// Survey
+const Search = React.lazy(() => import('./views/survey/search/Search'))
+const Send = React.lazy(() => import('./views/survey/create/Send'))
+const SurveyList = React.lazy(() => import('./views/survey/list/WriteList'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
