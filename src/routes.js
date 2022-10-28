@@ -79,7 +79,11 @@ const routes = [
 
   // 설문 분석
   { path: '/analysis/ad_survey_analysis', name: 'Ad Survey analysis', element: ad_survey_analysis },
-  { path: '/analysis/user_survey_analysis', name: 'User Survey analysis', element: user_survey_analysis, },
+  {
+    path: '/analysis/user_survey_analysis',
+    name: 'User Survey analysis',
+    element: user_survey_analysis,
+  },
 
   //카테고리 리스트 설정
   { path: '/category/category_list', name: 'Category list', element: category_list },
