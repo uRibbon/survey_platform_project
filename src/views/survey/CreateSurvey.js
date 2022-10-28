@@ -1,5 +1,21 @@
 import React, { useState } from 'react'
-import { CButton, CFormSelect, CContainer, CFormInput,CDropdownDivider, CDropdownItem, CDropdownMenu,CDropdownToggle,CDropdown,CInputGroup,CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
+import {
+  CButton,
+  CFormSelect,
+  CContainer,
+  CFormInput,
+  CDropdownDivider,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
+  CDropdown,
+  CInputGroup,
+  CCard,
+  CCardBody,
+  CCol,
+  CCardHeader,
+  CRow,
+} from '@coreui/react'
 import QuestionModal from './QuestionModal'
 
 const Charts = () => {
@@ -37,7 +53,7 @@ const Charts = () => {
   }
 
 
-  const tempStyle={        
+  const tempStyle={
     paddingTop:"20px" }
 
   return (
@@ -84,16 +100,16 @@ const Charts = () => {
       </CFormSelect>
     </CInputGroup>
 
-    
+
     {questions.map(child => child)}
     {current_question}
-    
+
     <div className="d-grid gap-2 col-6 mx-auto" style={tempStyle}>
       <CButton color="primary" onClick={BtnOnclickHandler_Add}>Add Question</CButton>
       <CButton color="primary" onClick={BtnOnclickHandler_Delete}>Delete Question</CButton>
     </div>
   </CContainer>
-  
+
   )
 }
 

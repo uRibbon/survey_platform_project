@@ -1,8 +1,6 @@
-import React from "react";
+import React from 'react'
 
-const Modify = () =>{
-    return(
-        console.log('Mod')
-    );
+const Modify = () => {
+  return console.log('Mod')
 }
-export default Modify;
+export default Modify
