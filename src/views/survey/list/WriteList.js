@@ -15,6 +15,10 @@ import {
   CCol,
   CForm,
   CCardFooter,
+  CCardHeader,
+  CBadge,
+  CCardGroup,
+  CCardSubtitle,
   CListGroup,
   CListGroupItem,
 } from '@coreui/react'
@@ -105,24 +109,46 @@ const WriteList = () => {
         </CInputGroup>
       </CForm>
       <CRow>
-        {carddata.map((data) => (
-          <CCol xs={3} key={data.id}>
+        {/*{carddata.map((data) => (*/}
+          <CCol xs={3}>
             <CCard className="mb-4">
+              <CCardHeader>학업</CCardHeader>
               <CCardBody>
-                <CCardTitle>{data.title}</CCardTitle>
-                <CCardText>{data.content}</CCardText>
+                <CCardTitle>수정 가능한 설문조사</CCardTitle>
+                <CCardText><small>2022-10-28 ~ 2023-10-28</small>&nbsp;<CBadge color="primary">제작중</CBadge></CCardText>
               </CCardBody>
-              <CListGroup flush>
-                <CListGroupItem>카테고리: {data.category}</CListGroupItem>
-                <CListGroupItem>작성자: {data.writer}</CListGroupItem>
-                <CListGroupItem>참여인원: {data.number}명</CListGroupItem>
-              </CListGroup>
               <CCardFooter>
-                <small className="text-medium-emphasis">생성일: {data.date}</small>
+                <CButton color="primary" variant="outline" className="m-1" size="sm">Edit</CButton>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
-        ))}
+          <CCol xs={3}>
+            <CCard className="mb-4">
+              <CCardHeader>학업</CCardHeader>
+              <CCardBody>
+                <CCardTitle>수정 가능한 설문조사</CCardTitle>
+                <CCardText><small>2022-10-28 ~ 2023-10-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
+              </CCardBody>
+              <CCardFooter>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
+              </CCardFooter>
+            </CCard>
+          </CCol>
+          <CCol xs={3}>
+            <CCard className="mb-4">
+              <CCardHeader>건강</CCardHeader>
+              <CCardBody>
+                <CCardTitle>수정 불가능한 설문조사</CCardTitle>
+                <CCardText><small>2022-01-12 ~ 2022-02-12</small>&nbsp;<CBadge color="secondary">완료</CBadge></CCardText>
+              </CCardBody>
+              <CCardFooter>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
+                <CButton color="danger" variant="outline" className="m-1" size="sm">Details</CButton>
+              </CCardFooter>
+            </CCard>
+          </CCol>
+        {/*))}*/}
       </CRow>
       {/*<CPagination aria-label="Page navigation example" align="center">*/}
       {/*  {page.prev ? (*/}
