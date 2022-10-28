@@ -63,6 +63,11 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+// Chatbot
+const Search = React.lazy(() => import('./views/chatbot/Search'))
+const Send = React.lazy(() => import('./views/chatbot/Send'))
+const SurveyList = React.lazy(() => import('./views/chatbot/SurveyList'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
 
