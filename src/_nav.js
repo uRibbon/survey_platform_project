@@ -37,13 +37,13 @@ let _nav = [
   {
     component: CNavGroup,
     name: 'Create',
-    to: '/',
+    to: '/survey',
     icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: '설문생성',
-        to: '/',
+        to: '/survey',
       },
       {
         component: CNavItem,

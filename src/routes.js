@@ -4,6 +4,13 @@ import React from 'react'
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
+// survey
+const SurveyCreate = React.lazy(() => import('./views/survey/CreateSurvey'))
+const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
+const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
+const Survey = React.lazy(() => import('./views/survey/Survey'))
+
+
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
 const groupCreate = React.lazy(() => import('./views/group/form/create'))
@@ -70,6 +77,12 @@ const SurveyList = React.lazy(() => import('./views/survey/list/WriteList'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
+
+  //설문
+  { path: '/survey/CreateSurvey', name: 'Survey Create', element: SurveyCreate },
+  { path: '/survey/ShareSurvey', name: 'Survey Share', element: SurveyShare },
+  { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
+  { path: '/survey', name: 'Survey', element: Survey },
 
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
