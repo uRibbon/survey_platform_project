@@ -122,6 +122,10 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+
+  { path: '/search', name: 'Search', element: Search },
+  { path: '/send', name: 'Send', element: Send },
+  { path: '/surveyList', name: 'SurveyList', element: SurveyList },
 ]
 
 export default routes
