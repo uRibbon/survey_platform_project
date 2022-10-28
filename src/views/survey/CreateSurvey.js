@@ -57,7 +57,7 @@ const Charts = () => {
           </CDropdownMenu>
         </CDropdown>
         <CFormInput aria-label="Text input with dropdown button"/>
-        <CDatePicker locale="en-US" />
+        {/* <CDatePicker locale="en-US" /> */}
       </CInputGroup>
       </CCol>
     </CRow>
