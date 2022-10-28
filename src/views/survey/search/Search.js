@@ -9,6 +9,7 @@ import {
   CButton,
   CCard,
   CCardBody,
+  CCardHeader,
   CCardTitle,
   CCardText,
   CRow,
@@ -17,6 +18,14 @@ import {
   CCardFooter,
   CListGroup,
   CListGroupItem,
+  CPagination,
+  CPaginationItem,
+  CTable,
+  CTableDataCell,
+  CTableBody,
+  CTableHead,
+  CTableRow,
+  CTableHeaderCell,
 } from '@coreui/react'
 
 const Search = () => {
@@ -75,15 +84,15 @@ const Search = () => {
       name: '학업',
     },
   ]
-  // let page = {
-  //   prev: false,
-  //   start: 1,
-  //   page: 3,
-  //   next: false,
-  //   end: 1,
-  //   pagelist: [1, 2, 3, 4, 5, 6],
-  // }
-  const [currentPage, setCurrentPage] = useState(1)
+  let page = {
+    prev: false,
+    start: 1,
+    page: 3,
+    next: false,
+    end: 1,
+    pagelist: [1, 2, 3, 4, 5, 6],
+  }
+  // const [currentPage, setCurrentPage] = useState(1)
   return (
     <>
       <CForm action={'/search'} method={'post'}>
@@ -104,59 +113,72 @@ const Search = () => {
           <CButton type="submit">검색</CButton>
         </CInputGroup>
       </CForm>
-      <CRow>
-        {carddata.map((data) => (
-          <CCol xs={3} key={data.id}>
-            <CCard className="mb-4">
-              <CCardBody>
-                <CCardTitle>{data.title}</CCardTitle>
-                <CCardText>{data.content}</CCardText>
-              </CCardBody>
-              <CListGroup flush>
-                <CListGroupItem>카테고리: {data.category}</CListGroupItem>
-                <CListGroupItem>작성자: {data.writer}</CListGroupItem>
-                <CListGroupItem>참여인원: {data.number}명</CListGroupItem>
-              </CListGroup>
-              <CCardFooter>
-                <small className="text-medium-emphasis">생성일: {data.date}</small>
-              </CCardFooter>
-            </CCard>
-          </CCol>
-        ))}
-      </CRow>
-      {/*<CPagination aria-label="Page navigation example" align="center">*/}
-      {/*  {page.prev ? (*/}
-      {/*    <CPaginationItem aria-label="Previous">*/}
-      {/*      <span aria-hidden="true">*/}
-      {/*        <a href={'/search?category=' + page.category + '&page=' + page.start - 1}>&laquo;</a>*/}
-      {/*      </span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  ) : (*/}
-      {/*    <CPaginationItem aria-label="Previous" disabled>*/}
-      {/*      <span aria-hidden="true">&laquo;</span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  )}*/}
-      {/*  {page.pagelist.map((idx) =>*/}
-      {/*    idx === page.page ? (*/}
-      {/*      <CPaginationItem active>{page.page}</CPaginationItem>*/}
-      {/*    ) : (*/}
-      {/*      <CPaginationItem>*/}
-      {/*        <a href={'/search?category=' + page.category + '&page=' + idx}>{idx}</a>*/}
-      {/*      </CPaginationItem>*/}
-      {/*    ),*/}
-      {/*  )}*/}
-      {/*  {page.next ? (*/}
-      {/*    <CPaginationItem aria-label="Next">*/}
-      {/*      <span aria-hidden="true">*/}
-      {/*        <a href={'/search?category=' + page.category + '&page=' + page.end + 1}>&raquo;</a>*/}
-      {/*      </span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  ) : (*/}
-      {/*    <CPaginationItem aria-label="Next" disabled>*/}
-      {/*      <span aria-hidden="true">&raquo;</span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  )}*/}
-      {/*</CPagination>*/}
+      <CCard className="mb-3">
+        <CCardHeader>설문 검색</CCardHeader>
+        <CCardBody>
+          <CTable>
+            <CTableHead>
+              <CTableRow>
+                <CTableHeaderCell scope="col">#</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문종류</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문명</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문내용</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문생성자</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문참여자</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문일</CTableHeaderCell>
+              </CTableRow>
+            </CTableHead>
+            <CTableBody>
+              {carddata.map((data) => (
+                <CTableRow key={data.id}>
+                  <CTableHeaderCell scope="row">
+                    <a href="#">{data.id}</a>
+                  </CTableHeaderCell>
+                  <CTableDataCell>{data.category}</CTableDataCell>
+                  <CTableDataCell>{data.title}</CTableDataCell>
+                  <CTableDataCell>{data.content}</CTableDataCell>
+                  <CTableDataCell>{data.writer}</CTableDataCell>
+                  <CTableDataCell>{data.number}명</CTableDataCell>
+                  <CTableDataCell>{data.date}</CTableDataCell>
+                </CTableRow>
+              ))}
+            </CTableBody>
+          </CTable>
+        </CCardBody>
+      </CCard>
+      <CPagination aria-label="Page navigation example" align="center">
+        {page.prev ? (
+          <CPaginationItem aria-label="Previous">
+            <span aria-hidden="true">
+              <a href={'/search?category=' + page.category + '&page=' + page.start - 1}>&laquo;</a>
+            </span>
+          </CPaginationItem>
+        ) : (
+          <CPaginationItem aria-label="Previous" disabled>
+            <span aria-hidden="true">&laquo;</span>
+          </CPaginationItem>
+        )}
+        {page.pagelist.map((idx) =>
+          idx === page.page ? (
+            <CPaginationItem active>{page.page}</CPaginationItem>
+          ) : (
+            <CPaginationItem>
+              <a href={'/search?category=' + page.category + '&page=' + idx}>{idx}</a>
+            </CPaginationItem>
+          ),
+        )}
+        {page.next ? (
+          <CPaginationItem aria-label="Next">
+            <span aria-hidden="true">
+              <a href={'/search?category=' + page.category + '&page=' + page.end + 1}>&raquo;</a>
+            </span>
+          </CPaginationItem>
+        ) : (
+          <CPaginationItem aria-label="Next" disabled>
+            <span aria-hidden="true">&raquo;</span>
+          </CPaginationItem>
+        )}
+      </CPagination>
       {/*  <CSmartPagination*/}
       {/*    align="center"*/}
       {/*    activePage={currentPage}*/}
