@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react'
-import axios from 'axios'
 import {
   CRow,
   CCol,
@@ -27,16 +26,16 @@ const Send = () => {
     setSearch(event.target.value)
     console.log(event.target.value)
   }
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios.get('/send?search' + search)
-        setSearchUsers(result.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  })
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const result = await axios.get('/send?search' + search)
+  //       setSearchUsers(result.data)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  // })
   const [selected, setSelected] = useState('')
   const handleSelect = (e) => {
     setSelected(e.target.value)

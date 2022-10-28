@@ -15,13 +15,9 @@ import {
   CCol,
   CForm,
   CCardFooter,
-  CCardHeader,
   CListGroup,
   CListGroupItem,
 } from '@coreui/react'
-import { CSmartPagination } from '@coreui/react-pro'
-import CIcon from '@coreui/icons-react'
-import { cilSettings } from '@coreui/icons'
 
 const Search = () => {
   let carddata = [
@@ -161,12 +157,12 @@ const Search = () => {
       {/*    </CPaginationItem>*/}
       {/*  )}*/}
       {/*</CPagination>*/}
-      <CSmartPagination
-        align="center"
-        activePage={currentPage}
-        pages={10}
-        onActivePageChange={setCurrentPage}
-      />
+    {/*  <CSmartPagination*/}
+    {/*    align="center"*/}
+    {/*    activePage={currentPage}*/}
+    {/*    pages={10}*/}
+    {/*    onActivePageChange={setCurrentPage}*/}
+    {/*  />*/}
     </>
   )
 }

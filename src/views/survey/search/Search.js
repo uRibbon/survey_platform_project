@@ -17,7 +17,6 @@ import {
   CCardSubtitle,
   CForm,
 } from '@coreui/react'
-import { CSmartPagination } from '@coreui/react-pro'
 
 const Search = () => {
   let carddata = [
@@ -168,12 +167,12 @@ const Search = () => {
       {/*    </CPaginationItem>*/}
       {/*  )}*/}
       {/*</CPagination>*/}
-      <CSmartPagination
-        align="center"
-        activePage={currentPage}
-        pages={10}
-        onActivePageChange={setCurrentPage}
-      />
+      {/*<CSmartPagination*/}
+      {/*  align="center"*/}
+      {/*  activePage={currentPage}*/}
+      {/*  pages={10}*/}
+      {/*  onActivePageChange={setCurrentPage}*/}
+      {/*/>*/}
     </>
   )
 }
