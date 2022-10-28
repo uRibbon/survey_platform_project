@@ -45,11 +45,6 @@ let _nav = [
         name: '설문생성',
         to: '/survey',
       },
-      {
-        component: CNavItem,
-        name: '설문발송',
-        to: '/send',
-      },
     ],
   },
   {
