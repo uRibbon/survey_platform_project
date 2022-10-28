@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ResultSurvey from './ResultSurvey'
 import ShareSurvey from './ShareSurvey'
 import CreateSurvey from './CreateSurvey'
+import Send from './create/Send'
 import { CNav,CNavItem,CNavLink,CTabContent,CTabPane } from '@coreui/react'
 
 const Charts = () => {
@@ -52,7 +53,7 @@ const Charts = () => {
             <CreateSurvey/>
           </CTabPane>
           <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
-            <ShareSurvey/>
+            <Send/>
           </CTabPane>
           <CTabPane role="tabpanel" aria-labelledby="contact-tab" visible={activeKey === 3}>
             <ResultSurvey/>
