@@ -162,7 +162,7 @@ const Search = () => {
             <CTableHead>
               <CTableRow>
                 <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                <CTableHeaderCell scope="col">설문종류</CTableHeaderCell>
+                <CTableHeaderCell scope="col">설문분류</CTableHeaderCell>
                 <CTableHeaderCell scope="col">설문명</CTableHeaderCell>
                 <CTableHeaderCell scope="col">설문내용</CTableHeaderCell>
                 <CTableHeaderCell scope="col">설문생성자</CTableHeaderCell>

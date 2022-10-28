@@ -22,59 +22,26 @@ import {
 } from '@coreui/react'
 
 const MakeList = () => {
-  let carddata = [
-    {
-      id: 1,
-      title: '설문조사1',
-      content: '동아리 설문조사 입니다.',
-      category: '학업',
-      writer: '예나',
-      number: 40,
-      date: '2022-09-10',
-    },
-    {
-      id: 2,
-      title: '설문조사2',
-      content: '동아리 설문조사 입니다.',
-      category: '학업',
-      writer: '예나',
-      number: 30,
-      date: '2022-09-10',
-    },
-    {
-      id: 3,
-      title: '설문조사3',
-      content: '동아리 설문조사 입니다.',
-      category: '학업',
-      writer: '예나',
-      number: 50,
-      date: '2022-09-10',
-    },
-  ]
   let category = [
     {
       id: 1,
-      name: '만족도 조사',
+      name: '학교',
     },
     {
       id: 2,
-      name: '보건의료',
+      name: '기업',
     },
     {
       id: 3,
-      name: '시장조사',
+      name: '연애',
     },
     {
       id: 4,
-      name: '회의 및 행사',
+      name: '사업',
     },
     {
       id: 5,
-      name: '비영리 단체',
-    },
-    {
-      id: 6,
-      name: '학업',
+      name: '취미',
     },
   ]
   let page = {
@@ -109,7 +76,7 @@ const MakeList = () => {
         {/*{carddata.map((data) => (*/}
           <CCol xs={3}>
             <CCard className="mb-4">
-              <CCardHeader>학업</CCardHeader>
+              <CCardHeader>취미</CCardHeader>
               <CCardBody>
                 <CCardTitle>수정 가능한 설문조사</CCardTitle>
                 <CCardText><small>2022-10-28 ~ </small>&nbsp;<CBadge color="primary">제작중</CBadge></CCardText>
@@ -123,7 +90,7 @@ const MakeList = () => {
           </CCol>
           <CCol xs={3}>
             <CCard className="mb-4">
-              <CCardHeader>학업</CCardHeader>
+              <CCardHeader>연애</CCardHeader>
               <CCardBody>
                 <CCardTitle>수정 불가능한 설문조사</CCardTitle>
                 <CCardText><small>2022-09-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
@@ -136,7 +103,7 @@ const MakeList = () => {
           </CCol>
           <CCol xs={3}>
             <CCard className="mb-4">
-              <CCardHeader>건강</CCardHeader>
+              <CCardHeader>사업</CCardHeader>
               <CCardBody>
                 <CCardTitle>완료된 설문조사</CCardTitle>
                 <CCardText><small>2022-01-12 ~ 2022-02-12</small>&nbsp;<CBadge color="secondary">완료</CBadge></CCardText>
