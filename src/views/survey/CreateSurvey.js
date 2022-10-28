@@ -35,9 +35,7 @@ const Charts = () => {
     questions.concat({ current_question })
     current_question = <QuestionModal answerType={answerType} />
 
-    setQuestions(
-        [current_question, ...questions]
-      );
+    setQuestions([current_question, ...questions])
   }
 
   function BtnOnclickHandler_Delete(){
