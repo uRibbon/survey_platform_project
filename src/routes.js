@@ -1,5 +1,5 @@
 import React from 'react'
-import Modify from './views/survey/create/ModifySurvey'
+import Modify from './views/survey/create/ModifySurveyAdmin'
 
 //const Dashboard = React.lazy(() => import('./views/analysis/survey_analysis'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -9,7 +9,8 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const SurveyCreate = React.lazy(() => import('./views/survey/CreateSurvey'))
 const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
-const SurveyModify = React.lazy(() => import('./views/survey/create/ModifySurvey'))
+const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifySurveyAdmin'))
+const SurveyModifySurveyer = React.lazy(() => import('./views/survey/create/ModifySurveySurveyer'))
 const Survey = React.lazy(() => import('./views/survey/Survey'))
 
 
@@ -86,8 +87,8 @@ const routes = [
   { path: '/survey/ShareSurvey', name: 'Survey Share', element: SurveyShare },
   { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
   { path: '/survey', name: 'Survey', element: Survey },
-  { path: '/survey/ModifySurvey', name: 'Survey Modify', element: SurveyModify },
-
+  { path: '/survey/ModifySurveyAdmin', name: 'Survey Modify (Admin)', element: SurveyModifyAdmin },
+  { path: '/survey/ModifySurveySurveyer', name: 'Survey Modify (Surveyer)', element: SurveyModifySurveyer },
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
   { path: '/group/create', name: 'Group Create', element: groupCreate },
