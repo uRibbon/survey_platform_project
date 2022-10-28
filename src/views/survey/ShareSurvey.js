@@ -19,30 +19,28 @@ const Charts = () => {
     {
       id: 1,
       name: '3',
-      text: 'create_survey'
+      text: 'create_survey',
     },
     {
       id: 2,
       name: '3',
-      text: 'share_survey'
+      text: 'share_survey',
     },
     {
       id: 3,
       name: '3',
-      text: 'result_survey'
+      text: 'result_survey',
     },
   ]
 
-  const handleClickButton = event => {
-    const { name } = event.target;
-    console.log(name);
-    setContent(name);
+  const handleClickButton = (event) => {
+    const { name } = event.target
+    console.log(name)
+    setContent(name)
   }
 
   return (
     <CRow>
-
-
       <CCol xs={6}>
         <CCard className="mb-4">
           <CCardHeader>Bar Chart</CCardHeader>

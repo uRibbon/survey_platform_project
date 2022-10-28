@@ -10,7 +10,6 @@ const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
 const Survey = React.lazy(() => import('./views/survey/Survey'))
 
-
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
 const groupCreate = React.lazy(() => import('./views/group/form/create'))

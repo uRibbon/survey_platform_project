@@ -19,7 +19,7 @@ import {
   CListGroupItem,
 } from '@coreui/react'
 
-const Search = () => {
+const WriteList = () => {
   let carddata = [
     {
       id: 1,
@@ -157,14 +157,14 @@ const Search = () => {
       {/*    </CPaginationItem>*/}
       {/*  )}*/}
       {/*</CPagination>*/}
-    {/*  <CSmartPagination*/}
-    {/*    align="center"*/}
-    {/*    activePage={currentPage}*/}
-    {/*    pages={10}*/}
-    {/*    onActivePageChange={setCurrentPage}*/}
-    {/*  />*/}
+      {/*  <CSmartPagination*/}
+      {/*    align="center"*/}
+      {/*    activePage={currentPage}*/}
+      {/*    pages={10}*/}
+      {/*    onActivePageChange={setCurrentPage}*/}
+      {/*  />*/}
     </>
   )
 }
 
-export default Search
+export default WriteList
