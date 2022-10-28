@@ -12,7 +12,9 @@ const groupDetail = React.lazy(() => import('./views/group/detail/detail'))
 
 // survey_analysis
 const survey_analysis = React.lazy(() => import('./views/analysis/survey_analysis'))
-const survey_list = React.lazy(() => import('./views/analysis/survey_list'))
+
+//category
+const category_list = React.lazy(() => import('./views/category/category_list'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -71,7 +73,7 @@ const routes = [
 
   // 설문 분석
   { path: '/analysis/survey_analysis', name: 'Survey analysis', element: survey_analysis },
-  { path: '/analysis/survey_list', name: 'Survey list', element: survey_list },
+  { path: '/category/category_list', name: 'Category list', element: category_list },
 
   //{ path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
