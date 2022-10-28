@@ -115,7 +115,7 @@ const WriteList = () => {
               <CCardHeader>학업</CCardHeader>
               <CCardBody>
                 <CCardTitle>수정 가능한 설문조사</CCardTitle>
-                <CCardText><small>2022-10-28 ~ 2023-10-28</small>&nbsp;<CBadge color="primary">제작중</CBadge></CCardText>
+                <CCardText><small>2022-10-28 ~ </small>&nbsp;<CBadge color="primary">제작중</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
                 <CButton color="primary" variant="outline" className="m-1" size="sm">Edit</CButton>
@@ -128,7 +128,7 @@ const WriteList = () => {
               <CCardHeader>학업</CCardHeader>
               <CCardBody>
                 <CCardTitle>수정 가능한 설문조사</CCardTitle>
-                <CCardText><small>2022-10-28 ~ 2023-10-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
+                <CCardText><small>2022-9-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
                 <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
