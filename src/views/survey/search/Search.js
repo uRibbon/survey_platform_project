@@ -29,59 +29,101 @@ import {
 } from '@coreui/react'
 
 const Search = () => {
+  const tableRowClick = (e, link) => {
+    window.location.href = link
+  }
   let carddata = [
     {
       id: 1,
-      title: '설문조사1',
-      content: '동아리 설문조사 입니다.',
-      category: '학업',
+      title: '설문조사 1',
+      content: '동아리 신청 설문조사 입니다.',
+      category: '학교',
       writer: '예나',
       number: 40,
-      date: '2022-09-10',
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
     },
     {
       id: 2,
-      title: '설문조사2',
-      content: '동아리 설문조사 입니다.',
-      category: '학업',
-      writer: '예나',
-      number: 30,
-      date: '2022-09-10',
+      title: '설문조사 2',
+      content: 'MT 수요 설문조사 입니다.',
+      category: '학교',
+      writer: '영주',
+      number: 40,
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
     },
     {
       id: 3,
-      title: '설문조사3',
-      content: '동아리 설문조사 입니다.',
-      category: '학업',
+      title: '설문조사 3',
+      content: '선호 기업 설문조사 입니다.',
+      category: '기업',
+      writer: '솔비',
+      number: 40,
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
+    },
+    {
+      id: 4,
+      title: '설문조사 4',
+      content: '면접 질문 설문조사 입니다.',
+      category: '기업',
       writer: '예나',
-      number: 50,
-      date: '2022-09-10',
+      number: 40,
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
+    },
+    {
+      id: 5,
+      title: '설문조사 5',
+      content: '연애 설문조사 입니다.',
+      category: '연애',
+      writer: '유리',
+      number: 40,
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
+    },
+    {
+      id: 6,
+      title: '설문조사 6',
+      content: '자영업 주문서 설문조사 입니다.',
+      category: '자영업',
+      writer: '유리',
+      number: 40,
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
+    },
+    {
+      id: 7,
+      title: '설문조사 7',
+      content: '좋아하는 여행지 설문조사 입니다.',
+      category: '취미',
+      writer: '영주',
+      number: 40,
+      date: '2022-09-10 ~ 2022-10-10',
+      link: '#',
     },
   ]
   let category = [
     {
       id: 1,
-      name: '만족도 조사',
+      name: '학교',
     },
     {
       id: 2,
-      name: '보건의료',
+      name: '기업',
     },
     {
       id: 3,
-      name: '시장조사',
+      name: '연애',
     },
     {
       id: 4,
-      name: '회의 및 행사',
+      name: '사업',
     },
     {
       id: 5,
-      name: '비영리 단체',
-    },
-    {
-      id: 6,
-      name: '학업',
+      name: '취미',
     },
   ]
   let page = {
@@ -116,7 +158,7 @@ const Search = () => {
       <CCard className="mb-3">
         <CCardHeader>설문 검색</CCardHeader>
         <CCardBody>
-          <CTable>
+          <CTable className="table-hover">
             <CTableHead>
               <CTableRow>
                 <CTableHeaderCell scope="col">#</CTableHeaderCell>
@@ -130,10 +172,8 @@ const Search = () => {
             </CTableHead>
             <CTableBody>
               {carddata.map((data) => (
-                <CTableRow key={data.id}>
-                  <CTableHeaderCell scope="row">
-                    <a href="#">{data.id}</a>
-                  </CTableHeaderCell>
+                <CTableRow key={data.id} onClick={(e) => tableRowClick(e, data.link)}>
+                  <CTableHeaderCell scope="row">{data.id}</CTableHeaderCell>
                   <CTableDataCell>{data.category}</CTableDataCell>
                   <CTableDataCell>{data.title}</CTableDataCell>
                   <CTableDataCell>{data.content}</CTableDataCell>
