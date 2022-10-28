@@ -19,27 +19,24 @@ import {
 import QuestionModal from './QuestionModal'
 
 const Charts = () => {
-  const [answerType, setAnswerType] = useState();
+  const [answerType, setAnswerType] = useState()
 
-  let current_question = <QuestionModal answerType={answerType}/>
+  let current_question = <QuestionModal answerType={answerType} />
   let question_num = 1
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([])
 
-  function onChangeHandler(event){
-    setAnswerType(event.target.value);
-    console.log('answer',answerType);
+  function onChangeHandler(event) {
+    setAnswerType(event.target.value)
+    console.log('answer', answerType)
   }
 
-  function BtnOnclickHandler_Add(){
+  function BtnOnclickHandler_Add() {
     console.log(questions)
-    questions.concat({current_question})
-    current_question = <QuestionModal answerType={answerType}/>
+    questions.concat({ current_question })
+    current_question = <QuestionModal answerType={answerType} />
 
     setQuestions(
-        [
-          current_question,
-          ...questions
-          ]
+        [current_question, ...questions]
       );
   }
 

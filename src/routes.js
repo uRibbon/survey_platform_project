@@ -13,8 +13,6 @@ const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifyS
 const SurveyModifySurveyer = React.lazy(() => import('./views/survey/create/ModifySurveySurveyer'))
 const Survey = React.lazy(() => import('./views/survey/Survey'))
 
-
-
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
 const groupCreate = React.lazy(() => import('./views/group/form/create'))
