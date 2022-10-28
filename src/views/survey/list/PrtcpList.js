@@ -17,6 +17,8 @@ import {
   CCardFooter,
   CCardHeader,
   CBadge,
+  CPagination,
+  CPaginationItem,
   CCardGroup,
   CCardSubtitle,
   CListGroup,
@@ -79,15 +81,14 @@ const PrtcpList = () => {
       name: '학업',
     },
   ]
-  // let page = {
-  //   prev: false,
-  //   start: 1,
-  //   page: 3,
-  //   next: false,
-  //   end: 1,
-  //   pagelist: [1, 2, 3, 4, 5, 6],
-  // }
-  const [currentPage, setCurrentPage] = useState(1)
+  let page = {
+    prev: false,
+    start: 1,
+    page: 3,
+    next: false,
+    end: 1,
+    pagelist: [1, 2, 3, 4, 5, 6],
+  }
   return (
     <>
       <CForm action={'/search'} method={'post'}>
@@ -114,24 +115,12 @@ const PrtcpList = () => {
             <CCard className="mb-4">
               <CCardHeader>학업</CCardHeader>
               <CCardBody>
-                <CCardTitle>완료된 설문조사</CCardTitle>
-                <CCardText><small>2022-10-28 ~ </small>&nbsp;<CBadge color="primary">제작중</CBadge></CCardText>
-              </CCardBody>
-              <CCardFooter>
-                <CButton color="danger" variant="outline" className="m-1" size="sm">Details</CButton>
-                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
-              </CCardFooter>
-            </CCard>
-          </CCol>
-          <CCol xs={3}>
-            <CCard className="mb-4">
-              <CCardHeader>학업</CCardHeader>
-              <CCardBody>
                 <CCardTitle>수정 가능한 설문조사</CCardTitle>
-                <CCardText><small>2022-9-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
+                <CCardText><small>2022-09-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
                 <CButton color="primary" variant="outline" className="m-1" size="sm">Edit</CButton>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
@@ -140,53 +129,61 @@ const PrtcpList = () => {
               <CCardHeader>건강</CCardHeader>
               <CCardBody>
                 <CCardTitle>수정 불가능한 설문조사</CCardTitle>
+                <CCardText><small>2022-09-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
+              </CCardBody>
+              <CCardFooter>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
+              </CCardFooter>
+            </CCard>
+          </CCol>
+          <CCol xs={3}>
+            <CCard className="mb-4">
+              <CCardHeader>학업</CCardHeader>
+              <CCardBody>
+                <CCardTitle>완료된 설문조사</CCardTitle>
                 <CCardText><small>2022-01-12 ~ 2022-02-12</small>&nbsp;<CBadge color="secondary">완료</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
+                <CButton color="danger" variant="outline" className="m-1" size="sm">Details</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
         {/*))}*/}
       </CRow>
-      {/*<CPagination aria-label="Page navigation example" align="center">*/}
-      {/*  {page.prev ? (*/}
-      {/*    <CPaginationItem aria-label="Previous">*/}
-      {/*      <span aria-hidden="true">*/}
-      {/*        <a href={'/search?category=' + page.category + '&page=' + page.start - 1}>&laquo;</a>*/}
-      {/*      </span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  ) : (*/}
-      {/*    <CPaginationItem aria-label="Previous" disabled>*/}
-      {/*      <span aria-hidden="true">&laquo;</span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  )}*/}
-      {/*  {page.pagelist.map((idx) =>*/}
-      {/*    idx === page.page ? (*/}
-      {/*      <CPaginationItem active>{page.page}</CPaginationItem>*/}
-      {/*    ) : (*/}
-      {/*      <CPaginationItem>*/}
-      {/*        <a href={'/search?category=' + page.category + '&page=' + idx}>{idx}</a>*/}
-      {/*      </CPaginationItem>*/}
-      {/*    ),*/}
-      {/*  )}*/}
-      {/*  {page.next ? (*/}
-      {/*    <CPaginationItem aria-label="Next">*/}
-      {/*      <span aria-hidden="true">*/}
-      {/*        <a href={'/search?category=' + page.category + '&page=' + page.end + 1}>&raquo;</a>*/}
-      {/*      </span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  ) : (*/}
-      {/*    <CPaginationItem aria-label="Next" disabled>*/}
-      {/*      <span aria-hidden="true">&raquo;</span>*/}
-      {/*    </CPaginationItem>*/}
-      {/*  )}*/}
-      {/*</CPagination>*/}
-      {/*  <CSmartPagination*/}
-      {/*    align="center"*/}
-      {/*    activePage={currentPage}*/}
-      {/*    pages={10}*/}
-      {/*    onActivePageChange={setCurrentPage}*/}
-      {/*  />*/}
+      <CPagination aria-label="Page navigation example" align="center">
+        {page.prev ? (
+          <CPaginationItem aria-label="Previous">
+            <span aria-hidden="true">
+              <a href={'/search?category=' + page.category + '&page=' + page.start - 1}>&laquo;</a>
+            </span>
+          </CPaginationItem>
+        ) : (
+          <CPaginationItem aria-label="Previous" disabled>
+            <span aria-hidden="true">&laquo;</span>
+          </CPaginationItem>
+        )}
+        {page.pagelist.map((idx) =>
+          idx === page.page ? (
+            <CPaginationItem active>{page.page}</CPaginationItem>
+          ) : (
+            <CPaginationItem>
+              <a href={'/search?category=' + page.category + '&page=' + idx}>{idx}</a>
+            </CPaginationItem>
+          ),
+        )}
+        {page.next ? (
+          <CPaginationItem aria-label="Next">
+            <span aria-hidden="true">
+              <a href={'/search?category=' + page.category + '&page=' + page.end + 1}>&raquo;</a>
+            </span>
+          </CPaginationItem>
+        ) : (
+          <CPaginationItem aria-label="Next" disabled>
+            <span aria-hidden="true">&raquo;</span>
+          </CPaginationItem>
+        )}
+      </CPagination>
     </>
   )
 }
