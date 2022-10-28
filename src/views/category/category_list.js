@@ -92,6 +92,14 @@ const Tables = () => {
                     <CTableDataCell>연애</CTableDataCell>
                     <CTableDataCell>2022/10/10</CTableDataCell>
                   </CTableRow>
+                  <CTableRow>
+                    <CTableDataCell>
+                      <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
+                    </CTableDataCell>
+                    <CTableHeaderCell scope="row">4</CTableHeaderCell>
+                    <CTableDataCell>기업</CTableDataCell>
+                    <CTableDataCell>2022/10/15</CTableDataCell>
+                  </CTableRow>
                 </CTableBody>
               </CTable>
             </CCardBody>
