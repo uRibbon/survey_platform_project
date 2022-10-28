@@ -5,13 +5,22 @@ import Modify from './views/survey/create/ModifySurveyAdmin'
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
-// survey
+// survey - search
+const Search = React.lazy(() => import('./views/survey/search/Search'))
+
+// survey - create
 const SurveyCreate = React.lazy(() => import('./views/survey/CreateSurvey'))
 const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
 const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifySurveyAdmin'))
 const SurveyModifySurveyer = React.lazy(() => import('./views/survey/create/ModifySurveySurveyer'))
 const Survey = React.lazy(() => import('./views/survey/Survey'))
+const Send = React.lazy(() => import('./views/survey/create/Send'))
+
+// survey - list
+const PrtcpList = React.lazy(() => import('./views/survey/list/PrtcpList'))
+const MakeList = React.lazy(() => import('./views/survey/list/MakeList'))
+
 
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
@@ -72,25 +81,26 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-// Survey
-const Search = React.lazy(() => import('./views/survey/search/Search'))
-const Send = React.lazy(() => import('./views/survey/create/Send'))
-const SurveyList = React.lazy(() => import('./views/survey/list/WriteList'))
-
 const routes = [
   { path: '/', exact: true, name: 'Home' },
 
-  //설문
+  // 설문 - 설문 검색
+  { path: '/survey/search', name: 'Search', element: Search },
+  // 설문 - 설문 생성
+  { path: '/survey/send', name: 'Send', element: Send },
   { path: '/survey/CreateSurvey', name: 'Survey Create', element: SurveyCreate },
   { path: '/survey/ShareSurvey', name: 'Survey Share', element: SurveyShare },
   { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
   { path: '/survey', name: 'Survey', element: Survey },
   { path: '/survey/ModifySurveyAdmin', name: 'Survey Modify (Admin)', element: SurveyModifyAdmin },
-  {
-    path: '/survey/ModifySurveySurveyer',
-    name: 'Survey Modify (Surveyer)',
-    element: SurveyModifySurveyer,
-  },
+  { path: '/survey/ModifySurveySurveyer', name: 'Survey Modify (Surveyer)', element: SurveyModifySurveyer },
+  // 설문 - 설문 목록
+  { path: '/survey/prtcpList', name: 'PrtcpList', element: PrtcpList },
+  { path: '/survey/makeList', name: 'MakeList', element: MakeList },
+
+
+
+
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
   { path: '/group/create', name: 'Group Create', element: groupCreate },
@@ -151,10 +161,6 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
-
-  { path: '/search', name: 'Search', element: Search },
-  { path: '/send', name: 'Send', element: Send },
-  { path: '/surveyList', name: 'SurveyList', element: SurveyList },
 ]
 
 export default routes

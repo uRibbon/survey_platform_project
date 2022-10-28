@@ -30,7 +30,7 @@ let _nav = [
       {
         component: CNavItem,
         name: '설문검색',
-        to: '/search',
+        to: '/survey/search',
       },
     ],
   },
@@ -66,12 +66,12 @@ let _nav = [
       {
         component: CNavItem,
         name: '참여목록',
-        to: '/',
+        to: '/survey/prtcpList',
       },
       {
         component: CNavItem,
         name: '작성목록',
-        to: '/surveyList',
+        to: '/survey/makeList',
       },
     ],
   },
