@@ -138,7 +138,7 @@ let _nav = [
       {
         component: CNavItem,
         name: '설문 카테고리 리스트',
-        to: '/analysis/survey_list',
+        to: '/category/category_list',
       },
     ],
   },
