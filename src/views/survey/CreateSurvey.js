@@ -10,10 +10,7 @@ import {
   CDropdownToggle,
   CDropdown,
   CInputGroup,
-  CCard,
-  CCardBody,
   CCol,
-  CCardHeader,
   CRow,
 } from '@coreui/react'
 import QuestionModal from './QuestionModal'

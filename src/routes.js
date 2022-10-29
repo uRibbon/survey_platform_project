@@ -1,5 +1,4 @@
 import React from 'react'
-import Modify from './views/survey/create/ModifySurveyAdmin'
 
 //const Dashboard = React.lazy(() => import('./views/analysis/survey_analysis'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))

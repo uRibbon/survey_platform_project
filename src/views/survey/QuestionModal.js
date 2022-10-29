@@ -1,23 +1,12 @@
 import React, { useState } from 'react'
 import {
   CFormLabel,
-  CButton,
   CFormCheck,
-  CFormSelect,
   CFormTextarea,
   CForm,
   CContainer,
   CFormInput,
-  CDropdownDivider,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CDropdown,
-  CInputGroup,
-  CCard,
-  CCardBody,
   CCol,
-  CCardHeader,
   CRow,
 } from '@coreui/react'
 
