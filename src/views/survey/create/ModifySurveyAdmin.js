@@ -78,7 +78,7 @@ const Charts = () => {
       <CInputGroup className="mb-3">
         <CFormSelect aria-label="Default select example">
           <option>Public/Private</option>
-          <option value="1">Public</option>
+          <option value="1" selected>Public</option>
           <option value="2">Private</option>
         </CFormSelect>
       </CInputGroup>
