@@ -1,4 +1,3 @@
-import { resetClipboardStubOnView } from "@testing-library/user-event/dist/types/utils";
 import { useState, useEffect } from "react";
 
 export default function usePromise(promiseCreator, deps){
