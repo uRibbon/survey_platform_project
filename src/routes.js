@@ -20,6 +20,8 @@ const Send = React.lazy(() => import('./views/survey/create/Send'))
 const PrtcpList = React.lazy(() => import('./views/survey/list/PrtcpList'))
 const MakeList = React.lazy(() => import('./views/survey/list/MakeList'))
 
+// survey - detail
+const surveyDetail = React.lazy(() => import('./views/survey/detail/detail'))
 
 // group
 const grouplist = React.lazy(() => import('./views/group/list/list'))
@@ -96,6 +98,8 @@ const routes = [
   // 설문 - 설문 목록
   { path: '/survey/prtcpList', name: 'PrtcpList', element: PrtcpList },
   { path: '/survey/makeList', name: 'MakeList', element: MakeList },
+ 
+  { path: '/survey/detail', name: 'Survey Detail', element: surveyDetail},
 
 
 

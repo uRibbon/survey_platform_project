@@ -112,7 +112,7 @@ const PrtcpList = () => {
               </CCardBody>
               <CCardFooter>
                 <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
-                <CButton color="danger" variant="outline" className="m-1" size="sm">Details</CButton>
+                <CButton href='/#/survey/detail' color="danger" variant="outline" className="m-1" size="sm">Details</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
