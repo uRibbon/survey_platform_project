@@ -86,8 +86,8 @@ const PrtcpList = () => {
                 <CCardText><small>2022-09-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
-                <CButton color="primary" variant="outline" className="m-1" size="sm">Edit</CButton>
-                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
+                <CButton color="success" variant="outline" className="m-1" size="sm">Edit</CButton>
+                <CButton color="danger" variant="outline" className="m-1" size="sm">Remove</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
@@ -99,7 +99,7 @@ const PrtcpList = () => {
                 <CCardText><small>2022-09-28 ~ 2023-11-28</small>&nbsp;<CBadge color="success">배포중</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
-                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
+                <CButton color="danger" variant="outline" className="m-1" size="sm">Remove</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
@@ -111,8 +111,8 @@ const PrtcpList = () => {
                 <CCardText><small>2022-01-12 ~ 2022-02-12</small>&nbsp;<CBadge color="secondary">완료</CBadge></CCardText>
               </CCardBody>
               <CCardFooter>
-                <CButton color="success" variant="outline" className="m-1" size="sm">Remove</CButton>
-                <CButton href='/#/survey/detail' color="danger" variant="outline" className="m-1" size="sm">Details</CButton>
+                <CButton color="danger" variant="outline" className="m-1" size="sm">Remove</CButton>
+                <CButton href='/#/survey/detail' color="primary" variant="outline" className="m-1" size="sm">Details</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
