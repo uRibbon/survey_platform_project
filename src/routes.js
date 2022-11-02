@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Home
+const Home = React.lazy(() => import('./views/Home'))
+
 //const Dashboard = React.lazy(() => import('./views/analysis/survey_analysis'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -83,7 +86,7 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', element: Home },
 
   // 설문 - 설문 검색
   { path: '/survey/search', name: 'Search', element: Search },
@@ -98,7 +101,7 @@ const routes = [
   // 설문 - 설문 목록
   { path: '/survey/prtcpList', name: 'PrtcpList', element: PrtcpList },
   { path: '/survey/makeList', name: 'MakeList', element: MakeList },
- 
+
   { path: '/survey/detail', name: 'Survey Detail', element: surveyDetail},
 
 
