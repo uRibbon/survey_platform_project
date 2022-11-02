@@ -15,6 +15,7 @@ import {
   CCardTitle,
   CCardText,
   CCardBody,
+  CCardImage,
   CButton,
   CForm,
   CFormLabel,
@@ -30,6 +31,7 @@ const Home = () => {
       <CRow className="mb-3">
         <CCol>
           <CCard>
+            <CCardImage orientation="top" src={image}></CCardImage>
             <CCardBody>
               <CCardTitle>설문 생성하기</CCardTitle>
               <CCardText>새로운 설문을 생성해보세요.</CCardText>
@@ -76,6 +78,7 @@ const Home = () => {
         </CCol>
         <CCol>
           <CCard>
+            <CCardImage orientation="top" src={image}></CCardImage>
             <CCardBody>
               <CCardTitle>설문 생성함</CCardTitle>
               <CCardText>생성한 설문 목록을 볼 수 있습니다.</CCardText>
@@ -85,6 +88,7 @@ const Home = () => {
         </CCol>
         <CCol>
           <CCard>
+            <CCardImage orientation="top" src={image}></CCardImage>
             <CCardBody>
               <CCardTitle>설문 참여함</CCardTitle>
               <CCardText>참여한 설문 목록을 볼 수 있습니다.</CCardText>
