@@ -144,10 +144,10 @@ const Send = () => {
         <CCol xs={6}>
           <>
             <CCard className="mb-3">
-              <CCardHeader>Add Group</CCardHeader>
+              <CCardHeader>그룹 선택</CCardHeader>
               <CCardBody>
                 <CFormSelect className="mb-3" onChange={handleSelect}>
-                  <option>Open this select menu</option>
+                  <option>그룹을 선택하세요</option>
                   {grouplist.map((data) => (
                     <option value={data.gid} key={data.gid}>
                       {data.name}
@@ -188,10 +188,10 @@ const Send = () => {
               </CCardBody>
             </CCard>
             <CCard className="mb-3">
-              <CCardHeader>Search Member</CCardHeader>
+              <CCardHeader>회원 검색</CCardHeader>
               <CCardBody>
                 <CInputGroup className="mb-3">
-                  <CFormSelect aria-label="Default select example">
+                  <CFormSelect>
                     <option value="1">Email</option>
                     <option value="2">Name</option>
                   </CFormSelect>
@@ -231,7 +231,7 @@ const Send = () => {
         </CCol>
         <CCol xs={6}>
           <CCard>
-            <CCardHeader>Selected User</CCardHeader>
+            <CCardHeader>선택 목록</CCardHeader>
             <CCardBody>
               <CTable>
                 <CTableHead>
