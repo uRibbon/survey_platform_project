@@ -15,6 +15,7 @@ const SurveyParticipate = React.lazy(() => import('./views/survey/create/Partici
 const SurveyCreate = React.lazy(() => import('./views/survey/create/CreateSurvey'))
 const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
+const SurveyModify = React.lazy(() => import('./views/survey/create/ModifySurvey'))
 const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifySurveyAdmin'))
 const SurveyModifySurveyer = React.lazy(() => import('./views/survey/create/ModifySurveySurveyer'))
 const Survey = React.lazy(() => import('./views/survey/Survey'))
@@ -95,6 +96,7 @@ const routes = [
   { path: '/survey/send', name: 'Send', element: Send },
   { path: '/survey/CreateSurvey', name: 'Survey Create', element: SurveyCreate },
   { path: '/survey/ParticipateSurvey', name: 'Survey Participate', element: SurveyParticipate },
+  { path: '/survey/ModifySurvey', name: 'Survey Modify', element: SurveyModify },
   { path: '/survey/ShareSurvey', name: 'Survey Share', element: SurveyShare },
   { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
   { path: '/survey', name: 'Survey', element: Survey },

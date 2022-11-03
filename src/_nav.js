@@ -57,8 +57,8 @@ let _nav = [
       },
       {
         component: CNavItem,
-        name: '설문수정(피설문자)',
-        to: '/survey/ModifySurveySurveyer',
+        name: '설문수정',
+        to: '/survey/ModifySurvey',
       },
     ],
   },
