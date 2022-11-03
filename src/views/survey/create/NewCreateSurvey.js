@@ -2,23 +2,14 @@ import React, { useState } from 'react'
 import {
   CButton,
   CFormSelect,
-  CContainer,
   CFormInput,
-  CDropdownDivider,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CDropdown,
-  CInputGroup,
   CCol,
-  CRow,
   CForm,
-  CFormCheck,
   CCard,
   CCardHeader,
   CCardBody,
 } from '@coreui/react'
-import QuestionModal from './NewQuestionModal'
+import QuestionModal from './AnswerModel'
 
 const Charts = () => {
   const [answerType, setAnswerType] = useState()
@@ -80,7 +71,7 @@ const Charts = () => {
             <CCol xs={12}>
               <CFormInput label="설문 이름" placeholder="설문 이름을 입력하세요"/>
             </CCol>
-            <CCol xs={4}>
+            <CCol xs={6}>
               <CFormSelect label="설문 분류 선택">
                 <option value="1">학교</option>
                 <option value="2">기업</option>
@@ -89,17 +80,11 @@ const Charts = () => {
                 <option value="5">취미</option>
               </CFormSelect>
             </CCol>
-            <CCol xs={4}>
+            <CCol xs={6}>
               <CFormSelect label="설문 공개 선택">
                 <option value="1">전체 공개</option>
                 <option value="2">그룹 공개</option>
                 <option value="3">비공개</option>
-              </CFormSelect>
-            </CCol>
-            <CCol xs={4}>
-              <CFormSelect label="답변 종류 선택" onChange={onChangeHandler}>
-                <option value="1">주관식</option>
-                <option value="2">객관식</option>
               </CFormSelect>
             </CCol>
           </CForm>
@@ -112,9 +97,6 @@ const Charts = () => {
       <div className="d-grid gap-2 col-6 mx-auto" style={tempStyle}>
         <CButton color="primary" onClick={BtnOnclickHandler_Add}>
           Add Question
-        </CButton>
-        <CButton color="primary" onClick={BtnOnclickHandler_Delete}>
-          Delete Question
         </CButton>
       </div>
     </>
