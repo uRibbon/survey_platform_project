@@ -2,16 +2,12 @@ import React, { useState } from 'react'
 import {
   CButton,
   CFormSelect,
-  CContainer,
   CFormInput,
-  CDropdownDivider,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CDropdown,
-  CInputGroup,
   CCol,
-  CRow,
+  CCard,
+  CCardHeader,
+  CCardBody,
+  CForm,
 } from '@coreui/react'
 import QuestionModal from './QuestionModal'
 
@@ -47,49 +43,39 @@ const Charts = () => {
     paddingTop: '20px',
   }
   return (
-    <CContainer>
-      <CRow>
-        <CCol xs={12}>
-          <CInputGroup className="mb-3">
-            <CDropdown variant="input-group">
-              <CDropdownToggle color="secondary" variant="outline">
-                Survey Category
-              </CDropdownToggle>
-              <CDropdownMenu>
-                <CDropdownItem href="#">Survey Cat1</CDropdownItem>
-                <CDropdownItem href="#">Survey Cat2</CDropdownItem>
-                <CDropdownItem href="#">Survey Cat3</CDropdownItem>
-                <CDropdownDivider />
-                <CDropdownItem href="#">Survey etc</CDropdownItem>
-              </CDropdownMenu>
-            </CDropdown>
-            <CFormInput aria-label="Text input with dropdown button" />
-            {/* <CDatePicker locale="en-US" /> */}
-          </CInputGroup>
-        </CCol>
-      </CRow>
-      <CInputGroup className="mb-3">
-        <CFormSelect aria-label="Default select example">
-          <option>Question Category</option>
-          <option value="1">Question Cat 1</option>
-          <option value="2">Question Cat 2</option>
-        </CFormSelect>
-        <CFormSelect aria-label="Default select example">
-          <option>Select Question</option>
-          <option value="1">Question 1</option>
-          <option value="2">Question 2</option>
-        </CFormSelect>
-        <CFormSelect aria-label="Default select example" onChange={onChangeHandler}>
-          <option>Answer Type</option>
-          <option value="1">Essay Question</option>
-          <option value="2">Multiple choice Question</option>
-        </CFormSelect>
-        <CFormSelect aria-label="Default select example">
-          <option>Public/Private</option>
-          <option value="1">Public</option>
-          <option value="2">Private</option>
-        </CFormSelect>
-      </CInputGroup>
+    <>
+      <CCard className="mb-3">
+        <CCardHeader>설문 설정</CCardHeader>
+        <CCardBody>
+          <CForm className="row g-3">
+            <CCol xs={12}>
+              <CFormInput label="설문 이름" placeholder="설문 이름을 입력하세요"/>
+            </CCol>
+            <CCol xs={4}>
+              <CFormSelect label="설문 분류 선택">
+                <option value="1">학교</option>
+                <option value="2">기업</option>
+                <option value="3">연애</option>
+                <option value="4">사업</option>
+                <option value="5">취미</option>
+              </CFormSelect>
+            </CCol>
+            <CCol xs={4}>
+              <CFormSelect label="설문 공개 선택">
+                <option value="1">전체 공개</option>
+                <option value="2">그룹 공개</option>
+                <option value="3">비공개</option>
+              </CFormSelect>
+            </CCol>
+            <CCol xs={4}>
+              <CFormSelect label="답변 종류 선택" onChange={onChangeHandler}>
+                <option value="1">주관식</option>
+                <option value="2">객관식</option>
+              </CFormSelect>
+            </CCol>
+          </CForm>
+        </CCardBody>
+      </CCard>
 
       {questions.map((child) => child)}
       {current_question}
@@ -102,7 +88,7 @@ const Charts = () => {
           Delete Question
         </CButton>
       </div>
-    </CContainer>
+    </>
   )
 }
 
