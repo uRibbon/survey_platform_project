@@ -17,17 +17,17 @@ import {
   CCol,
   CRow,
 } from '@coreui/react'
-import QuestionModal from '../QuestionModal'
+import CreateAnswer from './CreateAnswer'
 
 const Charts = () => {
   const [answerType, setAnswerType] = useState()
 
-  let current_question = <QuestionModal answerType={answerType} />
+  let current_question = <CreateAnswer answerType={answerType} />
   let question_num = 1
   const [questions, setQuestions] = useState([
-    <QuestionModal answerType={1} question_num={1} key={1}/>,
-    <QuestionModal answerType={2} question_num={2} key={2}/>,
-    <QuestionModal answerType={1} question_num={3} key={3}/>,
+    <CreateAnswer answerType={1} question_num={1} key={1}/>,
+    <CreateAnswer answerType={2} question_num={2} key={2}/>,
+    <CreateAnswer answerType={1} question_num={3} key={3}/>,
   ])
 
   function onChangeHandler(event) {
@@ -38,14 +38,14 @@ const Charts = () => {
   function BtnOnclickHandler_Add() {
     console.log(questions)
     questions.concat({ current_question })
-    current_question = <QuestionModal answerType={answerType} />
+    current_question = <CreateAnswer answerType={answerType} />
 
     setQuestions([current_question, ...questions])
   }
 
   function BtnOnclickHandler_Delete() {
     console.log(questions)
-    current_question = <QuestionModal answerType={answerType} question_num={question_num} />
+    current_question = <CreateAnswer answerType={answerType} question_num={question_num} />
     setQuestions(
       questions.slice(0, -1),
       // current_question

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ResultSurvey from './ResultSurvey'
 import ShareSurvey from './ShareSurvey'
-import CreateSurvey from './CreateSurvey'
+import CreateSurvey from './create/CreateSurvey'
 import Send from './create/Send'
 import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react'
 

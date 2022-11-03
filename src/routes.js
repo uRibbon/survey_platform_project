@@ -11,7 +11,7 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const Search = React.lazy(() => import('./views/survey/search/Search'))
 
 // survey - create
-const SurveyCreate = React.lazy(() => import('./views/survey/CreateSurvey'))
+const SurveyCreate = React.lazy(() => import('./views/survey/create/CreateSurvey'))
 const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
 const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifySurveyAdmin'))

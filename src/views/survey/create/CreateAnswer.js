@@ -19,7 +19,7 @@ import {
   CFormSwitch,
 } from '@coreui/react'
 
-const QuestionModal = (props) => {
+const CreateAnswer = (props) => {
   const [answerType, setAnswerType] = useState()
   const [answers, setAnswers] = useState([])
 
@@ -31,14 +31,14 @@ const QuestionModal = (props) => {
   function BtnOnclickHandler_Add() {
     // console.log(questions)
     // answers.concat({ current_answer })
-    // current_answer = <QuestionModal answerType={answerType} />
+    // current_answer = <CreateAnswer answerType={answerType} />
 
     // setQuestions([current_question, ...questions])
   }
 
   function BtnOnclickHandler_Delete() {
     // console.log(questions)
-    // current_question = <QuestionModal answerType={answerType} question_num={question_num} />
+    // current_question = <CreateAnswer answerType={answerType} question_num={question_num} />
     // setQuestions(
     //   questions.slice(0, -1),
     //   // current_question
@@ -149,4 +149,4 @@ const QuestionModal = (props) => {
   )
 }
 
-export default QuestionModal
+export default CreateAnswer

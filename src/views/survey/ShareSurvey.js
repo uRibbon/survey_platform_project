@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CreateSurvey from './CreateSurvey'
+import CreateSurvey from './create/CreateSurvey'
 import ResultSurvey from './ResultSurvey'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import {
