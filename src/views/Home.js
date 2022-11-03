@@ -57,7 +57,7 @@ const Home = () => {
                       </CFormSelect>
                     </div>
                     <div className="mb-3">
-                      <CFormLabel>설문 공개 설정</CFormLabel>
+                      <CFormLabel>설문 공개 선택</CFormLabel>
                       <CFormSelect>
                         <option value="1">전체 공개</option>
                         <option value="2">그룹 공개</option>
