@@ -19,7 +19,7 @@ import {
   CFormSwitch,
 } from '@coreui/react'
 
-const CreateAnswer = (props) => {
+const CreateQuestion = (props) => {
   const [answerType, setAnswerType] = useState()
   const [answers, setAnswers] = useState([])
 
@@ -31,14 +31,14 @@ const CreateAnswer = (props) => {
   function BtnOnclickHandler_Add() {
     // console.log(questions)
     // answers.concat({ current_answer })
-    // current_answer = <CreateAnswer answerType={answerType} />
+    // current_answer = <CreateQuestion answerType={answerType} />
 
     // setQuestions([current_question, ...questions])
   }
 
   function BtnOnclickHandler_Delete() {
     // console.log(questions)
-    // current_question = <CreateAnswer answerType={answerType} question_num={question_num} />
+    // current_question = <CreateQuestion answerType={answerType} question_num={question_num} />
     // setQuestions(
     //   questions.slice(0, -1),
     //   // current_question
@@ -85,7 +85,7 @@ const CreateAnswer = (props) => {
               <CRow>
                 <CCol className="mb-3" xs={12}><CFormInput type="text" label="Answer 1"/></CCol>
                 <CCol className="mb-3" xs={12}>
-                  <CButton className="float-end" color="primary" onClick={BtnOnclickHandler_Add}>Add Answer</CButton>
+                  <CButton color="primary" onClick={BtnOnclickHandler_Add}>Add Answer</CButton>
                 </CCol>
               </CRow>
             )}
@@ -149,4 +149,4 @@ const CreateAnswer = (props) => {
   )
 }
 
-export default CreateAnswer
+export default CreateQuestion

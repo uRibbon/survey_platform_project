@@ -9,12 +9,12 @@ import {
   CCardBody,
   CForm,
 } from '@coreui/react'
-import CreateAnswer from './CreateAnswer'
+import CreateQuestion from './CreateQuestion'
 
 const Charts = () => {
   const [answerType, setAnswerType] = useState()
 
-  let current_question = <CreateAnswer answerType={answerType} />
+  let current_question = <CreateQuestion answerType={answerType} />
   let question_num = 1
   const [questions, setQuestions] = useState([])
 
@@ -26,14 +26,14 @@ const Charts = () => {
   function BtnOnclickHandler_Add() {
     console.log(questions)
     questions.concat({ current_question })
-    current_question = <CreateAnswer answerType={answerType} />
+    current_question = <CreateQuestion answerType={answerType} />
 
     setQuestions([current_question, ...questions])
   }
 
   function BtnOnclickHandler_Delete() {
     console.log(questions)
-    current_question = <CreateAnswer answerType={answerType} question_num={question_num} />
+    current_question = <CreateQuestion answerType={answerType} question_num={question_num} />
     setQuestions(
       questions.slice(0, -1),
       // current_question
