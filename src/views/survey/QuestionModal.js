@@ -3,6 +3,7 @@ import {
   CFormLabel,
   CFormCheck,
   CFormTextarea,
+  CInputGroup,
   CForm,
   CContainer,
   CFormInput,
@@ -13,7 +14,9 @@ import {
   CCardBody,
   CButton,
   CCard,
-  CFormRange, CFormSelect,
+  CFormRange,
+  CFormSelect,
+  CFormSwitch,
 } from '@coreui/react'
 
 const QuestionModal = (props) => {
@@ -42,71 +45,107 @@ const QuestionModal = (props) => {
     // )
   }
   return (
-    <CCard className="mb-3">
-      <CCardHeader>
-        <CRow>
-          <CCol xs={11}>질문1</CCol>
-          <CCol xs={1}><CCloseButton/></CCol>
-        </CRow>
-      </CCardHeader>
-      <CCardBody>
-        <CForm>
-          <CCol xs={4}>
-            <CFormSelect label="답변 종류 선택" onChange={onChangeHandler}>
-              <option value="1">주관식</option>
-              <option value="2">객관식</option>
-              <option value="3">찬부식</option>
-              <option value="4">서열식</option>
-            </CFormSelect>
-          </CCol>
-        </CForm>
+    <CRow>
+      <CCol xs={6}>
+        <CCard className="mb-3">
+          <CCardHeader>
+            질문1<CCloseButton className="float-end"/>
+          </CCardHeader>
+          <CCardBody>
+            <CRow>
+              <CCol className="mb-3" xs={12}>
+                <CFormSelect onChange={onChangeHandler} label="Type">
+                  <option value="1">주관식</option>
+                  <option value="2">객관식(중복 허용)</option>
+                  <option value="3">객관식(중복 불가)</option>
+                  <option value="4">찬부식</option>
+                  <option value="5">서열식</option>
+                </CFormSelect>
+              </CCol>
+              <CCol className="mb-3" xs={12}>
+                <CFormInput type="text" label="Question"/>
+              </CCol>
+            </CRow>
 
-        <CRow>
-          <CCol className="mb-5" xs={2}><CFormLabel>Question</CFormLabel></CCol>
-          <CCol className="mb-5" xs={10}><CFormInput type="text"/></CCol>
-        </CRow>
+            {answerType === '1' && (
+              <CCol>
 
-        {answerType === '1' && (
-          <CRow>
-            <CCol className="mb-3" xs={2}><CFormLabel>Answer</CFormLabel></CCol>
-            <CCol className="mb-3" xs={10}><CFormTextarea rows="3"/></CCol>
-          </CRow>
-        )}
+              </CCol>
+            )}
 
-        {answerType === '2' && (
-          <CRow>
-            <CCol className="mb-3" xs={2}><CFormLabel>Answer 1</CFormLabel></CCol>
-            <CCol className="mb-3" xs={10}><CFormInput type="text"/></CCol>
-            <CCol className="mb-3" xs={2}><CFormLabel>Answer 2</CFormLabel></CCol>
-            <CCol className="mb-3" xs={10}><CFormInput type="text"/></CCol>
+            {answerType === '2' && (
+              <CRow>
+                <CCol className="mb-3" xs={12}><CFormInput type="text" label="Answer 1"/></CCol>
+                <CCol className="mb-3" xs={12}>
+                  <CButton color="primary" onClick={BtnOnclickHandler_Add}>Add Answer</CButton>
+                </CCol>
+              </CRow>
+            )}
+            {answerType === '3' && (
+              <CRow>
+                <CCol className="mb-3" xs={12}><CFormInput type="text" label="Answer 1"/></CCol>
+                <CCol className="mb-3" xs={12}>
+                  <CButton className="float-end" color="primary" onClick={BtnOnclickHandler_Add}>Add Answer</CButton>
+                </CCol>
+              </CRow>
+            )}
+            {answerType === '4' && (
+              <CCol>
 
-            <div className="d-grid gap-3 col-6 mx-auto">
-              <CButton color="primary" onClick={BtnOnclickHandler_Add}>Add Answer</CButton>
-              <CButton color="primary" onClick={BtnOnclickHandler_Delete}>Delete Answer</CButton>
-            </div>
-          </CRow>
-        )}
-        {props.answerType === '3' && (
-          <CCol>
-            <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="예"/>
-            <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="아니오" defaultChecked/>
-          </CCol>
-        )}
-        {props.answerType === '4' && (
-          <CRow>
-            <CCol className="mb-3" xs={2}>
-              <CFormLabel>Step</CFormLabel>
-            </CCol>
-            <CCol className="mb-3" xs={2}>
-              <CFormInput type="number" min="1" max="50"></CFormInput>
-            </CCol>
-            <CCol className="mt-3 mb-3" xs={12}>
+              </CCol>
+            )}
+            {answerType === '5' && (
+              <CRow>
+                {/*<CCol className="mb-3" xs={4}>*/}
+                {/*  <CFormInput type="number" label="Step"></CFormInput>*/}
+                {/*</CCol>*/}
+                {/*<CCol className="mb-3" xs={4}>*/}
+                {/*  <CFormInput type="number" label="Max"></CFormInput>*/}
+                {/*</CCol>*/}
+                {/*<CCol className="mb-3" xs={4}>*/}
+                {/*  <CFormInput type="number" label="Min"></CFormInput>*/}
+                {/*</CCol>*/}
+              </CRow>
+            )}
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-3">
+          <CCardHeader>질문1. 가장 좋아하는 카카오 캐릭터는?</CCardHeader>
+          <CCardBody>
+            {answerType === '1' && (
+              <CFormTextarea></CFormTextarea>
+            )}
+            {answerType === '2' && (
+              <>
+                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" defaultChecked/>
+                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="2. 라이언" />
+                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="3. 어피치" />
+                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="4. 포르도" />
+              </>
+            )}
+            {answerType === '3' && (
+              <>
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" defaultChecked/>
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="2. 라이언" />
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="3. 어피치" />
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="4. 포르도" />
+              </>
+            )}
+            {answerType === '4' && (
+              <>
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="예"/>
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="아니오" defaultChecked/>
+              </>
+            )}
+            {answerType === '5' && (
               <CFormRange min="0" max="100" step="10" defaultValue="50"/>
-            </CCol>
-          </CRow>
-        )}
-      </CCardBody>
-    </CCard>
+            )}
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
   )
 }
 
