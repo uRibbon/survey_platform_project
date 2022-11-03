@@ -16,8 +16,7 @@ const SurveyCreate = React.lazy(() => import('./views/survey/create/CreateSurvey
 const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
 const SurveyModify = React.lazy(() => import('./views/survey/create/ModifySurvey'))
-const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifySurveyAdmin'))
-const SurveyModifySurveyer = React.lazy(() => import('./views/survey/create/ModifySurveySurveyer'))
+// const SurveyModifyAdmin = React.lazy(() => import('./views/survey/create/ModifySurveyAdmin'))
 const Survey = React.lazy(() => import('./views/survey/Survey'))
 const Send = React.lazy(() => import('./views/survey/create/Send'))
 
@@ -100,8 +99,7 @@ const routes = [
   { path: '/survey/ShareSurvey', name: 'Survey Share', element: SurveyShare },
   { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
   { path: '/survey', name: 'Survey', element: Survey },
-  { path: '/survey/ModifySurveyAdmin', name: 'Survey Modify (Admin)', element: SurveyModifyAdmin },
-  { path: '/survey/ModifySurveySurveyer', name: 'Survey Modify (Surveyer)', element: SurveyModifySurveyer },
+  // { path: '/survey/ModifySurveyAdmin', name: 'Survey Modify (Admin)', element: SurveyModifyAdmin },
   // 설문 - 설문 목록
   { path: '/survey/prtcpList', name: 'PrtcpList', element: PrtcpList },
   { path: '/survey/makeList', name: 'MakeList', element: MakeList },
