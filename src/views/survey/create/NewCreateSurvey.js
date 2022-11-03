@@ -9,7 +9,7 @@ import {
   CCardHeader,
   CCardBody,
 } from '@coreui/react'
-import QuestionModal from './AnswerModel'
+import QuestionModal from './CreateAnswer'
 
 const Charts = () => {
   const [answerType, setAnswerType] = useState()

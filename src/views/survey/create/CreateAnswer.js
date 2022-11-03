@@ -16,6 +16,7 @@ import {
 const QuestionModal = (props) => {
 
   const [answerType, setAnswerType] = useState()
+  const [answers, setAnswers] = useState([])
 
   function onChangeHandler(event) {
     setAnswerType(event.target.value)
@@ -24,8 +25,8 @@ const QuestionModal = (props) => {
 
   function BtnOnclickHandler_Add() {
     // console.log(questions)
-    // questions.concat({ current_question })
-    // current_question = <QuestionModal answerType={answerType} />
+    // answers.concat({ current_answer })
+    // current_answer = <QuestionModal answerType={answerType} />
 
     // setQuestions([current_question, ...questions])
   }
