@@ -17,7 +17,7 @@ import {
 } from '@coreui/react'
 
 const QuestionModal = (props) => {
-  onst [answerType, setAnswerType] = useState()
+  const [answerType, setAnswerType] = useState()
   const [answers, setAnswers] = useState([])
 
   function onChangeHandler(event) {
@@ -55,6 +55,8 @@ const QuestionModal = (props) => {
             <CFormSelect label="답변 종류 선택" onChange={onChangeHandler}>
               <option value="1">주관식</option>
               <option value="2">객관식</option>
+              <option value="3">찬부식</option>
+              <option value="4">서열식</option>
             </CFormSelect>
           </CCol>
         </CForm>
