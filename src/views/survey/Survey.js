@@ -36,15 +36,6 @@ const Charts = () => {
               설문 공유
             </CNavLink>
           </CNavItem>
-          <CNavItem>
-            <CNavLink
-              href="javascript:void(0);"
-              active={activeKey === 3}
-              onClick={() => setActiveKey(3)}
-            >
-              설문 결과
-            </CNavLink>
-          </CNavItem>
         </CNav>
       </div>
       <CTabContent>
