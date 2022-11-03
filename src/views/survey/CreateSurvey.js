@@ -45,13 +45,33 @@ const Charts = () => {
   return (
     <>
       <CCard className="mb-3">
+        <CCardHeader>설문 시간</CCardHeader>
+        <CCardBody>
+          <CForm className="row g-3">
+            <CCol xs={3}>
+              <CFormInput label="설문 시작일" type="date"/>
+            </CCol>
+            <CCol xs={3}>
+              <CFormInput label="설문 시작 시간" type="time"/>
+            </CCol>
+            <CCol xs={3}>
+              <CFormInput label="설문 마감일" type="date"/>
+            </CCol>
+            <CCol xs={3}>
+              <CFormInput label="설문 마감 시간" type="time"/>
+            </CCol>
+          </CForm>
+        </CCardBody>
+      </CCard>
+
+      <CCard className="mb-3">
         <CCardHeader>설문 설정</CCardHeader>
         <CCardBody>
           <CForm className="row g-3">
             <CCol xs={12}>
               <CFormInput label="설문 이름" placeholder="설문 이름을 입력하세요"/>
             </CCol>
-            <CCol xs={4}>
+            <CCol xs={6}>
               <CFormSelect label="설문 분류 선택">
                 <option value="1">학교</option>
                 <option value="2">기업</option>
@@ -60,19 +80,11 @@ const Charts = () => {
                 <option value="5">취미</option>
               </CFormSelect>
             </CCol>
-            <CCol xs={4}>
+            <CCol xs={6}>
               <CFormSelect label="설문 공개 선택">
                 <option value="1">전체 공개</option>
                 <option value="2">그룹 공개</option>
                 <option value="3">비공개</option>
-              </CFormSelect>
-            </CCol>
-            <CCol xs={4}>
-              <CFormSelect label="답변 종류 선택" onChange={onChangeHandler}>
-                <option value="1">주관식</option>
-                <option value="2">객관식</option>
-                <option value="3">찬부식</option>
-                <option value="4">서열식</option>
               </CFormSelect>
             </CCol>
           </CForm>
@@ -85,9 +97,6 @@ const Charts = () => {
       <div className="d-grid gap-2 col-6 mx-auto" style={tempStyle}>
         <CButton color="primary" onClick={BtnOnclickHandler_Add}>
           Add Question
-        </CButton>
-        <CButton color="primary" onClick={BtnOnclickHandler_Delete}>
-          Delete Question
         </CButton>
       </div>
     </>
