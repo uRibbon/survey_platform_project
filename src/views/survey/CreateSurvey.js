@@ -48,10 +48,10 @@ const Charts = () => {
         <CCardHeader>설문 설정</CCardHeader>
         <CCardBody>
           <CForm className="row g-3">
-            <CCol xs={12}>
+            <CCol xs={4}>
               <CFormInput label="설문 이름" placeholder="설문 이름을 입력하세요"/>
             </CCol>
-            <CCol xs={6}>
+            <CCol xs={4}>
               <CFormSelect label="설문 분류 선택">
                 <option value="1">학교</option>
                 <option value="2">기업</option>
@@ -60,7 +60,7 @@ const Charts = () => {
                 <option value="5">취미</option>
               </CFormSelect>
             </CCol>
-            <CCol xs={6}>
+            <CCol xs={4}>
               <CFormSelect label="설문 공개 선택">
                 <option value="1">전체 공개</option>
                 <option value="2">그룹 공개</option>
