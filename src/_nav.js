@@ -47,8 +47,8 @@ let _nav = [
       },
       {
         component: CNavItem,
-        name: '설문답변',
-        to: '/survey/CreateAnswer',
+        name: '설문참여',
+        to: '/survey/ParticipateSurvey',
       },
       {
         component: CNavItem,
