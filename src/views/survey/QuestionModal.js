@@ -13,12 +13,33 @@ import {
   CCardBody,
   CButton,
   CCard,
-  CFormRange,
+  CFormRange, CFormSelect,
 } from '@coreui/react'
 
 const QuestionModal = (props) => {
-  const tempStyle = {
-    paddingTop: '20px',
+  onst [answerType, setAnswerType] = useState()
+  const [answers, setAnswers] = useState([])
+
+  function onChangeHandler(event) {
+    setAnswerType(event.target.value)
+    console.log('answer', answerType)
+  }
+
+  function BtnOnclickHandler_Add() {
+    // console.log(questions)
+    // answers.concat({ current_answer })
+    // current_answer = <QuestionModal answerType={answerType} />
+
+    // setQuestions([current_question, ...questions])
+  }
+
+  function BtnOnclickHandler_Delete() {
+    // console.log(questions)
+    // current_question = <QuestionModal answerType={answerType} question_num={question_num} />
+    // setQuestions(
+    //   questions.slice(0, -1),
+    //   // current_question
+    // )
   }
   return (
     <CCard className="mb-3">
@@ -29,25 +50,37 @@ const QuestionModal = (props) => {
         </CRow>
       </CCardHeader>
       <CCardBody>
+        <CForm>
+          <CCol xs={4}>
+            <CFormSelect label="답변 종류 선택" onChange={onChangeHandler}>
+              <option value="1">주관식</option>
+              <option value="2">객관식</option>
+            </CFormSelect>
+          </CCol>
+        </CForm>
+
         <CRow>
-          <CCol className="mb-3" xs={2}><CFormLabel>Question</CFormLabel></CCol>
-          <CCol className="mb-3" xs={10}><CFormInput type="text"/></CCol>
+          <CCol className="mb-5" xs={2}><CFormLabel>Question</CFormLabel></CCol>
+          <CCol className="mb-5" xs={10}><CFormInput type="text"/></CCol>
         </CRow>
-        {props.answerType === '1' && (
+
+        {answerType === '1' && (
           <CRow>
             <CCol className="mb-3" xs={2}><CFormLabel>Answer</CFormLabel></CCol>
             <CCol className="mb-3" xs={10}><CFormTextarea rows="3"/></CCol>
           </CRow>
         )}
-        {props.answerType === '2' && (
+
+        {answerType === '2' && (
           <CRow>
             <CCol className="mb-3" xs={2}><CFormLabel>Answer 1</CFormLabel></CCol>
             <CCol className="mb-3" xs={10}><CFormInput type="text"/></CCol>
             <CCol className="mb-3" xs={2}><CFormLabel>Answer 2</CFormLabel></CCol>
             <CCol className="mb-3" xs={10}><CFormInput type="text"/></CCol>
+
             <div className="d-grid gap-3 col-6 mx-auto">
-              <CButton color="primary">Add Answer</CButton>
-              <CButton color="primary">Delete Answer</CButton>
+              <CButton color="primary" onClick={BtnOnclickHandler_Add}>Add Answer</CButton>
+              <CButton color="primary" onClick={BtnOnclickHandler_Delete}>Delete Answer</CButton>
             </div>
           </CRow>
         )}
