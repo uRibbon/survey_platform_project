@@ -119,7 +119,7 @@ const CreateQuestion = (props) => {
             )}
             {answerType === '2' && (
               <>
-                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" defaultChecked/>
+                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" />
                 <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="2. 라이언" />
                 <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="3. 어피치" />
                 <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="4. 포르도" />
@@ -127,7 +127,7 @@ const CreateQuestion = (props) => {
             )}
             {answerType === '3' && (
               <>
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" defaultChecked/>
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" />
                 <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="2. 라이언" />
                 <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="3. 어피치" />
                 <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="4. 포르도" />
@@ -136,11 +136,11 @@ const CreateQuestion = (props) => {
             {answerType === '4' && (
               <>
                 <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="예"/>
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="아니오" defaultChecked/>
+                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="아니오"/>
               </>
             )}
             {answerType === '5' && (
-              <CFormRange min="0" max="100" step="10" defaultValue="50"/>
+              <CFormRange min="0" max="100" step="10"/>
             )}
           </CCardBody>
         </CCard>
