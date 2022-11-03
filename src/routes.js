@@ -11,6 +11,7 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const Search = React.lazy(() => import('./views/survey/search/Search'))
 
 // survey - create
+const CreateAnswer = React.lazy(() => import('./views/survey/create/CreateAnswer'))
 const SurveyCreate = React.lazy(() => import('./views/survey/create/CreateSurvey'))
 const SurveyShare = React.lazy(() => import('./views/survey/ShareSurvey'))
 const SurveyResult = React.lazy(() => import('./views/survey/ResultSurvey'))
@@ -93,6 +94,7 @@ const routes = [
   // 설문 - 설문 생성
   { path: '/survey/send', name: 'Send', element: Send },
   { path: '/survey/CreateSurvey', name: 'Survey Create', element: SurveyCreate },
+  { path: '/survey/CreateAnswer', name: 'Answer Create', element: CreateAnswer },
   { path: '/survey/ShareSurvey', name: 'Survey Share', element: SurveyShare },
   { path: '/survey/ResultSurvey', name: 'Survey Result', element: SurveyResult },
   { path: '/survey', name: 'Survey', element: Survey },
