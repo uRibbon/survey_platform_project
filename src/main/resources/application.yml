@@ -32,4 +32,4 @@ spring:
         - id: analysis-service
           uri: lb://ANALYSIS-SERVICE
           predicates:
-            - Path=/survey-service/**
+            - Path=/analysis-service/**
