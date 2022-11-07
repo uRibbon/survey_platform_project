@@ -2,11 +2,11 @@ package com.cloud.common.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -44,4 +44,12 @@ public class Menu {
 
     @Column(name = "mod_dt")
     private LocalDateTime modDt;
+
+    @Transient
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Menu> menuList;
+
+    public void addMenuList(Menu menu) {
+        menuList.add(menu);
+    }
 }
