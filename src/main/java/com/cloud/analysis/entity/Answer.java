@@ -6,6 +6,8 @@ import javax.persistence.Id;
 @Entity
 public class Answer {
     @Id
-    @Column(name = "sur_id")
-    private Integer surId;
+    @Column(name = "ans_id")
+    private Integer ansId;
+
+
 }

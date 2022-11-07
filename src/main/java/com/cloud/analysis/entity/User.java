@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 public class User {
     @Id
+    @NotNull
     @Column(name = "user_id")
     private Integer userId;
 
