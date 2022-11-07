@@ -13,5 +13,3 @@ public class analysisServiceContoller {
         return "분석 서버로부터 응답";
     }
 }
-
-

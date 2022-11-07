@@ -1,10 +1,14 @@
-
 server:
   port: 8085
 
 spring:
   application:
     name: analysis-service
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://210.109.62.155:3306/chatbot
+    username: dev3
+    password: dev3test
 
 eureka:
   instance:
