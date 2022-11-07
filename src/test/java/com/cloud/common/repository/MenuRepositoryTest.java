@@ -29,7 +29,7 @@ class MenuRepositoryTest {
             System.out.println("largeCategory.toString() = " + largeCategory.toString());
         });
     }
-    
+
     @Test
     void getMiddleCategory() {
         List<Menu> largeCategoryList = menuRepository.findLargeCategoryList();
@@ -42,7 +42,7 @@ class MenuRepositoryTest {
     }
 
     @Test
-    void geSmallCategory() {
+    void getSmallCategory() {
         List<Menu> largeCategoryList = menuRepository.findLargeCategoryList();
         largeCategoryList.forEach(largeCategory -> {
             List<Menu> middleCategoryList = menuRepository.findMiddleCategoryList(largeCategory.getMenuId());
@@ -50,6 +50,22 @@ class MenuRepositoryTest {
                 List<Menu> smallCategoryList = menuRepository.findSmallCategoryList(middleCategory.getMenuId());
                 smallCategoryList.forEach(smallCategory -> {
                     System.out.println("smallCategory.toString() = " + smallCategory.toString());
+                });
+            });
+        });
+    }
+
+    @Test
+    void getAllCategory() {
+        List<Menu> largeCategoryList = menuRepository.findLargeCategoryList();
+        largeCategoryList.forEach(largeCategory -> {
+            System.out.println("largeCategory = " + largeCategory);
+            List<Menu> middleCategoryList = menuRepository.findMiddleCategoryList(largeCategory.getMenuId());
+            middleCategoryList.forEach(middleCategory -> {
+                System.out.println("middleCategory = " + middleCategory);
+                List<Menu> smallCategoryList = menuRepository.findSmallCategoryList(middleCategory.getMenuId());
+                smallCategoryList.forEach(smallCategory -> {
+                    System.out.println("smallCategory = " + smallCategory);
                 });
             });
         });
