@@ -9,6 +9,6 @@ public class UserPoint {
     @Column(name="user_id", length = 20, nullable = false)
     private String userId;
 
-    @Column(name="user_point_score", nullable = false)
+    @Column(name="user_point_score")
     private int userPointScore;
 }

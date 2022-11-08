@@ -1,11 +1,15 @@
 package com.cloud.point.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="point_history")
 public class PointHistory {
@@ -16,8 +20,9 @@ public class PointHistory {
     @Column(name = "user_id", length = 20, nullable = false)
     private String userId;
 
-    @Column(name = "type_no", nullable = false)
-    private int typeNo;
+    @ManyToOne
+    @JoinColumn(name = "type_no", nullable = false)
+    private PointType pointType;
 
     @Column(name = "reg_id", length = 20, nullable = false)
     private String regId;
