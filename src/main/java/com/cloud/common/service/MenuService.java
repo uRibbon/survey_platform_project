@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface MenuService {
     List<MenuDTO> getAllMenuDTOList();
-    List<Menu> getAllMenuList();
 
     default MenuDTO entityToDTO(Menu menu) {
         MenuDTO dto = MenuDTO.builder()
@@ -16,7 +15,7 @@ public interface MenuService {
                 .menuName(menu.getMenuName())
                 .menuUrl(menu.getMenuUrl())
                 .icon(menu.getIcon())
-                .menuDTOList(new ArrayList<>())
+                .menuList(new ArrayList<>())
                 .build();
         return dto;
     }

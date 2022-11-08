@@ -22,18 +22,11 @@ public class commonServiceController {
         return "Common서버로부터 응답.";
     }
 
-    @GetMapping("/menuDTO")
+    @GetMapping("/menu")
     public List<MenuDTO> getAllMenuDTO(Model model) {
         List<MenuDTO> allMenuDTOList = menuService.getAllMenuDTOList();
         model.addAttribute("allMenuDTOList", allMenuDTOList);
         return allMenuDTOList;
-    }
-
-    @GetMapping("/menu")
-    public List<Menu> getAllMenu(Model model) {
-        List<Menu> allMenuList = menuService.getAllMenuList();
-        model.addAttribute("allMenuList", allMenuList);
-        return allMenuList;
     }
 }
 

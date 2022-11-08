@@ -36,24 +36,4 @@ public class MenuServiceImpl implements MenuService{
         });
         return menuDTOList;
     }
-
-    @Override
-    public List<Menu> getAllMenuList() {
-        List<Menu> menuList = new ArrayList<>();
-        List<Menu> largeCategoryList = menuRepository.findLargeCategoryList();
-        largeCategoryList.forEach(largeCategory -> {
-            largeCategory.setMenuList(new ArrayList<>());
-            List<Menu> middleCategoryList = menuRepository.findMiddleCategoryList(largeCategory.getMenuId());
-            middleCategoryList.forEach(middleCategory -> {
-                largeCategory.addMenuList(middleCategory);
-                middleCategory.setMenuList(new ArrayList<>());
-                List<Menu> smallCategoryList = menuRepository.findSmallCategoryList(middleCategory.getMenuId());
-                smallCategoryList.forEach(smallCategory -> {
-                    middleCategory.addMenuList(smallCategory);
-                });
-            });
-            menuList.add(largeCategory);
-        });
-        return menuList;
-    }
 }
