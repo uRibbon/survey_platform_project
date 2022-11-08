@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"survey_category"})
+//@ToString(exclude = {"survey_category"})
 public class Survey {
     @Id
     @Column(name = "sur_id")
@@ -27,9 +27,9 @@ public class Survey {
     @NotNull
     private String details;
 
-//    @Column(name = "category_id")
+
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private SurveyCategory surveyCategory;
 
