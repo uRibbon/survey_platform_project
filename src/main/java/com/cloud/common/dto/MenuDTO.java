@@ -12,9 +12,9 @@ public class MenuDTO {
     private String menuName;
     private String menuUrl;
     private String icon;
-    private List<MenuDTO> menuDTOList;
+    private List<MenuDTO> menuList;
 
     public void addMenuDTOList(MenuDTO menuDTO) {
-        menuDTOList.add(menuDTO);
+        menuList.add(menuDTO);
     }
 }
