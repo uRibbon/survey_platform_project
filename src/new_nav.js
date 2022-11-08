@@ -203,7 +203,7 @@ data = [
   }
 ]
 
-let _nav = [
+let new_nav = [
   data.map((large) => (
     {
       component: CNavTitle,
