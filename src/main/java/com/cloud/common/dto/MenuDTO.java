@@ -11,10 +11,10 @@ public class MenuDTO {
     private Integer menuId;
     private String menuName;
     private String menuUrl;
-    private String icon;
+    private String menuIcon;
     private List<MenuDTO> menuList;
 
-    public void addMenuDTOList(MenuDTO menuDTO) {
+    public void addMenuList(MenuDTO menuDTO) {
         menuList.add(menuDTO);
     }
 }
