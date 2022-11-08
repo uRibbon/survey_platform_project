@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <>
      <CRow className="mb-3">
-        <CCarousel controls indicators>
+        <CCarousel controls indicators dark>
           <CCarouselItem>
             <CButton href="/#/survey/detail" color="light">
               <div className='slider_img_wrap'>
