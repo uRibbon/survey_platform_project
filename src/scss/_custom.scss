@@ -1,9 +1,33 @@
 // Here you can add other styles
 
 // 카카오 컬러
-.kyellow{
+.kyellow {
     background-color: #ffff00;
 }
+
+.main_logo {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.main_logo:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.main_logo_mobile {
+    color:rgb(44, 44, 44);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.main_logo_mobile:hover {
+    color: rgb(60, 60, 60);
+    text-decoration: none;
+}
+
 
 // _______________________________________________________________________________________________
 .custom_height {

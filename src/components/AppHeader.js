@@ -33,9 +33,9 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         {/* 모바일버전 로고 */}
-        <CHeaderBrand className="mx-auto d-md-none" to="/">
-          <CIcon icon={logo} height={48} alt="Logo" />
-        </CHeaderBrand>
+        <span className="mx-auto d-md-none" to="/">
+          <a className='main_logo_mobile' href='/#'> ☁️ SURVEY PLATFORM ☁️ </a>
+        </span>
         {/* 헤더메뉴 */}
         {/* <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
