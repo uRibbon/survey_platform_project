@@ -2,10 +2,7 @@ package com.cloud.analysis.entity;
 import com.cloud.analysis.entity.enums.Status;
 import com.cloud.analysis.entity.enums.YesOrNo;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"survey_category"})
 public class Survey {
     @Id
     @Column(name = "sur_id")
@@ -29,9 +27,11 @@ public class Survey {
     @NotNull
     private String details;
 
-    @Column(name = "category_id")
+//    @Column(name = "category_id")
     @NotNull
-    private Integer categoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private SurveyCategory surveyCategory;
 
     @Column(name = "version")
     @NotNull

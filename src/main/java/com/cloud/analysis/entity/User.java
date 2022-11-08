@@ -39,9 +39,9 @@ public class User {
     @NotNull
     private String mailAddr;
 
-    @Column(name = "phonw", length = 11)
+    @Column(name = "phone", length = 11)
     @NotNull
-    private String phonw;
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
@@ -74,6 +74,4 @@ public class User {
     @Column(name = "job", length = 30)
     @NotNull
     private String job;
-
-
 }
