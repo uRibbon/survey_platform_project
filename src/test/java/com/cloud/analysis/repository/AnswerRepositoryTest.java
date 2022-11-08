@@ -34,22 +34,22 @@ class AnswerRepositoryTest {
         });
     }
 
-    @Test
-    public void insert(){
-        Answer answer = Answer.builder()
-                .ansId(2)
-                .type(Type.Member)
-                .regId("2")
-                .regIp("123123")
-                .regDt(LocalDateTime.now())
-                .modId("123123122")
-                .modDt(LocalDateTime.now())
-                .surId(1233)
-                .queId(595959)
-                .content("[\"young\",\"Joo\"]")
-                .build();
-        answerRepository.save(answer);
-    }
+//    @Test
+//    public void insert(){
+//        Answer answer = Answer.builder()
+//                .ansId(2)
+//                .type(Type.Member)
+//                .regId("2")
+//                .regIp("123123")
+//                .regDt(LocalDateTime.now())
+//                .modId("123123122")
+//                .modDt(LocalDateTime.now())
+//                .surId(1233)
+//                .queId(595959)
+//                .content("[\"young\",\"Joo\"]")
+//                .build();
+//        answerRepository.save(answer);
+//    }
 
 
 

@@ -27,7 +27,6 @@ public class Survey {
     @NotNull
     private String details;
 
-
     @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id")

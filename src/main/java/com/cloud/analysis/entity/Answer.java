@@ -37,13 +37,15 @@ public class Answer {
     @Column(name = "mod_dt", nullable = false)
     private LocalDateTime modDt;
 
-    @Column(name = "sur_id", nullable = false)
-    private Integer surId;
+    @ManyToOne
+    @JoinColumn(name = "sur_id")
+    private Survey survey;
 
-    @Column(name = "que_id", nullable = false)
-    private Integer queId;
+//    @Column(name = "que_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "que_id")
+    private Question question;
 
     @Column(name = "content", length = 50, nullable = false)
     private String content;
-
 }
