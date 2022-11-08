@@ -27,8 +27,8 @@ public class Menu {
     @Column(name = "menu_url", length = 20)
     private String menuUrl;
 
-    @Column(name = "icon", length = 20)
-    private String icon;
+    @Column(name = "menu_icon", length = 20)
+    private String menuIcon;
 
     @Column(name = "sort_idx")
     private Integer sortIdx;
