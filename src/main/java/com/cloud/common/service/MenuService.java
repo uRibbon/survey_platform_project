@@ -14,7 +14,7 @@ public interface MenuService {
                 .menuId(menu.getMenuId())
                 .menuName(menu.getMenuName())
                 .menuUrl(menu.getMenuUrl())
-                .icon(menu.getIcon())
+                .menuIcon(menu.getMenuIcon())
                 .menuList(new ArrayList<>())
                 .build();
         return dto;
