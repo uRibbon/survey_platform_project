@@ -6,7 +6,7 @@ spring:
     name: point-service
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://210.109.62.155:3306/chatbot
+    url: jdbc:mariadb://210.109.62.155:3306/point_db
     username: dev2
     password: dev2test
   jpa:
