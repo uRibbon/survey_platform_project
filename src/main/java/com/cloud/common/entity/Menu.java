@@ -44,12 +44,4 @@ public class Menu {
 
     @Column(name = "mod_dt")
     private LocalDateTime modDt;
-
-    @Transient
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Menu> menuList;
-
-    public void addMenuList(Menu menu) {
-        menuList.add(menu);
-    }
 }
