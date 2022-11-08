@@ -25,11 +25,11 @@ public class MenuServiceImpl implements MenuService{
             List<Menu> middleCategoryList = menuRepository.findMiddleCategoryList(largeCategory.getMenuId());
             middleCategoryList.forEach(middleCategory -> {
                 MenuDTO middleCategoryDTO = entityToDTO(middleCategory);
-                largeCategoryDTO.addMenuDTOList(middleCategoryDTO);
+                largeCategoryDTO.addMenuList(middleCategoryDTO);
                 List<Menu> smallCategoryList = menuRepository.findSmallCategoryList(middleCategory.getMenuId());
                 smallCategoryList.forEach(smallCategory -> {
                     MenuDTO smallCategoryDTO = entityToDTO(smallCategory);
-                   middleCategoryDTO.addMenuDTOList(smallCategoryDTO);
+                   middleCategoryDTO.addMenuList(smallCategoryDTO);
                 });
             });
             menuDTOList.add(largeCategoryDTO);
