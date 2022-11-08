@@ -1,13 +1,21 @@
 package com.cloud.analysis.entity;
+import com.cloud.analysis.entity.enums.Status;
+import com.cloud.analysis.entity.enums.YesOrNo;
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Survey {
-
     @Id
     @Column(name = "sur_id")
     @NotNull
@@ -29,16 +37,11 @@ public class Survey {
     @NotNull
     private Float version;
 
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
     @NotNull
-    private status status;
+    private Status status;
 
-    public enum status{
-        proc, end
-    }
-
-    @CreationTimestamp
     @Column(name = "due_dt")
     @NotNull
     private LocalDateTime dueDt;
@@ -51,7 +54,6 @@ public class Survey {
     @NotNull
     private String regId;
 
-    @CreationTimestamp
     @Column(name = "reg_dt")
     @NotNull
     private LocalDateTime regDt;
@@ -59,43 +61,26 @@ public class Survey {
     @Column(name = "mod_id", length = 20)
     private String modId;
 
-    @CreationTimestamp
     @Column(name = "mod_dt")
     private LocalDateTime modDt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "is_login")
     @NotNull
-    private isLogin isLogin;
-
-    public enum isLogin{
-        Y, N
-    }
+    private YesOrNo isLogin;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "is_private")
     @NotNull
-    private isPrivate isPrivate;
-
-    public enum isPrivate{
-        Y, N
-    }
+    private YesOrNo isPrivate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "is_modify")
     @NotNull
-    private isModify isModify;
-
-    public enum isModify{
-        Y, N
-    }
+    private YesOrNo isModify;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "is_annoy")
     @NotNull
-    private isAnnoy isAnnoy;
-
-    public enum isAnnoy{
-        Y, N
-    }
+    private YesOrNo isAnnoy;
 }

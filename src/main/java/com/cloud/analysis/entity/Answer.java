@@ -1,62 +1,49 @@
 package com.cloud.analysis.entity;
-import com.sun.istack.NotNull;
-import org.hibernate.annotations.CreationTimestamp;
+import com.cloud.analysis.entity.enums.Type;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.EnumSet;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Answer {
     @Id
     @Column(name = "ans_id")
-    @NotNull
     private Integer ansId;
 
+    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    @NotNull
-    private type type;
+    private Type type;
 
-    public enum type{
-        Member, Non_member
-    }
-
-    @Column(name = "reg_id", length = 20)
-    @NotNull
+    @Column(name = "reg_id", nullable = false, length = 20)
     private String regId;
 
-    @Column(name = "reg_ip", length = 50)
-    @NotNull
+    @Column(name = "reg_ip", nullable = false, length = 50)
     private String regIp;
 
-    @CreationTimestamp
-    @Column(name = "reg_dt")
-    @NotNull
+    @Column(name = "reg_dt", nullable = false)
     private LocalDateTime regDt;
 
-    @Column(name = "mod_id", length = 20)
-    @NotNull
+    @Column(name = "mod_id", nullable = false, length = 20)
     private String modId;
 
-    @CreationTimestamp
-    @Column(name = "mod_dt")
-    @NotNull
+    @Column(name = "mod_dt", nullable = false)
     private LocalDateTime modDt;
 
-    @Column(name = "sur_id")
-    @NotNull
+    @Column(name = "sur_id", nullable = false)
     private Integer surId;
 
-    @Column(name = "que_id")
-    @NotNull
+    @Column(name = "que_id", nullable = false)
     private Integer queId;
 
-    @Column(name = "content")
-    private EnumSet<Content> content;
-
-    public enum Content {
-        Value_A,Value_B
-    }
+    @Column(name = "content", length = 50, nullable = false)
+    private String content;
 
 }

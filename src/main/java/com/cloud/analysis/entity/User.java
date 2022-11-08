@@ -1,18 +1,28 @@
 package com.cloud.analysis.entity;
+import com.cloud.analysis.entity.enums.Gender;
+import com.cloud.analysis.entity.enums.Role;
+import com.cloud.analysis.entity.enums.YesOrNo;
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @NotNull
     @Column(name = "user_id")
     private Integer userId;
 
-    @CreationTimestamp
     @Column(name = "reg_dt")
     @NotNull
     private LocalDateTime regDt;
@@ -36,11 +46,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     @NotNull
-    private role role;
-
-    public enum role{
-        Admin, Manager, Member, Non_member
-    }
+    private Role role;
 
     @Column(name = "name", length = 30)
     @NotNull
@@ -49,20 +55,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "is_mail_accept")
     @NotNull
-    private isMailAccept isMailAccept;
-
-    public enum isMailAccept{
-        Y, N
-    }
+    private YesOrNo isMailAccept;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "is_phone_accept")
     @NotNull
-    private isPhoneAccept isPhoneAccept;
-
-    public enum isPhoneAccept{
-        Y, N
-    }
+    private YesOrNo isPhoneAccept;
 
     @Column(name = "age")
     @NotNull
@@ -71,11 +69,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     @NotNull
-    private gender gender;
-
-    public enum gender{
-        M, F
-    }
+    private Gender gender;
 
     @Column(name = "job", length = 30)
     @NotNull
