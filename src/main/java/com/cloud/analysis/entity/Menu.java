@@ -3,9 +3,11 @@ package com.cloud.analysis.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(catalog = "common_db")
 public class Menu {
     @Id
     @Column(name = "menu_id")

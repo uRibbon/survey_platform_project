@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString(exclude = {"survey_category"})
+@Table(catalog = "survey_db")
 public class Survey {
     @Id
     @Column(name = "sur_id")

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(catalog = "survey_db")
 public class Answer {
     @Id
     @Column(name = "ans_id")

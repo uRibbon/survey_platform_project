@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(catalog = "survey_db")
 public class Question {
     @Id
     @Column(name="que_id")

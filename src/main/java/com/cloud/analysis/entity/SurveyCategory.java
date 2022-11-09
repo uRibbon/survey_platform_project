@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "survey_category")
-
+@Table(catalog = "survey_db", name = "survey_category")
 public class SurveyCategory {
     @Id
     @Column(name="sur_cat_id")
