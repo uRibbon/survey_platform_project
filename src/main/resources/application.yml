@@ -33,3 +33,7 @@ spring:
           uri: lb://ANALYSIS-SERVICE
           predicates:
             - Path=/analysis-service/**
+        - id: point-service
+          uri: lb://POINT-SERVICE
+          predicates:
+            - Path=/point-service/**
