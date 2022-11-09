@@ -5,15 +5,16 @@ spring:
   application:
     name: analysis-service
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://210.109.62.155:3306/chatbot
-    username: dev4
-    password: dev4test
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://210.109.62.155:3306/
+      username: dev4
+      password: dev4test
   jpa:
     hibernate:
       ddl-auto: none
     generate-ddl: false
     show-sql: false
+
 
 eureka:
   instance:
