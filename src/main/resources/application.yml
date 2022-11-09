@@ -7,7 +7,7 @@ spring:
     name: common-service
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://210.109.62.155:3306/common_db
+    url: jdbc:mariadb://210.109.62.155:3306/
     username: dev4
     password: dev4test
 
