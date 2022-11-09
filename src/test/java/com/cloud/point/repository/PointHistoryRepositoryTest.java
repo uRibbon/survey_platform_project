@@ -2,15 +2,12 @@ package com.cloud.point.repository;
 
 import com.cloud.point.entity.PointHistory;
 import com.cloud.point.entity.PointType;
-import com.cloud.point.entity.UserPoint;
-import lombok.Builder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PointHistoryRepositoryTest {
