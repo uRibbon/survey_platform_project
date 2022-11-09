@@ -4,6 +4,7 @@ package com.cloud.point.controler;
 import com.cloud.point.entity.UserPoint;
 import com.cloud.point.repository.UserPointRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +18,15 @@ import java.util.Optional;
 @RequestMapping(value="v1/point")
 @Slf4j
 public class pointController {
+    @Autowired
+    UserPointRepository userPointRepository;
+
     @GetMapping("/test/{id}")
-    public String test(@PathVariable Integer id, Model model) {
+    public UserPoint test(@PathVariable Integer id, Model model) {
         log.info("id = " + id);
-        Optional<UserPoint> byId = UserPointRepository.findById(1);
-        if (byId.isPresent()) {
-            UserPoint userPoint = byId.get();
-        }
-        model.addAttribute("userPoint", userPointEntity);
-        return "gg";
+        UserPoint userPoint = userPointRepository.findById(id).orElse(null);
+        model.addAttribute("userPoint", userPoint);
+        return userPoint;
     }
 
     @GetMapping("/list")

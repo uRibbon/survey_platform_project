@@ -22,8 +22,8 @@ class UserPointRepositoryTest {
     @Test
     void insert() {
         UserPoint userPoint = UserPoint.builder()
-                .id(1)
-                .userId("YR")
+                .id(3)
+                .userId("YN")
                 .userPointScore(50)
                 .build();
         userPointRepository.save(userPoint);
