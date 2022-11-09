@@ -21,7 +21,7 @@ public class pointController {
     @Autowired
     UserPointRepository userPointRepository;
 
-    @GetMapping("/test/{id}")
+    @GetMapping("/total/{id}")
     public UserPoint test(@PathVariable Integer id, Model model) {
         log.info("id = " + id);
         UserPoint userPoint = userPointRepository.findById(id).orElse(null);
@@ -29,13 +29,11 @@ public class pointController {
         return userPoint;
     }
 
-    @GetMapping("/list")
-    public String getList() {
-        return "point 내역에 대한 조회로부터 응답";
-    }
-
-    /*@GetMapping("/total")
-    public Point getTotal() {
-        return "";
+    /*@GetMapping("/list/{id}")
+    public  test(@PathVariable Integer id, Model model) {
+        log.info("id = " + id);
+        UserPoint userPoint = userPointRepository.findById(id).orElse(null);
+        model.addAttribute("userPoint", userPoint);
+        return userPoint;
     }*/
 }
