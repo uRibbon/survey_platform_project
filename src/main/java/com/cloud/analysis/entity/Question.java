@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 @Table(catalog = "common_db")
 public class Question {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="que_id")
-    @NotNull
     private Integer queId;
 
     @Column(name="content", length = 50)
