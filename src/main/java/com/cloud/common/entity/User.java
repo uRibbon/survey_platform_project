@@ -42,9 +42,10 @@ public class User {
     @Column(name = "is_mail_accept", nullable = false)
     private Boolean isMailAccept;
 
-    @Column(name = "is_phone_accpept", nullable = false)
+    @Column(name = "is_phone_accept", nullable = false)
     private Boolean isPhoneAccept;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
