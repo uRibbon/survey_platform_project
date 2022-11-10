@@ -7,10 +7,7 @@ import com.cloud.point.repository.PointHistoryRepository;
 import com.cloud.point.repository.UserPointRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 @RestController
@@ -23,19 +20,17 @@ public class pointController {
     @Autowired
     PointHistoryRepository pointHistoryRepository;
 
-    @GetMapping("/total/{id}")
-    public UserPoint userPoint(@PathVariable Integer id, Model model) {
-        log.info("id = " + id);
-        UserPoint userPoint = userPointRepository.findById(id).orElse(null);
-        model.addAttribute("userPoint", userPoint);
-        return userPoint;
+    @PostMapping("/total")
+    public UserPoint userPoint(@RequestBody UserPoint userPoint) {
+        log.info("id = " + userPoint.getId());
+        UserPoint userPoint1 = userPointRepository.findById(userPoint.getId()).orElse(null);
+        return userPoint1;
     }
 
-    @GetMapping("/list/{pointHisNo}")
-    public PointHistory pointHistory(@PathVariable Integer pointHisNo, Model model) {
-        //log.info("id = " + id);
-        PointHistory pointHistory = pointHistoryRepository.findById(pointHisNo).orElse(null);
-        model.addAttribute("pointHistory", pointHistory);
-        return pointHistory;
+    @PostMapping("/list")
+    public PointHistory pointHistory(@RequestBody PointHistory pointHistory) {
+        log.info("id = " + pointHistory.getPointHisNo());
+        PointHistory pointHistory1 = pointHistoryRepository.findById(pointHistory.getPointHisNo()).orElse(null);
+        return pointHistory1;
     }
 }
