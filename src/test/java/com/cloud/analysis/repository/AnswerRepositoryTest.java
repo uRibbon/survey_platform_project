@@ -69,11 +69,9 @@ class AnswerRepositoryTest {
 
     @Test
     void readByUser() {
-        List<Survey> surveyList = surveyRepository.findAll();
-        surveyList.forEach(survey -> {
-            List<Answer> answerList = answerRepository.findAnswerBySurvey(survey.getSurId());
-            System.out.println("answerList = " + answerList);
-        });
+        List<User> userList = answerRepository.findAnswerBySurvey(1);
+        System.out.println("userList = " + userList);
+
 
     }
 
