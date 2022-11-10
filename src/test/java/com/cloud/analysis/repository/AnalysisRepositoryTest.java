@@ -1,7 +1,7 @@
 package com.cloud.analysis.repository;
 
 import com.cloud.analysis.entity.Analysis;
-import com.cloud.analysis.entity.TableType;
+import com.cloud.analysis.entity.enums.Type;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,7 +27,7 @@ class AnalysisRepositoryTest {
     void insert() {
         Analysis analysis = Analysis.builder()
                 .analysisId(1)
-                .tableType(TableType.BAR)
+                .tableType(Type.BAR)
                 .build();
         analysisRepository.save(analysis);
     }

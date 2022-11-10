@@ -1,4 +1,4 @@
 package com.cloud.analysis.service;
 
-public interface AanalysisService {
+public interface AnalysisService {
 }
