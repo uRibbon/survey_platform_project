@@ -4,6 +4,16 @@ server:
 spring:
   application:
     name: auth-service
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://210.109.62.155:3306/
+    username: dev1
+    password: dev1test
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: false
 
 eureka:
   instance:
