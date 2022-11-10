@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface AnswerRepository extends JpaRepository<Answer,Integer> {
+    // 서베이에 참여한 유저 리스트 출력
     @Query("select a.user from Answer a where a.survey.surId = :surId")
     List<User> findAnswerBySurvey(Integer surId);
 
+    // 유저가 작성한 답안 리스트 출력
     @Query("select a from Answer a where a.user.regId = :userId")
     List<Answer> findAnswerByUser(String userId);
 
