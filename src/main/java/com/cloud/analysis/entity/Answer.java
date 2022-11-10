@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(catalog = "survey_db")
+@Table(catalog = "common_db")
 public class Answer {
     @Id
     @Column(name = "ans_id")
@@ -23,8 +23,9 @@ public class Answer {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @Column(name = "reg_id", nullable = false, length = 20)
-    private String regId;
+    @ManyToOne
+    @JoinColumn(name = "reg_id")
+    private User user;
 
     @Column(name = "reg_ip", nullable = false, length = 50)
     private String regIp;
