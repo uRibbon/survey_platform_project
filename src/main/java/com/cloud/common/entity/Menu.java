@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(catalog = "common_db")
+@Table
 public class Menu {
     @Id
     @Column(name = "menu_id")

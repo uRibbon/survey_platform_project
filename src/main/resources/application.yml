@@ -7,14 +7,14 @@ spring:
     name: common-service
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://210.109.62.155:3306/
+    url: jdbc:mariadb://210.109.62.155:3306/common_db
     username: dev4
     password: dev4test
 
   jpa:
     hibernate:
-      ddl-auto: none
-    generate-ddl: false
+      ddl-auto: update
+    generate-ddl: true
     show-sql: false
 
 
@@ -26,3 +26,11 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+#feign:
+#  client:
+#    config:
+#      feignName: ${spring.application.name}
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#        loggerLevel: basic
