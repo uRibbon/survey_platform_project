@@ -25,7 +25,7 @@ class UserRepositoryTest {
     @Test
     void insert() {
         User user = User.builder()
-                .userId("yena1")
+                .userId("solbitest")
                 .userPwd("djfsldfjlksdjf")
                 .name("yena")
                 .job("student")
