@@ -1,13 +1,9 @@
 package com.cloud.analysis.entity;
-import com.cloud.analysis.entity.enums.Gender;
-import com.cloud.analysis.entity.enums.Role;
-import com.cloud.analysis.entity.enums.YesOrNo;
-import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,62 +13,50 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(catalog = "user_db")
+@Table(catalog = "common_db")
 public class User {
     @Id
-    @NotNull
-    @Column(name = "user_id")
-    private Integer userId;
+    @Column(name = "user_id", nullable = false)
+    private String userId;
 
-    @Column(name = "reg_dt")
-    @NotNull
-    private LocalDateTime regDt;
-
-    @Column(name = "reg_id", length = 20)
-    @NotNull
-    private String regId;
-
-    @Column(name = "user_pwd", length = 50)
-    @NotNull
+    @Column(name = "user_pwd", nullable = false)
     private String userPwd;
 
-    @Column(name = "mail_addr", length = 30)
-    @NotNull
-    private String mailAddr;
-
-    @Column(name = "phone", length = 11)
-    @NotNull
-    private String phone;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    @NotNull
-    private Role role;
-
-    @Column(name = "name", length = 30)
-    @NotNull
+    @Column(nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "is_mail_accept")
-    @NotNull
-    private YesOrNo isMailAccept;
+    @Column(nullable = false)
+    private String job;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "is_phone_accept")
-    @NotNull
-    private YesOrNo isPhoneAccept;
-
-    @Column(name = "age")
-    @NotNull
+    @Column(nullable = false)
     private Integer age;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    @NotNull
-    private Gender gender;
+    @Column(nullable = false)
+    private Boolean gender;
 
-    @Column(name = "job", length = 30)
-    @NotNull
-    private String job;
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(name = "mail_addr", nullable = false)
+    private String mailAddr;
+
+    @Column(name = "is_mail_accept", nullable = false)
+    private Boolean isMailAccept;
+
+    @Column(name = "is_phone_accept", nullable = false)
+    private Boolean isPhoneAccept;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Column(name = "reg_id", nullable = false)
+    private String regId;
+
+    @Column(name = "reg_dt", nullable = false)
+    private LocalDateTime regDt;
+
+    @Column(name = "use_yn", nullable = false)
+    private Boolean useYn;
+
 }

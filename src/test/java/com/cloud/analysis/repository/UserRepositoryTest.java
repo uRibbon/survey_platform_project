@@ -1,14 +1,13 @@
 package com.cloud.analysis.repository;
 
-import com.cloud.analysis.entity.Survey;
+import com.cloud.analysis.entity.Role;
 import com.cloud.analysis.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -16,10 +15,32 @@ class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    void read(){
+    void read() {
         List<User> userList = userRepository.findAll();
-        userList.forEach(survey -> {
-            System.out.println("user = " + survey);
+        userList.forEach(user -> {
+            System.out.println("user = " + user.toString());
         });
     }
+
+    @Test
+    void insert() {
+        User user = User.builder()
+                .userId("yena1")
+                .userPwd("djfsldfjlksdjf")
+                .name("yena")
+                .job("student")
+                .age(25)
+                .gender(true)
+                .phone("01012345678")
+                .mailAddr("yena@gachon.ac.kr")
+                .isMailAccept(true)
+                .isPhoneAccept(true)
+                .role(Role.MEMBER)
+                .regId("yena")
+                .regDt(LocalDateTime.now())
+                .useYn(true)
+                .build();
+        userRepository.save(user);
+    }
+
 }

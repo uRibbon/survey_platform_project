@@ -11,7 +11,7 @@ spring:
       password: dev4test
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     generate-ddl: false
     show-sql: false
 
