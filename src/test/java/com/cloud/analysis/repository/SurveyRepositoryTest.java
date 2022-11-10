@@ -34,8 +34,8 @@ class SurveyRepositoryTest {
     void insert() {
         SurveyCategory surveyCategory = SurveyCategory
                 .builder()
-                .surCatId(1)
-                .content("학교")
+                .surCatId(2)
+                .content("회사")
                 .build();
         surveyCategoryRepository.save(surveyCategory);
         Survey survey = Survey.builder()

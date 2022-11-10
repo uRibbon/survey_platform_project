@@ -28,8 +28,7 @@ class QuestionRepositoryTest {
     @Test
     void insert() {
         Question question = Question.builder()
-                .queId(1)
-                .content("질문")
+                .content("가장 좋아하는 음식은?")
                 .qType(QType.Grd)
                 .isPrivate(YesOrNo.Y)
                 .regId("yena")

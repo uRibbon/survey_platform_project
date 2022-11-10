@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.GeneratedValue;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -52,19 +53,44 @@ class AnswerRepositoryTest {
 
     @Test
     public void insert(){
-        Answer answer = Answer.builder()
-                .ansId(1)
+        Survey survey = surveyRepository.findById(1).orElse(null);
+        Question question = questionRepository.findById(2).orElse(null);
+        Answer answer1 = Answer.builder()
                 .type(Type.Member)
                 .user(userRepository.findById("yena").orElse(null))
-                .regIp("123123")
+                .regIp("0.0.0.0")
                 .regDt(LocalDateTime.now())
-                .modId("123123122")
+                .modId("yena")
                 .modDt(LocalDateTime.now())
-                .survey(surveyRepository.findById(1).orElse(null))
-                .question(questionRepository.findById(1).orElse(null))
-                .content("[\"young\",\"Joo\"]")
+                .survey(survey)
+                .question(question)
+                .content("[1]")
                 .build();
-        answerRepository.save(answer);
+        answerRepository.save(answer1);
+        Answer answer2 = Answer.builder()
+                .type(Type.Member)
+                .user(userRepository.findById("yuri").orElse(null))
+                .regIp("0.0.0.0")
+                .regDt(LocalDateTime.now())
+                .modId("yuri")
+                .modDt(LocalDateTime.now())
+                .survey(survey)
+                .question(question)
+                .content("[1]")
+                .build();
+        answerRepository.save(answer2);
+        Answer answer3 = Answer.builder()
+                .type(Type.Member)
+                .user(userRepository.findById("young").orElse(null))
+                .regIp("0.0.0.0")
+                .regDt(LocalDateTime.now())
+                .modId("young")
+                .modDt(LocalDateTime.now())
+                .survey(survey)
+                .question(question)
+                .content("[4]")
+                .build();
+        answerRepository.save(answer3);
     }
 
     @Test
