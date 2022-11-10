@@ -17,6 +17,8 @@ const AppSidebar = () => {
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const [navigation, setNavigation] = useState([])
 
+
+  //원본 nav
   let _nav = [
     {
       component: CNavTitle,
@@ -170,7 +172,7 @@ const AppSidebar = () => {
 
 
 
-
+  //dummy nav
   let dummy_data = [
     {
       "menuId": 1,
@@ -238,25 +240,16 @@ const AppSidebar = () => {
 
   useEffect(() =>{
       dummy_data.map((large) => {
-
-          console.log('대분류: ',large.menuName)
           setNavigation(
             (navigation)=>[...navigation,{
               component: CNavTitle,
               name: large.menuName,
             }])
-          console.log("여기야 !!!!!!!!!",navigation)
-    
           large.menuList.map((middle) =>{
-            console.log("여기야 !!",navigation)
-            console.log('중분류: ', middle.menuName)
-            console.log('소분류들: ', middle.menuList)
-
             let new_items = []
-
             for (let i = 0; i < middle.menuList.length; i++) {
               new_items.push(
-                {
+                { 
                   component: CNavItem,
                   name: middle.menuList[i].menuName,
                   to: middle.menuList[i].menuUrl,
@@ -276,9 +269,6 @@ const AppSidebar = () => {
     )
   }, []);
 
-
-  console.log("여기야 !!",navigation)
-
   return (
     <CSidebar
       position="fixed"
@@ -295,7 +285,7 @@ const AppSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
-          <AppSidebarNav items={navigation} />
+          <AppSidebarNav items={_nav} />
         </SimpleBar>
       </CSidebarNav>
       <CSidebarToggler
