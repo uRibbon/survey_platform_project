@@ -21,7 +21,7 @@ public class Analysis {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "table_type")
-    private Type tableType;
+    private TableType tableType;
 
     @Column(length = 45)
     private String subject;
