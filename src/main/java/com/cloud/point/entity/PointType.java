@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name="point_type")
+@Table(catalog = "point_db", name="point_type")
 public class PointType {
     @Id
     @Column(name="no", length=10, nullable = false)

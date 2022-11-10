@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name="user_point")
+@Table(catalog = "point_db", name="user_point")
 public class UserPoint {
 
     @Id
