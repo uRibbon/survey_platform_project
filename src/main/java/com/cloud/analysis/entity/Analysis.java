@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Data
+@Table(catalog = "analysis_db")
 public class Analysis {
     @Id
     @Column(name = "analysis_id", nullable = false)
