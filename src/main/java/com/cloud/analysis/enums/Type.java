@@ -1,4 +1,4 @@
-package com.cloud.analysis.entity.enums;
+package com.cloud.analysis.enums;
 
 public enum Type {
     Member, Non_member
