@@ -1,5 +1,6 @@
 package com.cloud.analysis.entity;
 
+import com.cloud.analysis.entity.enums.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Analysis {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "table_type")
-    private TableType tableType;
+    private Type tableType;
 
     @Column(length = 45)
     private String subject;
