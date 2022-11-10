@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @Table(name="point_history")
 public class PointHistory {
+
     @Id
     @Column(name = "point_his_no", nullable = false)
     private int pointHisNo;

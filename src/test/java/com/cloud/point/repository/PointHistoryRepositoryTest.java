@@ -28,22 +28,22 @@ class PointHistoryRepositoryTest {
     @Test
     void insert() {
         PointType pointType = PointType.builder()
-                .no(1)
-                .type("E")
+                .no(2)
+                .type("D")
                 .score(50)
-                .regId("YR")
+                .regId("Stella")
                 .regDt(LocalDateTime.now())
-                .modId("YN")
+                .modId("Sally")
                 .modDt(LocalDateTime.now())
                 .build();
         pointTypeRepository.save(pointType);
         PointHistory pointHistory = PointHistory.builder()
-                .pointHisNo(1)
-                .userId("1")
+                .pointHisNo(2)
+                .userId("2")
                 .pointType(pointType)
-                .regId("YJ")
+                .regId("John")
                 .regDt(LocalDateTime.now())
-                .modId("SB")
+                .modId("Daisy")
                 .modDt(LocalDateTime.now())
                 .build();
         pointHistoryRepository.save(pointHistory);
