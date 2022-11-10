@@ -12,7 +12,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    generate-ddl: false
+    generate-ddl: true
     show-sql: false
 
 
