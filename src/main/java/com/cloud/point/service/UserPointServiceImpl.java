@@ -1,5 +1,6 @@
 package com.cloud.point.service;
 
+import com.cloud.point.entity.PointHistory;
 import com.cloud.point.entity.UserPoint;
 import com.cloud.point.repository.UserPointRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,11 @@ import java.util.List;
 public class UserPointServiceImpl implements UserPointService {
 
     @Autowired
-    private UserPointRepository userPointRepository;
+    private final UserPointRepository userPointRepository;
 
     @Override
-    public UserPoint userPoint(@RequestBody UserPoint userPoint) {
-        UserPoint userPoint1 = userPointRepository.findById(userPoint.getId()).orElse(null);
-        return userPoint1;
+    public UserPoint getOneUserPoint(Integer id) {
+        UserPoint userPoint = userPointRepository.findById(id).orElse(null);
+        return userPoint;
     }
 }
