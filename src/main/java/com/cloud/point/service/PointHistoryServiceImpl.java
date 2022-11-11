@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 public class PointHistoryServiceImpl implements PointHistoryService {
-    public List<Object> getPointHistoryList(Integer pointHisNo) {
 
-        @Autowired
-        PointHistoryRepository pointHistoryRepository;
+    @Autowired
+    PointHistoryRepository pointHistoryRepository;
 
-        @Override
-        public PointHistory getPointHistoryList(PointHistory pointHistory) {
-            PointHistory pointHistory1 = pointHistoryRepository.findById(pointHistory.getPointHisNo()).orElse(null);
-            return pointHistory1;
-        }
+    @Override
+    public List<PointHistory> getAllPointHistoryList() {
+        List<PointHistory> pointHistoryList = pointHistoryRepository.findAll();
+        return pointHistoryList;
+    }
+
+    @Override
+    public PointHistory getOnePointHistory(Integer pointHisNo) {
+        PointHistory pointHistory = pointHistoryRepository.findById(pointHisNo).orElse(null);
+        return pointHistory;
+
     }
 }
