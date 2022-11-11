@@ -17,20 +17,10 @@ public class pointController {
     @Autowired
     UserPointRepository userPointRepository;
 
-    @Autowired
-    PointHistoryRepository pointHistoryRepository;
-
     @PostMapping("/total")
     public UserPoint userPoint(@RequestBody UserPoint userPoint) {
         log.info("id = " + userPoint.getId());
         UserPoint userPoint1 = userPointRepository.findById(userPoint.getId()).orElse(null);
         return userPoint1;
-    }
-
-    @PostMapping("/list")
-    public PointHistory pointHistory(@RequestBody PointHistory pointHistory) {
-        log.info("id = " + pointHistory.getPointHisNo());
-        PointHistory pointHistory1 = pointHistoryRepository.findById(pointHistory.getPointHisNo()).orElse(null);
-        return pointHistory1;
     }
 }
