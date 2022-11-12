@@ -1,7 +1,5 @@
 package com.cloud.point.repository;
 
-import com.cloud.point.entity.User;
-import com.cloud.point.entity.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
