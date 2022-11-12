@@ -1,13 +1,13 @@
 package com.cloud.survey.entity;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(catalog = "survey_db")
 public class Survey {
 
         @Id
@@ -31,6 +31,7 @@ public class Survey {
         private SurveyStatus status;
 
         @Column(name = "due_dt", nullable = false)
+        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime dueDt;
 
         @Column(name = "is_login", nullable = false)
@@ -53,12 +54,14 @@ public class Survey {
         private String regId;
 
         @Column(name = "reg_dt", nullable = false)
+        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime regDt;
 
-        @Column(name = "mod_id", nullable = false, length = 20)
+        @Column(name = "mod_id", length = 20)
         private String ModId;
 
-        @Column(name = "mod_dt", nullable = false)
+        @Column(name = "mod_dt")
+        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime modDt;
 
 }
