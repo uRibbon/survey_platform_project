@@ -17,4 +17,6 @@ public interface SurveyService {
     SurveyDTO getSurveyDetail (int surId); // 설문 상세정보 조회
 
     List<QuestionDTO> getSurveyQuestion (int surId); // 설문 질문 조회
+
+    List<Map<String,Object>> getUserAnswer (String userId, int surId); // 사용자의 답변 조회
 }

@@ -37,4 +37,16 @@ public class SurveyController {
 
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+
+
+
+    // 사용자의 답변 조회
+    @RequestMapping(value = "/answer", method = RequestMethod.POST)
+    public ResponseEntity<List<Map<String,Object>>> getSurveyAnswer( @RequestParam (value = "user_id") String userId,
+                                                                     @RequestParam (value = "sur_id") int surId) {
+
+        return new ResponseEntity<>(surveyService.getUserAnswer(userId, surId), HttpStatus.OK);
+    }
+
+
 }

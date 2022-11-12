@@ -24,6 +24,8 @@ public class SurveyServiceImpl implements SurveyService{
     private final SurveyRepository surveyRepository;
     private final QuestionRepository questionRepository;
 
+    private final AnswerRepository answerRepository;
+
     @Autowired
     private final ModelMapper mapper;
 
@@ -54,5 +56,9 @@ public class SurveyServiceImpl implements SurveyService{
         });
         return questionDtoList;
     }
+    public List<Map<String,Object>> getUserAnswer (String userId, int surId){
+        return answerRepository.findByRegIdAndSurId(userId, surId);
+    }
+
 
 }
