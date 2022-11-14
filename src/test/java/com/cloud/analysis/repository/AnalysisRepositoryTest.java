@@ -20,14 +20,14 @@ class AnalysisRepositoryTest {
             System.out.println("analysis.toString() = " + analysis.toString());
         });
     }
-
-    @Test
-    public List<Object> getAnalysisList(Integer analysisId) {
-        List<Object> AllAnalysisList = new ArrayList<>();
-        List<Object[]> analysisList = analysisRepository.findAnswerByAge(analysisId);
-        AllAnalysisList.add(analysisList);
-        return AllAnalysisList;
-}
+//
+//    @Test
+//    public List<Object> getAnalysisList(Integer analysisId) {
+//        List<Object> AllAnalysisList = new ArrayList<>();
+//        List<Object[]> analysisList = analysisRepository.findAnswerByAge(analysisId);
+//        AllAnalysisList.add(analysisList);
+//        return AllAnalysisList;
+//}
 
 //    @Test
 //    void insert() {
