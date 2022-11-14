@@ -11,20 +11,33 @@ import java.util.List;
 import java.util.Map;
 
 public interface AnswerRepository extends JpaRepository<Answer,Integer> {
-    // 서베이에 참여한 유저 리스트 출력
+    // 설문에 속한 질문
+    // SELECT * FROM question q WHERE q.sur_id = 1
+
+    // 설문에 참여한 전체 응답자
     @Query("select a.user from Answer a where a.survey.surId = :surId")
     List<User> findAnswerBySurvey(Integer surId);
 
-    // 유저가 작성한 답안 리스트 출력
+    // 응답자가 작성한 모든 답변
+    // surId 추가로 필요함
     @Query("select a from Answer a where a.user.regId = :userId")
     List<Answer> findAnswerByUser(String userId);
 
-    @Query("select a.content, count(a.content) from Answer a join User u on a.user = u where u.gender = :gender")
-    Map<String, Integer> findAnswerByGender(Boolean gender);
+    // 월별 설문 등록
+    // SELECT month(s.reg_dt), COUNT(*) FROM survey s GROUP BY month(s.reg_dt)
 
-    @Query("select a.content, count(a.content) from Answer a join User u on a.user = u where u.age = :age")
-    Map<String, Integer> findAnswerByAge(int age);
+    // 설문 응답자 연령별 비율
+    @Query("select u.age, count(u) from Answer a join User u on a.user = u where a.survey.surId = :surId group by u.age")
+    List<Object[]> findAnswerByAge(Integer surId);
 
-    @Query("select a.content, count(a.content) from Answer a join User u on a.user = u where u.job = :job")
-    Map<String, Integer> findAnswerByJob(String job);
+    // 설문 응답자 직업
+    @Query("select u.job, count(u) from Answer a join User u on a.user = u where a.survey.surId = :surId group by u.job")
+    List<Object[]> findAnswerByJob(Integer surId);
+
+    // 설문 응답자 남녀 사용자 비율
+    @Query("select u.gender, count(u) from Answer a join User u on a.user = u where a.survey.surId = :surId group by u.gender")
+    List<Object[]> findAnswerByGender(Integer surId);
+
+    // 설문 응답 시간대
+    // SELECT hour(a.reg_dt), COUNT(*) FROM answer a WHERE a.sur_id = 1 GROUP BY hour(a.reg_dt)
 }
