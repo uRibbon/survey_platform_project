@@ -1,15 +1,10 @@
 package com.cloud.analysis.repository;
-
 import com.cloud.analysis.entity.Analysis;
-import com.cloud.analysis.entity.TableType;
-import com.cloud.analysis.entity.enums.Type;
+import com.cloud.analysis.entity.enums.TableType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AnalysisRepositoryTest {
@@ -32,5 +27,4 @@ class AnalysisRepositoryTest {
                 .build();
         analysisRepository.save(analysis);
     }
-
 }

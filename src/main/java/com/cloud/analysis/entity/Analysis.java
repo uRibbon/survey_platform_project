@@ -1,6 +1,6 @@
 package com.cloud.analysis.entity;
 
-import com.cloud.analysis.entity.enums.Type;
+import com.cloud.analysis.entity.enums.TableType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class Analysis {
     private Integer analysisId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "table_type")
+    @Column(name = "table_type" , columnDefinition = "ENUM('BAR', 'LINE', 'DOUGHNUT','PIE', 'POLAR', 'RADAR')")
     private TableType tableType;
 
     @Column(length = 45)

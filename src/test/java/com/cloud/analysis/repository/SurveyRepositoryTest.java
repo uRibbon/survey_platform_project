@@ -1,9 +1,8 @@
 package com.cloud.analysis.repository;
 
-import com.cloud.analysis.entity.Menu;
-import com.cloud.analysis.entity.Survey;
-import com.cloud.analysis.entity.SurveyCategory;
+import com.cloud.analysis.entity.*;
 import com.cloud.analysis.entity.enums.Status;
+import com.cloud.analysis.entity.enums.TableType;
 import com.cloud.analysis.entity.enums.YesOrNo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +11,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class SurveyRepositoryTest {
+
+    @Autowired
+    AnalysisRepository analysisRepository;
+
     @Autowired
     SurveyRepository surveyRepository;
 
@@ -55,11 +55,23 @@ class SurveyRepositoryTest {
         surveyRepository.save(survey);
     }
 
+    //// 카테고리별 설문 개수
     @Test
     void readSurveyCnt() {
         List<Object[]> surveyCntByCategoryList = surveyRepository.findSurveyCntByCategory();
         surveyCntByCategoryList.forEach(surveyCntByCategory -> {
             System.out.println(Arrays.toString(surveyCntByCategory));
         });
+
+
+    }
+
+    @Test
+    void insert_to_survey() {
+        Analysis analysis = Analysis.builder()
+                .analysisId(2)
+                .tableType(TableType.BAR)
+                .build();
+        analysisRepository.save(analysis);
     }
 }
