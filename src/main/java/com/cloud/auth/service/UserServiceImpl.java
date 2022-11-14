@@ -3,6 +3,7 @@ package com.cloud.auth.service;
 import com.cloud.auth.dto.UserDTO;
 import com.cloud.auth.entity.User;
 import com.cloud.auth.repository.UserRepository;
+import com.cloud.auth.service.kafka.producer.KafkaProducer;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,15 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     @Autowired
     private final ModelMapper mapper;
+
+    private final KafkaProducer kafkaProducer;
+
     @Override
+    public String doKafkaConnTest(String message) {
+        kafkaProducer.sendMessage("test", message);
+        return "success";
+    }
+
     public UserDTO getUserDetailInfo(String UserId) {
         User user = userRepository.findByUserId(UserId);
         return mapper.map(user, UserDTO.class);

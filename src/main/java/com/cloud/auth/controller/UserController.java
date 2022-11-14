@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="v1/user")
 public class UserController {
 
-
     @Autowired
     private UserService userService;
 
@@ -20,5 +19,10 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserDetail(@RequestParam(value = "user_id") String UserId) {
         return new ResponseEntity<>(userService.getUserDetailInfo(UserId), HttpStatus.CREATED);
     }
-}
 
+    @RequestMapping(value = "/kafkaConnTest", method = RequestMethod.POST)
+    public String sendMessage(@RequestParam("message") String message) {
+        return userService.doKafkaConnTest(message);
+    }
+
+}
