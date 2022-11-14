@@ -21,13 +21,13 @@ class AnalysisRepositoryTest {
         });
     }
 
-//    @Test
-//    void read2() {
-//        List<Object> AllAnalysisList = new ArrayList<>();
-//        List<Object[]> analysisList = analysisRepository.findAnswerByAge(1);
-//        AllAnalysisList.add(analysisList);
-//        System.out.println(AllAnalysisList);
-//    }
+    @Test
+    public List<Object> getAnalysisList(Integer analysisId) {
+        List<Object> AllAnalysisList = new ArrayList<>();
+        List<Object[]> analysisList = analysisRepository.findAnswerByAge(analysisId);
+        AllAnalysisList.add(analysisList);
+        return AllAnalysisList;
+}
 
 //    @Test
 //    void insert() {

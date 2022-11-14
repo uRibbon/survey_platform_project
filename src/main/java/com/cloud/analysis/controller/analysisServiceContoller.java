@@ -22,17 +22,9 @@ public class analysisServiceContoller {
         return "분석 서버로부터 응답";
     }
 
-//    @RequestMapping(value = "/analysis/{analysisId}", method = RequestMethod.POST)
-//    public List<Object> analysis_list(@PathVariable Integer analysisId) {
-//        List<Object> allAnalysisList = analysisService.getAnalysisList(analysisId);
-//        return allAnalysisList;
-//    }
-
     @RequestMapping(value = "/analysis", method = RequestMethod.POST)
-        public ResponseEntity<Map<String, Object>> getSurveyDetail(@RequestParam (value = "analysis_Id") int analysisId) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("analysis_Id", analysisService.getAnalysisList(analysisId));
-        return new ResponseEntity<>(map, HttpStatus.OK);
+    public List<Object> getAnalysisList(@RequestParam (value = "analysis_Id") int analysisId) {
+        List<Object> allAnalysisList = analysisService.getAnalysisList(analysisId);
+        return allAnalysisList;
     }
 }

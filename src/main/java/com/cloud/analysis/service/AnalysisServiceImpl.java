@@ -22,5 +22,4 @@ public class AnalysisServiceImpl implements AnalysisService {
         AllAnalysisList.add(analysisList);
         return AllAnalysisList;
     }
-
 }
