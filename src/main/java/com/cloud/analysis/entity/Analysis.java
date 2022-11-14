@@ -1,6 +1,5 @@
 package com.cloud.analysis.entity;
 
-import com.cloud.analysis.entity.enums.TableType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

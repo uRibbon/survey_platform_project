@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value="v1/survey")
 public class analysisServiceContoller {
-
     @Autowired
     private AnalysisService analysisService;
 
@@ -22,9 +21,9 @@ public class analysisServiceContoller {
         return "분석 서버로부터 응답";
     }
 
-//    @GetMapping("/analysis/{surId}")
-//    public List<Object> overall(@PathVariable Integer surId) {
-//        List<Object> allAnswerList = analysisService.getUserAnswerList(surId);
-//        return allAnswerList;
-//    }
+    @GetMapping("/analysis/{surId}")
+    public List<Object> analysis_list(@PathVariable Integer analysisId) {
+        List<Object> allAnalysisList = analysisService.getAnalysisList(analysisId);
+        return allAnalysisList;
+    }
 }

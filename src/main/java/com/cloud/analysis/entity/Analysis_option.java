@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,8 +17,9 @@ public class Analysis_option {
     @Column(name = "option_id", nullable = false)
     private Integer optionId;
 
-    @Column(name = "analysis_id", nullable = false)
-    private Integer analysisId;
+    @ManyToOne
+    @JoinColumn(name = "analysis_id")
+    private Analysis analysisId;
 
     @Column(name = "option_name", nullable = false)
     private Integer optionName;
