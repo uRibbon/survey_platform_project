@@ -9,6 +9,6 @@ import java.util.List;
 public interface AnalysisRepository extends JpaRepository<Analysis, Integer> {
 
     // 설문 응답자 연령별 비율
-    @Query("select * from analysis A join analysis_option AO on A.analysis_id = AO.analysis_id where A.analysis_id = :analysisId")
+    @Query("select A from Analysis A join Analysis_option AO on A.analysisId = AO.analysisId.analysisId where A.analysisId = :analysisId")
     List<Object[]> findAnswerByAge(Integer analysisId);
 }
