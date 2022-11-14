@@ -22,9 +22,9 @@ public class analysisServiceContoller {
         return "분석 서버로부터 응답";
     }
 
-    @GetMapping("/analysis/{surId}")
-    public List<Object> overall(@PathVariable Integer surId) {
-        List<Object> allAnswerList = analysisService.getUserAnswerList(surId);
-        return allAnswerList;
-    }
+//    @GetMapping("/analysis/{surId}")
+//    public List<Object> overall(@PathVariable Integer surId) {
+//        List<Object> allAnswerList = analysisService.getUserAnswerList(surId);
+//        return allAnswerList;
+//    }
 }
