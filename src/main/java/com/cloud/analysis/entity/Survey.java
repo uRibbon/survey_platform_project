@@ -36,7 +36,7 @@ public class Survey {
     @NotNull
     private Float version;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "ENUM('PROC', 'END')")
     @Enumerated(EnumType.STRING)
     @NotNull
     private Status status;
