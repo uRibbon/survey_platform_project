@@ -19,4 +19,28 @@ class SurveyCategoryRepositoryTest {
             System.out.println("surveyCategory = " + surveyCategory);
         });
     }
+
+    @Test
+    void insert() {
+        surveyCategoryRepository.save(
+                SurveyCategory.builder()
+                        .content("학교")
+                        .build());
+        surveyCategoryRepository.save(
+                SurveyCategory.builder()
+                        .content("기업")
+                        .build());
+        surveyCategoryRepository.save(
+                SurveyCategory.builder()
+                        .content("연애")
+                        .build());
+        surveyCategoryRepository.save(
+                SurveyCategory.builder()
+                        .content("사업")
+                        .build());
+        surveyCategoryRepository.save(
+                SurveyCategory.builder()
+                        .content("취미")
+                        .build());
+    }
 }

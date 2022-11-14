@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,17 +34,11 @@ class SurveyRepositoryTest {
 
     @Test
     void insert() {
-        SurveyCategory surveyCategory = SurveyCategory
-                .builder()
-                .surCatId(2)
-                .content("회사")
-                .build();
-        surveyCategoryRepository.save(surveyCategory);
         Survey survey = Survey.builder()
-                .surId(1)
-                .title("동아리 설문조사")
-                .details("동아리 설문조사 입니다")
-                .surveyCategory(surveyCategory)
+                .surId(5)
+                .title("등산 선호도 설문조사")
+                .details("등산 선호도 설문조사 입니다")
+                .surveyCategory(surveyCategoryRepository.findById(4).orElse(null))
                 .version(1.2f)
                 .status(Status.proc)
                 .dueDt(LocalDateTime.now())
@@ -57,5 +53,13 @@ class SurveyRepositoryTest {
                 .isAnnoy(YesOrNo.Y)
                 .build();
         surveyRepository.save(survey);
+    }
+
+    @Test
+    void readSurveyCnt() {
+        List<Object[]> surveyCntByCategoryList = surveyRepository.findSurveyCntByCategory();
+        surveyCntByCategoryList.forEach(surveyCntByCategory -> {
+            System.out.println(Arrays.toString(surveyCntByCategory));
+        });
     }
 }

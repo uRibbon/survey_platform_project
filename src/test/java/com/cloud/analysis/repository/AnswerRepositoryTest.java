@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.GeneratedValue;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,8 +55,8 @@ class AnswerRepositoryTest {
     @Test
     public void insert(){
         Survey survey = surveyRepository.findById(1).orElse(null);
-        Question question = questionRepository.findById(2).orElse(null);
-        Answer answer1 = Answer.builder()
+        Question question = questionRepository.findById(1).orElse(null);
+        answerRepository.save(Answer.builder()
                 .type(Type.Member)
                 .user(userRepository.findById("yena").orElse(null))
                 .regIp("0.0.0.0")
@@ -65,9 +66,8 @@ class AnswerRepositoryTest {
                 .survey(survey)
                 .question(question)
                 .content("[1]")
-                .build();
-        answerRepository.save(answer1);
-        Answer answer2 = Answer.builder()
+                .build());
+        answerRepository.save(Answer.builder()
                 .type(Type.Member)
                 .user(userRepository.findById("yuri").orElse(null))
                 .regIp("0.0.0.0")
@@ -77,20 +77,18 @@ class AnswerRepositoryTest {
                 .survey(survey)
                 .question(question)
                 .content("[1]")
-                .build();
-        answerRepository.save(answer2);
-        Answer answer3 = Answer.builder()
+                .build());
+        answerRepository.save(Answer.builder()
                 .type(Type.Member)
-                .user(userRepository.findById("young").orElse(null))
+                .user(userRepository.findById("youngjoo").orElse(null))
                 .regIp("0.0.0.0")
                 .regDt(LocalDateTime.now())
-                .modId("young")
+                .modId("youngjoo")
                 .modDt(LocalDateTime.now())
                 .survey(survey)
                 .question(question)
                 .content("[4]")
-                .build();
-        answerRepository.save(answer3);
+                .build());
     }
 
     @Test
@@ -104,6 +102,14 @@ class AnswerRepositoryTest {
 
 
     }
+
+//    @Test
+//    void readByGender() {
+//        List<Object> answerByGender = answerRepository.findAnswerByGender();
+//        answerByGender.forEach(answer -> {
+//            System.out.println(answer.toString());
+//        });
+//    }
 
 
 
