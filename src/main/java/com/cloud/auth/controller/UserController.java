@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/detail", method = RequestMethod.POST)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> getUserDetail(@RequestParam(value = "user_id") String UserId) {
         return new ResponseEntity<>(userService.getUserDetailInfo(UserId), HttpStatus.CREATED);
     }
