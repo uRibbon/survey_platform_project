@@ -19,19 +19,9 @@ public class Analysis {
     @Column(name = "analysis_id", nullable = false)
     private Integer analysisId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "table_type" , columnDefinition = "ENUM('BAR', 'LINE', 'DOUGHNUT','PIE', 'POLAR', 'RADAR')")
-    private TableType tableType;
+    @Column(name = "sur_id", nullable = false)
+    private Integer surveyId;
 
-    @Column(length = 45)
+    @Column(length = 45, nullable = false)
     private String subject;
-
-    @Column(length = 45)
-    private String value;
-
-    @Column(name = "x_axis", length = 45)
-    private String xAxis;
-
-    @Column(name = "y_axis", length = 45)
-    private String yAxis;
 }
