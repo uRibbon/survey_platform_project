@@ -10,6 +10,8 @@ import com.cloud.survey.repository.QuestionRepository;
 import com.cloud.survey.repository.SurveyRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class SurveyServiceImpl implements SurveyService{
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private final SurveyRepository surveyRepository;
     @Autowired
