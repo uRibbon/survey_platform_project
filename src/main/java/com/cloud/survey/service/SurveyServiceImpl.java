@@ -1,9 +1,10 @@
 package com.cloud.survey.service;
 
-import com.cloud.survey.dto.AnswerDTO;
 import com.cloud.survey.dto.QuestionDTO;
 import com.cloud.survey.dto.SurveyDTO;
 import com.cloud.survey.entity.*;
+import com.cloud.survey.openfeign.AuthServiceClient;
+import com.cloud.survey.dto.UserDTO;
 import com.cloud.survey.repository.AnswerRepository;
 import com.cloud.survey.repository.QuestionRepository;
 import com.cloud.survey.repository.SurveyRepository;
@@ -22,10 +23,12 @@ import java.util.Map;
 public class SurveyServiceImpl implements SurveyService{
     @Autowired
     private final SurveyRepository surveyRepository;
+    @Autowired
     private final QuestionRepository questionRepository;
-
+    @Autowired
     private final AnswerRepository answerRepository;
-
+    @Autowired
+    private final AuthServiceClient authServiceClient;
     @Autowired
     private final ModelMapper mapper;
 
@@ -57,6 +60,9 @@ public class SurveyServiceImpl implements SurveyService{
         return questionDtoList;
     }
     public List<Map<String,Object>> getUserAnswer (String userId, int surId){
+        UserDTO userDetail = authServiceClient.getUserDetailInfo(userId);
+        log.info(userDetail.getUserId());
+
         return answerRepository.findByRegIdAndSurId(userId, surId);
     }
 
