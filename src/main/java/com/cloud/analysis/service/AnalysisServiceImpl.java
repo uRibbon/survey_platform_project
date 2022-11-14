@@ -17,11 +17,11 @@ public class AnalysisServiceImpl implements AnalysisService {
     private final AnalysisRepository analysisRepository;
 
     @Override
-    public List<Object> getAnalysisList(Integer analysisId) {
+    public List<Analysis_option> getAnalysisList(Integer analysisId) {
         List<Object> AllAnalysisList = new ArrayList<>();
         List<Analysis_option> analysisList = analysisRepository.findAnswerByAge(analysisId);
 
-        AllAnalysisList.add(analysisList);
-        return AllAnalysisList;
+//        AllAnalysisList.add(analysisList);
+        return analysisList;
     }
 }

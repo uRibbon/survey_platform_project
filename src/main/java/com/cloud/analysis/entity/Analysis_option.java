@@ -22,7 +22,7 @@ public class Analysis_option {
     private Analysis analysisId;
 
     @Column(name = "option_name", nullable = false)
-    private Integer optionName;
+    private String optionName;
 
     @Column(nullable = false)
     private Integer value;
