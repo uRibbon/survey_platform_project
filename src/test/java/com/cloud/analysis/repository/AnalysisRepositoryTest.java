@@ -19,12 +19,12 @@ class AnalysisRepositoryTest {
         });
     }
 
-    @Test
-    void insert() {
-        Analysis analysis = Analysis.builder()
-                .analysisId(1)
-                .tableType(TableType.BAR)
-                .build();
-        analysisRepository.save(analysis);
-    }
+//    @Test
+//    void insert() {
+//        Analysis analysis = Analysis.builder()
+//                .analysisId(1)
+//                .tableType(TableType.BAR)
+//                .build();
+//        analysisRepository.save(analysis);
+//    }
 }
