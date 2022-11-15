@@ -1,6 +1,5 @@
 package com.cloud.analysis.service;
 
-import com.cloud.analysis.entity.Analysis;
 import com.cloud.analysis.entity.Analysis_option;
 import com.cloud.analysis.repository.AnalysisRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Override
     public List<Analysis_option> getAnalysisList(Integer analysisId) {
         List<Object> AllAnalysisList = new ArrayList<>();
-        List<Analysis_option> analysisList = analysisRepository.findAnswerByAge(analysisId);
+        List<Analysis_option> analysisList = analysisRepository.findAnalysisByColumn(analysisId);
 
 //        AllAnalysisList.add(analysisList);
         return analysisList;
