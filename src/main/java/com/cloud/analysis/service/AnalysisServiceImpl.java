@@ -1,5 +1,6 @@
 package com.cloud.analysis.service;
 
+import com.cloud.analysis.entity.Platform_analysis_option;
 import com.cloud.analysis.entity.Survey_analysis_option;
 import com.cloud.analysis.repository.AnalysisRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +17,14 @@ public class AnalysisServiceImpl implements AnalysisService {
     private final AnalysisRepository analysisRepository;
 
     @Override
-    public List<Survey_analysis_option> getAnalysisList(Integer analysisId) {
-        List<Object> AllAnalysisList = new ArrayList<>();
-        List<Survey_analysis_option> analysisList = analysisRepository.findAnalysisByColumn(analysisId);
-        return analysisList;
+    public List<Survey_analysis_option> getSurveyAnalysisList(Integer analysisId) {
+        List<Survey_analysis_option> surveyAnalysisList = analysisRepository.findSurveyAnalysisByColumn(analysisId);
+        return surveyAnalysisList;
     }
 
-
+    @Override
+    public List<Platform_analysis_option> getPlatformAnalysisList(Integer analysisId) {
+        List<Platform_analysis_option> platformAnalysisList = analysisRepository.findPlatformAnalysisByColumn(analysisId);
+        return platformAnalysisList;
+    }
 }

@@ -1,5 +1,6 @@
 package com.cloud.analysis.controller;
 
+import com.cloud.analysis.entity.Platform_analysis_option;
 import com.cloud.analysis.entity.Survey_analysis_option;
 import com.cloud.analysis.service.AnalysisService;
 import com.cloud.analysis.service.kafka.producer.KafkaProducer;
@@ -22,10 +23,16 @@ public class analysisServiceContoller {
         return "분석 서버로부터 응답";
     }
 
-    @RequestMapping(value = "/analysis", method = RequestMethod.POST)
-    public List<Survey_analysis_option> getAnalysisList(@RequestParam (value = "analysis_Id") int analysisId) {
-        List<Survey_analysis_option> allAnalysisList = analysisService.getAnalysisList(analysisId);
-        return allAnalysisList;
+    @RequestMapping(value = "/survey_analysis", method = RequestMethod.POST)
+    public List<Survey_analysis_option> getSurveyAnalysisList(@RequestParam (value = "analysis_Id") int analysisId) {
+        List<Survey_analysis_option> allSurveyAnalysisList = analysisService.getSurveyAnalysisList(analysisId);
+        return allSurveyAnalysisList;
+    }
+
+    @RequestMapping(value = "/platform_analysis", method = RequestMethod.POST)
+    public List<Platform_analysis_option> getPlatformAnalysisList(@RequestParam (value = "platform_analysis_Id") int platformAnalysisId) {
+        List<Platform_analysis_option> allPlatformAnalysisList = analysisService.getPlatformAnalysisList(platformAnalysisId);
+        return allPlatformAnalysisList;
     }
 
     @PostMapping("/kafkaConnTest")

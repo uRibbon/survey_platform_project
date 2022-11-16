@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -13,10 +15,10 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Data
-public class Survey_analysis {
+public class Platform_analysis {
     @Id
-    @Column(name = "analysis_id", nullable = false)
-    private Integer analysisId;
+    @Column(name = "platform_analysis_id", nullable = false)
+    private Integer platformAnalysisId;
 
     @Column(name = "sur_id", nullable = false)
     private Integer surveyId;
