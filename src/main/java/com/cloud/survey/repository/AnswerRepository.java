@@ -3,6 +3,7 @@ package com.cloud.survey.repository;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.entity.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -16,6 +17,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
             "left outer join question q on a.que_id = q.que_id WHERE a.reg_id =:userId and q.sur_id = :surId", nativeQuery=true)
     List<Map<String,Object>> findByRegIdAndSurId(@Param("userId") String userId, @Param("surId") int surId);
 
+    @Modifying
     @Query("update Answer a set a.delYn = true where a.ansId = :ansId")
     void updateDeleteYn(Integer ansId);
 
