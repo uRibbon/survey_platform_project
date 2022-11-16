@@ -2,6 +2,7 @@ package com.cloud.survey.controller;
 
 import com.cloud.survey.dto.SurveyDTO;
 import com.cloud.survey.entity.IsYn;
+import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
 import com.cloud.survey.service.SurveyService;
 import org.slf4j.LoggerFactory;
@@ -51,5 +52,11 @@ public class SurveyController {
         return new ResponseEntity<>(surveyService.getUserAnswer(userId, surId), HttpStatus.OK);
     }
 
+    // 카테고리별 인기 설문조사 조회
+    @GetMapping("/best")
+    public ResponseEntity<List<Survey>> getBestSurveyList() {
+        List<Survey> bestSurveyList = surveyService.getBestSurvey();
+        return new ResponseEntity<>(bestSurveyList, HttpStatus.OK);
+    }
 
 }
