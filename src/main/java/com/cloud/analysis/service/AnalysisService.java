@@ -1,9 +1,9 @@
 package com.cloud.analysis.service;
 
-import com.cloud.analysis.entity.Analysis_option;
+import com.cloud.analysis.entity.Survey_analysis_option;
 
 import java.util.List;
 
 public interface AnalysisService {
-    List<Analysis_option> getAnalysisList(Integer surId);
+    List<Survey_analysis_option> getAnalysisList(Integer surId);
 }

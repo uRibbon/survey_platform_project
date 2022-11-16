@@ -12,14 +12,14 @@ import javax.persistence.*;
 @Builder
 @Data
 @Entity
-public class Analysis_option {
+public class Survey_analysis_option {
     @Id
     @Column(name = "option_id", nullable = false)
     private Integer optionId;
 
     @ManyToOne
     @JoinColumn(name = "analysis_id")
-    private Analysis analysisId;
+    private Survey_analysis analysisId;
 
     @Column(name = "option_name", nullable = false)
     private String optionName;

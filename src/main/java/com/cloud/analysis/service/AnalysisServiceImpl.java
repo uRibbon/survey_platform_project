@@ -1,6 +1,6 @@
 package com.cloud.analysis.service;
 
-import com.cloud.analysis.entity.Analysis_option;
+import com.cloud.analysis.entity.Survey_analysis_option;
 import com.cloud.analysis.repository.AnalysisRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ public class AnalysisServiceImpl implements AnalysisService {
     private final AnalysisRepository analysisRepository;
 
     @Override
-    public List<Analysis_option> getAnalysisList(Integer analysisId) {
+    public List<Survey_analysis_option> getAnalysisList(Integer analysisId) {
         List<Object> AllAnalysisList = new ArrayList<>();
-        List<Analysis_option> analysisList = analysisRepository.findAnalysisByColumn(analysisId);
-
-//        AllAnalysisList.add(analysisList);
+        List<Survey_analysis_option> analysisList = analysisRepository.findAnalysisByColumn(analysisId);
         return analysisList;
     }
+
+
 }
