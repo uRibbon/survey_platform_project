@@ -7,7 +7,9 @@ import com.cloud.survey.repository.AnswerRepository;
 import com.cloud.survey.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class AnswerServiceImpl implements AnswerService {
         Optional<Answer> byId = answerRepository.findById(answerDTO.getAnsId());
         if (byId.isPresent()) {
             Answer answer = byId.get();
-            answer.changeContent(answer.getContent());
-            answer.changeModId(answer.getModId());
+            answer.changeContent(answerDTO.getContent());
+            answer.changeModId(answerDTO.getRegId());
             Answer save = answerRepository.save(answer);
             if (save != null) {
                 return save.getAnsId();
@@ -54,10 +56,11 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void deleteAnswer(Integer answerId) {
-        Optional<Answer> byId = answerRepository.findById(answerId);
+    @Transactional
+    public void deleteAnswer(Integer ansId) {
+        Optional<Answer> byId = answerRepository.findById(ansId);
         if (byId.isPresent()) {
-            answerRepository.updateDeleteYn(answerId);
+            answerRepository.updateDeleteYn(ansId);
         } else {
             log.error("findById 오류로 답변 삭제 실패");
         }
