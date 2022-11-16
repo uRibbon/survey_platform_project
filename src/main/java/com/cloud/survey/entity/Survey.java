@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -45,6 +46,9 @@ public class Survey {
         @Column(name = "due_dt", nullable = false)
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime dueDt;
+
+        @ColumnDefault("0")
+        private Integer views;
 
         @Column(name = "is_login", nullable = false)
         @Enumerated(EnumType.STRING)
