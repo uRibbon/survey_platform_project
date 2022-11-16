@@ -1,17 +1,28 @@
 package com.cloud.survey.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
+@Builder
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Survey {
-
         @Id
-        @Column(name = "sur_id")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "sur_id", nullable = false)
         private int surId;
 
         @Column(name="title", nullable = false, length = 50)
@@ -20,8 +31,9 @@ public class Survey {
         @Column(name="description", nullable = false, length = 200)
         private String description;
 
-        @Column(name = "category_id", nullable = false)
-        private int category_id;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "category_id", nullable = false)
+        private SurveyCategory surveyCategory;
 
         @Column(name="version", nullable = false)
         private int version;
@@ -53,6 +65,7 @@ public class Survey {
         @Column(name = "reg_id", nullable = false, length = 20)
         private String regId;
 
+        @CreatedDate
         @Column(name = "reg_dt", nullable = false)
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime regDt;
@@ -60,6 +73,7 @@ public class Survey {
         @Column(name = "mod_id", length = 20)
         private String ModId;
 
+        @LastModifiedDate
         @Column(name = "mod_dt")
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime modDt;
