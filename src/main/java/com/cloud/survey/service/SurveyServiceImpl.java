@@ -7,6 +7,7 @@ import com.cloud.survey.openfeign.AuthServiceClient;
 import com.cloud.survey.dto.UserDTO;
 import com.cloud.survey.repository.AnswerRepository;
 import com.cloud.survey.repository.QuestionRepository;
+import com.cloud.survey.repository.SurveyCategoryRepository;
 import com.cloud.survey.repository.SurveyRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -25,6 +26,8 @@ import java.util.Map;
 public class SurveyServiceImpl implements SurveyService{
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    private final SurveyCategoryRepository surveyCategoryRepository;
     @Autowired
     private final SurveyRepository surveyRepository;
     @Autowired
@@ -68,6 +71,16 @@ public class SurveyServiceImpl implements SurveyService{
         log.info(userDetail.getUserId());
 
         return answerRepository.findByRegIdAndSurId(userId, surId);
+    }
+
+    public List<Survey> getBestSurvey() {
+        List<Survey> bestSurveyList = new ArrayList<>();
+        List<SurveyCategory> surveyCategoryList = surveyCategoryRepository.findAll();
+        surveyCategoryList.forEach(surveyCategory -> {
+            Survey survey = surveyRepository.findBestSurveyByCategory(surveyCategory.getSurCatId());
+            bestSurveyList.add(survey);
+        });
+        return bestSurveyList;
     }
 
 

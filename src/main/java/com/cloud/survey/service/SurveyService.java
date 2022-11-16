@@ -5,6 +5,7 @@ import com.cloud.survey.dto.AnswerDTO;
 import com.cloud.survey.dto.QuestionDTO;
 import com.cloud.survey.dto.SurveyDTO;
 import com.cloud.survey.entity.IsYn;
+import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface SurveyService {
     List<QuestionDTO> getSurveyQuestion (int surId); // 설문 질문 조회
 
     List<Map<String,Object>> getUserAnswer (String userId, int surId); // 사용자의 답변 조회
+
+    List<Survey> getBestSurvey(); // 카테고리별 인기 설문조사 조회
 }
