@@ -23,7 +23,7 @@ public class Group {
     @Column(name = "group_name", nullable = false, length = 30)
     private String groupName;
 
-    @Column(name = "group_description", length = 100)
+    @Column(name = "group_description", nullable = false, length = 100)
     private String groupDescription;
 
     @Column(name = "group_cnt", nullable = false)
