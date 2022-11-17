@@ -16,4 +16,10 @@ public interface AnalysisRepository extends JpaRepository<Survey_analysis, Integ
 
     @Query("select PAO from Platform_analysis PA join Platform_analysis_option PAO on PA.platformAnalysisId = PAO.platformAnalysisId.platformAnalysisId where PA.platformAnalysisId = :platformAnalysisId")
     List<Platform_analysis_option> findPlatformAnalysisByColumn(Integer platformAnalysisId);
+
+    @Query("select SA from Survey_analysis SA where SA.surveyId = :surveyId")
+    List<Survey_analysis> findSurveyAnalysisById(Integer surveyId);
+
+    @Query("select SAO from Survey_analysis_option SAO where SAO.analysisId.analysisId = :analysisId")
+    List<Survey_analysis_option> findSurveyAnalysisOptionById(Integer analysisId);
 }

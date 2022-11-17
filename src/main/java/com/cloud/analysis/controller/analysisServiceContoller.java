@@ -1,6 +1,7 @@
 package com.cloud.analysis.controller;
 
 import com.cloud.analysis.entity.Platform_analysis_option;
+import com.cloud.analysis.entity.Survey_analysis;
 import com.cloud.analysis.entity.Survey_analysis_option;
 import com.cloud.analysis.service.AnalysisService;
 import com.cloud.analysis.service.kafka.producer.KafkaProducer;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value="v1/survey")
@@ -41,4 +43,11 @@ public class analysisServiceContoller {
 
         return "success";
     }
+
+    @RequestMapping(value = "/survey_analysis_info", method = RequestMethod.POST)
+    public List<Object> getTypeSubjectList(@RequestParam (value = "analysis_Id") int analysis_Id) {
+        List<Object> allTypeSubjectList = analysisService.getTypeSubjectList(analysis_Id);
+        return allTypeSubjectList;
+    }
+
 }

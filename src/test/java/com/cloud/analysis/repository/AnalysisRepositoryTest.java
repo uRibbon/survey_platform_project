@@ -24,4 +24,11 @@ class AnalysisRepositoryTest {
         });
     }
 
+//    @Test
+//    public List<Survey_analysis> getTypeSubjectList(Integer analysisId) {
+//        List<Survey_analysis> TypeSubjectList = analysisRepository.findTypeSubjectById(analysisId);
+//        System.out.println("analysis.toString() = " + analysis.toString());
+//        return TypeSubjectList;
+//    }
+
 }
