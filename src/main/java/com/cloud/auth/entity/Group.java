@@ -27,10 +27,11 @@ public class Group {
     private String groupDescription;
 
     @Column(name = "group_cnt", nullable = false)
-    private Integer userId;
+    private Integer groupCnt;
 
-    @Column(name = "reg_id", nullable = false, length = 20)
-    private String regId;
+    @ManyToOne
+    @JoinColumn(name = "reg_id", nullable = false)
+    private User user;
 
     @Column(name = "reg_dt", nullable = false, length = 20)
     private LocalDateTime regDt;

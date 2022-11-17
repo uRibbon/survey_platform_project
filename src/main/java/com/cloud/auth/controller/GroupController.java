@@ -17,7 +17,7 @@ public class GroupController {
     private final GroupService groupService;
 
 
-    @GetMapping("/groupList")
+    @PostMapping("/groupList")
     public List<Group> getGroupList() {
         List<Group> GroupList = groupService.getGroupList();
         return GroupList;
