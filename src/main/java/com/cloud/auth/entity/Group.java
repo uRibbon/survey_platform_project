@@ -1,9 +1,11 @@
 package com.cloud.auth.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import javax.persistence.*;
@@ -34,15 +36,17 @@ public class Group {
     private User user;
 
     @Column(name = "reg_dt", nullable = false, length = 20)
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDt;
 
     @Column(name = "mod_id", length = 20)
     private String modId;
 
     @Column(name = "mod_dt")
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime modDt;
 
-    @Column(name = "del_yn")
+    @Column(name = "del_yn", nullable = false)
     @Enumerated(EnumType.STRING)
     private DelYn delYn;
 }
