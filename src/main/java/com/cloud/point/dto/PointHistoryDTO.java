@@ -18,11 +18,4 @@ public class PointHistoryDTO {
     private LocalDateTime regDt;
     private String modId;
     private LocalDateTime modDt;
-
-    /*
-    private List<PointHistoryDTO> pointHistoryList;
-
-    public void addPointHistoryList(PointHistoryDTO pointHistoryDTO) {
-        pointHistoryList.add(pointHistoryDTO);
-    }*/
 }

@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.*;
 public interface AuthServiceClient {
 
     @GetMapping(value = "/v1/user/detail")
-    UserDTO getUserDetailInfo(@PathVariable String UserId);
+    UserDTO getUserDetailInfo(@RequestParam(value = "user_id") String UserId);
 }

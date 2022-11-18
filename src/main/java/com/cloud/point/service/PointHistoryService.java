@@ -8,6 +8,6 @@ public interface PointHistoryService {
     // 전체 히스토리 조회
     List<PointHistory> getAllPointHistoryList();
 
-    // pointHisNo에 따른 히스토리 조히
+    // pointHisNo에 따른 히스토리 조회
     PointHistory getOnePointHistory(Integer pointHisNo);
 }
