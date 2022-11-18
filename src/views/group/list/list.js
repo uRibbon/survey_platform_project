@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CButton,
   CCard,
@@ -26,7 +26,10 @@ import {
   CFormLabel,
 } from '@coreui/react'
 
-import ReactImg from 'src/assets/images/test_img.jpeg'
+import ReactImg_2 from 'src/assets/images/test5.jpeg';
+import axios from 'axios';
+import usePromise from 'src/lib/usePromise';
+import apiConfig from 'src/lib/apiConfig.js';
 
 const ClickParticipateBtn = () => {
   const [visible, setVisible] = useState(false)
@@ -59,13 +62,36 @@ const ClickParticipateBtn = () => {
   )
 }
 const Grouplist = () => {
+  const current = decodeURI(window.location.href);
+  const search = current.split("?")[1];
+  const params = new URLSearchParams(search);
+  const nowPage = params.get('page') ? params.get('page') : 1;
+  const [pageData, setPageData] = useState({
+    totalPage: 0,
+    page: 1,
+    size: 0,
+    start: 0,
+    end: 0,
+    prev: false,
+    next: false,
+    pageList: []
+  })
+  const [groupList, setGroupList] = useState([])
+
+  axios.post(`${apiConfig.groupList}?page=${nowPage}`)
+    .then((response)=> {
+      console.log(response.data)
+      setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+      setGroupList(response.data.dtoList)
+    })
+
   return (
+    // console.log(groupList),
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
             <strong> 그룹 목록 </strong>
-            <small> 그룹을 통해 설문 대상자를 지정할 수 있습니다. </small>
           </CCardHeader>
           <CCardBody>
             <CCard className="mb-2">
@@ -98,111 +124,68 @@ const Grouplist = () => {
               </CCardBody>
             </CCard>
             <CRow className="mb-4">
-              <CCol lg={3}>
+              {groupList.map((groupData)=> (
+                <CCol lg={3} key = {groupData.groupId}>
                 <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
+                  <CCardImage orientation="top" src={ReactImg_2} />
                   <CCardBody>
-                    <CCardTitle>클라우드 전용 그룹</CCardTitle>
+                    <CCardTitle>{groupData.groupName}</CCardTitle>
                     <CCardText className="text-ellipsis">
-                      8팀 클라우드만 참여가능한 그룹이에요~
+                    {groupData.groupDescription}
                     </CCardText>
                   </CCardBody>
                   <CListGroup flush>
-                    <CListGroupItem>개설자 : 고솔비 </CListGroupItem>
-                    <CListGroupItem>참여인원 : 3명</CListGroupItem>
+                    <CListGroupItem>개설자 : {groupData.user.name}</CListGroupItem>
+                    <CListGroupItem>참여인원 : {groupData.groupCnt}명</CListGroupItem>
                   </CListGroup>
                   <CCardBody className="text-end">
                     <CButtonGroup>
-                      <CButton color="primary" href="#/group/detail" variant="outline">
-                        detail
-                      </CButton>
-                      <CButton color="danger" href="#" variant="outline">
-                        delete
-                      </CButton>
+                      <CButton color="success" variant="outline" size="sm">participate</CButton>
+                      <CButton color="primary" href="#/group/detail" variant="outline" size="sm">detail</CButton>
+                      <CButton color="danger" variant="outline" size="sm">delete</CButton>
                     </CButtonGroup>
                   </CCardBody>
                   <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-21</small>
+                    <small className="text-medium-emphasis">생성일 : {groupData.regDt}</small>
                   </CCardFooter>
                 </CCard>
               </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 2</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 테스트</CListGroupItem>
-                    <CListGroupItem>참여인원 : 5명 </CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="primary" href="#/group/detail" variant="outline">
-                        detail
-                      </CButton>
-                      {ClickParticipateBtn()}
-                    </CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-25</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 3</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 테스트</CListGroupItem>
-                    <CListGroupItem>참여인원 : 0명</CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>{ClickParticipateBtn()}</CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-25</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
-              <CCol lg={3}>
-                <CCard className="mb-3">
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>그룹이름 4</CCardTitle>
-                    <CCardText>그룹테스트입니다.</CCardText>
-                  </CCardBody>
-                  <CListGroup flush>
-                    <CListGroupItem>개설자 : 고솔비</CListGroupItem>
-                    <CListGroupItem>참여인원 : 1명</CListGroupItem>
-                  </CListGroup>
-                  <CCardBody className="text-end">
-                    <CButtonGroup>
-                      <CButton color="primary" href="#/group/detail" variant="outline">
-                        detail
-                      </CButton>
-                      <CButton color="danger" href="#" variant="outline">
-                        delete
-                      </CButton>
-                    </CButtonGroup>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">생성일 : 2022-10-25</small>
-                  </CCardFooter>
-                </CCard>
-              </CCol>
+              )
+              )}
             </CRow>
             <CRow className="mb-4">
-              <CPagination className="justify-content-center" aria-label="Page navigation example">
-                <CPaginationItem>Previous</CPaginationItem>
-                <CPaginationItem>1</CPaginationItem>
-                <CPaginationItem>2</CPaginationItem>
-                <CPaginationItem>3</CPaginationItem>
-                <CPaginationItem>Next</CPaginationItem>
+              <CPagination aria-label="Page navigation example" align="center">
+                {pageData.prev ? (
+                  <CPaginationItem aria-label="Previous">
+            <span aria-hidden="true">
+              <a href={"/#/group/list?page=" + String(parseInt(pageData.start) - 1)}>&laquo;</a>
+            </span>
+                  </CPaginationItem>
+                ) : (
+                  <CPaginationItem aria-label="Previous" disabled>
+                    <span aria-hidden="true">&laquo;</span>
+                  </CPaginationItem>
+                )}
+                {pageData.pageList.map((idx) =>
+                  idx === parseInt(pageData.page) ? (
+                    <CPaginationItem active>{pageData.page}</CPaginationItem>
+                  ) : (
+                    <CPaginationItem>
+                      <a href={"/#/group/list?page=" + idx}>{idx}</a>
+                    </CPaginationItem>
+                  ),
+                )}
+                {pageData.next ? (
+                  <CPaginationItem aria-label="Next">
+            <span aria-hidden="true">
+              <a href={"/#/group/list?page=" + String(parseInt(pageData.end) + 1)}>&raquo;</a>
+            </span>
+                  </CPaginationItem>
+                ) : (
+                  <CPaginationItem aria-label="Next" disabled>
+                    <span aria-hidden="true">&raquo;</span>
+                  </CPaginationItem>
+                )}
               </CPagination>
             </CRow>
           </CCardBody>

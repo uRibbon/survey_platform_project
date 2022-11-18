@@ -115,7 +115,7 @@ const routes = [
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },
   { path: '/group/create', name: 'Group Create', element: groupCreate },
-  { path: '/group/detail', name: 'Group Deetail', element: groupDetail },
+  { path: '/group/detail', name: 'Group Detail', element: groupDetail },
   // { path: '/group/edit', name: 'Group edit', element: groupEdit },
 
   // 설문 분석
@@ -172,7 +172,7 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
-  
+
 ]
 
 export default routes
