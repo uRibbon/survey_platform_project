@@ -1,0 +1,10 @@
+{
+  "realm": "team_cloud",
+  "auth-server-url": "http://localhost:5010/auth/",
+  "ssl-required": "external",
+  "resource": "team_cloud_client",
+  "credentials": {
+    "secret": "AvgjtsAvqQUNfo9DemEpANjMt3YrAtbt"
+  },
+  "confidential-port": 0
+}
