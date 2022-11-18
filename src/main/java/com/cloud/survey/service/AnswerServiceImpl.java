@@ -7,7 +7,7 @@ import com.cloud.survey.repository.AnswerRepository;
 import com.cloud.survey.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +21,9 @@ public class AnswerServiceImpl implements AnswerService {
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
 
+    public List<Map<String,Object>> getUserAnswer (String userId, int surId){
+        return answerRepository.findByRegIdAndSurId(userId, surId);
+    }
     @Override
     public Integer insertAnswer(AnswerDTO answerDTO) {
         Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());

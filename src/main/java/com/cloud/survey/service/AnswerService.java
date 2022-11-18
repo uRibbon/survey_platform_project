@@ -6,7 +6,13 @@ import com.cloud.survey.entity.Question;
 import com.cloud.survey.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
+
 public interface AnswerService {
+
+    List<Map<String,Object>> getUserAnswer (String userId, int surId); // 사용자의 답변 조회
+
     Integer insertAnswer(AnswerDTO answerDTO);
     Integer updateAnswer(AnswerDTO answerDTO);
     void deleteAnswer(Integer answerId);

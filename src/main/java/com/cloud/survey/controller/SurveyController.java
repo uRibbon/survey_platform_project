@@ -5,22 +5,22 @@ import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
 import com.cloud.survey.service.SurveyService;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.slf4j.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value="v1/survey")
+@Log4j2
 public class SurveyController {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private SurveyService surveyService;
 
@@ -42,15 +42,6 @@ public class SurveyController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-
-
-    // 사용자의 답변 조회
-    @RequestMapping(value = "/answer", method = RequestMethod.POST)
-    public ResponseEntity<List<Map<String,Object>>> getSurveyAnswer( @RequestParam (value = "user_id") String userId,
-                                                                     @RequestParam (value = "sur_id") int surId) {
-
-        return new ResponseEntity<>(surveyService.getUserAnswer(userId, surId), HttpStatus.OK);
-    }
 
     // 카테고리별 인기 설문조사 조회
     @GetMapping("/best")

@@ -32,10 +32,7 @@ public class SurveyServiceImpl implements SurveyService{
     private final SurveyRepository surveyRepository;
     @Autowired
     private final QuestionRepository questionRepository;
-    @Autowired
-    private final AnswerRepository answerRepository;
-    @Autowired
-    private final AuthServiceClient authServiceClient;
+
     @Autowired
     private final ModelMapper mapper;
 
@@ -65,12 +62,6 @@ public class SurveyServiceImpl implements SurveyService{
             questionDtoList.add(questionDTO);
         });
         return questionDtoList;
-    }
-    public List<Map<String,Object>> getUserAnswer (String userId, int surId){
-        UserDTO userDetail = authServiceClient.getUserDetailInfo(userId);
-        log.info(userDetail.getUserId());
-
-        return answerRepository.findByRegIdAndSurId(userId, surId);
     }
 
     public List<Survey> getBestSurvey() {
