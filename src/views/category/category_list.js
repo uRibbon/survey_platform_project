@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useState } from 'react'
 import {
   CButton,
@@ -21,12 +21,45 @@ import {
   CTableDataCell,
   CTableHead,
   CTableHeaderCell,
-  CTableRow,
+  CTableRow, CPaginationItem, CPagination,
 } from '@coreui/react'
+import apiConfig from "../../lib/apiConfig";
+import usePromise from "../../lib/usePromise";
+import axios from "axios";
+import data from "@coreui/coreui/js/src/dom/data";
 
 const Tables = () => {
+  const current = decodeURI(window.location.href);
+  const search = current.split("?")[1];
+  const params = new URLSearchParams(search);
+  const nowPage = params.get('page') ? params.get('page') : 1;
+
   const [visible, setVisible] = useState(false)
+  const [pageData, setPageData] = useState({
+    totalPage: 0,
+    page: 1,
+    size: 0,
+    start: 0,
+    end: 0,
+    prev: false,
+    next: false,
+    pageList: []
+  })
+  const [categoryList, setCategoryList] = useState([])
+  // let promise = usePromise(apiConfig.categoryList + "?page=1&size=3", []);
+  // let promise = usePromise("/survey-service/v1/survey/category/list?page=1&size=3", []);
+  // console.log(promise)
+
+  axios.get("/survey-service/v1/survey/category/list?page=" + nowPage)
+    .then((response) => {
+      console.log(response.data)
+      setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+      setCategoryList(response.data.dtoList)
+    })
+
   return (
+    console.log(pageData),
+    console.log(categoryList),
     <>
       <CCardBody className="text-end">
         <CButton className="mb-3" onClick={() => setVisible(!visible)}>
@@ -68,45 +101,59 @@ const Tables = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableDataCell>
-                      <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
-                    </CTableDataCell>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>학교</CTableDataCell>
-                    <CTableDataCell>2022/10/3</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell>
-                      <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
-                    </CTableDataCell>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>취미</CTableDataCell>
-                    <CTableDataCell>2022/10/9</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell>
-                      <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
-                    </CTableDataCell>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell>연애</CTableDataCell>
-                    <CTableDataCell>2022/10/10</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell>
-                      <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
-                    </CTableDataCell>
-                    <CTableHeaderCell scope="row">4</CTableHeaderCell>
-                    <CTableDataCell>기업</CTableDataCell>
-                    <CTableDataCell>2022/10/15</CTableDataCell>
-                  </CTableRow>
+                  {categoryList.map((category) => (
+                    <CTableRow key={category}>
+                      <CTableDataCell>
+                        <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
+                      </CTableDataCell>
+                      <CTableHeaderCell scope="row">{category.surCatId}</CTableHeaderCell>
+                      <CTableDataCell>{category.content}</CTableDataCell>
+                      <CTableDataCell>2022/10/3</CTableDataCell>
+                    </CTableRow>
+                  ))}
                 </CTableBody>
               </CTable>
+              <CButton color="danger">Delete</CButton>
             </CCardBody>
           </CCard>
-          <CCardBody>
-            <CButton color="danger">Delete</CButton>
-          </CCardBody>
+
+          <CPagination aria-label="Page navigation example" align="center">
+            {pageData.prev ? (
+              <CPaginationItem aria-label="Previous">
+            <span aria-hidden="true">
+              <a href={"/#/category/category_list?page=" + pageData.start - 1}>&laquo;</a>
+            </span>
+              </CPaginationItem>
+            ) : (
+              <CPaginationItem aria-label="Previous" disabled>
+                <span aria-hidden="true">&laquo;</span>
+              </CPaginationItem>
+            )}
+            {pageData.pageList.map((idx) =>
+              idx === pageData.page ? (
+                <CPaginationItem active>{pageData.page}</CPaginationItem>
+              ) : (
+                <CPaginationItem>
+                  <a href={"/#/category/category_list?page=" + idx}>{idx}</a>
+                </CPaginationItem>
+              ),
+            )}
+            {pageData.next ? (
+              <CPaginationItem aria-label="Next">
+            <span aria-hidden="true">
+              <a href={"/#/category/category_list?page=" + pageData.end + 1}>&raquo;</a>
+            </span>
+              </CPaginationItem>
+            ) : (
+              <CPaginationItem aria-label="Next" disabled>
+                <span aria-hidden="true">&raquo;</span>
+              </CPaginationItem>
+            )}
+          </CPagination>
+
+
+
+
         </CCol>
       </CRow>
     </>
