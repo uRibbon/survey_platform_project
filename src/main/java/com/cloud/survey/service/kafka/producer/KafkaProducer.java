@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class KafkaProducer{
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Map<String,Object>> kafkaTemplate;
 
-    public void sendMessage(String topic, String message) {
-        System.out.println(String.format("Produce message : %s", message));
-        this.kafkaTemplate.send(topic, message);
+    public void sendObject(String topic, Map<String,Object> map) {
+        this.kafkaTemplate.send(topic, map);
     }
+
+
 }
