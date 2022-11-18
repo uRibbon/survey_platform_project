@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
-import { CChartBar, CChartPie, CChartLine, CChartDoughnut } from '@coreui/react-chartjs'
+import { CChartPolarArea,CChartBar, CChartPie, CChartLine, CChartDoughnut } from '@coreui/react-chartjs'
 import UsePromise from '../../lib/usePromise'
 import axios from 'axios';
 import apiConfig from '../../lib/apiConfig'
@@ -63,7 +63,7 @@ const Charts = () => {
                 ,
                 datasets: [
                   {
-                    label: '연령대별 추이',
+                    label: one.subject,
                     backgroundColor: '#cfd0fe',
                     data: one.value,
                   },
@@ -84,7 +84,7 @@ const Charts = () => {
                 labels: two.label,
                 datasets: [
                   {
-                    label: '직업별 추이',
+                    label: two.subject,
                     backgroundColor: 'rgba(220, 220, 220, 0.2)',
                     borderColor: 'rgba(220, 220, 220, 1)',
                     pointBackgroundColor: 'rgba(220, 220, 220, 1)',
@@ -101,12 +101,13 @@ const Charts = () => {
         <CCard className="mb-4">
           <CCardHeader>{three.subject}</CCardHeader>
           <CCardBody>
+
           <CChartLine
               data={{
                 labels: three.label,
                 datasets: [
                   {
-                    label: '직업별 추이',
+                    label: three.subject,
                     backgroundColor: 'rgba(220, 220, 220, 0.2)',
                     borderColor: 'rgba(220, 220, 220, 1)',
                     pointBackgroundColor: 'rgba(220, 220, 220, 1)',
@@ -116,6 +117,8 @@ const Charts = () => {
                 ],
               }}
             />
+
+            
           </CCardBody>
         </CCard>
       </CCol>
@@ -133,7 +136,7 @@ const Charts = () => {
                 ,
                 datasets: [
                   {
-                    label: '연령대별 추이',
+                    label: four.subject,
                     backgroundColor: '#cfd0fe',
                     data: four.value,
                   },

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import routes from 'src/routes'
 import {
   CInputGroup,
   CDropdownToggle,
@@ -51,6 +52,10 @@ const MakeList = () => {
     next: false,
     end: 1,
     pagelist: [1, 2, 3, 4, 5, 6],
+  }
+
+  const DuplicateSurveyOnClickHandler = (e, link) => {
+    window.location.href = link
   }
   return (
     <>
@@ -111,7 +116,17 @@ const MakeList = () => {
               <CCardFooter>
                 <CButton color="danger" variant="outline" className="m-1" size="sm">Remove</CButton>
                 <CButton color="primary" variant="outline" className="m-1" size="sm">Details</CButton>
-                <CButton color="warning" variant="outline" className="m-1" size="sm">Copy</CButton>
+
+
+
+
+                {/* 섦문 복제 */}
+                <CButton color="warning" variant="outline" className="m-1" size="sm" onClick={(e) => DuplicateSurveyOnClickHandler(e, '#/survey/CopySurvey/10/copy')}>Copy</CButton>
+
+
+
+
+
               </CCardFooter>
             </CCard>
           </CCol>
