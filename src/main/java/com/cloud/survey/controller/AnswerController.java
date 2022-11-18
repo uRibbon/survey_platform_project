@@ -3,6 +3,7 @@ package com.cloud.survey.controller;
 import com.cloud.survey.dto.AnswerDTO;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.service.AnswerService;
+import com.cloud.survey.service.kafka.producer.KafkaProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
+    @Autowired
+    private KafkaProducer kafkaProducer;
+
 
     // 사용자의 답변 조회
     @RequestMapping(value = "/user_answer", method = RequestMethod.POST)
@@ -33,6 +37,13 @@ public class AnswerController {
     public ResponseEntity<String> registerAnswer(AnswerDTO answerDTO) {
         // queId, type, content, regId 필요
         answerService.insertAnswer(answerDTO);
+
+        // kafka 토픽 생성
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("sur_id", sur_id);
+//        map.put("analysis", answerService.getSurveyAnswerAnalysis(surId));
+//        kafkaProducer.sendObject("registerAnswer", map);
+
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 

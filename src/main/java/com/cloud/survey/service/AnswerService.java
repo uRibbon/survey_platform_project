@@ -13,6 +13,8 @@ public interface AnswerService {
 
     List<Map<String,Object>> getUserAnswer (String userId, int surId); // 사용자의 답변 조회
 
+    List<Map<String,Object>> getSurveyAnswerAnalysis(int surId); // 설문에 대한 사용자 답변 통계 조회
+
     Integer insertAnswer(AnswerDTO answerDTO);
     Integer updateAnswer(AnswerDTO answerDTO);
     void deleteAnswer(Integer answerId);

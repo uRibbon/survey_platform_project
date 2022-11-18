@@ -11,19 +11,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Log4j2
 @Service
 @RequiredArgsConstructor
 public class AnswerServiceImpl implements AnswerService {
+    @Autowired
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
 
     public List<Map<String,Object>> getUserAnswer (String userId, int surId){
         return answerRepository.findByRegIdAndSurId(userId, surId);
     }
+
+    @Override
+    public List<Map<String, Object>> getSurveyAnswerAnalysis(int surId) {
+        return null;
+    }
+
     @Override
     public Integer insertAnswer(AnswerDTO answerDTO) {
         Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());
