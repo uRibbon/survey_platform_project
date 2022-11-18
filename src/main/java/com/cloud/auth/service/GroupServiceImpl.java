@@ -22,7 +22,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public PageResultDTO<GroupListDTO, Group> getGroupList(PageRequestDTO requestDTO) {
-        Pageable pageable = requestDTO.getPageable(Sort.by("groupId").descending());
+        Pageable pageable = requestDTO.getPageable(Sort.by("regDt").descending());
         Page<Group> groupListPage = groupRepository.findExistGroup(pageable);
         Function<Group, GroupListDTO> fn = (groupList -> entityToDTO(groupList));
         return new PageResultDTO<>(groupListPage, fn);
