@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function usePromise(promiseCreator, deps){
-    
+export default function UsePromise(promiseCreator, deps){
     // 상태관리
     const [loding, setLoding] = useState(false); // 대기
     const [resolved, setResolved] = useState(null); // 완료
