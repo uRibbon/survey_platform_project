@@ -1,6 +1,7 @@
 package com.cloud.survey.controller;
 
 import com.cloud.survey.dto.AnswerDTO;
+import com.cloud.survey.dto.AnswerResponseDTO;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.service.AnswerService;
 import com.cloud.survey.service.kafka.producer.KafkaProducer;
@@ -34,9 +35,11 @@ public class AnswerController {
 
     // 답변 등록
     @PostMapping("/reg")
-    public ResponseEntity<String> registerAnswer(@RequestBody Map<String,String> param) {
-        // queId, type, content, regId 필요
-        answerService.insertAnswer(answerDTO);
+    public ResponseEntity<String> registerAnswer(@RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
+        System.out.println("answerResponseDTO = " + answerResponseDTO);
+        Integer surId = answerResponseDTO.getSurId();
+        List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
+        answerService.insertAnswer(surId, answerDTOList);
 
         // kafka 토픽 생성
 //        Map<String, Object> map = new HashMap<>();
