@@ -34,7 +34,7 @@ public class AnswerController {
 
     // 답변 등록
     @PostMapping("/reg")
-    public ResponseEntity<String> registerAnswer(AnswerDTO answerDTO) {
+    public ResponseEntity<String> registerAnswer(@RequestBody Map<String,String> param) {
         // queId, type, content, regId 필요
         answerService.insertAnswer(answerDTO);
 
