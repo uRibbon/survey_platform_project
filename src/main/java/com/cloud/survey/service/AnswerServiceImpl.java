@@ -33,20 +33,19 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Integer insertAnswer(AnswerDTO answerDTO) {
-        Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());
-        if (byId.isPresent()) {
-            Question question = byId.get();
-            Answer save = answerRepository.save(dtoToEntity(answerDTO, question));
-            if (save != null) {
-                return save.getAnsId();
-            } else {
-                log.error("답변 저장 실패");
+    public void insertAnswer(Integer surId, List<AnswerDTO> answerDTOList) {
+        answerDTOList.forEach(answerDTO -> {
+            Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());
+            if (byId.isPresent()) {
+                Question question = byId.get();
+                Answer save = answerRepository.save(dtoToEntity(answerDTO, question));
+                if (save == null) {
+                    log.error("답변 저장 실패");
+                }
+            } else{
+                log.error("질문 조회 실패");
             }
-        } else{
-            log.error("질문 조회 실패");
-        }
-        return null;
+        });
     }
 
     @Override
