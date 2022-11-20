@@ -22,7 +22,6 @@ import java.util.List;
 public class SurveyCategoryController {
     private final SurveyCategoryService surveyCategoryService;
 
-    // pagination 미처리
     @GetMapping("/list")
     public ResponseEntity<PageResultDTO<SurveyCategoryDTO, SurveyCategory>> getCategoryList(PageRequestDTO pageRequestDTO) {
         PageResultDTO<SurveyCategoryDTO, SurveyCategory> categoryList = surveyCategoryService.getCategoryList(pageRequestDTO);
@@ -30,13 +29,13 @@ public class SurveyCategoryController {
     }
 
     @PostMapping("/reg")
-    public ResponseEntity<String> registerCategory(SurveyCategory surveyCategory) {
-        surveyCategoryService.insertCategory(surveyCategory);
+    public ResponseEntity<String> registerCategory(SurveyCategoryDTO surveyCategoryDTO) {
+        surveyCategoryService.insertCategory(surveyCategoryDTO);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
-    @GetMapping("/del/{surCatId}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Integer surCatId) {
+    @PostMapping("/del")
+    public ResponseEntity<String> deleteCategory(@RequestParam(value = "surCatId") Integer surCatId) {
         surveyCategoryService.deleteCategory(surCatId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
