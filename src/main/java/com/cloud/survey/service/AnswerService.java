@@ -16,7 +16,7 @@ public interface AnswerService {
     List<Map<String,Object>> getSurveyAnswerAnalysis(int surId); // 설문에 대한 사용자 답변 통계 조회
 
     void insertAnswer(Integer surId, List<AnswerDTO> answerList);
-    Integer updateAnswer(AnswerDTO answerDTO);
+    void updateAnswer(Integer surId, List<AnswerDTO> answerList);
     void deleteAnswer(Integer answerId);
 
     default Answer dtoToEntity(AnswerDTO dto, Question question) {

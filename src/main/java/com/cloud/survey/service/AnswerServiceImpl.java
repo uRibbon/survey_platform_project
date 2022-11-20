@@ -49,20 +49,18 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Integer updateAnswer(AnswerDTO answerDTO) {
-        Optional<Answer> byId = answerRepository.findById(answerDTO.getAnsId());
-        if (byId.isPresent()) {
-            Answer answer = byId.get();
-            answer.changeContent(answerDTO.getContent());
-            answer.changeModId(answerDTO.getRegId());
-            Answer save = answerRepository.save(answer);
-            if (save != null) {
-                return save.getAnsId();
+    public void updateAnswer(Integer surId, List<AnswerDTO> answerDTOList) {
+        answerDTOList.forEach(answerDTO -> {
+            Optional<Answer> byId = answerRepository.findById(answerDTO.getAnsId());
+            if (byId.isPresent()) {
+                Answer answer = byId.get();
+                answer.changeContent(answerDTO.getContent());
+                answer.changeModId(answerDTO.getRegId());
+                Answer save = answerRepository.save(answer);
+            } else {
+                log.error("findById 오류로 답변 변경 실패");
             }
-        } else {
-            log.error("findById 오류로 답변 변경 실패");
-        }
-        return null;
+        });
     }
 
     @Override
