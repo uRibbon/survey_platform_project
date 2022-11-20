@@ -23,15 +23,15 @@ public class SurveyCategoryServiceImpl implements SurveyCategoryService {
 
     @Override
     public PageResultDTO<SurveyCategoryDTO, SurveyCategory> getCategoryList(PageRequestDTO requestDTO) {
-        Pageable pageable = requestDTO.getPageable(Sort.by("surCatId").descending());
+        Pageable pageable = requestDTO.getPageable(Sort.by("regDt").descending());
         Page<SurveyCategory> surveyCategoryPage = surveyCategoryRepository.findAll(pageable);
         Function<SurveyCategory, SurveyCategoryDTO> fn = (surveyCategory -> entityToDTO(surveyCategory));
         return new PageResultDTO<>(surveyCategoryPage, fn);
     }
 
     @Override
-    public void insertCategory(SurveyCategory surveyCategory) {
-        surveyCategoryRepository.save(surveyCategory);
+    public void insertCategory(SurveyCategoryDTO surveyCategoryDTO) {
+        surveyCategoryRepository.save(dtoToEntity(surveyCategoryDTO));
     }
 
     @Override
