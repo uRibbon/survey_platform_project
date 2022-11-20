@@ -36,7 +36,6 @@ public class AnswerController {
     // 답변 등록
     @PostMapping("/reg")
     public ResponseEntity<String> registerAnswer(@RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
-        System.out.println("answerResponseDTO = " + answerResponseDTO);
         Integer surId = answerResponseDTO.getSurId();
         List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
         answerService.insertAnswer(surId, answerDTOList);
@@ -47,23 +46,24 @@ public class AnswerController {
 //        map.put("analysis", answerService.getSurveyAnswerAnalysis(surId));
 //        kafkaProducer.sendObject("registerAnswer", map);
 
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
     // 답변 수정
     @PostMapping("/mod")
-    public ResponseEntity<String> modifyAnswer(AnswerDTO answerDTO) {
-        // ansId, content, regId 필요
-        answerService.updateAnswer(answerDTO);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+    public ResponseEntity<String> modifyAnswer(@RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
+        Integer surId = answerResponseDTO.getSurId();
+        List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
+        answerService.updateAnswer(surId, answerDTOList);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
     // 답변 삭제
-    @GetMapping("/del/{ansId}")
-    public ResponseEntity<String> removeAnswer(@PathVariable Integer ansId) {
+    @PostMapping("/del")
+    public ResponseEntity<String> removeAnswer(@RequestParam(value = "ansId") Integer ansId) {
         // ansId 필요
         answerService.deleteAnswer(ansId);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
 }
