@@ -1,5 +1,6 @@
 package com.cloud.survey.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -71,7 +72,7 @@ public class Survey {
 
         @CreatedDate
         @Column(name = "reg_dt", nullable = false)
-        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
         private LocalDateTime regDt;
 
         @Column(name = "mod_id", length = 20)
