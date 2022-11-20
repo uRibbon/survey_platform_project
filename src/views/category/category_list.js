@@ -15,9 +15,8 @@ import {
   CRow,
   CTable,
   CTableBody,
-  CFormFloating,
-  CFormTextarea,
-  CFormLabel,
+  CForm,
+  CFormInput,
   CTableDataCell,
   CTableHead,
   CTableHeaderCell,
@@ -57,9 +56,32 @@ const Tables = () => {
       setCategoryList(response.data.dtoList)
     })
 
+  const [checkedInputs, setCheckedInputs] = useState([]);
+
+  const changeHandler = (checked, id) => {
+    if (checked) {
+      setCheckedInputs([...checkedInputs, id]);
+    } else {
+      // 체크 해제
+      setCheckedInputs(checkedInputs.filter((el) => el !== id));
+    }
+  };
+
+  const deleteCategory = () => {
+    axios.post("/survey-service/v1/survey/category/del", JSON.stringify(checkedInputs),
+      {
+        headers: { "Content-Type": "application/json" }
+      }).then((response) => {
+        window.location.reload();
+    })
+  }
+
+
+
   return (
-    console.log(pageData),
-    console.log(categoryList),
+    console.log(checkedInputs),
+    // console.log(pageData),
+    // console.log(categoryList),
     <>
       <CCardBody className="text-end">
         <CButton className="mb-3" onClick={() => setVisible(!visible)}>
@@ -67,21 +89,20 @@ const Tables = () => {
         </CButton>
       </CCardBody>
       <CModal backdrop="static" visible={visible} onClose={() => setVisible(false)}>
+        <CForm method="post" action="/survey-service/v1/survey/category/reg">
         <CModalHeader>
-          <CModalTitle>Register</CModalTitle>
+          <CModalTitle>설문 카테고리 등록하기</CModalTitle>
         </CModalHeader>
         <CModalBody>
-          <CFormFloating>
-            <CFormTextarea id="floatingTextarea" placeholder="Leave a comment here"></CFormTextarea>
-            <CFormLabel htmlFor="floatingTextarea">카테고리명</CFormLabel>
-          </CFormFloating>
+            <CFormInput label="카테고리명" name="content"></CFormInput>
         </CModalBody>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Cancel
           </CButton>
-          <CButton color="primary">Register</CButton>
+          <CButton color="primary" type="submit">Register</CButton>
         </CModalFooter>
+        </CForm>
       </CModal>
       <CRow>
         <CCol xs={12}>
@@ -104,16 +125,19 @@ const Tables = () => {
                   {categoryList.map((category) => (
                     <CTableRow key={category}>
                       <CTableDataCell>
-                        <CFormCheck id="checkboxNoLabel" value="" aria-label="..." />
+                        <CFormCheck
+                          id={category.surCatId}
+                          onChange={(e)=>{changeHandler(e.currentTarget.checked, category.surCatId)}}
+                                    checked={checkedInputs.includes(category.surCatId) ? true : false}/>
                       </CTableDataCell>
                       <CTableHeaderCell scope="row">{category.surCatId}</CTableHeaderCell>
                       <CTableDataCell>{category.content}</CTableDataCell>
-                      <CTableDataCell>2022/10/3</CTableDataCell>
+                      <CTableDataCell>{category.regDt}</CTableDataCell>
                     </CTableRow>
                   ))}
                 </CTableBody>
               </CTable>
-              <CButton color="danger">Delete</CButton>
+              <CButton color="danger" onClick={deleteCategory}>Delete</CButton>
             </CCardBody>
           </CCard>
 
@@ -121,7 +145,7 @@ const Tables = () => {
             {pageData.prev ? (
               <CPaginationItem aria-label="Previous">
             <span aria-hidden="true">
-              <a href={"/#/category/category_list?page=" + pageData.start - 1}>&laquo;</a>
+              <a href={"/#/category/category_list?page=" + String(parseInt(pageData.start) - 1)}>&laquo;</a>
             </span>
               </CPaginationItem>
             ) : (
@@ -130,7 +154,7 @@ const Tables = () => {
               </CPaginationItem>
             )}
             {pageData.pageList.map((idx) =>
-              idx === pageData.page ? (
+              idx === parseInt(pageData.page) ? (
                 <CPaginationItem active>{pageData.page}</CPaginationItem>
               ) : (
                 <CPaginationItem>
@@ -141,7 +165,7 @@ const Tables = () => {
             {pageData.next ? (
               <CPaginationItem aria-label="Next">
             <span aria-hidden="true">
-              <a href={"/#/category/category_list?page=" + pageData.end + 1}>&raquo;</a>
+              <a href={"/#/category/category_list?page=" + String(parseInt(pageData.end) + 1)}>&raquo;</a>
             </span>
               </CPaginationItem>
             ) : (
