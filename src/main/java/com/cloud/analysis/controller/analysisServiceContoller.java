@@ -25,12 +25,14 @@ public class analysisServiceContoller {
         return "분석 서버로부터 응답";
     }
 
+    // 설문조사 피설문자 통계 조회
     @RequestMapping(value = "/survey_analysis", method = RequestMethod.POST)
     public List<Survey_analysis_option> getSurveyAnalysisList(@RequestParam (value = "analysis_Id") int analysisId) {
         List<Survey_analysis_option> allSurveyAnalysisList = analysisService.getSurveyAnalysisList(analysisId);
         return allSurveyAnalysisList;
     }
 
+    // 플랫폼 통계 조회
     @RequestMapping(value = "/platform_analysis", method = RequestMethod.POST)
     public List<Platform_analysis_option> getPlatformAnalysisList(@RequestParam (value = "platform_analysis_Id") int platformAnalysisId) {
         List<Platform_analysis_option> allPlatformAnalysisList = analysisService.getPlatformAnalysisList(platformAnalysisId);
@@ -43,10 +45,9 @@ public class analysisServiceContoller {
 
         return "success";
     }
-
-    @RequestMapping(value = "/survey_analysis_info", method = RequestMethod.POST)
-    public List<Object> getTypeSubjectList(@RequestParam (value = "analysis_Id") int analysis_Id) {
-        List<Object> allTypeSubjectList = analysisService.getTypeSubjectList(analysis_Id);
+    @RequestMapping(value = "/survey_analysis_info", method = RequestMethod.GET)
+    public List<Object> getTypeSubjectList(@RequestParam (value = "sur_id") int surId) {
+        List<Object> allTypeSubjectList = analysisService.getTypeSubjectList(surId);
         return allTypeSubjectList;
     }
 
