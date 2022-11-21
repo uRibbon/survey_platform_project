@@ -41,16 +41,17 @@ public class AnalysisServiceImpl implements AnalysisService {
             Middle.put("subject", surveyAnalysis.getSubject());
 
             Integer analysisId = surveyAnalysis.getAnalysisId();
-            List<Map<String, Integer>> small = new ArrayList<>();
+            List<Map<String, String>> small = new ArrayList<>();
 
 
             List<Survey_analysis_option> OptionList = analysisRepository.findSurveyAnalysisOptionById(analysisId);
 
 
             OptionList.forEach(surveyAnalysisOption->{
-                Map<String, Integer> optionInfo = new HashMap<>();
-                optionInfo.put("option_id", surveyAnalysisOption.getOptionId());
-                optionInfo.put("value", surveyAnalysisOption.getValue());
+                Map<String, String> optionInfo = new HashMap<>();
+                optionInfo.put("option_id", surveyAnalysisOption.getOptionId().toString());
+                optionInfo.put("option_name", surveyAnalysisOption.getOptionName());
+                optionInfo.put("value", surveyAnalysisOption.getValue().toString());
                 small.add(optionInfo);
             });
 
