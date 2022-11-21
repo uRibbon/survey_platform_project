@@ -49,11 +49,6 @@ public class AnswerController {
         List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
         answerService.insertAnswer(surId, answerDTOList);
 
-        // kafka 토픽 생성
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("sur_id", sur_id);
-//        map.put("analysis", answerService.getSurveyAnswerAnalysis(surId));
-//        kafkaProducer.sendObject("registerAnswer", map);
         // 포인트 적립 토픽 생성
         if(principal != null) {
             JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
@@ -63,6 +58,8 @@ public class AnswerController {
             accruePointMap.put("type", "E");
             kafkaProducer.sendStrMap("REG_ANSWER_POINT", accruePointMap);
         }
+        // 설문조사 피설문자 통계 토픽 생성
+        kafkaProducer.sendObjetMap("REG_ANSWER_ANALYSIS",answerService.getSurveyAnswerAnalysis(surId));
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
