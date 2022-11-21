@@ -27,8 +27,20 @@ spring:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:5010/realms/team_cloud/protocol/openid-connect/certs
 
-
+keycloak:
+  realm: team_cloud
+  bearer-only: true
+  ssl-required: external
+  resource: team_cloud_client
+  auth-server-url: http://localhost:5010/
+  credentials:
+    secret: AvgjtsAvqQUNfo9DemEpANjMt3YrAtbt
 
 eureka:
   instance:
