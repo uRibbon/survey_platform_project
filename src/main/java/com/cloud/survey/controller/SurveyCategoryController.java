@@ -35,8 +35,11 @@ public class SurveyCategoryController {
     }
 
     @PostMapping("/del")
-    public ResponseEntity<String> deleteCategory(@RequestParam(value = "surCatId") Integer surCatId) {
-        surveyCategoryService.deleteCategory(surCatId);
+    public ResponseEntity<String> deleteCategory(@RequestBody(required = false) List<Integer> surCatIdList) {
+        System.out.println("surCatIdList = " + surCatIdList);
+        surCatIdList.forEach(surCatId -> {
+            surveyCategoryService.deleteCategory(surCatId);
+        });
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 }
