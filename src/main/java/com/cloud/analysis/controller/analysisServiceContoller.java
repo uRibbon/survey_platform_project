@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value="v1/survey")
+@RequestMapping(value="v1/analysis")
 @RequiredArgsConstructor
 public class analysisServiceContoller {
     @Autowired
