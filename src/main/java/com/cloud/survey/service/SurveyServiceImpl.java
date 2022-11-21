@@ -54,17 +54,6 @@ public class SurveyServiceImpl implements SurveyService{
         return entityToDTO(survey);
     }
 
-    public List<QuestionDTO> getSurveyQuestion (int surId){
-        List<QuestionDTO> questionDtoList = new ArrayList<>();
-        List<Question> questionList = questionRepository.findBySurId(surId);
-
-        questionList.forEach(question -> {
-            QuestionDTO questionDTO = mapper.map(question, QuestionDTO.class);
-            questionDtoList.add(questionDTO);
-        });
-        return questionDtoList;
-    }
-
     public List<Survey> getBestSurvey() {
         List<Survey> bestSurveyList = new ArrayList<>();
         List<SurveyCategory> surveyCategoryList = surveyCategoryRepository.findAll();
