@@ -27,6 +27,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private final AnalysisServiceClient analysisServiceClient;
     @Autowired
+    private final AuthServiceClient authServiceClient;
 
     public List<Map<String,Object>> getUserAnswer (String userId, int surId){
         return answerRepository.findByRegIdAndSurId(userId, surId);
@@ -41,8 +42,13 @@ public class AnswerServiceImpl implements AnswerService {
         // 설문 답변자, 답변 응답 시간대 조회
         List<Map<String,Object>> surveyAnalysisData = answerRepository.findBySurId(surId);
 
+        //설문 답변자 상세정보 리스트
+        List<UserDTO> answerUserList = authServiceClient.getUserDetailInfoList(surveyAnalysisData);
+
         Map<String,Object> map = new HashMap<>();
         map.put("answer_data_list", surveyAnalysisData);
+        map.put("answer_user_list", answerUserList);
+        return map;
     }
 
     @Override
