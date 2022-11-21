@@ -1,4 +1,4 @@
-package com.cloud.gatewayserver.config;
+package com.cloud.gatewayserver;
 
 
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange().pathMatchers("/**").permitAll()
                 .and().authorizeExchange().anyExchange().authenticated()
-//                .and().oauth2Login() // to redirect to oauth2 login page.
+                .and().oauth2Login() // to redirect to oauth2 login page.
                 .and().csrf().disable();
 
         return http.build();
