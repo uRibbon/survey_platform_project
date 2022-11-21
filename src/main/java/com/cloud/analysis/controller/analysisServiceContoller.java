@@ -20,10 +20,6 @@ public class analysisServiceContoller {
     private AnalysisService analysisService;
 
     private final KafkaProducer producer;
-    @GetMapping("/test")
-    public String test() {
-        return "분석 서버로부터 응답";
-    }
 
     @RequestMapping(value = "/survey_analysis", method = RequestMethod.POST)
     public List<Survey_analysis_option> getSurveyAnalysisList(@RequestParam (value = "analysis_Id") int analysisId) {
@@ -40,7 +36,6 @@ public class analysisServiceContoller {
     @PostMapping("/kafkaConnTest")
     public String sendMessage(@RequestParam("message") String message) {
         this.producer.sendMessage(message);
-
         return "success";
     }
 
@@ -49,5 +44,7 @@ public class analysisServiceContoller {
         List<Object> allTypeSubjectList = analysisService.getTypeSubjectList(analysis_Id);
         return allTypeSubjectList;
     }
+
+
 
 }
