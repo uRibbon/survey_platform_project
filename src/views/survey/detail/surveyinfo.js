@@ -12,24 +12,38 @@ import {
   CAccordionHeader,
   CAccordionItem,
 } from '@coreui/react'
+import axios from "axios";
 
 const DetailInfo = () => {
+  const [surId, setSurId] = useState(2)
+  const [surInfo, setSurInfo] = useState([])
+
+  axios.post("/survey-service/v1/survey/detail",
+    {sur_id: surId},
+    {headers: {
+        'Content-Type': 'multipart/form-data'
+      }}
+  ).then((response) => {
+    setSurInfo(response.data.info)
+  })
+
   return (
     <div>
         <CRow>
             <CFormLabel htmlFor="surveyName" className="col-sm-2 col-form-label">
-            설문조사명
+            설문명
             </CFormLabel>
             <CCol sm={10}>
             <CFormInput
                 type="text"
                 id="surveyName"
-                defaultValue="팀 클라우드 설문조사 입니다!"
+                value={surInfo.title}
                 readOnly
                 plainText
                 />
             </CCol>
         </CRow>
+
         <CRow>
             <CFormLabel htmlFor="category" className="col-sm-2 col-form-label">
             카테고리
@@ -38,11 +52,26 @@ const DetailInfo = () => {
             <CFormInput
                 type="text"
                 id="category"
-                defaultValue="학교"
+                value={surInfo.categoryContent}
                 readOnly
                 plainText
                 />
             </CCol>
+        </CRow>
+
+        <CRow>
+          <CFormLabel htmlFor="description" className="col-sm-2 col-form-label">
+            설문설명
+          </CFormLabel>
+          <CCol sm={10}>
+            <CFormInput
+              type="text"
+              id="description"
+              value={surInfo.description}
+              readOnly
+              plainText
+            />
+          </CCol>
         </CRow>
 
         <CRow>
