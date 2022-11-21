@@ -1,4 +1,4 @@
-package com.cloud.auth.config;
+package com.cloud.auth;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,10 +23,13 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 public class AuthConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()
+        http.authorizeRequests()
+                .antMatchers("/**").permitAll()
+//                .anyRequest().authenticated()
                 .and().oauth2ResourceServer()
                 .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
-                .and().anonymous().disable();
+//                .and().anonymous().disable()
+        ;
     }
 
     private Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
