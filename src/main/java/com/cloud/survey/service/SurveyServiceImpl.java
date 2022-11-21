@@ -50,7 +50,8 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     public SurveyDTO getSurveyDetail (int surId){
-        return mapper.map(surveyRepository.findBySurId(surId), SurveyDTO.class);
+        Survey survey = surveyRepository.findBySurId(surId);
+        return entityToDTO(survey);
     }
 
     public List<QuestionDTO> getSurveyQuestion (int surId){

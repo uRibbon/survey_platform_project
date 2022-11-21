@@ -21,4 +21,24 @@ public interface SurveyService {
 
 
     List<Survey> getBestSurvey(); // 카테고리별 인기 설문조사 조회
+
+    default SurveyDTO entityToDTO(Survey survey) {
+        SurveyDTO dto = SurveyDTO.builder()
+                .surId(survey.getSurId())
+                .title(survey.getTitle())
+                .description(survey.getDescription())
+                .categoryId(survey.getSurveyCategory().getSurCatId())
+                .categoryContent(survey.getSurveyCategory().getContent())
+                .version(survey.getVersion())
+                .status(survey.getStatus())
+                .dueDt(survey.getDueDt())
+                .isLoginYn(survey.getIsLoginYn())
+                .isPrivateYn(survey.getIsPrivateYn())
+                .isModifyYn(survey.getIsModifyYn())
+                .isAnnoyYn(survey.getIsAnnoyYn())
+                .regId(survey.getRegId())
+                .regDt(survey.getRegDt())
+                .build();
+        return dto;
+    }
 }
