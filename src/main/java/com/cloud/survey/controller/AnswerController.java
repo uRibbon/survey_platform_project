@@ -10,8 +10,14 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +40,11 @@ public class AnswerController {
     }
 
     // 답변 등록
+    @Transactional
     @PostMapping("/reg")
-    public ResponseEntity<String> registerAnswer(@RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
+    public ResponseEntity<String> registerAnswer(Principal principal, @RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
+
+
         Integer surId = answerResponseDTO.getSurId();
         List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
         answerService.insertAnswer(surId, answerDTOList);
@@ -45,6 +54,15 @@ public class AnswerController {
 //        map.put("sur_id", sur_id);
 //        map.put("analysis", answerService.getSurveyAnswerAnalysis(surId));
 //        kafkaProducer.sendObject("registerAnswer", map);
+        // 포인트 적립 토픽 생성
+        if(principal != null) {
+            JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
+            Map<String, String> accruePointMap = new HashMap<>();
+            accruePointMap.put("user_id", token.getTokenAttributes().get("preferred_username").toString());
+            accruePointMap.put("sur_id", String.valueOf(surId));
+            accruePointMap.put("type", "E");
+            kafkaProducer.sendStrMap("REG_ANSWER_POINT", accruePointMap);
+        }
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
