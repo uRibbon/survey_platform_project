@@ -34,6 +34,7 @@ public class SurveyConfig extends WebSecurityConfigurerAdapter {
                 .and().oauth2ResourceServer()
                 .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
 //                .and().anonymous().disable()
+                .and().csrf().disable()
         ;
 }
 
