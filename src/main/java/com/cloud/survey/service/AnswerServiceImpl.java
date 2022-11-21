@@ -34,18 +34,24 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void insertAnswer(Integer surId, List<AnswerDTO> answerDTOList) {
-        answerDTOList.forEach(answerDTO -> {
-            Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());
-            if (byId.isPresent()) {
-                Question question = byId.get();
-                Answer save = answerRepository.save(dtoToEntity(answerDTO, question));
-                if (save == null) {
-                    log.error("답변 저장 실패");
+        List<Map<String, Object>> byRegIdAndSurId = answerRepository.findByRegIdAndSurId(answerDTOList.get(0).getRegId(), surId);
+        if (byRegIdAndSurId == null) {
+            answerDTOList.forEach(answerDTO -> {
+                Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());
+                if (byId.isPresent()) {
+                    Question question = byId.get();
+                    Answer save = answerRepository.save(dtoToEntity(answerDTO, question));
+                    if (save == null) {
+                        log.error("답변 저장 실패");
+                    }
+                } else{
+                    log.error("질문 조회 실패");
                 }
-            } else{
-                log.error("질문 조회 실패");
-            }
-        });
+            });
+        } else {
+            log.error("이미 설문에 참여한 사용자");
+        }
+        
     }
 
     @Override
