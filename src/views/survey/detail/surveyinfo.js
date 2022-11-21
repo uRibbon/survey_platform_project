@@ -14,12 +14,11 @@ import {
 } from '@coreui/react'
 import axios from "axios";
 
-const DetailInfo = () => {
-  const [surId, setSurId] = useState(2)
+const DetailInfo = (props) => {
   const [surInfo, setSurInfo] = useState([])
 
   axios.post("/survey-service/v1/survey/detail",
-    {sur_id: surId},
+    {sur_id: props.surId},
     {headers: {
         'Content-Type': 'multipart/form-data'
       }}

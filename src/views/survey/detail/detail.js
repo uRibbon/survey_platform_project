@@ -23,6 +23,7 @@ import SurveyQuestion from './surveyQuestion';
 const Detail = () => {
 
   const [activeKey, setActiveKey] = useState(1)
+  const [surId, setSurId] = useState(2)
 
   return (
     <CRow>
@@ -34,7 +35,7 @@ const Detail = () => {
           </CCardHeader>
           <CCardBody>
           <div>
-            <SurveyInfo></SurveyInfo>
+            <SurveyInfo surId={surId}></SurveyInfo>
             <div
               style={{
                 display: 'flex',
@@ -66,7 +67,7 @@ const Detail = () => {
             </div>
             <CTabContent>
               <CTabPane role="tabpanel" aria-labelledby="home-tab" visible={activeKey === 1}>
-                <SurveyQuestion/>
+                <SurveyQuestion surId={surId}/>
               </CTabPane>
               <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
               </CTabPane>
