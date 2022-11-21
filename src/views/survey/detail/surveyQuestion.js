@@ -64,29 +64,37 @@ const DetailInfo = (props) => {
               <CAccordionBody>
                 <CFormTextarea name="content" onChange={(e) => makeAnswer(e,question.queId)}></CFormTextarea>
 
-                {/*{question.qtype === "YN" && (*/}
-                {/*  <>*/}
-                {/*    <CFormCheck type="radio" name="content" id="question4" label="예" />*/}
-                {/*    <CFormCheck type="radio" name="content" id="question4" label="아니오" />*/}
-                {/*  </>*/}
-                {/*)}*/}
+                {question.qtype === "YN" && (
+                  <>
+                    {question.optionList.map((option) => (
+                      <CFormCheck type="radio" name="content" key={option.queOptId} label={option.optionName} />
+                    ))}
+                  </>
+                )}
 
-                {/*{question.qtype === "Num" && (*/}
-                {/*  <>*/}
-                {/*    <CFormCheck type="radio" name="content" label="1. 춘식이" />*/}
-                {/*    <CFormCheck type="radio" name="content" label="2. 라이언" />*/}
-                {/*    <CFormCheck type="radio" name="content" label="3. 어피치" />*/}
-                {/*    <CFormCheck type="radio" name="content" label="4. 포르도" />*/}
-                {/*  </>*/}
-                {/*)}*/}
+                {question.qtype === "NumOnly" && (
+                  <>
+                    {question.optionList.map((option) => (
+                      <CFormCheck type="radio" name="content" key={option.queOptId} label={option.optionName} />
+                    ))}
+                  </>
+                )}
 
-                {/*{question.qtype === "Sub" && (*/}
-                {/*  <CFormTextarea name="content"></CFormTextarea>*/}
-                {/*)}*/}
+                {question.qtype === "NumMul" && (
+                  <>
+                    {question.optionList.map((option) => (
+                      <CFormCheck type="checkbox" name="content" key={option.queOptId} label={option.optionName} />
+                    ))}
+                  </>
+                )}
 
-                {/*{question.qtype == "Grd" && (*/}
-                {/*  <CFormRange name="content" min="0" max="100" step="10"/>*/}
-                {/*)}*/}
+                {question.qtype === "Sub" && (
+                  <CFormTextarea name="content"></CFormTextarea>
+                )}
+
+                {question.qtype == "Grd" && (
+                  <CFormRange name="content" min="0" max="100" step="10"/>
+                )}
               </CAccordionBody>
             </CAccordionItem>
           ))}
