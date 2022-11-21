@@ -9,6 +9,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +33,14 @@ public class UserServiceImpl implements UserService{
     public UserDTO getUserDetailInfo(String UserId) {
         User user = userRepository.findByUserId(UserId);
         return mapper.map(user, UserDTO.class);
+    }
+
+    @Override
+    public List<UserDTO> getUserDetailInfoList(List<Map<String, Object>> list) {
+        List<UserDTO> userList = new ArrayList<>();
+        list.forEach(user -> {
+            userList.add(getUserDetailInfo((String) user.get("reg_id")));
+        });
+        return userList;
     }
 }
