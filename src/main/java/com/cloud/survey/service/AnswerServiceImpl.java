@@ -1,8 +1,11 @@
 package com.cloud.survey.service;
 
 import com.cloud.survey.dto.AnswerDTO;
+import com.cloud.survey.dto.UserDTO;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.entity.Question;
+import com.cloud.survey.openfeign.AnalysisServiceClient;
+import com.cloud.survey.openfeign.AuthServiceClient;
 import com.cloud.survey.repository.AnswerRepository;
 import com.cloud.survey.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Log4j2
 @Service
@@ -21,15 +22,27 @@ import java.util.Optional;
 public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private final AnswerRepository answerRepository;
+    @Autowired
     private final QuestionRepository questionRepository;
+    @Autowired
+    private final AnalysisServiceClient analysisServiceClient;
+    @Autowired
 
     public List<Map<String,Object>> getUserAnswer (String userId, int surId){
         return answerRepository.findByRegIdAndSurId(userId, surId);
     }
 
     @Override
-    public List<Map<String, Object>> getSurveyAnswerAnalysis(int surId) {
-        return null;
+    public Map<String, Object> getSurveyAnswerAnalysis(int surId) {
+
+        // 설문분석 통계옵션 조회
+        List<Object> surveyAnalysisOptionList = analysisServiceClient.getTypeSubjectList(surId);
+
+        // 설문 답변자, 답변 응답 시간대 조회
+        List<Map<String,Object>> surveyAnalysisData = answerRepository.findBySurId(surId);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("answer_data_list", surveyAnalysisData);
     }
 
     @Override
