@@ -20,6 +20,7 @@ import {
 import SurveyInfo from './surveyinfo';
 import SurveyQuestion from './surveyQuestion';
 import Charts from '../../analysis/user_survey_analysis';
+import SurveyAnswer from './surveyAnswer';
 
 const Detail = () => {
 
@@ -68,7 +69,7 @@ const Detail = () => {
             </div>
             <CTabContent>
               <CTabPane role="tabpanel" aria-labelledby="home-tab" visible={activeKey === 1}>
-                <SurveyQuestion surId={surId}/>
+                <SurveyAnswer surId={surId}/>
               </CTabPane>
               <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
                 <Charts surId={surId}/>
