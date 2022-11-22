@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CButton,
   CCard,
@@ -19,8 +19,33 @@ import {
 } from '@coreui/react'
 
 import ReactImg from 'src/assets/images/test_img.jpeg'
+import axios from 'axios';
 
 const FormControl = () => {
+  const [data, setData] = useState();
+
+  // const groupInfo = async ()=>{
+  //   const response = await axios.post("/auth-service/v1/group/detail")
+  //   console.log('This response',response)
+  // }
+
+  // useEffect(()=>{
+  //   console.log('hihi')
+  //   groupInfo()
+  // },[])
+
+  // console.log('This is Data!',data)
+
+  axios.post("/auth-service/v1/group/detail",
+    // {sur_id: 2},
+    // {headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }}
+  ).then((response) => {
+    setData(response.data)
+  })
+
+
   return (
     <CRow>
       <CCol xs={12}>
@@ -40,7 +65,8 @@ const FormControl = () => {
                     type="text"
                     id="groupName"
                     placeholder="그룹명"
-                    value={'클라우드 전용 그룹'}
+                    // value={data[0].groupName}
+                    value={'hi'}
                     readOnly
                   />
                 </div>
@@ -62,6 +88,7 @@ const FormControl = () => {
                 <div className="col-sm-10">
                   <CFormTextarea id="groupDescription" rows="3" readOnly>
                     8팀 클라우드만 참여가능한 그룹이에요~
+                    {data[0].groupName}
                   </CFormTextarea>
                 </div>
               </CRow>
