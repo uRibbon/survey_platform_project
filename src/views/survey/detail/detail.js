@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import {
-  CFormLabel,
-  CForm,
-  CFormTextarea,
   CButton,
-  CFormInput,
   CCol,
   CRow,
   CCard,
@@ -69,7 +65,8 @@ const Detail = () => {
             </div>
             <CTabContent>
               <CTabPane role="tabpanel" aria-labelledby="home-tab" visible={activeKey === 1}>
-                <SurveyAnswer surId={surId}/>
+                {/* <SurveyAnswer surId={surId}/> */}
+                <SurveyQuestion surId={surId}/>
               </CTabPane>
               <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
                 <Charts surId={surId}/>

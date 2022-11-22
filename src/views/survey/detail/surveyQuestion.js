@@ -36,6 +36,10 @@ const DetailInfo = (props) => {
   }
 
   const sendAnswer = () => {
+
+    
+
+
     axios.post("/survey-service/v1/answer/reg",
       {
         surId: props.surId,
@@ -62,7 +66,7 @@ const DetailInfo = (props) => {
             <CAccordionItem itemKey={index+1} key={question.queId}>
               <CAccordionHeader>{index+1}. {question.content} </CAccordionHeader>
               <CAccordionBody>
-                <CFormTextarea name="content" onChange={(e) => makeAnswer(e,question.queId)}></CFormTextarea>
+                <CFormTextarea name="content" onBlur={(e) => makeAnswer(e,question.queId)}></CFormTextarea>
 
                 {question.qtype === "YN" && (
                   <>
