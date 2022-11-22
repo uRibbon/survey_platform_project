@@ -64,7 +64,9 @@ public class AnswerController {
             accruePointMap.put("user_id", token.getTokenAttributes().get("preferred_username").toString());
             accruePointMap.put("sur_id", String.valueOf(surId));
             accruePointMap.put("type", "E");
-            kafkaProducer.sendStrMap("ANSWER_POINT", accruePointMap);
+            Map<String, Object> map = new HashMap<>();
+            map.put("accrue_point_map", accruePointMap);
+            kafkaProducer.sendObjetMap("ANSWER_POINT", map);
         }
         // 설문조사 피설문자 통계 토픽 생성
         kafkaProducer.sendObjetMap("ANSWER_ANALYSIS",answerService.getSurveyAnswerAnalysis(surId));
