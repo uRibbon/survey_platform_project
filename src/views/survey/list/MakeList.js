@@ -54,8 +54,8 @@ const MakeList = () => {
     pagelist: [1, 2, 3, 4, 5, 6],
   }
 
-  const DuplicateSurveyOnClickHandler = (e, link) => {
-    window.location.href = link + '#abc';
+  const DuplicateSurveyOnClickHandler = (e, link,sur_id) => {
+    window.location.href = link+'?copy='+sur_id;
   }
   return (
     <>
@@ -121,8 +121,7 @@ const MakeList = () => {
 
 
                 {/* 섦문 복제 */}
-                <CButton color="warning" variant="outline" className="m-1" size="sm" onClick={(e) => DuplicateSurveyOnClickHandler(e, '#/survey/CopySurvey/10/copy')}>Copy</CButton>
-
+                <CButton color="warning" variant="outline" className="m-1" size="sm" onClick={(e) => DuplicateSurveyOnClickHandler(e, '#/survey',1)}>Copy</CButton>
 
 
 
