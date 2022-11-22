@@ -20,8 +20,8 @@ public class AnalysisServiceImpl implements AnalysisService {
     private final AnalysisRepository analysisRepository;
 
     @Override
-    public List<Survey_analysis_option> getSurveyAnalysisList(Integer analysisId) {
-        List<Survey_analysis_option> surveyAnalysisList = analysisRepository.findSurveyAnalysisByColumn(analysisId);
+    public List<Survey_analysis_option> getSurveyAnalysisList(Integer analysisId,Integer surveyId) {
+        List<Survey_analysis_option> surveyAnalysisList = analysisRepository.findSurveyAnalysisByColumn(analysisId,surveyId);
         return surveyAnalysisList;
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface AnalysisService {
-    List<Survey_analysis_option> getSurveyAnalysisList(Integer surId);
+    List<Survey_analysis_option> getSurveyAnalysisList(Integer analysisId, Integer surveyId);
     List<Platform_analysis_option> getPlatformAnalysisList(Integer surId);
 
 
