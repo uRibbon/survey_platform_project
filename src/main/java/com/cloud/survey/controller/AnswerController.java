@@ -56,10 +56,10 @@ public class AnswerController {
             accruePointMap.put("user_id", token.getTokenAttributes().get("preferred_username").toString());
             accruePointMap.put("sur_id", String.valueOf(surId));
             accruePointMap.put("type", "E");
-            kafkaProducer.sendStrMap("REG_ANSWER_POINT", accruePointMap);
+            kafkaProducer.sendStrMap("ANSWER_POINT", accruePointMap);
         }
         // 설문조사 피설문자 통계 토픽 생성
-        kafkaProducer.sendObjetMap("REG_ANSWER_ANALYSIS",answerService.getSurveyAnswerAnalysis(surId));
+        kafkaProducer.sendObjetMap("ANSWER_ANALYSIS",answerService.getSurveyAnswerAnalysis(surId));
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
