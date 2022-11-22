@@ -54,7 +54,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public void insertAnswer(Integer surId, List<AnswerDTO> answerDTOList) {
         List<Map<String, Object>> byRegIdAndSurId = answerRepository.findByRegIdAndSurId(answerDTOList.get(0).getRegId(), surId);
-        if (byRegIdAndSurId == null) {
+//        if (byRegIdAndSurId != null) {
             answerDTOList.forEach(answerDTO -> {
                 Optional<Question> byId = questionRepository.findById(answerDTO.getQueId());
                 if (byId.isPresent()) {
@@ -67,10 +67,10 @@ public class AnswerServiceImpl implements AnswerService {
                     log.error("질문 조회 실패");
                 }
             });
-        } else {
-            log.error("이미 설문에 참여한 사용자");
-        }
-        
+//        } else {
+//            log.error("이미 설문에 참여한 사용자");
+//        }
+
     }
 
     @Override
