@@ -16,7 +16,7 @@ public interface AnalysisService {
     List<Platform_analysis_option> getPlatformAnalysisList(Integer surId);
 
 
-    List<Object> getTypeSubjectList(Integer analysisId);
+    List<Object> getTypeSubjectList(Integer surveyId);
 
     default Platform_analysis_DTO TransferEntityToDTO(Platform_analysis platform_analysis) {
         Platform_analysis_DTO dto = Platform_analysis_DTO.builder()
