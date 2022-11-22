@@ -1,4 +1,4 @@
-package com.cloud.auth;
+package com.cloud.auth.config;
 
 import java.util.Collection;
 import java.util.List;

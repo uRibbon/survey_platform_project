@@ -1,4 +1,4 @@
-package com.cloud.auth.util;
+package com.cloud.auth.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
