@@ -4,11 +4,12 @@ import com.cloud.auth.dto.PageRequestDTO;
 import com.cloud.auth.dto.PageResultDTO;
 import com.cloud.auth.entity.Group;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface GroupService {
 //    List<Group> getGroupList();
-    PageResultDTO<GroupListDTO, Group> getGroupList(PageRequestDTO requestDTO);
+    PageResultDTO<GroupListDTO, Group> getGroupList(String userId, PageRequestDTO requestDTO);
 
     default Group dtoToEntity(GroupListDTO dto) {
         Group group = Group.builder()
