@@ -6,7 +6,6 @@ import com.cloud.survey.entity.SurveyStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.Column;
 import java.util.List;
 
 public interface SurveyRepository extends JpaRepository<Survey, Integer> {

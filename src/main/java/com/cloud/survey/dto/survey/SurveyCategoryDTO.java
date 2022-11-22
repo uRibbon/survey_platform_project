@@ -1,4 +1,4 @@
-package com.cloud.survey.dto;
+package com.cloud.survey.dto.survey;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

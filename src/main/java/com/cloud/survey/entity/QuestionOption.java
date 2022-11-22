@@ -1,5 +1,6 @@
 package com.cloud.survey.entity;
 
+import com.cloud.survey.entity.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

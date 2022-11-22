@@ -2,10 +2,9 @@ package com.cloud.survey.service;
 
 import com.cloud.survey.dto.PageRequestDTO;
 import com.cloud.survey.dto.PageResultDTO;
-import com.cloud.survey.dto.SurveyCategoryDTO;
+import com.cloud.survey.dto.survey.SurveyCategoryDTO;
 import com.cloud.survey.entity.SurveyCategory;
 import com.cloud.survey.repository.SurveyCategoryRepository;
-import com.fasterxml.jackson.databind.util.ArrayBuilders;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

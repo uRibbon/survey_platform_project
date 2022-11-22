@@ -1,4 +1,4 @@
-package com.cloud.survey.dto;
+package com.cloud.survey.dto.survey;
 
 import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.SurveyStatus;

@@ -1,4 +1,4 @@
-package com.cloud.survey.dto;
+package com.cloud.survey.dto.user;
 
 public enum UserRole {
     ADMIN,

@@ -1,24 +1,18 @@
 package com.cloud.survey.controller;
 
-import com.cloud.survey.dto.AnswerDTO;
-import com.cloud.survey.dto.AnswerQuestionDTO;
-import com.cloud.survey.dto.AnswerResponseDTO;
-import com.cloud.survey.entity.Answer;
+import com.cloud.survey.dto.answer.AnswerDTO;
+import com.cloud.survey.dto.answer.AnswerQuestionDTO;
+import com.cloud.survey.dto.answer.AnswerRequestDTO;
 import com.cloud.survey.service.AnswerService;
 import com.cloud.survey.service.kafka.producer.KafkaProducer;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +44,7 @@ public class AnswerController {
     // 답변 등록
     @Transactional
     @PostMapping("/reg")
-    public ResponseEntity<String> registerAnswer(Principal principal, @RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
+    public ResponseEntity<String> registerAnswer(Principal principal, @RequestBody(required = false) AnswerRequestDTO answerResponseDTO) {
 
 
         Integer surId = answerResponseDTO.getSurId();
@@ -76,7 +70,7 @@ public class AnswerController {
 
     // 답변 수정
     @PostMapping("/mod")
-    public ResponseEntity<String> modifyAnswer(@RequestBody(required = false) AnswerResponseDTO answerResponseDTO) {
+    public ResponseEntity<String> modifyAnswer(@RequestBody(required = false) AnswerRequestDTO answerResponseDTO) {
         Integer surId = answerResponseDTO.getSurId();
         List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
         answerService.updateAnswer(surId, answerDTOList);

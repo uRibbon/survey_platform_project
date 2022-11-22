@@ -1,4 +1,4 @@
-package com.cloud.survey.dto;
+package com.cloud.survey.dto.question;
 
 import com.cloud.survey.entity.QuestionOption;
 import com.cloud.survey.entity.QuestionType;
@@ -9,19 +9,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnswerQuestionDTO {
-    private int ansId;
-    private int ansType;
-    private String ansContent;
-    private String regId;
+@Builder
+public class QuestionDTO {
+
     private int queId;
     private int surId;
-    private QuestionType queType;
-    private String queContent;
+    private QuestionType qType;
+    private String content;
     private List<QuestionOption> optionList;
 
     public void addOptionList(QuestionOption questionOption) {

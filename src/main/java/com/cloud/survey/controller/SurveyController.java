@@ -1,13 +1,12 @@
 package com.cloud.survey.controller;
 
-import com.cloud.survey.dto.SurveyDTO;
+import com.cloud.survey.dto.survey.SurveyDTO;
 import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
 import com.cloud.survey.service.QuestionService;
 import com.cloud.survey.service.SurveyService;
 import lombok.extern.log4j.Log4j2;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
