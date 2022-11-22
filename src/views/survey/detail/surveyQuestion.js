@@ -49,15 +49,7 @@ const DetailInfo = (props) => {
 
 
   return (
-    <div className='mb-3'>
-        <CCol lg={12} className="text-start d-flex mb-1">
-          <CButton color="success" href="#" className="ms-auto" variant="outline">
-              excel download
-          </CButton>
-          <CButton color="primary" href="#" variant="outline" onClick={sendAnswer}>
-            send
-          </CButton>
-        </CCol>
+    <div className="mt-3">
         <CAccordion alwaysOpen>
           {questionList.map((question, index) => (
             <CAccordionItem itemKey={index+1} key={question.queId}>
@@ -113,6 +105,11 @@ const DetailInfo = (props) => {
             </CAccordionItem>
           ))}
         </CAccordion>
+      <CCol lg={12} className="text-start d-flex mt-1">
+        <CButton color="primary" href="#" className="ms-auto" variant="outline" onClick={sendAnswer}>
+          send
+        </CButton>
+      </CCol>
     </div>
   )
 }
