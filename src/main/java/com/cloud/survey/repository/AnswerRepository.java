@@ -21,8 +21,9 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     List<Answer> findAnswerByRegIdAndSurId(String regId, Integer surId);
 
     @Modifying
-    @Query("update Answer a set a.delYn = true where a.ansId = :ansId")
-    void updateDeleteYn(Integer ansId);
+    @Query(value = "UPDATE answer a JOIN question q ON a.que_id = q.que_id SET a.del_yn = 1 " +
+            "WHERE a.reg_id = :regId AND q.sur_id = :surId", nativeQuery = true)
+    void updateDeleteYn(Integer surId, String regId);
 
     @Query(value = "select s.sur_id, a.que_id, a.reg_dt, a.reg_id " +
             "from survey s left outer join question q on s.sur_id = q.sur_id left join answer a on q.que_id = a.que_id and q.sur_id = s.sur_id " +
