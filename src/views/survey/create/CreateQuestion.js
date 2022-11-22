@@ -18,6 +18,7 @@ import {
   CFormSelect,
   CFormSwitch,
 } from '@coreui/react'
+import axios from "axios";
 
 const CreateQuestion = (props) => {
   const [answerType, setAnswerType] = useState()
@@ -44,36 +45,49 @@ const CreateQuestion = (props) => {
     //   // current_question
     // )
   }
+
+  const [questionList, setQuestionList] = useState([])
+
+  axios.post("/survey-service/v1/survey/detail",
+    {sur_id: 2},
+    {headers: {
+        'Content-Type': 'multipart/form-data'
+      }}
+  ).then((response) => {
+    setQuestionList(response.data.question_list)
+  })
+
   return (
-    <CRow>
+    questionList.map((question, index) => (
+    <CRow key={question.queId}>
       <CCol xs={6}>
         <CCard className="mb-3">
           <CCardHeader>
-            질문1<CCloseButton className="float-end"/>
+            질문{index+1}<CCloseButton className="float-end"/>
           </CCardHeader>
           <CCardBody>
             <CRow>
               <CCol className="mb-3" xs={12}>
-                <CFormSelect onChange={onChangeHandler} label="Type">
-                  <option value="1">주관식</option>
-                  <option value="2">객관식(중복 허용)</option>
-                  <option value="3">객관식(중복 불가)</option>
-                  <option value="4">찬부식</option>
-                  <option value="5">서열식</option>
+                <CFormSelect value={question.qtype} label="Type">
+                  <option value="Sub">주관식</option>
+                  <option value="NumMul">객관식(중복 허용)</option>
+                  <option value="NumOnly">객관식(중복 불가)</option>
+                  <option value="YN">찬부식</option>
+                  <option value="Grd">서열식</option>
                 </CFormSelect>
               </CCol>
               <CCol className="mb-3" xs={12}>
-                <CFormInput type="text" label="Question"/>
+                <CFormInput type="text" label="Question" value={question.content}/>
               </CCol>
             </CRow>
 
-            {answerType === '1' && (
+            {question.qtype === 'Sub' && (
               <CCol>
 
               </CCol>
             )}
 
-            {answerType === '2' && (
+            {question.qtype === 'NumMul' && (
               <CRow>
                 <CCol className="mb-3" xs={12}><CFormInput type="text" label="Answer 1"/></CCol>
                 <CCol className="mb-3" xs={12}>
@@ -81,7 +95,7 @@ const CreateQuestion = (props) => {
                 </CCol>
               </CRow>
             )}
-            {answerType === '3' && (
+            {question.qtype === 'NumOnly' && (
               <CRow>
                 <CCol className="mb-3" xs={12}><CFormInput type="text" label="Answer 1"/></CCol>
                 <CCol className="mb-3" xs={12}>
@@ -89,12 +103,12 @@ const CreateQuestion = (props) => {
                 </CCol>
               </CRow>
             )}
-            {answerType === '4' && (
+            {question.qtype === 'YN' && (
               <CCol>
 
               </CCol>
             )}
-            {answerType === '5' && (
+            {question.qtype === 'Grd' && (
               <CRow>
                 {/*<CCol className="mb-3" xs={4}>*/}
                 {/*  <CFormInput type="number" label="Step"></CFormInput>*/}
@@ -112,40 +126,40 @@ const CreateQuestion = (props) => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-3">
-          <CCardHeader>질문1. 가장 좋아하는 카카오 캐릭터는?</CCardHeader>
+          <CCardHeader>질문{index+1}. {question.content}</CCardHeader>
           <CCardBody>
-            {answerType === '1' && (
+            {question.qtype === 'Sub' && (
               <CFormTextarea></CFormTextarea>
             )}
-            {answerType === '2' && (
+            {question.qtype === 'NumMul' && (
               <>
-                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" />
-                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="2. 라이언" />
-                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="3. 어피치" />
-                <CFormCheck type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" label="4. 포르도" />
+                {question.optionList.map((option) => (
+                  <CFormCheck key={option.queOptId} type="checkbox" label={option.optionName} />
+                ))}
               </>
             )}
-            {answerType === '3' && (
+            {question.qtype === 'NumOnly' && (
               <>
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="1. 춘식이" />
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="2. 라이언" />
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="3. 어피치" />
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="4. 포르도" />
+                {question.optionList.map((option) => (
+                  <CFormCheck key={option.queOptId} type="radio" label={option.optionName} />
+                ))}
               </>
             )}
-            {answerType === '4' && (
+            {question.qtype === 'YN' && (
               <>
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault1" label="예"/>
-                <CFormCheck type="radio" name="flexRadioDefault" id="flexRadioDefault2" label="아니오"/>
+                {question.optionList.map((option) => (
+                  <CFormCheck key={option.queOptId} type="radio" label={option.optionName} />
+                ))}
               </>
             )}
-            {answerType === '5' && (
+            {question.qtype === 'Grd' && (
               <CFormRange min="0" max="100" step="10"/>
             )}
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
+    ))
   )
 }
 
