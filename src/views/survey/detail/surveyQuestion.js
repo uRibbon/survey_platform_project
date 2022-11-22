@@ -32,14 +32,11 @@ const DetailInfo = (props) => {
       "content": e.target.value,
       "regId": "yena"
     }
+    setAnswerList(answerList.filter(answer => answer.queId !== queId));
     setAnswerList(answerList=>[...answerList, answerData])
   }
 
   const sendAnswer = () => {
-
-    
-
-
     axios.post("/survey-service/v1/answer/reg",
       {
         surId: props.surId,
@@ -66,12 +63,15 @@ const DetailInfo = (props) => {
             <CAccordionItem itemKey={index+1} key={question.queId}>
               <CAccordionHeader>{index+1}. {question.content} </CAccordionHeader>
               <CAccordionBody>
-                <CFormTextarea name="content" onBlur={(e) => makeAnswer(e,question.queId)}></CFormTextarea>
-
                 {question.qtype === "YN" && (
                   <>
                     {question.optionList.map((option) => (
-                      <CFormCheck type="radio" name="content" key={option.queOptId} label={option.optionName} />
+                      <CFormCheck type="radio"
+                                  name={question.queId}
+                                  key={option.queOptId}
+                                  label={option.optionName}
+                                  value={option.optionName}
+                                  onChange={(e) => makeAnswer(e,question.queId)}/>
                     ))}
                   </>
                 )}
@@ -79,7 +79,12 @@ const DetailInfo = (props) => {
                 {question.qtype === "NumOnly" && (
                   <>
                     {question.optionList.map((option) => (
-                      <CFormCheck type="radio" name="content" key={option.queOptId} label={option.optionName} />
+                      <CFormCheck type="radio"
+                                  name={question.queId}
+                                  key={option.queOptId}
+                                  label={option.optionName}
+                                  value={option.optionName}
+                                  onChange={(e) => makeAnswer(e,question.queId)} />
                     ))}
                   </>
                 )}
@@ -87,17 +92,22 @@ const DetailInfo = (props) => {
                 {question.qtype === "NumMul" && (
                   <>
                     {question.optionList.map((option) => (
-                      <CFormCheck type="checkbox" name="content" key={option.queOptId} label={option.optionName} />
+                      <CFormCheck type="checkbox"
+                                  name={question.queId}
+                                  key={option.queOptId}
+                                  label={option.optionName}
+                                  value={option.optionName}
+                                  onChange={(e) => makeAnswer(e,question.queId)}/>
                     ))}
                   </>
                 )}
 
                 {question.qtype === "Sub" && (
-                  <CFormTextarea name="content"></CFormTextarea>
+                  <CFormTextarea name="content" onBlur={(e) => makeAnswer(e,question.queId)}></CFormTextarea>
                 )}
 
                 {question.qtype == "Grd" && (
-                  <CFormRange name="content" min="0" max="100" step="10"/>
+                  <CFormRange name="content" min="0" max="100" step="10" onChange={(e) => makeAnswer(e,question.queId)}/>
                 )}
               </CAccordionBody>
             </CAccordionItem>
