@@ -1,4 +1,4 @@
-package com.cloud.survey.util;
+package com.cloud.survey.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
