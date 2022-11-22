@@ -1,6 +1,7 @@
 package com.cloud.survey.controller;
 
 import com.cloud.survey.dto.AnswerDTO;
+import com.cloud.survey.dto.AnswerQuestionDTO;
 import com.cloud.survey.dto.AnswerResponseDTO;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.service.AnswerService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,12 @@ public class AnswerController {
     @RequestMapping(value = "/user_answer", method = RequestMethod.POST)
     public ResponseEntity<List<Map<String,Object>>> getSurveyAnswer(@RequestParam(value = "user_id") String userId, @RequestParam(value = "sur_id") int surId) {
         return new ResponseEntity<>(answerService.getUserAnswer(userId, surId), HttpStatus.OK);
+    }
+
+    @PostMapping("list")
+    public ResponseEntity<List<AnswerQuestionDTO>> getAnswerList(@RequestParam String regId, @RequestParam Integer surId) {
+        List<AnswerQuestionDTO> answerList = answerService.getAnswerList(surId, regId);
+        return new ResponseEntity<>(answerList, HttpStatus.OK);
     }
 
     // 답변 등록

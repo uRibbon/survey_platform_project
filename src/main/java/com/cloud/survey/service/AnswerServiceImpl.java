@@ -1,12 +1,15 @@
 package com.cloud.survey.service;
 
 import com.cloud.survey.dto.AnswerDTO;
+import com.cloud.survey.dto.AnswerQuestionDTO;
 import com.cloud.survey.dto.UserDTO;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.entity.Question;
+import com.cloud.survey.entity.QuestionOption;
 import com.cloud.survey.openfeign.AnalysisServiceClient;
 import com.cloud.survey.openfeign.AuthServiceClient;
 import com.cloud.survey.repository.AnswerRepository;
+import com.cloud.survey.repository.QuestionOptionRepository;
 import com.cloud.survey.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +31,8 @@ public class AnswerServiceImpl implements AnswerService {
     private final AnalysisServiceClient analysisServiceClient;
     @Autowired
     private final AuthServiceClient authServiceClient;
+    @Autowired
+    private QuestionOptionRepository questionOptionRepository;
 
     public List<Map<String,Object>> getUserAnswer (String userId, int surId){
         return answerRepository.findByRegIdAndSurId(userId, surId);
@@ -49,6 +54,31 @@ public class AnswerServiceImpl implements AnswerService {
         map.put("answer_data_list", surveyAnalysisData);
         map.put("answer_user_list", answerUserList);
         return map;
+    }
+
+    @Override
+    public List<AnswerQuestionDTO> getAnswerList(Integer surId, String regId) {
+        List<AnswerQuestionDTO> answerQuestionDTOList = new ArrayList<>();
+        List<Answer> answerList = answerRepository.findAnswerByRegIdAndSurId(regId, surId);
+        answerList.forEach(answer -> {
+            AnswerQuestionDTO answerQuestionDTO = AnswerQuestionDTO.builder()
+                    .ansId(answer.getAnsId())
+                    .ansType(answer.getType())
+                    .ansContent(answer.getContent())
+                    .regId(answer.getRegId())
+                    .queId(answer.getQuestion().getQueId())
+                    .surId(answer.getQuestion().getSurvey().getSurId())
+                    .queType(answer.getQuestion().getQType())
+                    .queContent(answer.getQuestion().getContent())
+                    .optionList(new ArrayList<>())
+                    .build();
+            List<QuestionOption> questionOptionList = questionOptionRepository.findQuestionOptionByQueId(answer.getQuestion().getQueId());
+            questionOptionList.forEach(questionOption -> {
+                answerQuestionDTO.addOptionList(questionOption);
+            });
+            answerQuestionDTOList.add(answerQuestionDTO);
+        });
+        return answerQuestionDTOList;
     }
 
     @Override

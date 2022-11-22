@@ -17,6 +17,8 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
             "left outer join question q on a.que_id = q.que_id WHERE a.reg_id =:userId and q.sur_id = :surId and a.del_yn=false", nativeQuery=true)
     List<Map<String,Object>> findByRegIdAndSurId(@Param("userId") String userId, @Param("surId") int surId);
 
+    @Query("select a from Answer a where a.regId = :regId and a.question.survey.surId = :surId and a.delYn = false ")
+    List<Answer> findAnswerByRegIdAndSurId(String regId, Integer surId);
 
     @Modifying
     @Query("update Answer a set a.delYn = true where a.ansId = :ansId")
