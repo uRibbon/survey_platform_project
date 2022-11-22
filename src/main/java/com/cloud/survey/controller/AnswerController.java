@@ -79,9 +79,11 @@ public class AnswerController {
 
     // 답변 삭제
     @PostMapping("/del")
-    public ResponseEntity<String> removeAnswer(@RequestParam(value = "ansId") Integer ansId) {
+    public ResponseEntity<String> removeAnswer(
+            @RequestParam(value = "surId") Integer surId,
+            @RequestParam(value = "regId") String regId) {
         // ansId 필요
-        answerService.deleteAnswer(ansId);
+        answerService.deleteAnswer(surId, regId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
