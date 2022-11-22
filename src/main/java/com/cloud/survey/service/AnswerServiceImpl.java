@@ -16,6 +16,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
@@ -104,6 +105,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
+    @Transactional
     public void updateAnswer(Integer surId, List<AnswerDTO> answerDTOList) {
         answerDTOList.forEach(answerDTO -> {
             Optional<Answer> byId = answerRepository.findById(answerDTO.getAnsId());
@@ -120,12 +122,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     @Transactional
-    public void deleteAnswer(Integer ansId) {
-        Optional<Answer> byId = answerRepository.findById(ansId);
-        if (byId.isPresent()) {
-            answerRepository.updateDeleteYn(ansId);
-        } else {
-            log.error("findById 오류로 답변 삭제 실패");
-        }
+    public void deleteAnswer(Integer surId, String regId) {
+        answerRepository.updateDeleteYn(surId, regId);
     }
 }

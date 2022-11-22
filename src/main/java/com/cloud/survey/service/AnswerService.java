@@ -16,7 +16,7 @@ public interface AnswerService {
     List<AnswerQuestionDTO> getAnswerList(Integer surId, String regId);
     void insertAnswer(Integer surId, List<AnswerDTO> answerList);
     void updateAnswer(Integer surId, List<AnswerDTO> answerList);
-    void deleteAnswer(Integer answerId);
+    void deleteAnswer(Integer surId, String regId);
 
     default Answer dtoToEntity(AnswerDTO dto, Question question) {
         Answer answer = Answer.builder()
