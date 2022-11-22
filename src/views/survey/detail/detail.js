@@ -17,11 +17,23 @@ import SurveyInfo from './surveyinfo';
 import SurveyQuestion from './surveyQuestion';
 import Charts from '../../analysis/user_survey_analysis';
 import SurveyAnswer from './surveyAnswer';
+import axios from "axios";
 
 const Detail = () => {
 
   const [activeKey, setActiveKey] = useState(1)
   const [surId, setSurId] = useState(1)
+
+  const removeAnswer = () => {
+    axios.post("/survey-service/v1/answer/del",
+      {regId: "yena", surId: 2},
+      {headers: {
+          'Content-Type': 'multipart/form-data'
+        }})
+      .then((response) => {
+        window.location.reload("/survey/detail");
+      })
+  }
 
   return (
     <CRow>
@@ -71,15 +83,15 @@ const Detail = () => {
                 <Charts surId={surId}/>
               </CTabPane>
             </CTabContent>
-            <CCol lg={12} className="text-start d-flex">
-              <CButton color="danger" href="#" variant="outline">
+            <CCol lg={12} className="text-start d-flex mt-3">
+              <CButton color="danger" href="#" variant="outline" onClick={removeAnswer}>
                 delete
               </CButton>
               <CButton color="warning" href="#" variant="outline">
                 copy
               </CButton>
-              <CButton color="primary" href="#" className="ms-auto" variant="outline">
-                <a href="/#/survey/ModifySurvey">edit</a>
+              <CButton color="primary" href="/#/survey/ModifySurvey" className="ms-auto" variant="outline">
+                edit
               </CButton>
               <CButton color="success" href="#" variant="outline">
                 excel download
