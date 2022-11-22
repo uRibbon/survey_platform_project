@@ -21,7 +21,7 @@ import SurveyAnswer from './surveyAnswer';
 const Detail = () => {
 
   const [activeKey, setActiveKey] = useState(1)
-  const [surId, setSurId] = useState(2)
+  const [surId, setSurId] = useState(1)
 
   return (
     <CRow>
@@ -65,8 +65,7 @@ const Detail = () => {
             </div>
             <CTabContent>
               <CTabPane role="tabpanel" aria-labelledby="home-tab" visible={activeKey === 1}>
-                {/* <SurveyAnswer surId={surId}/> */}
-                <SurveyQuestion surId={surId}/>
+                 <SurveyAnswer surId={surId}/>
               </CTabPane>
               <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
                 <Charts surId={surId}/>
@@ -80,7 +79,10 @@ const Detail = () => {
                 copy
               </CButton>
               <CButton color="primary" href="#" className="ms-auto" variant="outline">
-                edit
+                <a href="/#/survey/ModifySurvey">edit</a>
+              </CButton>
+              <CButton color="success" href="#" variant="outline">
+                excel download
               </CButton>
           </CCol>
           </div>
