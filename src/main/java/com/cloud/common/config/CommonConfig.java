@@ -27,7 +27,7 @@ public class CommonConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v1/common/**").permitAll()
                 .and().oauth2ResourceServer()
                 .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
-                .and().anonymous().disable();
+                .and().csrf().disable();
     }
 
 
