@@ -1,5 +1,6 @@
-package com.cloud.survey.dto;
+package com.cloud.survey.dto.answer;
 
+import com.cloud.survey.dto.answer.AnswerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnswerResponseDTO {
+public class AnswerRequestDTO {
     Integer surId;
     List<AnswerDTO> answerDTOList;
 }

@@ -2,7 +2,7 @@ package com.cloud.survey.service;
 
 import com.cloud.survey.dto.PageRequestDTO;
 import com.cloud.survey.dto.PageResultDTO;
-import com.cloud.survey.dto.SurveyCategoryDTO;
+import com.cloud.survey.dto.survey.SurveyCategoryDTO;
 import com.cloud.survey.entity.SurveyCategory;
 
 public interface SurveyCategoryService {

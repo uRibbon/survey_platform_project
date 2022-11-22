@@ -1,9 +1,6 @@
 package com.cloud.survey.repository;
 
-import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.Question;
-import com.cloud.survey.entity.Survey;
-import com.cloud.survey.entity.SurveyStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

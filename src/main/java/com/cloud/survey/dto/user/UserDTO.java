@@ -1,6 +1,5 @@
-package com.cloud.survey.dto;
+package com.cloud.survey.dto.user;
 
-import com.cloud.survey.dto.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

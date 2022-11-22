@@ -1,11 +1,10 @@
 package com.cloud.survey.service;
 
-import com.cloud.survey.dto.QuestionDTO;
-import com.cloud.survey.dto.SurveyDTO;
+import com.cloud.survey.dto.survey.SurveyDTO;
 import com.cloud.survey.entity.*;
-import com.cloud.survey.openfeign.AuthServiceClient;
-import com.cloud.survey.dto.UserDTO;
-import com.cloud.survey.repository.AnswerRepository;
+import com.cloud.survey.entity.Survey;
+import com.cloud.survey.entity.SurveyCategory;
+import com.cloud.survey.entity.SurveyStatus;
 import com.cloud.survey.repository.QuestionRepository;
 import com.cloud.survey.repository.SurveyCategoryRepository;
 import com.cloud.survey.repository.SurveyRepository;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 @Service

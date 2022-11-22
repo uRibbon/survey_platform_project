@@ -1,15 +1,12 @@
 package com.cloud.survey.service;
 
 
-import com.cloud.survey.dto.AnswerDTO;
-import com.cloud.survey.dto.QuestionDTO;
-import com.cloud.survey.dto.SurveyDTO;
+import com.cloud.survey.dto.survey.SurveyDTO;
 import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SurveyService {
 

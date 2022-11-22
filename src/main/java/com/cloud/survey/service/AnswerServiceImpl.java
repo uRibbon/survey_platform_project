@@ -1,8 +1,8 @@
 package com.cloud.survey.service;
 
-import com.cloud.survey.dto.AnswerDTO;
-import com.cloud.survey.dto.AnswerQuestionDTO;
-import com.cloud.survey.dto.UserDTO;
+import com.cloud.survey.dto.answer.AnswerDTO;
+import com.cloud.survey.dto.answer.AnswerQuestionDTO;
+import com.cloud.survey.dto.user.UserDTO;
 import com.cloud.survey.entity.Answer;
 import com.cloud.survey.entity.Question;
 import com.cloud.survey.entity.QuestionOption;

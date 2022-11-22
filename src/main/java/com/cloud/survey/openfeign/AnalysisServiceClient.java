@@ -1,6 +1,5 @@
 package com.cloud.survey.openfeign;
 
-import com.cloud.survey.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
