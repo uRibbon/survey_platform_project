@@ -19,6 +19,7 @@ import {
 
 import SurveyInfo from './surveyinfo';
 import SurveyQuestion from './surveyQuestion';
+import Charts from '../../analysis/user_survey_analysis';
 
 const Detail = () => {
 
@@ -70,6 +71,7 @@ const Detail = () => {
                 <SurveyQuestion surId={surId}/>
               </CTabPane>
               <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
+                <Charts surId={surId}/>
               </CTabPane>
             </CTabContent>
             <CCol lg={12} className="text-start d-flex">
