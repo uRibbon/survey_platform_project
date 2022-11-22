@@ -55,7 +55,7 @@ const MakeList = () => {
   }
 
   const DuplicateSurveyOnClickHandler = (e, link) => {
-    window.location.href = link
+    window.location.href = link + '#abc';
   }
   return (
     <>

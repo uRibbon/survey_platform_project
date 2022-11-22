@@ -5,7 +5,7 @@ import UsePromise from '../../lib/usePromise'
 import axios from 'axios';
 import apiConfig from '../../lib/apiConfig'
 
-const Charts = () => {
+const Charts = (props) => {
   const [one, setOne] = useState([]);
   const [two, setTwo] = useState([]);
   const [three, setThree] = useState([]);
@@ -16,15 +16,19 @@ const Charts = () => {
     values:[]
   }
 
+
+
   const analysisInfo = async ()=>{
-    // 일단 보류
-    // const [loading, response, error] = UsePromise(axios.post(`${apiConfig.surveyAnalysisData}?analysis_Id=${analysisId}`),[])
+
     for (let analysisId = 1; analysisId < 5; analysisId++) {
-        const response = await axios.post(`${apiConfig.surveyAnalysisData}?analysis_Id=${analysisId}`)
+        const response = await axios.post(`${apiConfig.surveyAnalysisData}?analysis_Id=${analysisId}&sur_id=${props.surId}`)
+
+        console.log('hihi',`${apiConfig.surveyAnalysisData}?analysis_Id=${analysisId}`)
         Data['subject'] = response.data[0].analysisId.subject
 
         let Data_labels = []
         let Data_values = []
+
         response.data.map(data =>{
           Data_labels.push(data.optionName)
           Data_values.push(data.value)
@@ -45,7 +49,6 @@ const Charts = () => {
     }
   }
 
-  //무한루프 방지
   useEffect(()=>{
     analysisInfo();
   },[]);
@@ -123,9 +126,6 @@ const Charts = () => {
         </CCard>
       </CCol>
       <CCol xs={6}>
-      {/* {useEffect(()=>{
-              analysisInfo(2)
-            },[])} */}
         <CCard className="mb-4">
           <CCardHeader>{four.subject}</CCardHeader>
           <CCardBody>

@@ -2,8 +2,12 @@ import {
   CForm,
   CBadge, CButton, CCard, CCardBody, CCardHeader, CFormCheck, CFormRange, CFormTextarea} from "@coreui/react";
 import React from "react";
+// import { useHistory } from "react-router";
 
 const ModifySurvey = () => {
+
+  // const history = useHistory();
+  // history.push('/hi')
   return(
     <>
       <CBadge color="secondary" className="m-3 mb-0">기업</CBadge>

@@ -11,7 +11,9 @@ import {
 } from '@coreui/react'
 import CreateQuestion from './CreateQuestion'
 
-const Charts = () => {
+
+const Charts = (props) => {
+  const [copy, setCopy] = useState(props.copy)
   const [answerType, setAnswerType] = useState()
 
   let current_question = <CreateQuestion answerType={answerType} />
