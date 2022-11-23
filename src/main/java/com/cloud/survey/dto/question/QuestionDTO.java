@@ -17,7 +17,7 @@ public class QuestionDTO {
 
     private int queId;
     private int surId;
-    private QuestionType qType;
+    private QuestionType questionType;
     private String content;
     private List<QuestionOption> optionList;
 

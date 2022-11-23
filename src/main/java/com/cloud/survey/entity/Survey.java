@@ -51,7 +51,7 @@ public class Survey {
         private SurveyStatus status;
 
         @Comment("설문 마감기한")
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         @Column(name = "due_dt", nullable = false)
         private LocalDateTime dueDt;
 
@@ -85,7 +85,7 @@ public class Survey {
 
         @Comment("설문 생성일자")
         @CreatedDate
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         @Column(name = "reg_dt", nullable = false)
         private LocalDateTime regDt;
 
@@ -95,7 +95,7 @@ public class Survey {
 
         @Comment("설문 수정일자")
         @LastModifiedDate
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         @Column(name = "mod_dt")
         private LocalDateTime modDt;
 
