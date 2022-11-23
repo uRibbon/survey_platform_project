@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 
 const DetailInfo = (props) => {
-  const surId = 1
+  const surId = 2
   const [answerList, setAnswerList] = useState([])
   const [updateList, setUpdateList] = useState([])
 
@@ -35,6 +35,7 @@ const DetailInfo = (props) => {
       "content": e.target.value,
       "regId": answer.regId
     }
+    console.log(updateData)
     setUpdateList(updateList.filter(update => update.queId !== answer.queId));
     setUpdateList(updateList=>[...updateList, updateData])
   }
@@ -52,10 +53,7 @@ const DetailInfo = (props) => {
 
 
   return (
-    <div className='mb-3'>
-        <CCol lg={12} className="text-start d-flex mb-1">
-
-        </CCol>
+    <div className="mt-3">
         <CAccordion alwaysOpen>
           {answerList.map((answer, index) => (
               <CAccordionItem itemKey={index+1} key={answer.queId}>
@@ -69,8 +67,9 @@ const DetailInfo = (props) => {
                           name={answer.ansId}
                           key={option.queOptId}
                           label={option.optionName}
+                          value={option.optionName}
                           defaultChecked={answer.ansContent === option.optionName?true:false}
-                          // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                          onChange={(event)=>{makeAnswer(event, answer)}}
                         />
                       ))}
                     </>
@@ -84,8 +83,9 @@ const DetailInfo = (props) => {
                           name={answer.ansId}
                           key={option.queOptId}
                           label={option.optionName}
+                          value={option.optionName}
                           defaultChecked={answer.ansContent === option.optionName?true:false}
-                          // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                          onChange={(event)=>{makeAnswer(event, answer)}}
                         />
                       ))}
                     </>
@@ -99,8 +99,9 @@ const DetailInfo = (props) => {
                           name={answer.ansId}
                           key={option.queOptId}
                           label={option.optionName}
+                          value={option.optionName}
                           defaultChecked={answer.ansContent === option.optionName?true:false}
-                          // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                          onChange={(event)=>{makeAnswer(event, answer)}}
                         />
                       ))}
                     </>
@@ -119,7 +120,7 @@ const DetailInfo = (props) => {
                       name={answer.ansId}
                       min="0" max="100" step="10"
                       defaultValue={answer.ansContent}
-                      // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                      onChange={(event)=>{makeAnswer(event, answer)}}
                     />
                   )}
                 </CAccordionBody>

@@ -31,7 +31,7 @@ const Detail = () => {
           'Content-Type': 'multipart/form-data'
         }})
       .then((response) => {
-        window.location.reload("/survey/detail");
+        window.location.reload("/#/survey/detail");
       })
   }
 
