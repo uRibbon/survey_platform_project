@@ -13,11 +13,13 @@ import {
 import axios from "axios";
 
 const DetailInfo = (props) => {
+  const surId = 2
   const [answerList, setAnswerList] = useState([])
+  const [updateList, setUpdateList] = useState([])
 
   // 답변 정보 받아오기
   axios.post("/survey-service/v1/answer/list",
-    {regId: "yena", surId: 1},
+    {regId: "yena", surId: surId},
     {headers: {
         'Content-Type': 'multipart/form-data'
       }}
@@ -25,22 +27,24 @@ const DetailInfo = (props) => {
     setAnswerList(response.data)
   })
 
-  const makeAnswer = (e, queId) => {
-    const answerData = {
-      "queId": queId,
-      "type": 0,
+  const makeAnswer = (e, answer) => {
+    const updateData = {
+      "ansId": answer.ansId,
+      "queId": answer.queId,
+      "type": answer.ansType,
       "content": e.target.value,
-      "regId": "yena"
+      "regId": answer.regId
     }
-    setAnswerList(answerList.filter(answer => answer.queId !== queId));
-    setAnswerList(answerList=>[...answerList, answerData])
+    console.log(updateData)
+    setUpdateList(updateList.filter(update => update.queId !== answer.queId));
+    setUpdateList(updateList=>[...updateList, updateData])
   }
 
   const sendAnswer = () => {
     axios.post("/survey-service/v1/answer/mod",
       {
-        surId: props.surId,
-        answerDTOList: answerList
+        surId: surId,
+        answerDTOList: updateList
       })
       .then((response) => {
         window.location.reload("/survey/detail");
@@ -67,11 +71,7 @@ const DetailInfo = (props) => {
 
 
   return (
-    console.log(answerList),
-    <div className='mb-3'>
-        <CCol lg={12} className="text-start d-flex mb-1">
-
-        </CCol>
+    <div className="mt-3">
         <CAccordion alwaysOpen>
           {answerList.map((answer, index) => (
               <CAccordionItem itemKey={index+1} key={answer.queId}>
@@ -85,8 +85,9 @@ const DetailInfo = (props) => {
                           name={answer.ansId}
                           key={option.queOptId}
                           label={option.optionName}
+                          value={option.optionName}
                           defaultChecked={answer.ansContent === option.optionName?true:false}
-                          // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                          onChange={(event)=>{makeAnswer(event, answer)}}
                         />
                       ))}
                     </>
@@ -100,8 +101,9 @@ const DetailInfo = (props) => {
                           name={answer.ansId}
                           key={option.queOptId}
                           label={option.optionName}
+                          value={option.optionName}
                           defaultChecked={answer.ansContent === option.optionName?true:false}
-                          // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                          onChange={(event)=>{makeAnswer(event, answer)}}
                         />
                       ))}
                     </>
@@ -115,8 +117,9 @@ const DetailInfo = (props) => {
                           name={answer.ansId}
                           key={option.queOptId}
                           label={option.optionName}
+                          value={option.optionName}
                           defaultChecked={answer.ansContent === option.optionName?true:false}
-                          // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                          onChange={(event)=>{makeAnswer(event, answer)}}
                         />
                       ))}
                     </>
@@ -126,8 +129,8 @@ const DetailInfo = (props) => {
                     <CFormTextarea
                       name={answer.ansId}
                       defaultValue={answer.ansContent}
-                      onChange={(event)=>{makeAnswer(event, answer.queId)}}
-                    ></CFormTextarea>                    
+                      onChange={(event)=>{makeAnswer(event, answer)}}
+                    ></CFormTextarea>
                   )}
 
                   {answer.queType == "Grd" && (
@@ -135,7 +138,7 @@ const DetailInfo = (props) => {
                       name={answer.ansId}
                       min="0" max="100" step="10"
                       defaultValue={answer.ansContent}
-                      // onChange={(event)=>{makeAnswer(event, answer.queId)}}
+                      onChange={(event)=>{makeAnswer(event, answer)}}
                     />
                   )}
                 </CAccordionBody>

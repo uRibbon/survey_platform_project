@@ -28,11 +28,7 @@ const DetailInfo = (props) => {
 
 
   return (
-    console.log(answerList),
-    <div className='mb-3'>
-        <CCol lg={12} className="text-start d-flex mb-1">
-
-        </CCol>
+    <div className="mt-3">
         <CAccordion alwaysOpen>
           {answerList.map((answer, index) => (
               <CAccordionItem itemKey={index+1} key={answer.queId}>
