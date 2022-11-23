@@ -22,28 +22,28 @@ import ReactImg from 'src/assets/images/test_img.jpeg'
 import axios from 'axios';
 
 const FormControl = () => {
-  const [data, setData] = useState();
 
-  // const groupInfo = async ()=>{
-  //   const response = await axios.post("/auth-service/v1/group/detail")
-  //   console.log('This response',response)
+  let [groupId, setGroupId] = useState(1)
+
+  const groupInfo = async ()=>{
+    const response = await axios.get(`/auth-service/v1/group/detail/${groupId}`)
+    console.log('This response',response)
+    localStorage.setItem('detail', JSON.stringify(response.data))
+  }
+
+  useEffect(()=>{
+    groupInfo()
+  },[])
+
+  let A = JSON.parse(localStorage.getItem('detail'))
+  console.log('hihi',A.user)
+  
+  // let users = A.user.map(userInfo =>{
+  //   <CListGroupItem className="d-flex">
+  //     <span>{userInfo.name} ({userInfo.mailAddr})</span>
+  //   </CListGroupItem>
   // }
-
-  // useEffect(()=>{
-  //   console.log('hihi')
-  //   groupInfo()
-  // },[])
-
-  // console.log('This is Data!',data)
-
-  axios.post("/auth-service/v1/group/detail",
-    // {sur_id: 2},
-    // {headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }}
-  ).then((response) => {
-    setData(response.data)
-  })
+  // )
 
 
   return (
@@ -65,8 +65,7 @@ const FormControl = () => {
                     type="text"
                     id="groupName"
                     placeholder="그룹명"
-                    // value={data[0].groupName}
-                    value={'hi'}
+                    value={A.groupName}
                     readOnly
                   />
                 </div>
@@ -87,8 +86,7 @@ const FormControl = () => {
                 </CFormLabel>
                 <div className="col-sm-10">
                   <CFormTextarea id="groupDescription" rows="3" readOnly>
-                    8팀 클라우드만 참여가능한 그룹이에요~
-                    {data[0].groupName}
+                    {A.groupDescription}
                   </CFormTextarea>
                 </div>
               </CRow>
@@ -100,10 +98,11 @@ const FormControl = () => {
                   <CRow>
                     <CCol lg={12}>
                       <CListGroup className="mb-1 custom_height">
+                     
                         <CListGroupItem className="d-flex">
-                          <span>솔비 (gsb*****@hanmail.net)</span>
+                          <span>{A.user.name} ({A.user.mailAddr})</span>
                         </CListGroupItem>
-                        <CListGroupItem className="d-flex">
+                        {/* <CListGroupItem className="d-flex">
                           <span>test1 (tes*****@hanmail.net)</span>
                         </CListGroupItem>
                         <CListGroupItem className="d-flex">
@@ -117,7 +116,7 @@ const FormControl = () => {
                         </CListGroupItem>
                         <CListGroupItem className="d-flex">
                           <span>test5 (tes*****@hanmail.net)</span>
-                        </CListGroupItem>
+                        </CListGroupItem> */}
                       </CListGroup>
                     </CCol>
                   </CRow>
