@@ -10,14 +10,7 @@ import {
   CCard,
   CCardBody,
   CCardHeader,
-  CCardTitle,
-  CCardText,
-  CRow,
-  CCol,
   CForm,
-  CCardFooter,
-  CListGroup,
-  CListGroupItem,
   CPagination,
   CPaginationItem,
   CTable,
@@ -27,83 +20,42 @@ import {
   CTableRow,
   CTableHeaderCell,
 } from '@coreui/react'
+import axios from "axios";
+import apiConfig from 'src/lib/apiConfig';
+import moment from 'moment';
+import usePromise from 'src/lib/usePromise';
 
 const Search = () => {
-  const tableRowClick = (e, link) => {
-    window.location.href = link
+  const current = decodeURI(window.location.href);
+  const search = current.split("?")[1];
+  const params = new URLSearchParams(search);
+  const nowPage = params.get('page') ? params.get('page') : 1;
+
+
+  // const [pageData, setPageData] = useState({
+  //   totalPage: 0,
+  //   page: 1,
+  //   size: 0,
+  //   start: 0,
+  //   end: 0,
+  //   prev: false,
+  //   next: false,
+  //   pageList: []
+  // })
+  
+  const tableRowClick = (e, id) => {
+    window.location.href = "/#/survey/detail/"+id;
   }
-  let carddata = [
-    {
-      id: 1,
-      title: '설문조사 1',
-      content: '동아리 신청 설문조사 입니다.',
-      category: '학교',
-      writer: '예나',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-    {
-      id: 2,
-      title: '설문조사 2',
-      content: 'MT 수요 설문조사 입니다.',
-      category: '학교',
-      writer: '영주',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-    {
-      id: 3,
-      title: '설문조사 3',
-      content: '선호 기업 설문조사 입니다.',
-      category: '기업',
-      writer: '솔비',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-    {
-      id: 4,
-      title: '설문조사 4',
-      content: '면접 질문 설문조사 입니다.',
-      category: '기업',
-      writer: '예나',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-    {
-      id: 5,
-      title: '설문조사 5',
-      content: '연애 설문조사 입니다.',
-      category: '연애',
-      writer: '유리',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-    {
-      id: 6,
-      title: '설문조사 6',
-      content: '자영업 주문서 설문조사 입니다.',
-      category: '자영업',
-      writer: '유리',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-    {
-      id: 7,
-      title: '설문조사 7',
-      content: '좋아하는 여행지 설문조사 입니다.',
-      category: '취미',
-      writer: '영주',
-      number: 40,
-      date: '2022-09-10 ~ 2022-10-10',
-      link: '#',
-    },
-  ]
+
+  const [loading, response, error] = usePromise(() => {
+    return axios.get(apiConfig.surveySearchList+"?status=P&category_id=10&page="+ nowPage);
+  }, []);
+
+  let surveyList = []
+  if(response != null){
+    surveyList = response.data.content;
+  }
+
   let category = [
     {
       id: 1,
@@ -126,6 +78,7 @@ const Search = () => {
       name: '취미',
     },
   ]
+
   let page = {
     prev: false,
     start: 1,
@@ -171,15 +124,15 @@ const Search = () => {
               </CTableRow>
             </CTableHead>
             <CTableBody>
-              {carddata.map((data) => (
-                <CTableRow key={data.id} onClick={(e) => tableRowClick(e, data.link)}>
-                  <CTableHeaderCell scope="row">{data.id}</CTableHeaderCell>
-                  <CTableDataCell>{data.category}</CTableDataCell>
-                  <CTableDataCell>{data.title}</CTableDataCell>
+              {surveyList.map((data) => (
+                <CTableRow key={data.sur_id} onClick={(e) => tableRowClick(e, data.sur_id)}>
+                  <CTableHeaderCell scope="row">{data.sur_id}</CTableHeaderCell>
                   <CTableDataCell>{data.content}</CTableDataCell>
-                  <CTableDataCell>{data.writer}</CTableDataCell>
-                  <CTableDataCell>{data.number}명</CTableDataCell>
-                  <CTableDataCell>{data.date}</CTableDataCell>
+                  <CTableDataCell>{data.title}</CTableDataCell>
+                  <CTableDataCell>{data.description}</CTableDataCell>
+                  <CTableDataCell>{data.reg_id}</CTableDataCell>
+                  <CTableDataCell>{data.answer_cnt}명</CTableDataCell>
+                  <CTableDataCell>{moment(new Date(data.reg_dt)).format('YYYY-MM-DD HH:mm:ss')}</CTableDataCell>
                 </CTableRow>
               ))}
             </CTableBody>
