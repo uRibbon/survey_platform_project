@@ -76,6 +76,18 @@ public class SurveyServiceImpl implements SurveyService{
 //        return surveyRepositoryCustom.findByRegIdAndCategoryIdAndStatusAndTitle(title, regId, category_id, status, pageable);
     }
 
+
+    public Survey insertSurvey(SurveyRequestDTO surveyRequestDTO, String userId){
+
+        SurveyDTO surveyDTO = surveyRequestDTO.getSurvey();
+        SurveyCategory surveyCategory = surveyCategoryRepository.findBySurCatId(surveyDTO.getCategoryId());
+
+        Survey save = surveyRepository.save(dtoToEntity(surveyDTO, surveyCategory, userId));
+
+
+        return save;
+    }
+
     public SurveyDTO getSurveyDetail (int surId){
         Survey survey = surveyRepository.findBySurId(surId);
         return entityToDTO(survey);

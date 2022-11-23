@@ -94,6 +94,28 @@ public class SurveyController {
         return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
+
+    // 설문 조사 생성
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @Transactional
+    @PostMapping("/reg")
+    public ResponseEntity<String> registerSurvey(Principal principal, @RequestBody SurveyRequestDTO surveyRequestDTO) {
+
+        JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
+        String userId = token.getTokenAttributes().get("preferred_username").toString();
+
+        List<QuestionDTO> questionDTOList = surveyRequestDTO.getQuestionDTOList();
+
+        Survey survey = surveyService.insertSurvey(surveyRequestDTO, userId);
+        questionService.insertSurveyQuestion(questionDTOList, survey, userId);
+
+
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+
+
+
     // 설문 상세정보, 질문 조회
     @Transactional
     @RequestMapping(value = "/detail", method = RequestMethod.POST)
