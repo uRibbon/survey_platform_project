@@ -6,7 +6,7 @@ spring:
     name: auth-service
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://210.109.62.155:3306/
+    url: jdbc:mariadb://210.109.62.155:3306/user_db
     username: dev1
     password: dev1test
   jpa:
