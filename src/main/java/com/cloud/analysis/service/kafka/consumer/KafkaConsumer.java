@@ -3,9 +3,6 @@ import org.apache.tomcat.util.json.ParseException;
 import org.json.simple.parser.JSONParser;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Map;
