@@ -70,9 +70,9 @@ public class AnswerController {
 
     // 답변 수정
     @PostMapping("/mod")
-    public ResponseEntity<String> modifyAnswer(@RequestBody(required = false) AnswerRequestDTO answerResponseDTO) {
-        Integer surId = answerResponseDTO.getSurId();
-        List<AnswerDTO> answerDTOList = answerResponseDTO.getAnswerDTOList();
+    public ResponseEntity<String> modifyAnswer(@RequestBody(required = false) AnswerRequestDTO answerRequestDTO) {
+        Integer surId = answerRequestDTO.getSurId();
+        List<AnswerDTO> answerDTOList = answerRequestDTO.getAnswerDTOList();
         answerService.updateAnswer(surId, answerDTOList);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
