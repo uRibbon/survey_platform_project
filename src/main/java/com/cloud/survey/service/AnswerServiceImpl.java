@@ -43,7 +43,7 @@ public class AnswerServiceImpl implements AnswerService {
     public Map<String, Object> getSurveyAnswerAnalysis(int surId) {
 
         // 설문분석 통계옵션 조회
-        List<Object> surveyAnalysisOptionList = analysisServiceClient.getTypeSubjectList(surId);
+//        List<Object> surveyAnalysisOptionList = analysisServiceClient.getTypeSubjectList(surId);
 
         // 설문 답변자, 답변 응답 시간대 조회
         List<Map<String,Object>> surveyAnalysisData = answerRepository.findBySurId(surId);
