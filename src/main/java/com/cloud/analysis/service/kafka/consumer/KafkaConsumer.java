@@ -12,9 +12,9 @@ import java.io.IOException;
 @Service
 public class KafkaConsumer {
     //현재 kafkaTest를 위한 test topic 설정 -> 추후 auth-topic 변동 예정
-    @KafkaListener(topics = "test", groupId = "survey_platform")
+    @KafkaListener(topics = "ANSWER_ANALYSIS", groupId = "survey_platform")
     public void consume(String message) throws IOException {
-        System.out.println(String.format("Answer Registered: %s", message));
+        System.out.println(String.format("ANSWER_ANALYSIS: %s", message));
     }
 
 //    @KafkaListener(topics = "test", groupId = "survey_platform")
