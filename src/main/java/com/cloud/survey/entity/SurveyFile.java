@@ -25,6 +25,11 @@ public class SurveyFile {
     @Column(name = "sur_file_id", nullable = false)
     private Integer surFileId;
 
+    @Comment("설문 아이디")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sur_id", nullable = false)
+    private Survey survey;
+
     @Comment("설문 파일 이름")
     @Column(name = "org_name", nullable = false, length = 100)
     private String orgName;
