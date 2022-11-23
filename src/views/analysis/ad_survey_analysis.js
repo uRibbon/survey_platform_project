@@ -1,34 +1,70 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import { CChartBar, CChartLine, CChartDoughnut, } from '@coreui/react-chartjs'
+import axios from 'axios';
+import apiConfig from '../../lib/apiConfig'
+
 
 const Charts = () => {
+  const [one, setOne] = useState([]);
+  const [two, setTwo] = useState([]);
+  const [three, setThree] = useState([]);
+  const [four, setFour] = useState([]);
+  let Data = {
+    subject: '',
+    labels: [],
+    values:[]
+  }
+
+
+
+  const analysisInfo = async ()=>{
+
+    for (let analysisId = 1; analysisId < 5; analysisId++) {
+        const response = await axios.post(`${apiConfig.platformAnalysisData}?platform_analysis_Id=${analysisId}`)
+
+        // console.log('hihi',response.data[0].platformAnalysisId.subject)
+        Data['subject'] = response.data[0].platformAnalysisId.subject
+        let Data_labels = []
+        let Data_values = []
+
+        response.data.map(data =>{
+          Data_labels.push(data.optionName)
+          Data_values.push(data.value)
+        })
+        Data['labels'] = Data_labels
+        Data['values'] = Data_values
+
+        if (analysisId ===1){
+          setOne({'subject':response.data[0].platformAnalysisId.subject, 'label':Data_labels, 'value':Data_values});
+        } else if (analysisId ===2){
+          setTwo({'subject':response.data[0].platformAnalysisId.subject, 'label':Data_labels, 'value':Data_values});
+        } else if (analysisId ===3){
+          setThree({'subject':response.data[0].platformAnalysisId.subject, 'label':Data_labels, 'value':Data_values});
+        } else if (analysisId ===4){
+          setFour({'subject':response.data[0].platformAnalysisId.subject, 'label':Data_labels, 'value':Data_values});
+        }
+    }
+  }
+
+  useEffect(()=>{
+    analysisInfo();
+  },[]);
+  
   return (
     <CRow>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>월별 회원가입</CCardHeader>
+          <CCardHeader>{one.subject}</CCardHeader>
           <CCardBody>
             <CChartBar
               data={{
-                labels: [
-                  '1월',
-                  '2월',
-                  '3월',
-                  '4월',
-                  '5월',
-                  '6월',
-                  '7월',
-                  '8월',
-                  '9월',
-                  '10월',
-                  '11월',
-                  '12월',],
+                labels: one.label,
                 datasets: [
                   {
-                    label: '회원가입 수',
+                    label: one.subject,
                     backgroundColor: '#D3D3D3',
-                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 70, 35, 58],
+                    data: one.value,
                   },
                 ],
               }}
@@ -39,32 +75,19 @@ const Charts = () => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>월별 설문 등록</CCardHeader>
+          <CCardHeader>{two.subject}</CCardHeader>
           <CCardBody>
             <CChartLine
               data={{
-                labels: [
-                  '1월',
-                  '2월',
-                  '3월',
-                  '4월',
-                  '5월',
-                  '6월',
-                  '7월',
-                  '8월',
-                  '9월',
-                  '10월',
-                  '11월',
-                  '12월',
-                ],
+                labels: two.label,
                 datasets: [
                   {
-                    label: '설문 등록 개수',
+                    label: two.subject,
                     backgroundColor: 'rgba(151, 187, 205, 0.2)',
                     borderColor: 'rgba(151, 187, 205, 1)',
                     pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                     pointBorderColor: '#fff',
-                    data: [50, 68, 38, 87, 39, 49, 60, 40, 38, 68, 47, 38],
+                    data: two.value,
                   },
                 ],
               }}
@@ -74,33 +97,39 @@ const Charts = () => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>카테고리별 설문 개수</CCardHeader>
-          <CCardBody>
-            <CChartDoughnut
-              data={{
-                labels: ['학교', '취미', '연애', '기업'],
-                datasets: [
-                  {
-                    backgroundColor: ['#FFD700', '#90EE90', '#AFEEEE', '#DDA0DD'],
-                    data: [40, 20, 50, 30],
-                  },
-                ],
-              }}
-            />
-          </CCardBody>
-        </CCard>
+            <CCardHeader>{three.subject}</CCardHeader>
+            <CCardBody>
+              <CChartBar
+                data={{
+                  labels: three.label,
+                  datasets: [
+                    {
+                      label: three.subject,
+                      backgroundColor: '#D3D3D3',
+                      data: three.value,
+                    },
+                  ],
+                }}
+                labels="months"
+              />
+            </CCardBody>
+          </CCard>
       </CCol>
       <CCol xs={6}>
-        <CCard className="mb-4">
-          <CCardHeader>카테고리별 설문 조회수</CCardHeader>
+      <CCard className="mb-4">
+          <CCardHeader>{four.subject}</CCardHeader>
           <CCardBody>
-            <CChartDoughnut
+            <CChartLine
               data={{
-                labels: ['학교', '취미', '연애', '기업'],
+                labels: four.label,
                 datasets: [
                   {
-                    backgroundColor: ['#FFD700', '#90EE90', '#AFEEEE', '#DDA0DD'],
-                    data: [36, 57, 64, 47],
+                    label: four.subject,
+                    backgroundColor: 'rgba(151, 187, 205, 0.2)',
+                    borderColor: 'rgba(151, 187, 205, 1)',
+                    pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+                    pointBorderColor: '#fff',
+                    data: four.value,
                   },
                 ],
               }}
