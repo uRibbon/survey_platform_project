@@ -51,6 +51,24 @@ const DetailInfo = (props) => {
       })
   }
 
+  let token = false;
+
+  // let Test = (answer)=>{
+  //   if (token===false){
+  //     <CFormTextarea
+  //           name={answer.ansId}
+  //           defaultValue={answer.ansContent}
+  //           onChange={(event)=>{makeAnswer(event, answer.queId)}}
+  //     ></CFormTextarea>,
+  //     token = true
+  //   } else{
+  //     <CFormTextarea
+  //           name={answer.ansId}
+  //           onChange={(event)=>{makeAnswer(event, answer.queId)}}
+  //     ></CFormTextarea>
+  //   }
+  // }
+
 
   return (
     <div className="mt-3">
