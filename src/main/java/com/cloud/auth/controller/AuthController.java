@@ -20,7 +20,6 @@ public class AuthController {
         if(authService.existsByUsername(userDto.getUserId())) {
             return ResponseEntity.ok("유저가 존재합니다.");
         }
-
         UserDTO result = authService.createUser(userDto);
         return ResponseEntity.ok(result);
     }
@@ -28,10 +27,14 @@ public class AuthController {
     // 로그인
     @PostMapping(path = "/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody UserDTO userDto) {
-
         AccessTokenResponse response = authService.setAuth(userDto);
         return ResponseEntity.ok(response);
     }
-
+    // refresh token
+    @PostMapping(path = "/refresh_token")
+    public ResponseEntity<?> refreshToken(@RequestParam String refreshToken) {
+        AccessTokenResponse response = authService.refreshToken(refreshToken);
+        return ResponseEntity.ok(response);
+    }
 
 }

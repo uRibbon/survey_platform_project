@@ -10,12 +10,14 @@ import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
+import org.keycloak.authorization.client.util.Http;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.Response;
@@ -88,19 +90,39 @@ public class AuthService {
         clientCredentials.put("secret", clientSecret);
         clientCredentials.put("grant_type", "password");
 
-        Configuration configuration =
-                new Configuration(authServerUrl, realm, clientId, clientCredentials, null);
+        Configuration configuration =new Configuration(authServerUrl, realm, clientId, clientCredentials, null);
         AuthzClient authzClient = AuthzClient.create(configuration);
 
-        AccessTokenResponse response =
-                authzClient.obtainAccessToken(userDto.getUserId(), userDto.getUserPwd());
+        AccessTokenResponse response = authzClient.obtainAccessToken(userDto.getUserId(), userDto.getUserPwd());
 
         return response;
     }
 
-    /*
-     *  사용자 존재하는지 체크
-     * */
+    public AccessTokenResponse refreshToken(String refreshToken) {
+        String url = authServerUrl + "/realms/" + realm + "/protocol/openid-connect/token";
+
+        Map<String, Object> clientCredentials = new HashMap<>();
+        clientCredentials.put("secret", clientSecret);
+        clientCredentials.put("grant_type", "password");
+        clientCredentials.put("refresh_token", refreshToken);
+
+        Configuration configuration =new Configuration(authServerUrl, realm, clientId, clientCredentials, null);
+
+        Http http = new Http(configuration, (params, headers) -> {});
+        return http.<AccessTokenResponse>post(url)
+                .authentication()
+                .client()
+                .form()
+                .param("grant_type", "refresh_token")
+                .param("refresh_token", refreshToken)
+                .param("client_id", clientId)
+                .param("client_secret", clientSecret)
+                .response()
+                .json(AccessTokenResponse.class)
+                .execute();
+    }
+
+    // 사용자 존재하는지 체크
     public boolean existsByUsername(String userName) {
 
         List<UserRepresentation> search = keycloak.realm(realm).users().search(userName);
