@@ -10,12 +10,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@JsonFormat
+//@JsonFormat
 public class GroupDetailDTO {
     private Integer groupId;
 
@@ -25,7 +26,10 @@ public class GroupDetailDTO {
 
     private Integer groupCnt;
 
-    private User user;
+    private List<User> userList; // 그룹 개설자 정보
+    public void addUserList(User user) {
+        userList.add(user);
+    }
 
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
 
@@ -38,4 +42,5 @@ public class GroupDetailDTO {
     private LocalDateTime modDt;
 
     private DelYn delYn;
+
 }

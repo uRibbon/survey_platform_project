@@ -1,11 +1,13 @@
 package com.cloud.auth.service;
 
+import com.cloud.auth.dto.GroupDetailDTO;
 import com.cloud.auth.entity.Group;
 import com.cloud.auth.entity.GroupDetail;
 import com.cloud.auth.repository.GroupDetailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 

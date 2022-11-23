@@ -5,6 +5,7 @@ import com.cloud.auth.dto.PageRequestDTO;
 import com.cloud.auth.dto.PageResultDTO;
 import com.cloud.auth.entity.Group;
 import com.cloud.auth.service.GroupService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,12 @@ import java.security.Principal;
 @RestController
 @RequestMapping(value="v1/group")
 @Slf4j
+@RequiredArgsConstructor
 public class GroupController {
     @Autowired
-    private  GroupService groupService;
+    private final GroupService groupService;
 
-    @PostMapping("/groupList")
+    @PostMapping("/list")
     public ResponseEntity<PageResultDTO<GroupListDTO, Group>> getGroupList(Principal principal, PageRequestDTO pageRequestDTO) {
         JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
         String userId = token.getTokenAttributes().get("preferred_username").toString();
