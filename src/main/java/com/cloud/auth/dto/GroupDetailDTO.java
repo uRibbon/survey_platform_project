@@ -26,10 +26,12 @@ public class GroupDetailDTO {
 
     private Integer groupCnt;
 
-    private List<User> userList; // 그룹 개설자 정보
-    public void addUserList(User user) {
-        userList.add(user);
-    }
+//    private List<User> userList; // 그룹 개설자 정보
+//    public void addUserList(User user) {
+//        userList.add(user);
+//    }
+
+    private User user;
 
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
 
