@@ -1,5 +1,5 @@
 package com.cloud.survey.entity;
 
 public enum SurveyStatus {
-    proc, end
+    P, I, F, D
 }
