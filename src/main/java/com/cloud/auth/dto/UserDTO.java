@@ -18,6 +18,7 @@ public class UserDTO {
     private String mailAddr;
     private UserRole userRole;
 
-
-
+    private String userPwd;
+    private int status;
+    private String statusInfo;
 }

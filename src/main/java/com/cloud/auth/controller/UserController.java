@@ -25,13 +25,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RolesAllowed({ "USER" })
-    @RequestMapping(value = "/keycloakTest", method = RequestMethod.GET)
-    public String keyclakTest(Principal principal, @RequestParam(value = "user_id") String UserId) {
-        JwtAuthenticationToken token = (JwtAuthenticationToken) principal; //jwt로 형변환
-        return token.getTokenAttributes().toString();
-    }
-
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> getUserDetail(@RequestParam(value = "user_id") String UserId) {
         return new ResponseEntity<>(userService.getUserDetailInfo(UserId), HttpStatus.CREATED);
@@ -40,12 +33,6 @@ public class UserController {
     @RequestMapping(value = "/survey_users_analysis", method = RequestMethod.POST)
     public ResponseEntity<List<UserDTO>> getSurveyUsersAnalysis(@RequestBody List<Map<String,Object>> list) {
         return new ResponseEntity<>(userService.getUserDetailInfoList(list), HttpStatus.CREATED);
-    }
-
-
-    @RequestMapping(value = "/kafkaConnTest", method = RequestMethod.POST)
-    public String sendMessage(@RequestParam("message") String message) {
-        return userService.doKafkaConnTest(message);
     }
 
 }
