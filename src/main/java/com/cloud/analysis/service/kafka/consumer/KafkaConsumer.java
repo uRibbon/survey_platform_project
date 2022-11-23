@@ -8,16 +8,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Service
 public class KafkaConsumer {
     //현재 kafkaTest를 위한 test topic 설정 -> 추후 auth-topic 변동 예정
     @KafkaListener(topics = "ANSWER_ANALYSIS", groupId = "survey_platform")
-    public void consume(String message) throws IOException {
+    public void consume(Map<String,Object> message) throws IOException {
         System.out.println(String.format("ANSWER_ANALYSIS: %s", message));
     }
 
-//    @KafkaListener(topics = "test", groupId = "survey_platform")
+
+//    @KafkaListener(topics = "ANSWER_ANALYSIS", groupId = "survey_platform")
 //    public String consume(String message) throws IOException {
 //        System.out.println(String.format("Incomming: %s", message));
 //        try {
