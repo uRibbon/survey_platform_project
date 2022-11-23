@@ -19,6 +19,7 @@ public class analysisServiceContoller {
     @Autowired
     private AnalysisService analysisService;
 
+
     private final KafkaProducer producer;
 
     // 설문조사 피설문자 통계 조회
@@ -46,6 +47,10 @@ public class analysisServiceContoller {
         return allTypeSubjectList;
     }
 
-
+    @RequestMapping(value="/answerTopicTest",method=RequestMethod.GET)
+    public Map<String,Object> getTopicData(){
+        Map<String,Object> Data = analysisService.Test();
+        return Data;
+    }
 
 }

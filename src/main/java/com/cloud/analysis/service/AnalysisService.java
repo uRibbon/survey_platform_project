@@ -18,6 +18,8 @@ public interface AnalysisService {
 
     List<Object> getTypeSubjectList(Integer surveyId);
 
+    Map<String, Object> Test();
+
     default Platform_analysis_DTO TransferEntityToDTO(Platform_analysis platform_analysis) {
         Platform_analysis_DTO dto = Platform_analysis_DTO.builder()
                 .type(platform_analysis.getType())

@@ -4,6 +4,7 @@ import com.cloud.analysis.entity.Platform_analysis_option;
 import com.cloud.analysis.entity.Survey_analysis;
 import com.cloud.analysis.entity.Survey_analysis_option;
 import com.cloud.analysis.repository.AnalysisRepository;
+import com.cloud.analysis.service.kafka.consumer.KafkaConsumer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ import java.util.Map;
 public class AnalysisServiceImpl implements AnalysisService {
     @Autowired
     private final AnalysisRepository analysisRepository;
+
+    @Autowired
+    private final KafkaConsumer kafkaConsumer;
 
     @Override
     public List<Survey_analysis_option> getSurveyAnalysisList(Integer analysisId,Integer surveyId) {
@@ -53,6 +57,12 @@ public class AnalysisServiceImpl implements AnalysisService {
             Large.add(Middle);
         });
         return Large;
+    }
+
+    @Override
+    public Map<String, Object> Test(){
+        Map<String, Object> message = kafkaConsumer.getMessage();
+        return message;
     }
 
 
