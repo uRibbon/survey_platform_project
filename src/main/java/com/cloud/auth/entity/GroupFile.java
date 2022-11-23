@@ -25,6 +25,11 @@ public class GroupFile {
     @Column(name = "group_file_id", nullable = false)
     private Integer groupFileId;
 
+    @Comment("그룹 아이디")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
+
     @Comment("그룹 파일 이름")
     @Column(name = "org_name", nullable = false, length = 100)
     private String orgName;
