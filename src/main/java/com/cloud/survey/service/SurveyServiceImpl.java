@@ -39,6 +39,10 @@ public class SurveyServiceImpl implements SurveyService{
     private final SurveyCategoryRepository surveyCategoryRepository;
     @Autowired
     private final SurveyRepository surveyRepository;
+
+    @Autowired
+    private final SurveyRepositoryCustom surveyRepositoryCustom;
+
     @Autowired
     private final QuestionRepository questionRepository;
 
