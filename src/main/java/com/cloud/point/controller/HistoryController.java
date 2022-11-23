@@ -13,7 +13,6 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class HistoryController {
-    // repository가 아닌 service 선언하기
     private final PointHistoryService pointHistoryService;
 
     // 전체 리스트 출력 api
