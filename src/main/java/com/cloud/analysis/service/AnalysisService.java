@@ -2,6 +2,7 @@ package com.cloud.analysis.service;
 
 import com.cloud.analysis.dto.Platform_analysis_DTO;
 import com.cloud.analysis.dto.Survey_analysis_DTO;
+import com.cloud.analysis.dto.User.UserDTO;
 import com.cloud.analysis.entity.Platform_analysis;
 import com.cloud.analysis.entity.Platform_analysis_option;
 import com.cloud.analysis.entity.Survey_analysis;
@@ -15,10 +16,14 @@ public interface AnalysisService {
     List<Survey_analysis_option> getSurveyAnalysisList(Integer analysisId, Integer surveyId);
     List<Platform_analysis_option> getPlatformAnalysisList(Integer surId);
 
-
     List<Object> getTypeSubjectList(Integer surveyId);
 
-    Map<String, Object> Test();
+//    Map<String, Object> Test();
+
+    void AgeUpdate(List<UserDTO> answerUserList);
+    void JobUpdate(List<UserDTO> answerUserList);
+    void GenderUpdate(List<UserDTO> answerUserList);
+    void TimeUpdate(List<Map<String,Object>> answerDataList);
 
     default Platform_analysis_DTO TransferEntityToDTO(Platform_analysis platform_analysis) {
         Platform_analysis_DTO dto = Platform_analysis_DTO.builder()
@@ -35,5 +40,15 @@ public interface AnalysisService {
                 .build();
         return dto;
     }
+
+    default Survey_analysis_DTO TransferEntityToDTO_kafka(Survey_analysis survey_analysis) {
+        Survey_analysis_DTO dto = Survey_analysis_DTO.builder()
+                .type(survey_analysis.getType())
+                .subject(survey_analysis.getSubject())
+                .build();
+        return dto;
+    }
+
+
 }
 

@@ -1,6 +1,6 @@
 package com.cloud.analysis.client;
 
-//import com.cloud.analysis.dto.UserDTO;
+//import com.cloud.analysis.dto.User.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient(name = "auth-service", configuration = Config.class)

@@ -47,10 +47,10 @@ public class analysisServiceContoller {
         return allTypeSubjectList;
     }
 
-    @RequestMapping(value="/answerTopicTest",method=RequestMethod.GET)
-    public Map<String,Object> getTopicData(){
-        Map<String,Object> Data = analysisService.Test();
-        return Data;
-    }
+//    @RequestMapping(value="/answerTopicTest",method=RequestMethod.GET)
+//    public Map<String,Object> getTopicData(){
+//        Map<String,Object> Data = analysisService.Test();
+//        return Data;
+//    }
 
 }

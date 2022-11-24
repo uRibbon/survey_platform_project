@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface AnalysisRepository extends JpaRepository<Survey_analysis, Integer> {
+public interface SurveyAnalysisRepository extends JpaRepository<Survey_analysis, Integer> {
 
     // 설문 응답자 연령별 비율
     @Query("select SAO from Survey_analysis SA join Survey_analysis_option SAO on SA.analysisId = SAO.analysisId.analysisId where SA.analysisId = :analysisId and SA.surveyId = :surveyId")
