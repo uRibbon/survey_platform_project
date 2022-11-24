@@ -85,7 +85,7 @@ public class AuthService {
         return userDto;
     }
 
-    public AccessTokenResponse setAuth(UserDTO userDto) {
+    public AccessTokenResponse setAuth(HashMap<String, String> map) {
         Map<String, Object> clientCredentials = new HashMap<>();
         clientCredentials.put("secret", clientSecret);
         clientCredentials.put("grant_type", "password");
@@ -93,7 +93,7 @@ public class AuthService {
         Configuration configuration =new Configuration(authServerUrl, realm, clientId, clientCredentials, null);
         AuthzClient authzClient = AuthzClient.create(configuration);
 
-        AccessTokenResponse response = authzClient.obtainAccessToken(userDto.getUserId(), userDto.getUserPwd());
+        AccessTokenResponse response = authzClient.obtainAccessToken(map.get("username"), map.get("password"));
 
         return response;
     }
