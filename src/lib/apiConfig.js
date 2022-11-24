@@ -19,6 +19,11 @@ const apiConfig = {
     platformAnalysisData : service.analysis + version + '/analysis/platform_analysis',      // 설문 통계 데이터 조회(admin)
     surveyTypeSubOp : service.analysis + version + '/analysis/survey_analysis_info',        // 설문조사 결과탭 응답자 통계 타입, 옵션 정보 조회
 
+    answerRegister: service.survey + version + '/answer/reg',
+    answerEdit: service.survey + version + '/answer/mod',
+    answerDelete : service.survey + version + '/answer/del',
+    answerList: service.survey + version + '/answer/list',
+    surveyDetail: service.survey + version + '/survey/detail',
 }
 
 export default apiConfig;
