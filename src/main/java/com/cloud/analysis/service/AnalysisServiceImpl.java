@@ -15,10 +15,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.beans.Transient;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -71,18 +70,10 @@ public class AnalysisServiceImpl implements AnalysisService {
         return Large;
     }
 
-//    @Override
-//    public Map<String, Object> Test(){
-//        Map<String, Object> message = kafkaConsumer.getMessage();
-//
-//        return message;
-//    }
-
     @Override
     @Transactional
     public void AgeUpdate(List<UserDTO> answerUserList) {
         System.out.println("answerUserList = " + answerUserList);
-
         answerUserList.forEach((answerUser)->{
             int age = answerUser.getAge();
             int optionId=0;
@@ -136,7 +127,25 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Override
     @Transient
     public void TimeUpdate(List<Map<String,Object>> answerDataList) {
+        System.out.println("answerDataList = " + answerDataList);
+        answerDataList.forEach((answerData)->{
+            long systemTimeMills = (long)answerData.get("reg_dt");
+            LocalDateTime systemLocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(systemTimeMills), TimeZone.getDefault().toZoneId());
+            System.out.println("hour = " + systemLocalDateTime.getHour());
 
+            int time = systemLocalDateTime.getHour();
+            int optionId=0;
+            if(6<time & time<=10){
+                optionId = 11;
+            } else if(10<time & time<=14) {
+                optionId = 12;
+            } else if(14<time & time<=18) {
+                optionId = 13;
+            } else if(18<time & time<=24){
+                optionId = 14;
+            }
+            surveyAnalysisOptionRepository.updateValue(optionId);
+        });
     }
 
 
