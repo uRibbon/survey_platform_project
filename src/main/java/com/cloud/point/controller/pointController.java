@@ -1,8 +1,8 @@
 package com.cloud.point.controller;
 
 
-import com.cloud.point.entity.UserPoint;
-import com.cloud.point.repository.UserPointRepository;
+import com.cloud.point.dto.UserPointDTO;
+import com.cloud.point.service.UserPointService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class pointController {
     @Autowired
-    UserPointRepository userPointRepository;
+    UserPointService userPointService;
 
-    @PostMapping("/total")
-    public UserPoint userPoint(@RequestBody UserPoint userPoint) {
-        log.info("id = " + userPoint.getId());
-        UserPoint userPoint1 = userPointRepository.findById(userPoint.getId()).orElse(null);
-        return userPoint1;
+    @PostMapping("/search")
+    public UserPointDTO userPoint(@RequestParam(value = "userId") String userId) {
+        UserPointDTO oneUserPoint = userPointService.getOneUserPoint(userId);
+        return oneUserPoint;
+    }
+
+    @PostMapping("/mod")
+    public void modUserPoint(@RequestBody UserPointDTO userPointDTO) {
+        userPointService.updateUserPoint(userPointDTO);
     }
 }

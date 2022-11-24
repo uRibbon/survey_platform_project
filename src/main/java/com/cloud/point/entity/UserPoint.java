@@ -23,4 +23,11 @@ public class UserPoint {
 
     @Column(name="user_point_score")
     private Integer userPointScore;
+
+    public void UpdateUserName(String userId) {
+        this.userId = userId;
+    }
+    public void UpdateUserPointScore(Integer userPointScore) {
+        this.userPointScore = userPointScore;
+    }
 }
