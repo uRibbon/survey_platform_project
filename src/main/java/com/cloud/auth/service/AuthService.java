@@ -99,11 +99,11 @@ public class AuthService {
     }
 
     public AccessTokenResponse refreshToken(String refreshToken) {
-        String url = authServerUrl + "/realms/" + realm + "/protocol/openid-connect/token";
+        String url = authServerUrl + "realms/" + realm + "/protocol/openid-connect/token";
 
         Map<String, Object> clientCredentials = new HashMap<>();
         clientCredentials.put("secret", clientSecret);
-        clientCredentials.put("grant_type", "password");
+        clientCredentials.put("grant_type", "refresh_token");
         clientCredentials.put("refresh_token", refreshToken);
 
         Configuration configuration =new Configuration(authServerUrl, realm, clientId, clientCredentials, null);

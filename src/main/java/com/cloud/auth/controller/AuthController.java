@@ -44,10 +44,10 @@ public class AuthController {
         return ResponseEntity.ok(resultmap);
     }
 
-
     // refresh token
     @PostMapping(path = "/refresh_token")
-    public ResponseEntity<?> refreshToken(@RequestParam String refreshToken) {
+    public ResponseEntity<?> refreshToken(@RequestBody  HashMap<String, String> map) {
+        String refreshToken = map.get("refresh_token");
         AccessTokenResponse response = authService.refreshToken(refreshToken);
         return ResponseEntity.ok(response);
     }
