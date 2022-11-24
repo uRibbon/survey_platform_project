@@ -22,7 +22,6 @@ const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const { user } = useSelector(({user})=> ({user:user.user}));
-  const userInfo = JSON.parse(user).info;
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
@@ -38,7 +37,7 @@ const AppHeader = () => {
         { <CHeaderNav className="d-none d-md-flex me-auto">
         </CHeaderNav> }
        <CHeaderNav>
-       { user ? userInfo.name : null}
+       { user ? JSON.parse(user).info.name : null}
         </CHeaderNav> 
         <CHeaderNav className="ms-3">
         {user? (
