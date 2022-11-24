@@ -11,11 +11,11 @@ import {
   CCallout, CForm, CRow, CCol, CNav, CNavItem, CNavLink, CTabContent, CTabPane,
 } from "@coreui/react";
 import axios from "axios";
-import SurveyInfo from "./surveyinfo";
-import SurveyQuestion from "./surveyQuestion";
+import SurveyInfo from "./info/SurveyInfo";
+import QuestionInfo from "./info/QuestionInfo";
 import Charts from "../../analysis/user_survey_analysis";
 
-const ParticipateSurvey = () => {
+const RegisterAnswer = () => {
   const [activeKey, setActiveKey] = useState(1)
   const [surId, setSurId] = useState(2)
 
@@ -30,7 +30,7 @@ const ParticipateSurvey = () => {
           <CCardBody>
             <div>
               <SurveyInfo surId={surId}></SurveyInfo>
-              <SurveyQuestion surId={surId}/>
+              <QuestionInfo surId={surId}/>
             </div>
           </CCardBody>
         </CCard>
@@ -38,4 +38,4 @@ const ParticipateSurvey = () => {
     </CRow>
   )
 }
-export default ParticipateSurvey
+export default RegisterAnswer

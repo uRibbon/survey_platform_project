@@ -11,14 +11,14 @@ import {
   CFormTextarea, CFormRange,
 } from '@coreui/react'
 import axios from "axios";
-
+import apiConfig from "../../../../lib/apiConfig";
 const DetailInfo = (props) => {
   const surId = 2
   const [answerList, setAnswerList] = useState([])
   const [updateList, setUpdateList] = useState([])
 
   // 답변 정보 받아오기
-  axios.post("/survey-service/v1/answer/list",
+  axios.post(apiConfig.answerList,
     {regId: "yena", surId: surId},
     {headers: {
         'Content-Type': 'multipart/form-data'
@@ -41,7 +41,7 @@ const DetailInfo = (props) => {
   }
 
   const sendAnswer = () => {
-    axios.post("/survey-service/v1/answer/mod",
+    axios.post(apiConfig.answerEdit,
       {
         surId: surId,
         answerDTOList: updateList

@@ -13,11 +13,11 @@ import {
   CTabPane,
 } from '@coreui/react'
 
-import SurveyInfo from './surveyinfo';
-import SurveyQuestion from './surveyQuestion';
+import SurveyInfo from './info/SurveyInfo';
 import Charts from '../../analysis/user_survey_analysis';
-import SurveyAnswer from './surveyAnswer';
+import AnswerInfo from './info/AnswerInfo';
 import axios from "axios";
+import apiConfig from "../../../lib/apiConfig";
 
 const Detail = () => {
 
@@ -25,7 +25,7 @@ const Detail = () => {
   const [surId, setSurId] = useState(1)
 
   const removeAnswer = () => {
-    axios.post("/survey-service/v1/answer/del",
+    axios.post(apiConfig.answerDelete,
       {regId: "yena", surId: 2},
       {headers: {
           'Content-Type': 'multipart/form-data'
@@ -77,7 +77,7 @@ const Detail = () => {
             </div>
             <CTabContent>
               <CTabPane role="tabpanel" aria-labelledby="home-tab" visible={activeKey === 1}>
-                 <SurveyAnswer surId={surId}/>
+                 <AnswerInfo surId={surId}/>
               </CTabPane>
               <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 2}>
                 <Charts surId={surId}/>

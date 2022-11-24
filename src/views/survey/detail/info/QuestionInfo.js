@@ -11,12 +11,13 @@ import {
   CFormTextarea, CFormRange,
 } from '@coreui/react'
 import axios from "axios";
+import apiConfig from "../../../../lib/apiConfig";
 
 const DetailInfo = (props) => {
   const [questionList, setQuestionList] = useState([])
   const [answerList, setAnswerList] = useState([])
 
-  axios.post("/survey-service/v1/survey/detail",
+  axios.post(apiConfig.surveyDetail,
     {sur_id: props.surId},
     {headers: {
         'Content-Type': 'multipart/form-data'
@@ -37,7 +38,7 @@ const DetailInfo = (props) => {
   }
 
   const sendAnswer = () => {
-    axios.post("/survey-service/v1/answer/reg",
+    axios.post(apiConfig.answerRegister,
       {
         surId: props.surId,
         answerDTOList: answerList
