@@ -8,10 +8,17 @@
 const version = '/v1';
 
 const apiConfig = {
+
+
+
     menuList : service.common + version + '/common/menu',                                   // 사이드바 메뉴 리스트 조회
 
     userDetail : service.auth + version + '/user/detail',                                   // 사용자 상세정보 조회
-    groupList : service.auth + version + '/user/groupList',                                 // 사용자 그룹 리스트 조회
+    groupList : service.auth + version + '/group/list',                                     // 사용자 그룹 리스트 조회
+
+    signin : service.auth + version + '/auth/signin',                                       // 로그인
+    signup : service.auth + version + '/auth/signip',                                       // 회원가입
+    authCheck : service.auth + version + '/auth/check',  
 
     surveySearchList : service.survey + version + '/survey/search_list',                    // 설문 검색 리스트 조회
 
