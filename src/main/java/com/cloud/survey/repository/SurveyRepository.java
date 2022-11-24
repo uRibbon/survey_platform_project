@@ -47,10 +47,10 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
             "FROM survey s left join survey_category sc on sc.sur_cat_id = s.category_id " +
             "WHERE 1=1 " +
             "and s.status <> 'D'" +
-            "and s.category_id = :categoryId " +
-            "and s.status = :#{#status?.name()} " +
+//            "and s.category_id = :categoryId " +
+//            "and s.status = :#{#status?.name()} " +
             "and s.reg_id = :regId", nativeQuery = true)
-    Page<Map<String,Object>> findByCategoryIdAndRegId(@Param("regId") String regId, @Param("categoryId") Integer categoryId, @Param("status") SurveyStatus status, Pageable pageable);
+    Page<Map<String,Object>> findByCategoryIdAndRegId(@Param("regId") String regId, Pageable pageable);
 
 
     @Query(value =
@@ -67,10 +67,10 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
             "    left outer join question q on s.sur_id = q.sur_id  join answer a on q.que_id = a.que_id and a.reg_id = :regId " +
             "WHERE 1=1 " +
             "and s.status <> 'D' " +
-            "and s.category_id = :categoryId " +
-            "and s.status = :#{#status?.name()} " +
+//            "and s.category_id = :categoryId " +
+//            "and s.status = :#{#status?.name()} " +
             "group by s.sur_id ", nativeQuery = true)
-    Page<Map<String,Object>> findByCategoryIdAndRegIdAndStatus(@Param("regId") String regId, @Param("categoryId") Integer categoryId, @Param("status") SurveyStatus status, Pageable pageable);
+    Page<Map<String,Object>> findByCategoryIdAndRegIdAndStatus(@Param("regId") String regId, Pageable pageable);
 
 
     Survey findBySurId(int surId);
