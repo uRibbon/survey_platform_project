@@ -33,8 +33,6 @@ const SurveySearchList = () => {
   const params = new URLSearchParams(search);
   const nowPage = params.get('page') ? params.get('page') : 1;
 
-  let surveyList = []
-
   let page = {
     prev: false,
     start: 1,
@@ -43,11 +41,15 @@ const SurveySearchList = () => {
     end: 1,
     pagelist: [1, 2, 3, 4, 5, 6],
   }
+  let category = [
+    {id: 1, name: '학교' },
+    {id: 2, name: '기업',},
+    {id: 3,name: '연애',},
+    {id: 4,name: '사업',},
+    {id: 5, name: '취미',},
+  ]
 
-    // 검색 상세 페이지 링크
-    const tableRowClick = (e, id) => {
-      window.location.href = "/#/survey/detail/"+id;
-    }
+  let surveyList = []
 
   // 설문 검색 리스트
   const [loading, response, error] = usePromise(() => {
@@ -64,14 +66,14 @@ const SurveySearchList = () => {
     page.pagelist = arr;
   }
   
-  let category = [
-    {id: 1, name: '학교' },
-    {id: 2, name: '기업',},
-    {id: 3,name: '연애',},
-    {id: 4,name: '사업',},
-    {id: 5, name: '취미',},
-  ]
 
+
+  // 검색 상세 페이지 링크
+  const tableRowClick = (e, id) => {
+    window.location.href = "/#/survey/detail/"+id;
+  }
+
+      
   return (
     <>
     <CRow>
@@ -79,6 +81,7 @@ const SurveySearchList = () => {
         <CCard className="mb-4">
           <CCardHeader>
             <strong> 설문 검색 </strong>
+            <small> 전체 공개된 설문조사를 조회 할 수 있습니다. </small>
           </CCardHeader>
           <CCardBody>
             <CCard className="mb-2">

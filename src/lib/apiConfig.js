@@ -17,11 +17,15 @@ const apiConfig = {
     groupList : service.auth + version + '/group/list',                                     // 사용자 그룹 리스트 조회
 
     signin : service.auth + version + '/auth/signin',                                       // 로그인
+    refreshToken : service.auth + version + "/auth/refresh_token",                           // 토큰 리프레시
     signup : service.auth + version + '/auth/signip',                                       // 회원가입
     authCheck : service.auth + version + '/auth/check',  
 
     surveySearchList : service.survey + version + '/survey/search_list',                    // 설문 검색 리스트 조회
-
+    surveyParticipateList : service.survey + version + '/survey/ptcp_list',                  // 설문 참여 리스트 조회
+    surveyMakeList : service.survey + version + '/survey/make_list',                         // 설문 생성 리스트 조회
+    
+    
     surveyAnalysisData : service.analysis + version + '/analysis/survey_analysis',          // 설문 통계 데이터 조회(user)
     platformAnalysisData : service.analysis + version + '/analysis/platform_analysis',      // 설문 통계 데이터 조회(admin)
     surveyTypeSubOp : service.analysis + version + '/analysis/survey_analysis_info',        // 설문조사 결과탭 응답자 통계 타입, 옵션 정보 조회
