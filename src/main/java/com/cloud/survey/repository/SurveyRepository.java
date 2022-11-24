@@ -25,11 +25,13 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
             "and a.que_id = (SELECT min(q.que_id) FROM question qu where sur_id=s.sur_id)) answer_cnt " +
             "FROM survey s left join survey_category sc on sc.sur_cat_id = s.category_id " +
             "WHERE 1=1 " +
-            "and s.is_private <> 'N' " +
-            "and s.status <> 'D' " +
-            "and s.category_id = :categoryId " +
-            "and status = :#{#status?.name()}", nativeQuery = true)
-    Page<Map<String,Object>> findByCategoryIdAndStatus(@Param("categoryId") int categoryId, @Param("status") SurveyStatus status, Pageable pageable);
+            "and s.status = 'I' " +
+            "and s.due_dt < now() " +
+            "and s.is_private = 'N' "
+//            "and s.category_id = :categoryId "
+//            "and status = :#{#status?.name()}"
+            , nativeQuery = true)
+    Page<Map<String,Object>> findByCategoryIdAndStatus(@Param("categoryId") int categoryId, Pageable pageable);
 
 
     @Query(value =

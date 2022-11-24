@@ -65,7 +65,7 @@ public class SurveyServiceImpl implements SurveyService{
     @Override
     public  Page<Map<String,Object>> getSurveySearchList(Integer category_id, SurveyStatus status, PageRequestDTO requestDTO){
         Pageable pageable = requestDTO.getPageable(Sort.by("reg_dt").descending());
-        return surveyRepository.findByCategoryIdAndStatus(category_id, status, pageable);
+        return surveyRepository.findByCategoryIdAndStatus(category_id, pageable);
     }
 
     public Page<Map<String,Object>> getSurveyParticipateList(String title, String regId, Integer category_id, SurveyStatus status, PageRequestDTO requestDTO){
