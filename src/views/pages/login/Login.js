@@ -17,11 +17,12 @@ import {
   CInputGroupText,
   CRow,
   CToaster,
+  CToast,
+  CToastHeader,
+  CToastBody,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-
-import LoginSuccessToast from './LoginSuccessToast';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -58,27 +59,39 @@ const Login = () => {
     dispatch(initializeForm('login'));
   }, [dispatch]);
 
+
+  const loginToast = (text) => (
+    <CToast>
+      <CToastHeader closeButton>
+        <strong className="me-auto">SURVEY PLATFORM</strong>
+        {/* <small>7 min ago</small> */}
+      </CToastHeader>
+      <CToastBody>{ text }</CToastBody>
+    </CToast>
+  );
+
+
   useEffect(() => {
     if (authError) {
       console.log('오류 발생');
       console.log(authError);
       setError('로그인 실패');
+      addToast(loginToast("LOGIN FAIL"));
+
       return;
     }
     if (auth) {
       console.log('로그인 성공');
-      console.log(auth);
-      dispatch(check(auth));
+      dispatch(check(auth.data));
     }
   }, [auth, authError, dispatch]);
 
   useEffect(() => {
     if (user) {
-      console.log(user);
       navigate('/');
       try {
         localStorage.setItem('user', JSON.stringify(user));
-        addToast(LoginSuccessToast);
+        addToast(loginToast("LOGIN SUCCESS"));
       } catch (e) {
         console.log('localStorage is not working');
       }
