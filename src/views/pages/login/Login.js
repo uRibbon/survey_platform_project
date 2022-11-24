@@ -81,6 +81,7 @@ const Login = () => {
       return;
     }
     if (auth) {
+      addToast(loginToast("LOGIN SUCCESS"));
       console.log('로그인 성공');
       dispatch(check(auth.data));
     }
@@ -91,7 +92,6 @@ const Login = () => {
       navigate('/');
       try {
         localStorage.setItem('user', JSON.stringify(user));
-        addToast(loginToast("LOGIN SUCCESS"));
       } catch (e) {
         console.log('localStorage is not working');
       }
