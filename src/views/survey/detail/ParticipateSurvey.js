@@ -11,8 +11,8 @@ import {
   CCallout, CForm, CRow, CCol, CNav, CNavItem, CNavLink, CTabContent, CTabPane,
 } from "@coreui/react";
 import axios from "axios";
-import SurveyInfo from "../detail/surveyinfo";
-import SurveyQuestion from "../detail/surveyQuestion";
+import SurveyInfo from "./surveyinfo";
+import SurveyQuestion from "./surveyQuestion";
 import Charts from "../../analysis/user_survey_analysis";
 
 const ParticipateSurvey = () => {

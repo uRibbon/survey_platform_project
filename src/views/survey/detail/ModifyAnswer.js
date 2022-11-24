@@ -3,8 +3,8 @@ import {
   CBadge, CButton, CCard, CCardBody, CCardHeader, CFormCheck, CFormRange, CFormTextarea, CCol, CRow
 } from "@coreui/react";
 import React from "react";
-import SurveyInfo from "../detail/surveyinfo";
-import SurveyUpdate from "../detail/surveyUpdate";
+import SurveyInfo from "./surveyinfo";
+import SurveyUpdate from "./surveyUpdate";
 // import { useHistory } from "react-router";
 
 const ModifySurvey = () => {
@@ -16,8 +16,8 @@ const ModifySurvey = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong> 설문 수정 </strong>
-            <small> 참여한 설문을 수정 할 수 있습니다.</small>
+            <strong>답변 수정 </strong>
+            <small> 참여한 설문의 답변을 수정 할 수 있습니다.</small>
           </CCardHeader>
           <CCardBody>
             <div>

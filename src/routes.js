@@ -1,24 +1,30 @@
 import React from 'react'
 
-// Home
+
 const Home = React.lazy(() => import('./views/Home'))
+
 const Search = React.lazy(() => import('./views/survey/search/Search'))
-const SurveyParticipate = React.lazy(() => import('./views/survey/create/ParticipateSurvey'))
-const SurveyCreate = React.lazy(() => import('./views/survey/create/CreateSurvey'))
-const SurveyModify = React.lazy(() => import('./views/survey/create/ModifySurvey'))
 const PrtcpList = React.lazy(() => import('./views/survey/list/PrtcpList'))
 const MakeList = React.lazy(() => import('./views/survey/list/MakeList'))
+
+
+const SurveyCreate = React.lazy(() => import('./views/survey/create/CreateSurvey'))
+const SurveyAnswerReg = React.lazy(() => import('./views/survey/detail/ParticipateSurvey'))
+const SurveyAnswerEdit = React.lazy(() => import('./views/survey/detail/ModifyAnswer'))
+
 const surveyDetail = React.lazy(() => import('./views/survey/detail/detail'))
+
 const grouplist = React.lazy(() => import('./views/group/list/list'))
 const groupCreate = React.lazy(() => import('./views/group/form/create'))
 const groupDetail = React.lazy(() => import('./views/group/detail/detail'))
+
 const ad_survey_analysis = React.lazy(() => import('./views/analysis/ad_survey_analysis'))
+
 const category_list = React.lazy(() => import('./views/category/category_list'))
 
 
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
-
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
 const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
@@ -70,17 +76,17 @@ const routes = [
 
   // 설문
   { path: '/survey/search', name: 'Search', element: Search },                                        // 설문 검색 목록
-  { path: '/survey/create', name: 'Survey', element: SurveyCreate },                                   // 설문 생성
-  { path: '/survey/detail', name: 'Survey Detail', element: surveyDetail },                           // 설문 상세 
+  { path: '/survey/create', name: 'Survey', element: SurveyCreate },                                  // 설문 생성
+  { path: '/survey/detail/:sur_id', name: 'Survey Detail', element: surveyDetail },                   // 설문 상세 
   { path: '/survey/prtcpList', name: 'PrtcpList', element: PrtcpList },                               // 설문 참여 목록
   { path: '/survey/makeList', name: 'MakeList', element: MakeList },                                  // 설문 생성 목록
-  { path: '/survey/ParticipateSurvey', name: 'Survey Participate', element: SurveyParticipate },
-  { path: '/survey/ModifySurvey', name: 'Survey Modify', element: SurveyModify },
+  { path: '/survey/answer/register', name: 'Survey Participate', element: SurveyAnswerReg },          // 설문 답변 등록
+  { path: '/survey/answer/edit/:sur_id', name: 'Survey Modify', element: SurveyAnswerEdit },   // 설문 답변 수정
 
   // 그룹
   { path: '/group/list', name: 'Group List', element: grouplist },                                    // 그룹 목록
   { path: '/group/create', name: 'Group Create', element: groupCreate },                              // 그룹 생성
-  { path: '/group/detail', name: 'Group Detail', element: groupDetail },                              // 그룹 상세  
+  { path: '/group/detail/:group_id', name: 'Group Detail', element: groupDetail },                              // 그룹 상세  
 
   // 분석(ADMIN)
   { path: '/analysis/ad_survey_analysis', name: 'Ad Survey analysis', element: ad_survey_analysis },
