@@ -21,7 +21,8 @@ import { logo } from 'src/assets/brand/logo'
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
-  const { user } = useSelector(({user})=> ({user:user.user}));
+  const {user } = useSelector(({user})=> ({user:user.user}));
+
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
@@ -37,7 +38,7 @@ const AppHeader = () => {
         { <CHeaderNav className="d-none d-md-flex me-auto">
         </CHeaderNav> }
        <CHeaderNav>
-       { user ? JSON.parse(user).info.name : null}
+       { user ? JSON.parse(user).info.userId : null}
         </CHeaderNav> 
         <CHeaderNav className="ms-3">
         {user? (
