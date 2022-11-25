@@ -56,7 +56,7 @@ const MakeList = () => {
 
 let surveyList = []
 
-const accessToken = JSON.parse(user).token.access_token;
+const accessToken = user.token.access_token;
 const [loading, response, error] = usePromise(() => {
   return axios.get(apiConfig.surveyMakeList + "?&category_id=10&page="+ nowPage,{headers: {'Authorization': 'Bearer ' + accessToken }})
 }, []);
