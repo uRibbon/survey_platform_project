@@ -1,31 +1,39 @@
 import React, { useState } from 'react'
 import {
   CFormLabel,
-  CForm,
-  CFormTextarea,
-  CButton,
   CFormInput,
   CCol,
   CRow,
-  CAccordion,
-  CAccordionBody,
-  CAccordionHeader,
-  CAccordionItem,
 } from '@coreui/react'
 import axios from "axios";
 import apiConfig from "../../../../lib/apiConfig";
+import usePromise from 'src/lib/usePromise';
 
 const DetailInfo = (props) => {
-  const [surInfo, setSurInfo] = useState([])
+  // const [surInfo, setSurInfo] = useState([])
 
-  axios.post(apiConfig.surveyDetail,
-    {sur_id: props.surId},
-    {headers: {
-        'Content-Type': 'multipart/form-data'
-      }}
-  ).then((response) => {
-    setSurInfo(response.data.info)
-  })
+  let surInfo = null;
+  console.log(props.surId);
+  const [loading, response, error] = usePromise(() => {
+    return axios.post(apiConfig.surveyDetail,
+      {sur_id: props.surId},
+      {headers: { 'Content-Type': 'multipart/form-data'}}
+    )
+  }, []);
+  
+  console.log(response);
+  if(response != null){
+    surInfo = response.data.info;
+  }
+
+  // axios.post(apiConfig.surveyDetail,
+  //   {sur_id: props.surId},
+  //   {headers: {
+  //       'Content-Type': 'multipart/form-data'
+  //     }}
+  // ).then((response) => {
+  //   setSurInfo(response.data.info)
+  // })
 
   return (
     <div>
@@ -37,7 +45,7 @@ const DetailInfo = (props) => {
             <CFormInput
                 type="text"
                 id="surveyName"
-                value={surInfo.title}
+                value={surInfo? surInfo.title:null}
                 readOnly
                 plainText
                 />
@@ -52,7 +60,7 @@ const DetailInfo = (props) => {
             <CFormInput
                 type="text"
                 id="category"
-                value={surInfo.categoryContent}
+                value={surInfo? surInfo.categoryContent:null}
                 readOnly
                 plainText
                 />
@@ -67,14 +75,14 @@ const DetailInfo = (props) => {
             <CFormInput
               type="text"
               id="description"
-              value={surInfo.description}
+              value={surInfo? surInfo.description:null}
               readOnly
               plainText
             />
           </CCol>
         </CRow>
 
-        <CRow>
+        {/* <CRow>
             <CFormLabel htmlFor="publicYn" className="col-sm-2 col-form-label">
             공개여부
             </CFormLabel>
@@ -87,7 +95,7 @@ const DetailInfo = (props) => {
                 plainText
                 />
             </CCol>
-        </CRow>
+        </CRow> */}
 
     </div>
   )
