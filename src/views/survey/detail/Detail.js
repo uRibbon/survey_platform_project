@@ -19,10 +19,11 @@ import AnswerInfo from './info/AnswerInfo';
 import axios from "axios";
 import apiConfig from "../../../lib/apiConfig";
 
+import { useParams } from 'react-router-dom'; 
+
 const Detail = () => {
 
   const [activeKey, setActiveKey] = useState(1)
-  const [surId, setSurId] = useState(1)
 
   const removeAnswer = () => {
     axios.post(apiConfig.answerDelete,
@@ -34,7 +35,13 @@ const Detail = () => {
         window.location.reload("/#/survey/detail");
       })
   }
+  const params = useParams();
+  let surId = params.sur_id;
 
+  const SurveyparticipateOnClickHandler = (e, link,sur_id) => {
+    window.location.href = link+"/"+sur_id;
+  }
+  
   return (
     <CRow>
       <CCol xs={12}>
@@ -84,18 +91,22 @@ const Detail = () => {
               </CTabPane>
             </CTabContent>
             <CCol lg={12} className="text-start d-flex mt-3">
-              <CButton color="danger" href="#" variant="outline" onClick={removeAnswer}>
+              {/* <CButton color="danger" href="#" variant="outline" onClick={removeAnswer}>
                 delete
-              </CButton>
+              </CButton> */}
               <CButton color="warning" href="#" variant="outline">
                 copy
-              </CButton>
-              <CButton color="primary" href="/#/survey/ModifySurvey" className="ms-auto" variant="outline">
+              </CButton> 
+              {/* <CButton color="primary" href="/#/survey/ModifySurvey" className="ms-auto" variant="outline">
                 edit
+              </CButton> */}
+              <CButton color="primary" className="ms-auto" variant="outline"
+                onClick={(e) => SurveyparticipateOnClickHandler(e, '#/survey/answer/register', surId)}>
+                participate
               </CButton>
-              <CButton color="success" href="#" variant="outline">
+              {/* <CButton color="success" href="#" variant="outline">
                 excel download
-              </CButton>
+              </CButton> */}
           </CCol>
           </div>
           </CCardBody>
