@@ -80,7 +80,7 @@ const routes = [
   { path: '/survey/detail/:sur_id', name: 'Survey Detail', element: surveyDetail },                   // 설문 상세
   { path: '/survey/prtcpList', name: 'PrtcpList', element: PrtcpList },                               // 설문 참여 목록
   { path: '/survey/makeList', name: 'MakeList', element: MakeList },                                  // 설문 생성 목록
-  { path: '/survey/answer/register', name: 'Survey Participate', element: SurveyAnswerReg },          // 설문 답변 등록
+  { path: '/survey/answer/register/:sur_id', name: 'Survey Participate', element: SurveyAnswerReg },          // 설문 답변 등록
   { path: '/survey/answer/edit/:sur_id', name: 'Survey Modify', element: SurveyAnswerEdit },   // 설문 답변 수정
 
   // 그룹

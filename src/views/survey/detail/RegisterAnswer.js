@@ -3,22 +3,21 @@ import {
   CCard,
   CCardHeader,
   CCardBody,
-  CFormCheck,
-  CFormRange,
-  CFormTextarea,
-  CButton,
-  CBadge,
-  CCallout, CForm, CRow, CCol, CNav, CNavItem, CNavLink, CTabContent, CTabPane,
+  CRow, CCol,
 } from "@coreui/react";
 import axios from "axios";
 import SurveyInfo from "./info/SurveyInfo";
 import QuestionInfo from "./info/QuestionInfo";
-import Charts from "../../analysis/user_survey_analysis";
+import { useParams } from 'react-router-dom'; 
+
 
 const RegisterAnswer = () => {
   const [activeKey, setActiveKey] = useState(1)
-  const [surId, setSurId] = useState(2)
+  // const [surId, setSurId] = useState(2)
 
+  const params = useParams();
+  let surId = params.sur_id;
+  
   return (
     <CRow>
       <CCol xs={12}>

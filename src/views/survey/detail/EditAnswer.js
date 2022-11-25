@@ -1,16 +1,17 @@
 import {
-  CForm,
-  CBadge, CButton, CCard, CCardBody, CCardHeader, CFormCheck, CFormRange, CFormTextarea, CCol, CRow
+  CCard, CCardBody, CCardHeader, CCol, CRow,
 } from "@coreui/react";
 import React from "react";
 import SurveyInfo from "./info/SurveyInfo";
 import UpdateInfo from "./info/UpdateInfo";
 // import { useHistory } from "react-router";
+import { useParams } from 'react-router-dom'; 
 
 const ModifySurvey = () => {
 
-  // const history = useHistory();
-  // history.push('/hi')
+const params = useParams();
+let surId = params.sur_id;
+
   return(
     <CRow>
       <CCol xs={12}>
@@ -21,8 +22,8 @@ const ModifySurvey = () => {
           </CCardHeader>
           <CCardBody>
             <div>
-              <SurveyInfo surId={2}></SurveyInfo>
-              <UpdateInfo surId={2}/>
+              <SurveyInfo surId={surId}></SurveyInfo>
+              <UpdateInfo surId={surId}/>
             </div>
           </CCardBody>
         </CCard>
