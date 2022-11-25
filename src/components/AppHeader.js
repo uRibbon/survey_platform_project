@@ -22,6 +22,7 @@ const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const {user } = useSelector(({user})=> ({user:user.user}));
+console.log(user);
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -38,10 +39,10 @@ const AppHeader = () => {
         { <CHeaderNav className="d-none d-md-flex me-auto">
         </CHeaderNav> }
        <CHeaderNav>
-       { user ? JSON.parse(user).info.userId : null}
+       { user != null ? user.info.userId : null}
         </CHeaderNav> 
         <CHeaderNav className="ms-3">
-        {user? (
+        {user != null ? (
            <AppHeaderDropdown />
         ):(
           <CNavItem>
