@@ -117,6 +117,7 @@ const SurveySearchList = () => {
                           <CTableHeaderCell scope="col">설문생성자</CTableHeaderCell>
                           <CTableHeaderCell scope="col">설문참여자</CTableHeaderCell>
                           <CTableHeaderCell scope="col">설문일</CTableHeaderCell>
+                          <CTableHeaderCell scope="col">마감일</CTableHeaderCell>
                         </CTableRow>
                       </CTableHead>
                       <CTableBody>
@@ -128,7 +129,8 @@ const SurveySearchList = () => {
                             <CTableDataCell>{data.description}</CTableDataCell>
                             <CTableDataCell>{data.reg_id}</CTableDataCell>
                             <CTableDataCell>{data.answer_cnt}명</CTableDataCell>
-                            <CTableDataCell>{moment(new Date(data.reg_dt)).format('YYYY-MM-DD HH:mm:ss')}</CTableDataCell>
+                            <CTableDataCell>{moment(new Date(data.reg_dt)).format('YYYY-MM-DD')}</CTableDataCell>
+                            <CTableDataCell>{moment(new Date(data.due_dt)).format('YYYY-MM-DD')}</CTableDataCell>
                           </CTableRow>
                         ))}
                       </CTableBody>
