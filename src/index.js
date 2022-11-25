@@ -25,7 +25,7 @@ const store = createStore(
       const user = localStorage.getItem('user');
       if (!user) return; // 로그인 상태가 아니라면 아무것도 안함
   
-      store.dispatch(tempSetUser(user));
+      store.dispatch(tempSetUser(JSON.parse(user)));
       // store.dispatch(check());
     } catch (e) {
       console.log('localStorage is not working');
