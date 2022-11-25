@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface GroupDetailRepository extends JpaRepository<GroupDetail, Integer> {
-    GroupDetail findByGroupId(@Param("groupId") Integer groupId);
+    GroupDetail findByGroupId(Integer groupId);
 }

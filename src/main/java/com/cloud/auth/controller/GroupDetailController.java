@@ -1,7 +1,7 @@
 package com.cloud.auth.controller;
 
 
-import com.cloud.auth.entity.GroupDetail;
+import com.cloud.auth.dto.GroupDetailDTO;
 import com.cloud.auth.service.GroupDetailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +15,8 @@ public class GroupDetailController {
     private final GroupDetailService groupDetailService;
 
     @GetMapping("/detail/{groupId}")
-    public GroupDetail oneGroupDetail(@PathVariable Integer groupId) {
-        GroupDetail groupDetail = groupDetailService.getOneGroupDetail(groupId);
+    public GroupDetailDTO oneGroupDetail(@PathVariable Integer groupId) {
+        GroupDetailDTO groupDetail = groupDetailService.getOneGroupDetail(groupId);
         return groupDetail;
     }
 }
