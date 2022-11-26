@@ -27,7 +27,6 @@ public class KafkaConsumer {
         System.out.println(String.format("ANSWER_ANALYSIS: %s", message));
         this.message = message;
         List<Map<String,Object>> answerDataList = (List<Map<String,Object>>)message.get("answer_data_list");
-//        List<UserDTO> answerUserList = (List<UserDTO>)message.get("answer_user_list");
         List<UserDTO> answerUserList = objectMapper.convertValue(message.get("answer_user_list"), new TypeReference<List<UserDTO>>() {});
 
         analysisService.AgeUpdate(answerUserList);
