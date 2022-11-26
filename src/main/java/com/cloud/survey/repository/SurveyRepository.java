@@ -26,7 +26,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
             "FROM survey s left join survey_category sc on sc.sur_cat_id = s.category_id " +
             "WHERE 1=1 " +
             "and s.status = 'I' " +
-            "and s.due_dt < now() " +
+//            "and s.due_dt < now() " +
             "and s.is_private = 'N' "
 //            "and s.category_id = :categoryId "
 //            "and status = :#{#status?.name()}"
