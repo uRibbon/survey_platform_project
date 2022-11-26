@@ -104,6 +104,7 @@ public class SurveyController {
         JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
         String userId = token.getTokenAttributes().get("preferred_username").toString();
 
+        SurveyDTO surveyDTO = surveyRequestDTO.getSurvey();
         List<QuestionDTO> questionDTOList = surveyRequestDTO.getQuestionDTOList();
 
         Survey survey = surveyService.insertSurvey(surveyDTO, userId);
