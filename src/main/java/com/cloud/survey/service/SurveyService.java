@@ -26,7 +26,7 @@ public interface SurveyService {
     Page<Map<String,Object>> getSurveyMakeList(String title, String regId, Integer category_id, SurveyStatus status, PageRequestDTO requestDTO);
 
     // 설문조사 생성
-    Survey insertSurvey(SurveyRequestDTO surveyRequestDTO, String userId);
+    Survey insertSurvey(SurveyDTO surveyDTO, String userId);
 
     // 설문조사 타겟 생성
     void insertSurveyTarget(List<SurveyTarget> targetList);

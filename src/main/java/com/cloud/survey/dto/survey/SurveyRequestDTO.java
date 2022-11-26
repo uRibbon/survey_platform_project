@@ -17,5 +17,4 @@ import java.util.List;
 public class SurveyRequestDTO {
     SurveyDTO survey;
     List<QuestionDTO> questionDTOList;
-    List<SurveyTarget> surveyTargetList;
 }

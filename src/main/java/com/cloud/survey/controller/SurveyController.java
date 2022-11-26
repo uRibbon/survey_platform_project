@@ -106,7 +106,7 @@ public class SurveyController {
 
         List<QuestionDTO> questionDTOList = surveyRequestDTO.getQuestionDTOList();
 
-        Survey survey = surveyService.insertSurvey(surveyRequestDTO, userId);
+        Survey survey = surveyService.insertSurvey(surveyDTO, userId);
         questionService.insertSurveyQuestion(questionDTOList, survey, userId);
 
 
