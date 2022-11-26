@@ -9,6 +9,7 @@ import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
 import com.cloud.survey.service.QuestionService;
 import com.cloud.survey.service.SurveyService;
+import com.cloud.survey.service.kafka.producer.KafkaProducer;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,6 +35,9 @@ public class SurveyController {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private KafkaProducer kafkaProducer;
 
     // 설문 리스트 조회
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -110,6 +114,11 @@ public class SurveyController {
         Survey survey = surveyService.insertSurvey(surveyDTO, userId);
         questionService.insertSurveyQuestion(questionDTOList, survey, userId);
 
+        // 설문 생성 카프카 토픽
+        Map<String, Object> surveyMap = new HashMap<>();
+        surveyMap.put("survey_info", survey);
+        surveyMap.put("question_List", questionDTOList);
+        kafkaProducer.sendObjetMap("SURVEY_REG",surveyMap);
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
