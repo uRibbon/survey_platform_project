@@ -30,6 +30,6 @@ public interface UserPointService {
     UserPointDTO getOneUserPoint(String userId);
 
     //사용자 포인트 update
-    void updateUserPoint(String userId);
+    void updateUserPoint(String userId, String pointType);
 
 }

@@ -26,13 +26,14 @@ public class UserPointServiceImpl implements UserPointService {
     }
 
     @Override
-    public void updateUserPoint(String userId) {
+    public void updateUserPoint(String userId, String pointType) {
 
-        //UserPoint userPoint = userPointRepository.findByUserId(userId);
-        userPointRepository.updateUserPoint(userId);
-//        Integer userPointScore = userPoint.getUserPointScore();
-//        userPointRepository.updateUserPoint();
+        if(pointType.equals("E")) {
+            userPointRepository.updateUserPointAdd(userId);
+        }
+        else if(pointType.equals("D")) {
+            userPointRepository.updateUserPointSub(userId);
+        }
         System.out.println("성공");
-
     }
 }
