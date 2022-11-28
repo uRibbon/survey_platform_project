@@ -1,5 +1,7 @@
 package com.cloud.point.service.kafka.consumer;
 
+import com.cloud.point.entity.PointHistory;
+import com.cloud.point.service.PointHistoryService;
 import com.cloud.point.service.UserPointService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -14,16 +16,14 @@ import java.util.Map;
 public class KafkaConsumer {
 
     private final UserPointService userPointService;
+    private final PointHistoryService pointHistoryService;
 
     @KafkaListener(topics = "ANSWER_POINT", groupId = "survey_platform")
-    public void consume(@NotNull Map<String,Object> map) {
-        //System.out.println("map = " + map);
-        Map<String, String> accurePointMap = (Map<String, String>) map.get("accure_point_map");
-        String userId = accurePointMap.get("user_id");
-
-        userPointService.updateUserPoint(userId);
+    public void consume(Map<String,Object> map) {
+        Map<String, String> accruePointMap = (Map<String, String>) map.get("accrue_point_map");
+        String userId = accruePointMap.get("user_id");
+        String pointType = accruePointMap.get("type");
+        userPointService.updateUserPoint(userId, pointType);
+        pointHistoryService.insertPointHistory(userId, pointType);
     }
-
-
-
 }

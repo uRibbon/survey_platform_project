@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class PointHistory {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "point_his_no", nullable = false)
     private int pointHisNo;
 

@@ -19,9 +19,4 @@ public class pointController {
         UserPointDTO oneUserPoint = userPointService.getOneUserPoint(userId);
         return oneUserPoint;
     }
-
-    @PostMapping("/mod")
-    public void modUserPoint(@RequestBody UserPointDTO userPointDTO) {
-        userPointService.updateUserPoint(userPointDTO);
-    }
 }
