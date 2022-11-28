@@ -131,8 +131,6 @@ public class AnalysisServiceImpl implements AnalysisService {
         answerDataList.forEach((answerData)->{
             long systemTimeMills = (long)answerData.get("reg_dt");
             LocalDateTime systemLocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(systemTimeMills), TimeZone.getDefault().toZoneId());
-            System.out.println("hour = " + systemLocalDateTime.getHour());
-
             int time = systemLocalDateTime.getHour();
             int optionId=0;
             if(6<time & time<=10){

@@ -24,10 +24,10 @@ public class AnalysisConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/v1/survey/**").permitAll()
+                .antMatchers("/v1/analysis/ad_survey_analysis").hasAuthority("ROLE_ADMIN")
+                .anyRequest().authenticated()
                 .and().oauth2ResourceServer()
                 .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
-//                .and().anonymous().disable();
                 .and().csrf().disable();
     }
 

@@ -7,6 +7,7 @@ import com.cloud.analysis.service.AnalysisService;
 import com.cloud.analysis.service.kafka.producer.KafkaProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class analysisServiceContoller {
     }
 
     // 플랫폼 통계 조회
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/platform_analysis", method = RequestMethod.POST)
     public List<Platform_analysis_option> getPlatformAnalysisList(@RequestParam (value = "platform_analysis_Id") int platformAnalysisId) {
         List<Platform_analysis_option> allPlatformAnalysisList = analysisService.getPlatformAnalysisList(platformAnalysisId);
