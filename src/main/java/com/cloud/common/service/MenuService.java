@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface MenuService {
+    List<MenuDTO> getUserMenuDTOList();
+    List<MenuDTO> getAdminMenuDTOList();
     List<MenuDTO> getAllMenuDTOList();
 
     default MenuDTO entityToDTO(Menu menu) {
