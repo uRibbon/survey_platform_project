@@ -27,7 +27,6 @@ const FormControl = () => {
 
   const groupInfo = async ()=>{
     const response = await axios.get(`/auth-service/v1/group/detail/${groupId}`)
-    console.log('This response',response)
     localStorage.setItem('detail', JSON.stringify(response.data))
   }
 
@@ -36,15 +35,15 @@ const FormControl = () => {
   },[])
 
   let A = JSON.parse(localStorage.getItem('detail'))
-  console.log('hihi',A.user)
-  
-  // let users = A.user.map(userInfo =>{
-  //   <CListGroupItem className="d-flex">
-  //     <span>{userInfo.name} ({userInfo.mailAddr})</span>
-  //   </CListGroupItem>
-  // }
-  // )
-
+  const test = A.userList.map(userInfo =>{
+    return(
+      <CListGroupItem className="d-flex" key={userInfo.name}>
+        <span>{userInfo.name} ({userInfo.mailAddr})</span>
+      </CListGroupItem>
+  )
+    
+  }
+  )
 
   return (
     <CRow>
@@ -97,26 +96,8 @@ const FormControl = () => {
                 <div className="col-sm-10">
                   <CRow>
                     <CCol lg={12}>
-                      <CListGroup className="mb-1 custom_height">
-                     
-                        <CListGroupItem className="d-flex">
-                          <span>{A.user.name} ({A.user.mailAddr})</span>
-                        </CListGroupItem>
-                        {/* <CListGroupItem className="d-flex">
-                          <span>test1 (tes*****@hanmail.net)</span>
-                        </CListGroupItem>
-                        <CListGroupItem className="d-flex">
-                          <span>test2 (tes*****@hanmail.net)</span>
-                        </CListGroupItem>
-                        <CListGroupItem className="d-flex">
-                          <span>test3 (tes*****@hanmail.net)</span>
-                        </CListGroupItem>
-                        <CListGroupItem className="d-flex">
-                          <span>test4 (tes*****@hanmail.net)</span>
-                        </CListGroupItem>
-                        <CListGroupItem className="d-flex">
-                          <span>test5 (tes*****@hanmail.net)</span>
-                        </CListGroupItem> */}
+                      <CListGroup className="mb-1 custom_height">                   
+                        {test}
                       </CListGroup>
                     </CCol>
                   </CRow>
