@@ -27,7 +27,5 @@ public class UserPoint {
     public void UpdateUserName(String userId) {
         this.userId = userId;
     }
-    public void UpdateUserPointScore(Integer userPointScore) {
-        this.userPointScore = userPointScore;
-    }
+
 }

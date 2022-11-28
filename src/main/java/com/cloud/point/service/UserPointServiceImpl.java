@@ -5,6 +5,7 @@ import com.cloud.point.dto.UserPointDTO;
 import com.cloud.point.entity.UserPoint;
 import com.cloud.point.repository.UserPointRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,17 +26,13 @@ public class UserPointServiceImpl implements UserPointService {
     }
 
     @Override
-    public void updateUserPoint(UserPointDTO userPointDTO) {
+    public void updateUserPoint(String userId) {
 
-        Integer id = userPointDTO.getId();
-        UserPoint userPoint = userPointRepository.findById(id).orElse(null);
+        //UserPoint userPoint = userPointRepository.findByUserId(userId);
+        userPointRepository.updateUserPoint(userId);
+//        Integer userPointScore = userPoint.getUserPointScore();
+//        userPointRepository.updateUserPoint();
+        System.out.println("성공");
 
-        String userId = userPointDTO.getUserId();
-        userPoint.UpdateUserName(userId);
-
-        Integer userPointScore = userPoint.getUserPointScore();
-        userPoint.UpdateUserPointScore(userPointScore);
-
-        userPointRepository.save(userPoint);
     }
 }
