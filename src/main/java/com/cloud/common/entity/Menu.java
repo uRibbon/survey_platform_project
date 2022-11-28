@@ -39,10 +39,4 @@ public class Menu {
 
     @Column(name = "reg_dt", nullable = false)
     private LocalDateTime regDt;
-
-    @Column(name = "mod_id", length = 20)
-    private String modId;
-
-    @Column(name = "mod_dt")
-    private LocalDateTime modDt;
 }
