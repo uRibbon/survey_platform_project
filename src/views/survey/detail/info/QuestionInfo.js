@@ -56,7 +56,7 @@ const DetailInfo = (props) => {
             <CAccordionItem itemKey={index+1} key={question.queId}>
               <CAccordionHeader>{index+1}. {question.content} </CAccordionHeader>
               <CAccordionBody>
-                {question.qtype === "YN" && (
+                {question.questionType === "YN" && (
                   <>
                     {question.optionList.map((option) => (
                       <CFormCheck type="radio"
@@ -69,7 +69,7 @@ const DetailInfo = (props) => {
                   </>
                 )}
 
-                {question.qtype === "NumOnly" && (
+                {question.questionType === "NumOnly" && (
                   <>
                     {question.optionList.map((option) => (
                       <CFormCheck type="radio"
@@ -82,7 +82,7 @@ const DetailInfo = (props) => {
                   </>
                 )}
 
-                {question.qtype === "NumMul" && (
+                {question.questionType === "NumMul" && (
                   <>
                     {question.optionList.map((option) => (
                       <CFormCheck type="checkbox"
@@ -95,11 +95,11 @@ const DetailInfo = (props) => {
                   </>
                 )}
 
-                {question.qtype === "Sub" && (
+                {question.questionType === "Sub" && (
                   <CFormTextarea name="content" onBlur={(e) => makeAnswer(e,question.queId)}></CFormTextarea>
                 )}
 
-                {question.qtype == "Grd" && (
+                {question.questionType == "Grd" && (
                   <CFormRange name="content" min="0" max="100" step="10" onChange={(e) => makeAnswer(e,question.queId)}/>
                 )}
               </CAccordionBody>
