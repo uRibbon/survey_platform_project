@@ -19,11 +19,16 @@ const AppSidebar = () => {
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const [navigation, setNavigation] = useState([])
   const { user } = useSelector(({user})=> ({user:user.user}));
-  const accessToken = user.token.access_token;
+
+  var headers =null;
+  if (user != null) {
+    const accessToken = user.token.access_token;
+    headers = {'Authorization': 'Bearer ' + accessToken };
+  }
 
   useEffect(async () =>{
       let test = []
-      const response = await axios.get(apiConfig.menuList, {headers: {'Authorization': 'Bearer ' + accessToken }})
+      const response = await axios.get(apiConfig.menuList, {headers: headers})
       test = response.data
       test.map((large) => {
           setNavigation(
