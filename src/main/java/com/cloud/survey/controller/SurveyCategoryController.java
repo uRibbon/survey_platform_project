@@ -27,17 +27,12 @@ public class SurveyCategoryController {
     }
 
     @PostMapping("/reg")
-    public ResponseEntity<String> registerCategory(SurveyCategoryDTO surveyCategoryDTO) {
-        surveyCategoryService.insertCategory(surveyCategoryDTO);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+    public ResponseEntity<String> registerCategory(@RequestBody SurveyCategoryDTO surveyCategoryDTO) {
+        return surveyCategoryService.insertCategory(surveyCategoryDTO);
     }
 
     @PostMapping("/del")
-    public ResponseEntity<String> deleteCategory(@RequestBody(required = false) List<Integer> surCatIdList) {
-        System.out.println("surCatIdList = " + surCatIdList);
-        surCatIdList.forEach(surCatId -> {
-            surveyCategoryService.deleteCategory(surCatId);
-        });
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+    public ResponseEntity<String> deleteCategory(@RequestBody List<Integer> surCatIdList) {
+        return surveyCategoryService.deleteCategory(surCatIdList);
     }
 }

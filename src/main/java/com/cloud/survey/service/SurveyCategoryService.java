@@ -4,11 +4,14 @@ import com.cloud.survey.dto.PageRequestDTO;
 import com.cloud.survey.dto.PageResultDTO;
 import com.cloud.survey.dto.survey.SurveyCategoryDTO;
 import com.cloud.survey.entity.SurveyCategory;
+import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 public interface SurveyCategoryService {
     PageResultDTO<SurveyCategoryDTO, SurveyCategory> getCategoryList(PageRequestDTO requestDTO);
-    void insertCategory(SurveyCategoryDTO surveyCategoryDTO);
-    void deleteCategory(Integer surCatId);
+    ResponseEntity<String> insertCategory(SurveyCategoryDTO surveyCategoryDTO);
+    ResponseEntity<String> deleteCategory(List<Integer> surCatIdList);
 
     default SurveyCategory dtoToEntity(SurveyCategoryDTO dto) {
         SurveyCategory surveyCategory = SurveyCategory.builder()
