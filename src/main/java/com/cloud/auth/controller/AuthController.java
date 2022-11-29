@@ -48,8 +48,16 @@ public class AuthController {
     @PostMapping(path = "/refresh_token")
     public ResponseEntity<?> refreshToken(@RequestBody  HashMap<String, String> map) {
         String refreshToken = map.get("refresh_token");
-        AccessTokenResponse response = authService.refreshToken(refreshToken);
-        return ResponseEntity.ok(response);
+        Map<String, Object> tokenRes = authService.refreshToken(refreshToken);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("token", tokenRes.get("token"));
+        if(tokenRes != null){
+            data.put("info", userService.getUserDetailInfo((String) tokenRes.get("username")));
+        }
+        Map<String, Object> resultmap = new HashMap<String, Object>();
+        resultmap.put("data", data);
+        return ResponseEntity.ok(resultmap);
     }
 
 }

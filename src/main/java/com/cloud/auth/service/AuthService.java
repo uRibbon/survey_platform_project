@@ -3,6 +3,12 @@ package com.cloud.auth.service;
 import com.cloud.auth.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -10,17 +16,20 @@ import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
-import org.keycloak.authorization.client.util.Http;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -98,28 +107,34 @@ public class AuthService {
         return response;
     }
 
-    public AccessTokenResponse refreshToken(String refreshToken) {
+    public   Map<String, Object> refreshToken(String refreshToken) {
         String url = authServerUrl + "realms/" + realm + "/protocol/openid-connect/token";
+        String url2 = authServerUrl + "realms/" + realm + "/protocol/openid-connect/userinfo";
 
-        Map<String, Object> clientCredentials = new HashMap<>();
-        clientCredentials.put("secret", clientSecret);
-        clientCredentials.put("grant_type", "refresh_token");
-        clientCredentials.put("refresh_token", refreshToken);
 
-        Configuration configuration =new Configuration(authServerUrl, realm, clientId, clientCredentials, null);
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("refresh_token", refreshToken);
+        map.add("grant_type", "refresh_token");
+        map.add("client_id", clientId);
+        map.add("client_secret", clientSecret);
 
-        Http http = new Http(configuration, (params, headers) -> {});
-        return http.<AccessTokenResponse>post(url)
-                .authentication()
-                .client()
-                .form()
-                .param("grant_type", "refresh_token")
-                .param("refresh_token", refreshToken)
-                .param("client_id", clientId)
-                .param("client_secret", clientSecret)
-                .response()
-                .json(AccessTokenResponse.class)
-                .execute();
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        HttpEntity<?> entity = new HttpEntity<>(map, headers);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+        data.put("token", response.getBody());
+
+        if (response.getStatusCodeValue() == 200 ) {
+            headers.add( "Authorization","Bearer " + response.getBody().get("access_token"));
+
+            ResponseEntity<Map> response2 = restTemplate.exchange( url2, HttpMethod.POST, entity, Map.class );
+            data.put("username", response2.getBody().get("preferred_username"));
+        }
+        return data;
     }
 
     // 사용자 존재하는지 체크
