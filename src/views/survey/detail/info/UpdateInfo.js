@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import {
   CCol,
   CButton,
@@ -12,19 +13,25 @@ import {
 } from '@coreui/react'
 import axios from "axios";
 import apiConfig from "../../../../lib/apiConfig";
+import usePromise from "../../../../lib/usePromise";
 const DetailInfo = (props) => {
-  const surId = 2
   const [answerList, setAnswerList] = useState([])
   const [updateList, setUpdateList] = useState([])
+  const { user } = useSelector(({user})=> ({user:user.user}));
+
+  const accessToken = user.token.access_token;
+  const userId = user.info.userId;
 
   // 답변 정보 받아오기
-  axios.post(apiConfig.answerList,
-    {regId: "yena", surId: surId},
-    {headers: {
-        'Content-Type': 'multipart/form-data'
-      }}
-  ).then((response) => {
-    setAnswerList(response.data)
+  useState( async () => {
+    axios.post(apiConfig.answerList,
+      {regId: userId, surId: props.surId},
+      {headers: {
+          'Content-Type': 'multipart/form-data'
+        }}
+    ).then((response) => {
+      setAnswerList(response.data)
+    })
   })
 
   const makeAnswer = (e, answer) => {
@@ -43,11 +50,11 @@ const DetailInfo = (props) => {
   const sendAnswer = () => {
     axios.post(apiConfig.answerEdit,
       {
-        surId: surId,
+        surId: props.surId,
         answerDTOList: updateList
       })
       .then((response) => {
-        window.location.reload("/survey/detail");
+        window.location.reload(`/#/survey/detail/${props.surId}`);
       })
   }
 
