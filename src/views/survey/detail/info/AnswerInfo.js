@@ -12,21 +12,25 @@ import {
 } from '@coreui/react'
 import axios from "axios";
 import apiConfig from "../../../../lib/apiConfig";
+import {useSelector} from "react-redux";
+import usePromise from "../../../../lib/usePromise";
 
 const DetailInfo = (props) => {
-  const [answerList, setAnswerList] = useState([])
+  const { user } = useSelector(({user})=> ({user:user.user}));
+  const userId = user.info.userId;
 
-  // 답변 정보 받아오기
-  axios.post(apiConfig.answerList,
-    {regId: "yena", surId: 2},
-    {headers: {
-        'Content-Type': 'multipart/form-data'
-      }}
-  ).then((response) => {
-    setAnswerList(response.data)
-  })
+  let answerList = []
 
+  const [loading, response, error] = usePromise(() => {
+    return axios.post(apiConfig.answerList,
+      {regId: userId, surId: props.surId},
+      {headers: { 'Content-Type': 'multipart/form-data'}}
+    )
+  }, []);
 
+  if(response != null){
+    answerList = response.data
+  }
 
   return (
     <div className="mt-3">
