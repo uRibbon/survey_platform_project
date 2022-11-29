@@ -22,7 +22,7 @@ const groupDetail = React.lazy(() => import('./views/group/detail/detail'))
 
 const ad_survey_analysis = React.lazy(() => import('./views/analysis/ad_survey_analysis'))
 
-const category_list = React.lazy(() => import('./views/category/category_list'))
+const categoryList = React.lazy(() => import('./views/admin/CategoryList'))
 
 
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -96,7 +96,7 @@ const routes = [
   { path: '/analysis/ad_survey_analysis', name: 'Ad Survey analysis', element: ad_survey_analysis },
 
   //카테고리 리스트 설정
-  { path: '/category/category_list', name: 'Category list', element: category_list },
+  { path: '/admin/CategoryList', name: 'Category List', element: categoryList },
 
   // //{ path: '/dashboard', name: 'Dashboard', element: Dashboard },
   // { path: '/theme', name: 'Theme', element: Colors, exact: true },
