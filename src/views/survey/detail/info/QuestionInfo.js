@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import {
   CCol,
   CButton,
@@ -12,26 +13,35 @@ import {
 } from '@coreui/react'
 import axios from "axios";
 import apiConfig from "../../../../lib/apiConfig";
+import usePromise from "../../../../lib/usePromise";
 
 const DetailInfo = (props) => {
-  const [questionList, setQuestionList] = useState([])
+  const { user } = useSelector(({user})=> ({user:user.user}));
+  const userId = user.info.userId;
+
   const [answerList, setAnswerList] = useState([])
 
-  axios.post(apiConfig.surveyDetail,
-    {sur_id: props.surId},
-    {headers: {
-        'Content-Type': 'multipart/form-data'
-      }}
-  ).then((response) => {
-    setQuestionList(response.data.question_list)
-  })
+
+  let questionList = []
+
+  const [loading, response, error] = usePromise(() => {
+    return axios.post(apiConfig.surveyDetail,
+      {sur_id: props.surId},
+      {headers: { 'Content-Type': 'multipart/form-data'}}
+    )
+  }, []);
+
+  if(response != null){
+    questionList = response.data.question_list
+  }
+
 
   const makeAnswer = (e, queId) => {
     const answerData = {
       "queId": queId,
       "type": 0,
       "content": e.target.value,
-      "regId": "yena"
+      "regId": userId
     }
     setAnswerList(answerList.filter(answer => answer.queId !== queId));
     setAnswerList(answerList=>[...answerList, answerData])
@@ -44,7 +54,7 @@ const DetailInfo = (props) => {
         answerDTOList: answerList
       })
       .then((response) => {
-        window.location.reload("/#/survey/detail");
+        window.location.reload(`/#/survey/detail/${props.surId}`);
       })
   }
 
