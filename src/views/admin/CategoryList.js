@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useState } from 'react'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -33,7 +34,7 @@ const Tables = () => {
   const params = new URLSearchParams(search);
   const nowPage = params.get('page') ? params.get('page') : 1;
 
-  const [visible, setVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false)
   const [pageData, setPageData] = useState({
     totalPage: 0,
     page: 1,
@@ -45,18 +46,15 @@ const Tables = () => {
     pageList: []
   })
   const [categoryList, setCategoryList] = useState([])
-  // let promise = usePromise(apiConfig.categoryList + "?page=1&size=3", []);
-  // let promise = usePromise("/survey-service/v1/survey/category/list?page=1&size=3", []);
-  // console.log(promise)
 
-  axios.get("/survey-service/v1/survey/category/list?page=" + nowPage)
+  axios.get(apiConfig.surveyCategoryList + "?page=" + nowPage)
     .then((response) => {
       console.log(response.data)
       setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
       setCategoryList(response.data.dtoList)
     })
 
-  const [checkedInputs, setCheckedInputs] = useState([]);
+  const [checkedInputs, setCheckedInputs] = useState([])
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -67,42 +65,76 @@ const Tables = () => {
     }
   };
 
+  const [categoryName, setCategoryName] = useState("")
+  const registerCategory = () => {
+    axios.post(apiConfig.surveyCategoryRegister,
+      {content: categoryName},
+      {headers: { "Content-Type": "application/json" }})
+      .then((response) => {
+        if (response.status == 200) {
+          setModalVisible(false)
+          setAlertColor("success")
+          setAlertMessage("카테고리 등록에 성공했습니다.")
+          setAlertVisible(true)
+        } else {
+          setAlertColor("danger")
+          setAlertMessage("이미 존재하는 카테고리 입니다.")
+          setAlertVisible(true)
+        }
+      })
+  }
+
+  const [alertVisible, setAlertVisible] = useState(false)
+  const [alertColor, setAlertColor] = useState("")
+  const [alertMessage, setAlertMessage] = useState("")
+
   const deleteCategory = () => {
-    axios.post("/survey-service/v1/survey/category/del", JSON.stringify(checkedInputs),
+    axios.post(apiConfig.surveyCategoryDelete, JSON.stringify(checkedInputs),
       {
         headers: { "Content-Type": "application/json" }
       }).then((response) => {
-        window.location.reload();
+        if (response.status == 200) {
+          setAlertColor("success")
+          setAlertMessage("카테고리 삭제에 성공했습니다.")
+          setAlertVisible(true)
+
+        } else {
+          setAlertColor("danger")
+          setAlertMessage("사용중인 카테고리 입니다.")
+          setAlertVisible(true)
+        }
+
     })
   }
 
 
 
   return (
-    console.log(checkedInputs),
-    // console.log(pageData),
-    // console.log(categoryList),
     <>
+      <CAlert
+        visible={alertVisible}
+        color={alertColor}
+        dismissible
+        onClose={() => setAlertVisible(false)}
+      >{alertMessage}</CAlert>
       <CCardBody className="text-end">
-        <CButton className="mb-3" onClick={() => setVisible(!visible)}>
+        <CButton className="mb-3" onClick={() => setModalVisible(!modalVisible)}>
           Register
         </CButton>
       </CCardBody>
-      <CModal backdrop="static" visible={visible} onClose={() => setVisible(false)}>
-        <CForm method="post" action="/survey-service/v1/survey/category/reg">
+      <CModal backdrop="static" visible={modalVisible} onClose={() => setModalVisible(false)}>
         <CModalHeader>
           <CModalTitle>설문 카테고리 등록하기</CModalTitle>
         </CModalHeader>
         <CModalBody>
-            <CFormInput label="카테고리명" name="content"></CFormInput>
+            <CFormInput label="카테고리명" name="content" onChange= {(e) => {setCategoryName(e.target.value)}}></CFormInput>
         </CModalBody>
         <CModalFooter>
-          <CButton color="secondary" onClick={() => setVisible(false)}>
+          <CButton color="secondary" onClick={() => setModalVisible(false)}>
             Cancel
           </CButton>
-          <CButton color="primary" type="submit">Register</CButton>
+          <CButton color="primary" onClick={registerCategory}>Register</CButton>
         </CModalFooter>
-        </CForm>
       </CModal>
       <CRow>
         <CCol xs={12}>
