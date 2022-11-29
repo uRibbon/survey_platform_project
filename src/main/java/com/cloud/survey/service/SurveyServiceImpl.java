@@ -42,10 +42,6 @@ public class SurveyServiceImpl implements SurveyService{
 
     @Autowired
     private final SurveyRepositoryCustom surveyRepositoryCustom;
-
-    @Autowired
-    private final QuestionRepository questionRepository;
-
     @Autowired
     private final ModelMapper mapper;
 
