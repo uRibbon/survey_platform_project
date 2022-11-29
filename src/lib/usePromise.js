@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import intorceptors from "./interceptors";
 export default function UsePromise(promiseCreator, deps){
     // 상태관리
     const [loding, setLoding] = useState(false); // 대기

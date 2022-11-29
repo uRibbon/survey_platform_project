@@ -21,7 +21,6 @@ import {
   CPaginationItem,
 } from '@coreui/react'
 import axios from "axios";
-import interceptors from "src/lib/interceptors";
 import apiConfig from 'src/lib/apiConfig';
 import usePromise from 'src/lib/usePromise';
 import moment from 'moment';

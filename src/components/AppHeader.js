@@ -22,7 +22,6 @@ const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const {user } = useSelector(({user})=> ({user:user.user}));
-console.log(user);
 
   return (
     <CHeader position="sticky" className="mb-4">
