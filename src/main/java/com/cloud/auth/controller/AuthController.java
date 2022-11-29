@@ -55,9 +55,8 @@ public class AuthController {
         if(tokenRes != null){
             data.put("info", userService.getUserDetailInfo((String) tokenRes.get("username")));
         }
-        Map<String, Object> resultmap = new HashMap<String, Object>();
-        resultmap.put("data", data);
-        return ResponseEntity.ok(resultmap);
+
+        return ResponseEntity.ok(data);
     }
 
 }
