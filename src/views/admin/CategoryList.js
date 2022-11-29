@@ -3,30 +3,15 @@ import { useState } from 'react'
 import {
   CAlert,
   CButton,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CModal,
-  CModalBody,
-  CModalFooter,
-  CModalHeader,
-  CFormCheck,
-  CModalTitle,
-  CRow,
-  CTable,
-  CTableBody,
-  CForm,
-  CFormInput,
-  CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow, CPaginationItem, CPagination,
+  CCard, CCardBody, CCardHeader,
+  CCol, CRow,
+  CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle,
+  CFormCheck, CFormInput,
+  CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CPaginationItem,
+  CPagination,
 } from '@coreui/react'
 import apiConfig from "../../lib/apiConfig";
-import usePromise from "../../lib/usePromise";
 import axios from "axios";
-import data from "@coreui/coreui/js/src/dom/data";
 
 const Tables = () => {
   const current = decodeURI(window.location.href);
@@ -69,19 +54,18 @@ const Tables = () => {
   const registerCategory = () => {
     axios.post(apiConfig.surveyCategoryRegister,
       {content: categoryName},
-      {headers: { "Content-Type": "application/json" }})
-      .then((response) => {
-        if (response.status == 200) {
-          setModalVisible(false)
-          setAlertColor("success")
-          setAlertMessage("카테고리 등록에 성공했습니다.")
-          setAlertVisible(true)
-        } else {
-          setAlertColor("danger")
-          setAlertMessage("이미 존재하는 카테고리 입니다.")
-          setAlertVisible(true)
-        }
-      })
+      {headers: { "Content-Type": "application/json" }
+      }).then((response) => {
+        setModalVisible(false)
+        setAlertColor("success")
+        setAlertMessage(response.data)
+        setAlertVisible(true)
+      }).catch((error) => {
+      setModalVisible(false)
+      setAlertColor("danger")
+      setAlertMessage(error.response.data)
+      setAlertVisible(true)
+    })
   }
 
   const [alertVisible, setAlertVisible] = useState(false)
@@ -93,17 +77,14 @@ const Tables = () => {
       {
         headers: { "Content-Type": "application/json" }
       }).then((response) => {
-        if (response.status == 200) {
           setAlertColor("success")
-          setAlertMessage("카테고리 삭제에 성공했습니다.")
+          setAlertMessage(response.data)
           setAlertVisible(true)
-
-        } else {
-          setAlertColor("danger")
-          setAlertMessage("사용중인 카테고리 입니다.")
-          setAlertVisible(true)
-        }
-
+    }).catch((error) => {
+      console.log(error)
+      setAlertColor("danger")
+      setAlertMessage(error.response.data)
+      setAlertVisible(true)
     })
   }
 
