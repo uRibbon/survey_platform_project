@@ -27,6 +27,10 @@ public class SurveyState {
     @Column(name = "sur_state_id", nullable = false)
     private Integer surStateId;
 
+    @Comment("설문 상태 코드")
+    @Column(name = "code", nullable = false, length = 20)
+    private String code;
+
     @Comment("설문 상태")
     @Column(name = "content", nullable = false, length = 50)
     private String content;

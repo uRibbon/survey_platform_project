@@ -27,6 +27,10 @@ public class QuestionType {
     @Column(name = "que_type_id", nullable = false)
     private Integer queTypeId;
 
+    @Comment("질문 종류 코드")
+    @Column(name = "code", nullable = false, length = 20)
+    private String code;
+
     @Comment("질문 종류")
     @Column(name = "content", nullable = false, length = 50)
     private String content;
