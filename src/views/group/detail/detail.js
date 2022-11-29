@@ -23,7 +23,9 @@ import axios from 'axios';
 
 const FormControl = () => {
 
-  let [groupId, setGroupId] = useState(1)
+  const current = decodeURI(window.location.href);
+  const id = current.split("/")[6];
+  let [groupId, setGroupId] = useState(id)
 
   const groupInfo = async ()=>{
     const response = await axios.get(`/auth-service/v1/group/detail/${groupId}`)
@@ -40,8 +42,7 @@ const FormControl = () => {
       <CListGroupItem className="d-flex" key={userInfo.name}>
         <span>{userInfo.name} ({userInfo.mailAddr})</span>
       </CListGroupItem>
-  )
-    
+  ) 
   }
   )
 
