@@ -12,6 +12,7 @@ import {
 } from '@coreui/react'
 import apiConfig from "../../lib/apiConfig";
 import axios from "axios";
+import usePromise from "../../lib/usePromise";
 
 const Tables = () => {
   const current = decodeURI(window.location.href);
@@ -32,12 +33,19 @@ const Tables = () => {
   })
   const [categoryList, setCategoryList] = useState([])
 
-  axios.get(apiConfig.surveyCategoryList + "?page=" + nowPage)
-    .then((response) => {
-      console.log(response.data)
-      setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
-      setCategoryList(response.data.dtoList)
-    })
+  // const [loading, response, error] = usePromise(() => {
+  //   return axios.get(apiConfig.surveyCategoryList + "?page=" + nowPage)
+  // }, []);
+
+  useState(async () => {
+    await axios.get(apiConfig.surveyCategoryList + "?page=" + nowPage)
+      .then((response) => {
+        console.log(response.data)
+        setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+        setCategoryList(response.data.dtoList)
+      })
+  })
+
 
   const [checkedInputs, setCheckedInputs] = useState([])
 
