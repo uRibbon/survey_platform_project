@@ -3,8 +3,6 @@ import React from 'react'
 
 const Home = React.lazy(() => import('./views/Home'))
 
-const Login = React.lazy(() => import('./views/pages/login/Login'))
-
 const Search = React.lazy(() => import('./views/survey/search/Search'))
 const PrtcpList = React.lazy(() => import('./views/survey/list/PrtcpList'))
 const MakeList = React.lazy(() => import('./views/survey/list/MakeList'))
@@ -75,8 +73,6 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home', element: Home },
-
-  { path: '/login', name: 'Login', element: Login},
 
   // 설문
   { path: '/survey/search', name: 'Search', element: Search },                                        // 설문 검색 목록
