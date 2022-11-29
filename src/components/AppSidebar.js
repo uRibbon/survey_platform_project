@@ -11,13 +11,14 @@ import {
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 import axios from 'axios';
 import apiConfig from "../lib/apiConfig";
+import usePromise from 'src/lib/usePromise';
 
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
-  const [navigation, setNavigation] = useState([])
+  // const [navigation, setNavigation] = useState([])
   const { user } = useSelector(({user})=> ({user:user.user}));
 
   var headers =null;
@@ -26,39 +27,86 @@ const AppSidebar = () => {
     headers = {'Authorization': 'Bearer ' + accessToken };
   }
 
-  useEffect(async () =>{
-      let test = []
-      const response = await axios.get(apiConfig.menuList, {headers: headers})
-      test = response.data
-      test.map((large) => {
-          setNavigation(
-            (navigation)=>[...navigation,{
-              component: CNavTitle,
-              name: large.menuName,
-            }])
-          large.menuList.map((middle) =>{
-            let new_items = []
-            for (let i = 0; i < middle.menuList.length; i++) {
-              new_items.push(
-                {
-                  component: CNavItem,
-                  name: middle.menuList[i].menuName,
-                  to: middle.menuList[i].menuUrl,
-                }
-              )
-            }
-            setNavigation((navigation)=>[...navigation,{
-              component: CNavGroup,
-              name: middle.menuName,
-              to: '/',
-              icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
-              items: new_items
-            }])
-          }
-          )
-      }
-    )
+  const [loading, response, error] = usePromise(() => {
+    return axios.get(apiConfig.menuList, {headers: headers})
   }, []);
+
+  let navigation = [];
+
+if(response != null){
+  const test = response.data;
+  console.log(test);
+  
+  test.map((large) => {
+    navigation.push({
+      component: CNavTitle,
+      name: large.menuName,
+    })
+
+    large.menuList.map((middle) =>{
+      let new_items = []
+      for (let i = 0; i < middle.menuList.length; i++) {
+        new_items.push(
+          {
+            component: CNavItem,
+            name: middle.menuList[i].menuName,
+            to: middle.menuList[i].menuUrl,
+          }
+        )
+      }
+      navigation.push({
+        component: CNavGroup,
+        name: middle.menuName,
+        to: '/',
+        icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
+        items: new_items
+      })
+    }
+  )
+})
+}
+
+
+
+  // useEffect( () =>{
+  //   async function getMenuList(){
+
+  //     let test = []
+  //     const response = await axios.get(apiConfig.menuList, {headers: headers})
+  //     test = response.data;
+
+  //     test.map((large) => {
+  //         setNavigation(
+  //           (navigation)=>[...navigation,{
+  //             component: CNavTitle,
+  //             name: large.menuName,
+  //           }])
+  //         large.menuList.map((middle) =>{
+  //           let new_items = []
+  //           for (let i = 0; i < middle.menuList.length; i++) {
+  //             new_items.push(
+  //               {
+  //                 component: CNavItem,
+  //                 name: middle.menuList[i].menuName,
+  //                 to: middle.menuList[i].menuUrl,
+  //               }
+  //             )
+  //           }
+  //           setNavigation((navigation)=>[...navigation,{
+  //             component: CNavGroup,
+  //             name: middle.menuName,
+  //             to: '/',
+  //             icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
+  //             items: new_items
+  //           }])
+  //         }
+  //         )
+  //     }
+  //   )
+  //   }
+  // }, []);
+
+
 
   return (
     <CSidebar
