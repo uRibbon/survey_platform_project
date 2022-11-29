@@ -35,7 +35,6 @@ const AppSidebar = () => {
 
 if(response != null){
   const test = response.data;
-  console.log(test);
   
   test.map((large) => {
     navigation.push({

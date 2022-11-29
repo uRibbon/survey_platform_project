@@ -42,29 +42,25 @@ axios.interceptors.response.use(
   
       // access token이 만료되어 발생하는 에러인 경우
       if ((error.message === "Network Error" || errResponseStatus === 401) && !originalRequest.retry) {
+
         originalRequest.retry = true;
         const user = localStorage.getItem("user");
-
-        const accessToken = JSON.parse(user).token.access_token;
         const preRefreshToken = JSON.parse(user).token.refresh_token;
-        // const preRefreshToken = localStorage.getItem("refresh_token");
+        
+        if (preRefreshToken) {  // refresh token을 이용하여 access token 재발행 받기
 
-        if (preRefreshToken) {
-          // refresh token을 이용하여 access token 재발행 받기
-
-          return axios.post(apiConfig.refreshToken,
-            { refresh_token: preRefreshToken })
-            .then((res) => {
+          return axios.post(apiConfig.refreshToken,{ refresh_token: preRefreshToken })
+          .then((res) => {
+            console.log(res.data);
             
               // 새로 받은 token들의 정보 저장
-              console.log(res.data);
               localStorage.setItem('user', JSON.stringify(res.data));
               
               const access_token = res.data.token.access_token;
-              const refresh_token = res.data.token.refresh_token;
-    
-              originalRequest.headers.authorization = `Bearer ${access_token}`;
-              return axios(originalRequest);
+              originalRequest.headers['Authorization'] = "Bearer " + access_token;
+            
+              const req = axios.request(originalRequest);
+              return req;
               
           }).catch(() => {
             // access token을 받아오지 못하는 오류 발생시 logout 처리
