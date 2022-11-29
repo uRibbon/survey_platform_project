@@ -1,20 +1,19 @@
 package com.cloud.common.controller;
 
 import com.cloud.common.dto.MenuDTO;
-import com.cloud.common.entity.Menu;
-import com.cloud.common.service.MenuService;
+import com.cloud.common.entity.QuestionType;
+import com.cloud.common.entity.SurveyState;
+import com.cloud.common.entity.UserAge;
+import com.cloud.common.entity.UserJob;
+import com.cloud.common.repository.UserAgeRepository;
+import com.cloud.common.service.CommonService;
 import com.cloud.common.service.kafka.producer.KafkaProducer;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,7 @@ import java.util.Map;
 @RequestMapping(value="v1/common")
 @RequiredArgsConstructor
 public class CommonServiceController {
-    private final MenuService menuService;
+    private final CommonService commonService;
     private final KafkaProducer producer;
 
     @GetMapping("/test")
@@ -40,12 +39,12 @@ public class CommonServiceController {
             Map<String, Object> team_cloud_client = (Map<String, Object>) resource_access.get("team_cloud_client");
             ArrayList<String> roles = (ArrayList) team_cloud_client.get("roles");
             if (roles.get(0).equals("USER")) {
-                return menuService.getUserMenuDTOList();
+                return commonService.getUserMenuDTOList();
             } else if (roles.get(0).equals("ADMIN")) {
-                return menuService.getAdminMenuDTOList();
+                return commonService.getAdminMenuDTOList();
             }
         }
-        return menuService.getAllMenuDTOList();
+        return commonService.getAllMenuDTOList();
     }
 
     @PostMapping("/kafkaConnTest")
@@ -53,6 +52,26 @@ public class CommonServiceController {
         this.producer.sendMessage(message);
 
         return "success";
+    }
+
+    @GetMapping("/questionType")
+    public List<QuestionType> getQuestionTypeList() {
+        return commonService.getQuestionTypeList();
+    }
+
+    @GetMapping("/surveyState")
+    public List<SurveyState> getSurveyStateList() {
+        return commonService.getSurveyStateList();
+    }
+
+    @GetMapping("/userAge")
+    public List<UserAge> getUserAgeList() {
+        return commonService.getUserAgeList();
+    }
+
+    @GetMapping("/userJob")
+    public List<UserJob> getUserJobList() {
+        return commonService.getUserJobList();
     }
 }
 

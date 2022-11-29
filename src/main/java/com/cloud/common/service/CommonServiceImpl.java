@@ -1,8 +1,8 @@
 package com.cloud.common.service;
 
 import com.cloud.common.dto.MenuDTO;
-import com.cloud.common.entity.Menu;
-import com.cloud.common.repository.MenuRepository;
+import com.cloud.common.entity.*;
+import com.cloud.common.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MenuServiceImpl implements MenuService{
+public class CommonServiceImpl implements CommonService {
     @Autowired
     private final MenuRepository menuRepository;
+    @Autowired
+    private final QuestionTypeRepoitory questionTypeRepoitory;
+    @Autowired
+    private final SurveyStateRepository surveyStateRepository;
+    @Autowired
+    private final UserAgeRepository userAgeRepository;
+    @Autowired
+    private final UserJobRepository userJobRepository;
 
     @Override
     public List<MenuDTO> getUserMenuDTOList() {
@@ -77,5 +85,25 @@ public class MenuServiceImpl implements MenuService{
             menuDTOList.add(largeCategoryDTO);
         });
         return menuDTOList;
+    }
+
+    @Override
+    public List<QuestionType> getQuestionTypeList() {
+        return questionTypeRepoitory.findAll();
+    }
+
+    @Override
+    public List<SurveyState> getSurveyStateList() {
+        return surveyStateRepository.findAll();
+    }
+
+    @Override
+    public List<UserAge> getUserAgeList() {
+        return userAgeRepository.findAll();
+    }
+
+    @Override
+    public List<UserJob> getUserJobList() {
+        return userJobRepository.findAll();
     }
 }
