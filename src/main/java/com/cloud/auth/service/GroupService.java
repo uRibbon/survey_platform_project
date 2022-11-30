@@ -1,6 +1,5 @@
 package com.cloud.auth.service;
 import com.cloud.auth.dto.GroupDTO;
-import com.cloud.auth.dto.GroupListDTO;
 import com.cloud.auth.dto.PageRequestDTO;
 import com.cloud.auth.dto.PageResultDTO;
 import com.cloud.auth.entity.Group;
@@ -16,10 +15,10 @@ public interface GroupService {
     Integer deleteGroup(Integer groupId);
 
     // 그룹 생성
-    void insertGroup(GroupListDTO groupListDTO);
+    void insertGroup(GroupDTO groupDTO);
 
 
-    default Group dtoToEntity(GroupListDTO dto, User user) {
+    default Group dtoToEntity(GroupDTO dto, User user) {
         Group group = Group.builder()
                 .groupId(dto.getGroupId())
                 .groupName(dto.getGroupName())
