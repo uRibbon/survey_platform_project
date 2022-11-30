@@ -22,6 +22,9 @@ import {
   CFormInput,
   CFormSelect,
 } from '@coreui/react'
+import usePromise from "../lib/usePromise";
+import axios from "axios";
+import apiConfig from "../lib/apiConfig";
 const image = require("../assets/images/test_img.jpeg")
 const imageArr = [
   require("../assets/images/test2.png"),
@@ -29,67 +32,36 @@ const imageArr = [
   require("../assets/images/test4.png")
 ]
 
+
+
 const Home = () => {
   const [visible, setVisible] = useState(false)
+
+  let bestList = []
+  const [loading, response, error] = usePromise(() => {
+    return axios.get(apiConfig.bestSurvey)
+  }, []);
+  if (response != null) {
+    bestList = response.data
+  }
   return (
     <>
      <CRow className="mb-3">
         <CCarousel controls indicators dark>
-          <CCarouselItem>
-            <CButton href="/#/survey/detail" color="light">
-              <div className='slider_img_wrap'>
-                <CImage className="slider_img" src={imageArr[0]} alt="slide 1" />
-              </div>
-              <CCarouselCaption className="d-none d-md-block">
-                <h5>학교</h5>
-                <p>동아리 신청 설문조사 입니다.</p>
-              </CCarouselCaption>
-            </CButton>
-          </CCarouselItem>
-          <CCarouselItem>
-              <CButton href="/#/survey/detail" color="light">
+          {bestList.map(bestSurvey => (
+            <CCarouselItem key={bestSurvey.surId}>
+              <CButton href={"/#/survey/detail/"+bestSurvey.surId} color="light">
                 <div className='slider_img_wrap'>
-                  <CImage className="slider_img" src={imageArr[1]} alt="slide 2" />
+                  <CImage className="slider_img" src={imageArr[0]} alt="slide 1" />
                 </div>
                 <CCarouselCaption className="d-none d-md-block">
-                  <h5>기업</h5>
-                  <p>선호기업 설문조사 입니다.</p>
+                  <h2>{bestSurvey.surveyCategory.content}</h2>
+                  <h5>{bestSurvey.title}</h5>
+                  <p>{bestSurvey.description}</p>
                 </CCarouselCaption>
               </CButton>
-          </CCarouselItem>
-          <CCarouselItem>
-            <CButton href="/#/survey/detail" color="light">
-              <div className='slider_img_wrap'>
-                <CImage className="slider_img" src={imageArr[1]} alt="slide 3" />
-              </div>
-              <CCarouselCaption className="d-none d-md-block">
-                <h5>연애</h5>
-                <p>연애 설문조사 입니다.</p>
-              </CCarouselCaption>
-            </CButton>
-          </CCarouselItem>
-          <CCarouselItem>
-            <CButton href="/#/survey/detail" color="light">
-              <div className='slider_img_wrap'>
-                <CImage className="slider_img" src={image} alt="slide 4" />
-              </div>
-              <CCarouselCaption className="d-none d-md-block">
-                <h5>사업</h5>
-                <p>자영업 주문서 설문조사 입니다.</p>
-              </CCarouselCaption>
-            </CButton>
-          </CCarouselItem>
-          <CCarouselItem>
-            <CButton href="/#/survey/detail" color="light">
-            <div className='slider_img_wrap'>
-                <CImage className="slider_img" src={image} alt="slide 5" />
-              </div>
-              <CCarouselCaption className="d-none d-md-block">
-              <h5>취미</h5>
-              <p>좋아하는 여행지 설문조사 입니다.</p>
-            </CCarouselCaption>
-            </CButton>
-          </CCarouselItem>
+            </CCarouselItem>
+          ))}
         </CCarousel>
       </CRow>
       <CRow className="mb-3">
@@ -161,7 +133,7 @@ const Home = () => {
           </CCard>
         </CCol>
       </CRow>
-     
+
     </>
   )
 }

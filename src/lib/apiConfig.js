@@ -9,7 +9,7 @@ const version = '/v1';
 
 const apiConfig = {
 
-
+    bestSurvey: service.survey + version + '/survey/best',                              // 메인화면 설문 리스트 조회
 
     menuList : service.common + version + '/common/menu',                                   // 사이드바 메뉴 리스트 조회
 
