@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(catalog = "user_db", name = "group")
+@Table(name = "`group`")
 public class Group {
     @Id
     @Column(name = "group_id", nullable = false)
@@ -23,6 +23,9 @@ public class Group {
 
     @Column(name = "group_name", nullable = false, length = 30)
     private String groupName;
+
+    @Column(name = "group_code", nullable = false)
+    private Integer groupCode;
 
     @Column(name = "group_description", nullable = false, length = 100)
     private String groupDescription;
