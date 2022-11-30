@@ -1,28 +1,34 @@
 package com.cloud.auth.repository;
 
+import com.cloud.auth.dto.GroupListDTO;
 import com.cloud.auth.entity.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 
 public interface GroupRepository extends JpaRepository<Group, Integer> {
 
     @Query("select g from Group g where g.delYn='N'")
     Page<Group> findExistGroup(Pageable pageable);
 
-//    @Query(value="select g.*," +
-//            "   if(g.reg_id = :userId, 'Y', 'N') is_mine," +
-//            "   if(" +
-//            "     (select count(g2.group_id)\n" +
-//            "     from `group` g2 " +
-//            "     where g2.group_id in (select ug.group_id from user_group ug where ug.user_id = :userId)" +
-//            "     and g2.group_id = g.group_id) >0, 'Y', 'N') is_participate" +
-//            "from `group` g " +
-//            "where g.del_yn = 'N'", nativeQuery = true)
-//    Page<Map<String,Object>> findExistGroupList(@Param("userId") String userId, Pageable pageable);
+    @Query("select g from Group g where g.delYn='N'")
+    List<Group> findAllGroup();
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Group g SET g.delYn = 'Y' WHERE g.groupId =:groupId")
+    void updateGroupDelY(Integer groupId);
+
+    @Query(value = "SELECT g FROM Group g WHERE (g.user.userId = :userId) AND (g.delYn = 'N')")
+    Group findByUserId(String userId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Group g SET g.groupCnt = g.groupCnt + 1 WHERE g.groupId =:groupId")
+    void updateGroupCnt(Integer groupId);
+
 }
