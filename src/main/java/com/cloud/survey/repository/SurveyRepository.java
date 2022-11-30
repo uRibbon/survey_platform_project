@@ -75,9 +75,9 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
     Survey findBySurId(int surId);
 
-    @Query(value = "SELECT * FROM survey \n" +
-            "WHERE views = (SELECT MAX(views) FROM survey WHERE category_id = :surCatId)\n" +
-            "ORDER BY reg_dt DESC LIMIT 1;", nativeQuery = true)
+    @Query(value = "SELECT * FROM survey " +
+            "WHERE category_id=:surCatId " +
+            "ORDER BY views DESC, reg_dt DESC LIMIT 1;", nativeQuery = true)
     Survey findBestSurveyByCategory(Integer surCatId);
 
 
