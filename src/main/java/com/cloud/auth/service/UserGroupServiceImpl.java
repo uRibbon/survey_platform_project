@@ -19,6 +19,7 @@ public class UserGroupServiceImpl implements UserGroupService{
     private final UserRepository userRepository;
 
 
+    // 그룹 참여(user-group table에 값 추가)
     @Override
     public void participateGroup(String userId, Integer groupId) {
         UserGroup userGroup = UserGroup.builder()
@@ -27,17 +28,19 @@ public class UserGroupServiceImpl implements UserGroupService{
                         .build();
         userGroupRepository.save(userGroup);
 
+        // 사용자가 해당 그룹에 참여시 그룹 참여자 수 +1
         groupRepository.updateGroupCnt(groupId);
     }
 
+    // 그룹 참여자 여부 조회 -> for groupDetail 조회 권한
     @Override
     public boolean isParticipated(String userId, Integer groupId) {
         List<User> userList = userGroupRepository.userList(groupId);
         if(userList.contains(userId)) {
-            return true;
+            return true; // 참여자가 그룹에 있음
         }
         else {
-            return false;
+            return false; // 참여자가 그룹에 없음
         }
     }
 }
