@@ -1,6 +1,5 @@
 package com.cloud.auth.repository;
 
-import com.cloud.auth.dto.GroupListDTO;
 import com.cloud.auth.entity.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,16 +15,17 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
     @Query("select g from Group g where g.delYn='N'")
     Page<Group> findExistGroup(Pageable pageable);
 
-    @Query("select g from Group g where g.delYn='N'")
-    List<Group> findAllGroup();
+    // 그룹 삭제 처리
     @Modifying
     @Transactional
     @Query(value = "UPDATE Group g SET g.delYn = 'Y' WHERE g.groupId =:groupId")
     void updateGroupDelY(Integer groupId);
 
+
     @Query(value = "SELECT g FROM Group g WHERE (g.user.userId = :userId) AND (g.delYn = 'N')")
     Group findByUserId(String userId);
 
+    // 그룹 참여자 추가
     @Modifying
     @Transactional
     @Query("UPDATE Group g SET g.groupCnt = g.groupCnt + 1 WHERE g.groupId =:groupId")
