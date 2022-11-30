@@ -1,4 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as questionActions from "../../../modules/questions";
 import {
   CButton,
   CCard,
@@ -10,39 +12,18 @@ import CreateQuestion from './CreateQuestion';
 
 
 const CreateSurvey = () => {
-  const [questions, setQuestions] = useState([
-    {
-      id : 1,
-      questionType : "NumOnly",
-      content : "테스트",
-      optionList : [{
-        queOptId : 1,
-        optionName : "test"
-      }, {
-        queOptId : 2,
-        optionName : "test"
-      }
-    ]
-    }
-  ])
+  const dispatch = useDispatch();
+  const { questions } = useSelector(({ questions }) => ({
+    questions : questions
+  }));
 
-  const nextId = useRef(2); 
+  const nextId = useRef(3); 
 
-  const onInsert = useCallback( e =>{
-    console.log(e);
-    const question = {
-      id : nextId.current,
-      questionType : "Sub",
-      content : "테스트",
-      optionList : {
-        queOptId : 1,
-        optionName : "test"
-      }
-    }
-    setQuestions (questions.concat(question));
-    console.log(questions);
-    nextId.current+= 1;
-  }, [questions]);
+  // 질문 추가
+  const onInsert = (e) =>{
+    dispatch(questionActions.addQuestion(nextId.current));
+    nextId.current += 1;
+  };
 
   const tempStyle = {
     paddingTop: '20px',
@@ -55,7 +36,7 @@ const CreateSurvey = () => {
         </CCardHeader>
         <CCardBody>
           <CreateSurveyInfo />
-          <CreateQuestion questions={questions} />
+          <CreateQuestion />
           <div className="d-grid gap-2 col-3 mx-auto" style={tempStyle}>
             <CButton color="primary" onClick={onInsert}>
               Add
