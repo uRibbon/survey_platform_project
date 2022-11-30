@@ -30,6 +30,8 @@ import ReactImg_2 from 'src/assets/images/test5.jpeg';
 import axios from 'axios';
 import usePromise from 'src/lib/usePromise';
 import apiConfig from 'src/lib/apiConfig.js';
+import { useSelector } from 'react-redux';
+
 
 const ClickParticipateBtn = () => {
   const [visible, setVisible] = useState(false)
@@ -62,6 +64,10 @@ const ClickParticipateBtn = () => {
   )
 }
 const Grouplist = () => {
+
+  const { user } = useSelector(({user})=> ({user:user.user}));
+
+
   const current = decodeURI(window.location.href);
   const search = current.split("?")[1];
   const params = new URLSearchParams(search);
@@ -78,12 +84,23 @@ const Grouplist = () => {
   })
   const [groupList, setGroupList] = useState([])
 
-  axios.post(`${apiConfig.groupList}?page=${nowPage}`)
-    .then((response)=> {
-      console.log(response.data)
-      setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
-      setGroupList(response.data.dtoList)
-    })
+  // axios.post(`${apiConfig.groupList}?page=${nowPage}`)
+  //   .then((response)=> {
+  //     console.log(response.data)
+  //     setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+  //     setGroupList(response.data.dtoList)
+  //   })
+
+
+
+const accessToken = user.token.access_token;
+
+const [loading, response, error] = usePromise(() => {
+  return axios.post(apiConfig.groupList + "?page="+ nowPage,{}, {headers: {'Authorization': 'Bearer ' + accessToken }})
+}, []);
+
+
+
 
   return (
     // console.log(groupList),
