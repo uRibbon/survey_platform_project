@@ -72,14 +72,20 @@ const questions = handleActions({
 
     [DELETE_QUESTION]: (state, { payload: question }) => { //질문삭제
         return state.filter(function(data) {
-            return data.get("id") != question.id
-          });
+            return data.get("id") !== question.id;
+        });
     },
 
     [EDIT_QUESTION_CONTENT] : (state, {payload: question }) => {
         const text = question.value;
-        state.get(question.id-1).set("content". text);
-        return state;
+
+        return state.map(function(data) {
+            if (data.get("id") == question.id){
+                return data.set("content", text);
+            }else{
+                return data;
+            }
+        });
     },
 
   },
