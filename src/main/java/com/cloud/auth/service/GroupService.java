@@ -1,20 +1,32 @@
 package com.cloud.auth.service;
+import com.cloud.auth.dto.GroupDTO;
 import com.cloud.auth.dto.GroupListDTO;
 import com.cloud.auth.dto.PageRequestDTO;
 import com.cloud.auth.dto.PageResultDTO;
 import com.cloud.auth.entity.Group;
+import com.cloud.auth.entity.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public interface GroupService {
-//    List<Group> getGroupList();
-    PageResultDTO<GroupListDTO, Group> getGroupList(String userId, PageRequestDTO requestDTO);
+    PageResultDTO<GroupDTO, Group> getGroupList(String userId, PageRequestDTO requestDTO);
 
-    default Group dtoToEntity(GroupListDTO dto) {
+    // 그룹 삭제
+    Integer deleteGroup(Integer groupId);
+
+    // 그룹 생성
+    void insertGroup(GroupListDTO groupListDTO);
+
+
+    default Group dtoToEntity(GroupListDTO dto, User user) {
         Group group = Group.builder()
                 .groupId(dto.getGroupId())
                 .groupName(dto.getGroupName())
+                .groupCode(dto.getGroupCode())
                 .groupDescription(dto.getGroupDescription())
                 .groupCnt(dto.getGroupCnt())
-                .user(dto.getUser())
+                .user(user)
                 .regDt(dto.getRegDt())
                 .modId(dto.getModId())
                 .modDt(dto.getModDt())
@@ -23,18 +35,22 @@ public interface GroupService {
         return group;
     }
 
-    default GroupListDTO entityToDTO(Group group) {
-        GroupListDTO dto = GroupListDTO.builder()
+    default GroupDTO entityToDTO(Group group, List<User> prtcpList) {
+        GroupDTO dto = GroupDTO.builder()
                 .groupId(group.getGroupId())
                 .groupName(group.getGroupName())
                 .groupDescription(group.getGroupDescription())
                 .groupCnt(group.getGroupCnt())
-                .user(group.getUser())
+                .userId(group.getUser().getUserId())
+                .userName(group.getUser().getName())
+                .userMailAddr(group.getUser().getMailAddr())
+                .prtcpList(new ArrayList<>())
                 .regDt(group.getRegDt())
-                .modId(group.getModId())
-                .modDt(group.getModDt())
                 .delYn(group.getDelYn())
                 .build();
+        prtcpList.forEach((user) -> {
+            dto.addPrtcpList(user);
+        });
         return dto;
     }
 }
