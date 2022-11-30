@@ -21,11 +21,13 @@ public class GroupListDTO {
 
     private String groupName;
 
+    private Integer groupCode;
+
     private String groupDescription;
 
     private Integer groupCnt;
 
-    private User user;
+    private String regId;
 
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDt;
