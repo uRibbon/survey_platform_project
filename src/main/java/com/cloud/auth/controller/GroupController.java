@@ -1,6 +1,6 @@
 package com.cloud.auth.controller;
 
-가import com.cloud.auth.dto.*;
+import com.cloud.auth.dto.*;
 import com.cloud.auth.entity.Group;
 import com.cloud.auth.service.GroupService;
 import com.cloud.auth.service.UserGroupService;
@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping(value="v1/group")
@@ -28,7 +28,6 @@ public class GroupController {
 
     @PostMapping("/list")
     public ResponseEntity<PageResultDTO<GroupDTO, Group>> getGroupList(Principal principal, PageRequestDTO pageRequestDTO) {
-        System.out.println("principal = " + principal);
         JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
         String userId = token.getTokenAttributes().get("preferred_username").toString();
 
@@ -37,7 +36,7 @@ public class GroupController {
         return new ResponseEntity<>(groupList, HttpStatus.OK);
     }
 
-    // 그룹 삭제
+    // 그룹 삭제 : DB 값 Y로 변경
     @PostMapping("/delete")
     public ResponseEntity<String> delGroup(@RequestParam(value = "groupId") Integer groupId) {
         System.out.println("groupId = " + groupId);
@@ -53,12 +52,12 @@ public class GroupController {
 
     // 그룹 생성
     @PostMapping("/reg")
-    public ResponseEntity<String> regGroup(@RequestBody GroupListDTO groupListDTO) {
-        groupService.insertGroup(groupListDTO);
+    public ResponseEntity<String> regGroup(@RequestBody GroupDTO groupDTO) {
+        groupService.insertGroup(groupDTO);
         return new ResponseEntity<>("성공했습니다", HttpStatus.OK);
     }
 
-    // 그룹 참여
+    // 그룹 참여(user-group table에 값 추가)
     @PostMapping("/participate")
     public void participateGroup(
             @RequestParam(value = "groupId") Integer groupId,
@@ -66,10 +65,11 @@ public class GroupController {
         userGroupService.participateGroup(userId, groupId);
     }
 
+    // 그룹 참여자 여부 조회 -> for groupDetail 조회 권한 / 참여자 있음 : true, 참여자 없음 : false 반환
     @PostMapping("/isParticipated")
     public boolean isParticipated(
-            @RequestParam(value = "groupId") Integer groupId,
-            @RequestParam(value = "userId") String userId) {
+            @RequestParam(value = "userId") String userId,
+            @RequestParam(value = "groupId") Integer groupId) {
         return userGroupService.isParticipated(userId, groupId);
     }
 }
