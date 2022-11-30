@@ -1,15 +1,19 @@
 package com.cloud.auth.entity;
 
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 
+@Builder
 @Entity
 @Data
 @Table(catalog = "user_db")
 public class UserGroup {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer Id;
 
