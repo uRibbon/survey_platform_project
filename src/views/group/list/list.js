@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import {
   CButton,
   CCard,
@@ -30,6 +31,7 @@ import ReactImg_2 from 'src/assets/images/test5.jpeg';
 import axios from 'axios';
 import usePromise from 'src/lib/usePromise';
 import apiConfig from 'src/lib/apiConfig.js';
+import { Navigate } from 'react-router-dom';
 
 const ClickParticipateBtn = () => {
   const [visible, setVisible] = useState(false)
@@ -76,17 +78,44 @@ const Grouplist = () => {
     next: false,
     pageList: []
   })
-  const [groupList, setGroupList] = useState([])
 
-  axios.post(`${apiConfig.groupList}?page=${nowPage}`)
-    .then((response)=> {
-      console.log(response.data)
-      setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
-      setGroupList(response.data.dtoList)
-    })
+  const [setGroupList] = useState([])
+
+  //user 정보 불러오기
+  const { user } = useSelector(({user})=> ({user:user.user}));
+
+
+  //token 가져오기
+  const accessToken = user.token.access_token;
+
+  //token 서버로 보내기
+  const [loading, response, error] = usePromise(() => {
+    return axios.post(apiConfig.groupList + "?page="+ nowPage,
+    {},
+    {headers: {'Authorization': 'Bearer ' + accessToken }})
+      // .then((response)=> {
+      //   console.log(response.data)
+      //   setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+      //   setGroupList(response.data.dtoList)
+      // })
+  }, []);
+
+  let groupList = []
+
+  if(response != null) {
+    groupList = response.data
+  }
+
+  console.log(response);
+
+  // axios.post(`${apiConfig.groupList}?page=${nowPage}`)
+  //   .then((response)=> {
+  //     console.log(response.data)
+  //     setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+  //     setGroupList(response.data.dtoList)
+  //   })
 
   return (
-    // console.log(groupList),
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
