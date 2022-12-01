@@ -25,6 +25,14 @@ public interface AnalysisService {
     void GenderUpdate(List<UserDTO> answerUserList);
     void TimeUpdate(List<Map<String,Object>> answerDataList);
 
+    void SurveyCntUpdate(Map<String,Object> survey_info);
+    void SurveyCategoryUpdate(Map<String,Object> survey_info);
+
+    void InsertVulgarism(int surID, boolean InfoYn, boolean QuestionYn);
+
+    Map<String, Object> CheckVulgarism(Map<String,Object> survey_info, List<Map<String,Object>> question_list);
+
+
     default Platform_analysis_DTO TransferEntityToDTO(Platform_analysis platform_analysis) {
         Platform_analysis_DTO dto = Platform_analysis_DTO.builder()
                 .type(platform_analysis.getType())

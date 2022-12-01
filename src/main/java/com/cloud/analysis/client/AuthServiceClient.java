@@ -2,6 +2,7 @@ package com.cloud.analysis.client;
 
 //import com.cloud.analysis.dto.User.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(name = "auth-service", configuration = Config.class)
 public interface AuthServiceClient {
@@ -11,3 +12,5 @@ public interface AuthServiceClient {
 //    @PostMapping(value = "/v1/common/user")
 //    void insertUser(UserDTO userDTO);
 }
+
+
