@@ -33,7 +33,7 @@ public class commonServiceController {
     @PostMapping("/kafkaConnTest")
     public String sendMessage(@RequestParam("message") String message) {
         this.producer.sendMessage(message);
-        
+
         return "success";
     }
 }
