@@ -3,11 +3,10 @@ package com.cloud.analysis.service;
 import com.cloud.analysis.client.SurveyServiceClient;
 import com.cloud.analysis.client.VulgarismServiceClient;
 import com.cloud.analysis.dto.User.UserDTO;
-import com.cloud.analysis.dto.VulgarismDTO;
+import com.cloud.analysis.dto.Vulgarism_DTO;
 import com.cloud.analysis.entity.Platform_analysis_option;
 import com.cloud.analysis.entity.Survey_analysis;
 import com.cloud.analysis.entity.Survey_analysis_option;
-import com.cloud.analysis.entity.Vulgarism.SurveyVulgarism;
 import com.cloud.analysis.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
@@ -194,7 +193,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Override
     @Transient
     public void InsertVulgarism(int surID, boolean InfoYn, boolean QuestionYn){
-        VulgarismDTO vulgarismDTO = new VulgarismDTO().builder()
+        Vulgarism_DTO vulgarismDTO = new Vulgarism_DTO().builder()
                         .surId(surID)
                         .infoYn(InfoYn)
                         .questionYn(QuestionYn)

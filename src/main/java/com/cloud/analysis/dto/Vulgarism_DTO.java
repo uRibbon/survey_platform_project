@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VulgarismDTO {
+public class Vulgarism_DTO {
     private Integer surId;
     private Boolean infoYn;
     private Boolean questionYn;

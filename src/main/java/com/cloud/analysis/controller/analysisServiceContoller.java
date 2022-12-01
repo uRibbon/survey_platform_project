@@ -20,7 +20,6 @@ public class analysisServiceContoller {
     @Autowired
     private AnalysisService analysisService;
 
-
     private final KafkaProducer producer;
 
     // 설문조사 피설문자 통계 조회
