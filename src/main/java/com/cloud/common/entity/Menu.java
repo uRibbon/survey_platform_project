@@ -39,4 +39,8 @@ public class Menu {
 
     @Column(name = "reg_dt", nullable = false)
     private LocalDateTime regDt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "permission")
+    private UserRole userRole;
 }

@@ -27,6 +27,10 @@ public class UserAge {
     @Column(name = "user_age_id", nullable = false)
     private Integer userAgeId;
 
+    @Comment("사용자 연령대 코드")
+    @Column(name = "code", nullable = false)
+    private Integer code;
+
     @Comment("사용자 연령대")
     @Column(name = "content", nullable = false, length = 50)
     private String content;

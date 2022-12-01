@@ -27,6 +27,10 @@ public class UserJob {
     @Column(name = "user_job_id", nullable = false)
     private Integer userJobId;
 
+    @Comment("사용자 직업 코드")
+    @Column(name = "code", nullable = false)
+    private Integer code;
+
     @Comment("사용자 직업")
     @Column(name = "content", nullable = false, length = 50)
     private String content;

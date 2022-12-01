@@ -1,12 +1,14 @@
 package com.cloud.common.service;
 
 import com.cloud.common.dto.MenuDTO;
-import com.cloud.common.entity.Menu;
+import com.cloud.common.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface MenuService {
+public interface CommonService {
+    List<MenuDTO> getUserMenuDTOList();
+    List<MenuDTO> getAdminMenuDTOList();
     List<MenuDTO> getAllMenuDTOList();
 
     default MenuDTO entityToDTO(Menu menu) {
@@ -19,4 +21,9 @@ public interface MenuService {
                 .build();
         return dto;
     }
+
+    List<QuestionType> getQuestionTypeList();
+    List<SurveyState> getSurveyStateList();
+    List<UserAge> getUserAgeList();
+    List<UserJob> getUserJobList();
 }
