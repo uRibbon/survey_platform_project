@@ -49,28 +49,24 @@ const VulgarismSearchList = () => {
     {id: 5, name: '취미',},
   ]
 
-  let surveyList = []
+  let vulgarismList = []
 
   // 비속어 검색 리스트
   const [loading, response, error] = usePromise(() => {
-    return axios.get(apiConfig.surveySearchList+"?&category_id=10&page="+ nowPage);
+    return axios.get(apiConfig.vulgarismData);
   }, []);
 
 
   if(response != null){
-    surveyList = response.data.content;
-    let arr = [];
-    for (let i = 0; i < response.data.totalPages; i++) {
-      arr.push(i+1);
-    }
-    page.pagelist = arr;
+    vulgarismList = response.data;
+    console.log("surveyList : ",vulgarismList);
   }
   
 
 
-  // 검색 상세 페이지 링크
+  // 비속어 상세 페이지 링크
   const tableRowClick = (e, id) => {
-    window.location.href = "/#/survey/detail/"+id;
+    // window.location.href = "/#/survey/detail/"+id;
   }
 
       
@@ -109,32 +105,23 @@ const VulgarismSearchList = () => {
                     <CTable className="table-hover">
                       <CTableHead>
                         <CTableRow>
-                          <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">설문분류</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">설문명</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">설문내용</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">설문생성자</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">설문참여자</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">설문일</CTableHeaderCell>
-                          <CTableHeaderCell scope="col">마감일</CTableHeaderCell>
+                          <CTableHeaderCell scope="col">설문 ID</CTableHeaderCell>
+                          <CTableHeaderCell scope="col">기본정보 비속어</CTableHeaderCell>
+                          <CTableHeaderCell scope="col">질문정보 비속어</CTableHeaderCell>
                         </CTableRow>
                       </CTableHead>
                       <CTableBody>
 
 
 
-                        {/* {surveyList.map((data) => (
-                          <CTableRow key={data.sur_id} onClick={(e) => tableRowClick(e, data.sur_id)}>
-                            <CTableHeaderCell scope="row">{data.sur_id}</CTableHeaderCell>
-                            <CTableDataCell>{data.content}</CTableDataCell>
-                            <CTableDataCell>{data.title}</CTableDataCell>
-                            <CTableDataCell>{data.description}</CTableDataCell>
-                            <CTableDataCell>{data.reg_id}</CTableDataCell>
-                            <CTableDataCell>{data.answer_cnt}명</CTableDataCell>
-                            <CTableDataCell>{moment(new Date(data.reg_dt)).format('YYYY-MM-DD')}</CTableDataCell>
-                            <CTableDataCell>{moment(new Date(data.due_dt)).format('YYYY-MM-DD')}</CTableDataCell>
+                        {vulgarismList.map((data) => (
+                          <CTableRow key={data.surId} onClick={(e) => tableRowClick(e, data.sur_id)}>
+                            <CTableHeaderCell scope="row">{data.surId}</CTableHeaderCell>
+                            {/* <CTableDataCell>{data.surId}</CTableDataCell> */}
+                            <CTableDataCell style={{ color: data.infoYn ? "red" : "blue"}}>{String(data.infoYn).toUpperCase()}</CTableDataCell>
+                            <CTableDataCell style={{ color: data.questionYn ? "red" : "blue"}}>{String(data.questionYn).toUpperCase()}</CTableDataCell>
                           </CTableRow>
-                        ))} */}
+                        ))}
 
 
                       </CTableBody>
