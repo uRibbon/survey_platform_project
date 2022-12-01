@@ -72,5 +72,13 @@ public class GroupController {
             @RequestParam(value = "groupId") Integer groupId) {
         return userGroupService.isParticipated(userId, groupId);
     }
+
+
+    @GetMapping("/detail/{groupId}")
+    public GroupDetailDTO oneGroupDetail(@PathVariable Integer groupId) {
+        GroupDetailDTO groupDetail = groupService.getOneGroupDetail(groupId);
+        return groupDetail;
+    }
+
 }
 
