@@ -34,7 +34,6 @@ public class SurveyCategoryServiceImpl implements SurveyCategoryService {
         Function<SurveyCategory, SurveyCategoryDTO> fn = (surveyCategory -> entityToDTO(surveyCategory));
         return new PageResultDTO<>(surveyCategoryPage, fn);
     }
-
     @Override
     public ResponseEntity<String> insertCategory(SurveyCategoryDTO surveyCategoryDTO) {
         Integer surCatId = surveyCategoryRepository.findByContent(surveyCategoryDTO.getContent());

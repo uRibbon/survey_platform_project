@@ -162,4 +162,11 @@ public class SurveyController {
         surveyVulgarismService.InsertVulgarism(vulgarismDTO.getSurId(), vulgarismDTO.isInfoYn(), vulgarismDTO.isQuestionYn());
     }
 
+
+    @RequestMapping(value = "/vulgarismList", method = RequestMethod.GET)
+    public List<VulgarismDTO> getVulgarismList() {
+        List<VulgarismDTO> vulgarismList = surveyVulgarismService.getVulgarismList();
+        return vulgarismList;
+    }
+
 }
