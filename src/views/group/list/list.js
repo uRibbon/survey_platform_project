@@ -79,7 +79,7 @@ const Grouplist = () => {
     pageList: []
   })
 
-  const [setGroupList] = useState([])
+  // const [setGroupList] = useState([])
 
   //user 정보 불러오기
   const { user } = useSelector(({user})=> ({user:user.user}));
@@ -93,20 +93,19 @@ const Grouplist = () => {
     return axios.post(apiConfig.groupList + "?page="+ nowPage,
     {},
     {headers: {'Authorization': 'Bearer ' + accessToken }})
-      // .then((response)=> {
-      //   console.log(response.data)
-      //   setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
-      //   setGroupList(response.data.dtoList)
-      // })
   }, []);
+
+  console.log(response);
 
   let groupList = []
 
-  if(response != null) {
-    groupList = response.data
+  if(response != null){
+    // setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+    // setGroupList(response.data.dtoList);
+    groupList = response.data.dtoList;
+    
+    pageData.pageList = response.data.pageList;
   }
-
-  console.log(response);
 
   // axios.post(`${apiConfig.groupList}?page=${nowPage}`)
   //   .then((response)=> {
@@ -164,13 +163,13 @@ const Grouplist = () => {
                     </CCardText>
                   </CCardBody>
                   <CListGroup flush>
-                    <CListGroupItem>개설자 : {groupData.user.name}</CListGroupItem>
+                    <CListGroupItem>개설자 : {groupData.regId}</CListGroupItem>
                     <CListGroupItem>참여인원 : {groupData.groupCnt}명</CListGroupItem>
                   </CListGroup>
                   <CCardBody className="text-end">
                     <CButtonGroup>
                       <CButton color="success" variant="outline" size="sm">participate</CButton>
-                      <CButton color="primary" href="#/group/detail" variant="outline" size="sm">detail</CButton>
+                      <CButton color="primary" href={'#/group/detail/'+groupData.groupId} variant="outline" size="sm">detail</CButton>
                       <CButton color="danger" variant="outline" size="sm">delete</CButton>
                     </CButtonGroup>
                   </CCardBody>
