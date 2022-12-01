@@ -4,11 +4,14 @@ import com.cloud.survey.dto.PageRequestDTO;
 import com.cloud.survey.dto.question.QuestionDTO;
 import com.cloud.survey.dto.survey.SurveyDTO;
 import com.cloud.survey.dto.survey.SurveyRequestDTO;
+import com.cloud.survey.dto.vulgarism.VulgarismDTO;
 import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
+import com.cloud.survey.entity.SurveyVulgarism;
 import com.cloud.survey.service.QuestionService;
 import com.cloud.survey.service.SurveyService;
+import com.cloud.survey.service.SurveyVulgarismService;
 import com.cloud.survey.service.kafka.producer.KafkaProducer;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,12 @@ public class SurveyController {
 
     @Autowired
     private KafkaProducer kafkaProducer;
+
+//    @Autowired
+//    private SurveyVulgarism surveyVulgarism;
+
+    @Autowired
+    private SurveyVulgarismService surveyVulgarismService;
 
     // 설문 리스트 조회
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -144,6 +153,13 @@ public class SurveyController {
     public ResponseEntity<List<Survey>> getBestSurveyList() {
         List<Survey> bestSurveyList = surveyService.getBestSurvey();
         return new ResponseEntity<>(bestSurveyList, HttpStatus.OK);
+    }
+
+    // 비속어 DB 저장
+    @Transactional
+    @RequestMapping(value="/vulgarismInsert", method = RequestMethod.POST)
+    public void vulgarismInsert(@RequestBody VulgarismDTO vulgarismDTO){
+        surveyVulgarismService.InsertVulgarism(vulgarismDTO.getSurId(), vulgarismDTO.isInfoYn(), vulgarismDTO.isQuestionYn());
     }
 
 }

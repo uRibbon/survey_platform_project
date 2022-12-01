@@ -16,5 +16,6 @@ public class KafkaProducer{
 
     public void sendObjetMap(String topic, Map<String,Object> map) {
         this.kafkaTemplateObjectMap.send(topic, map);
+        System.out.println(String.format("Produce message : %s", map));
     }
 }

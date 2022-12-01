@@ -9,7 +9,7 @@ import com.cloud.survey.entity.*;
 import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyCategory;
 import com.cloud.survey.entity.SurveyStatus;
-import com.cloud.survey.querydsl.SurveyRepositoryCustom;
+//import com.cloud.survey.querydsl.SurveyRepositoryCustom;
 import com.cloud.survey.repository.QuestionRepository;
 import com.cloud.survey.repository.SurveyCategoryRepository;
 import com.cloud.survey.repository.SurveyRepository;
@@ -40,8 +40,8 @@ public class SurveyServiceImpl implements SurveyService{
     @Autowired
     private final SurveyRepository surveyRepository;
 
-    @Autowired
-    private final SurveyRepositoryCustom surveyRepositoryCustom;
+//    @Autowired
+//    private final SurveyRepositoryCustom surveyRepositoryCustom;
     @Autowired
     private final ModelMapper mapper;
 
@@ -80,7 +80,6 @@ public class SurveyServiceImpl implements SurveyService{
     public Survey insertSurvey(SurveyDTO surveyDTO, String userId){
         SurveyCategory surveyCategory = surveyCategoryRepository.findBySurCatId(surveyDTO.getCategoryId());
         Survey save = surveyRepository.save(dtoToEntity(surveyDTO, surveyCategory, userId));
-
         return save;
     }
 

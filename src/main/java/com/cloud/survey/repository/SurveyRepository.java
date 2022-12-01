@@ -3,7 +3,7 @@ package com.cloud.survey.repository;
 import com.cloud.survey.entity.IsYn;
 import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyStatus;
-import com.cloud.survey.querydsl.SurveyRepositoryCustom;
+//import com.cloud.survey.querydsl.SurveyRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

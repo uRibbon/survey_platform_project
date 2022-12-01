@@ -65,6 +65,7 @@ public class AnswerController {
         // 설문조사 피설문자 통계 토픽 생성
         kafkaProducer.sendObjetMap("ANSWER_ANALYSIS",answerService.getSurveyAnswerAnalysis(surId));
 
+
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 

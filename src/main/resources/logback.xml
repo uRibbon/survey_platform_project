@@ -12,9 +12,9 @@
         <appender-ref ref="CONSOLE" />
     </root>
 
-    <property name="LOG_DIR" value="/Users/solbi/logs" />
-    <property name="LOG_NAME" value="survey_platform.log" />
-    <property name="LOG_PATH_NAME" value="${LOG_DIR}/${LOG_NAME}" />
+<!--    <property name="LOG_DIR" value="/Users/solbi/logs" />-->
+<!--    <property name="LOG_NAME" value="survey_platform.log" />-->
+<!--    <property name="LOG_PATH_NAME" value="${LOG_DIR}/${LOG_NAME}" />-->
     ...
     <!-- 이부분 추가 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
