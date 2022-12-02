@@ -120,27 +120,6 @@ const Send = () => {
   return (
     <>
       <CRow>
-        <CCol xs={12}>
-          <CCard className="mb-3">
-            <CCardHeader>설문 시간</CCardHeader>
-            <CCardBody>
-              <CForm className="row g-3">
-                <CCol xs={3}>
-                  <CFormInput label="설문 시작일" type="date"/>
-                </CCol>
-                <CCol xs={3}>
-                  <CFormInput label="설문 시작 시간" type="time"/>
-                </CCol>
-                <CCol xs={3}>
-                  <CFormInput label="설문 마감일" type="date"/>
-                </CCol>
-                <CCol xs={3}>
-                  <CFormInput label="설문 마감 시간" type="time"/>
-                </CCol>
-              </CForm>
-            </CCardBody>
-          </CCard>
-        </CCol>
         <CCol xs={6}>
           <>
             <CCard className="mb-3">

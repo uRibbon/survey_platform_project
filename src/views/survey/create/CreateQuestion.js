@@ -7,10 +7,21 @@ import {CButton, CCard, CCardBody,} from '@coreui/react'
 // 질문 리스트
 const CreateQuestion = () => {
   const dispatch = useDispatch();
-
   const { questions } = useSelector(({ questions }) => ({
     questions : questions
   }));
+  const nextId = useRef(3); 
+
+  // 질문 추가
+  const onInsert = (e) =>{
+    dispatch(questionActions.addQuestion(nextId.current));
+    nextId.current += 1;
+  };
+
+  // 질문 삭제
+  function deleteQuestion({id}) {
+    dispatch(questionActions.deleteQuestion({id}));
+  }
 
   // 질문 내용 수정
   function changeContent({id, value, name}) {
@@ -22,22 +33,17 @@ const CreateQuestion = () => {
     dispatch(questionActions.editQuestionType({id, value, name}));
   }
 
-  // 질문 삭제
-  function deleteQuestion({id}) {
-    dispatch(questionActions.deleteQuestion({id}));
+  // 답변 추가
+  function addAnswer({id, value}) {
+    dispatch(questionActions.addAnswer({id, value}));
   }
 
-  const nextId = useRef(3); 
+    // 답변 삭제
+    function deleteAnswer({id, aid}) {
+      console.log({id, aid});
+      dispatch(questionActions.deleteAnswer({id, aid}));
+    }
 
-  // 질문 추가
-  const onInsert = (e) =>{
-    dispatch(questionActions.addQuestion(nextId.current));
-    nextId.current += 1;
-  };
-
-  const tempStyle = {
-    paddingTop: '20px',
-  }
 
   // console.log(questions);
 
@@ -51,6 +57,8 @@ const CreateQuestion = () => {
         changeContent = {changeContent}
         deleteQuestion = {deleteQuestion}
         editQuestionType = {editQuestionType}
+        addAnswer = {addAnswer}
+        deleteAnswer = {deleteAnswer}
         >
       </Question>
     )
@@ -61,12 +69,14 @@ const CreateQuestion = () => {
     <CCard className="mb-3">
       <CCardBody>
         {questionList}
+        <div className="col-md-6">
+          <div className="d-grid gap-2 col-md-6 mx-auto">
+            <CButton color="primary" variant="outline" onClick={onInsert}>
+              Add
+            </CButton>
+          </div>
+        </div>
       </CCardBody>
-      <div className="d-grid gap-2 col-3 mx-auto" style={tempStyle}>
-        <CButton color="primary" onClick={onInsert}>
-          Add
-        </CButton>
-      </div>
       <br/>
       <br/>
 

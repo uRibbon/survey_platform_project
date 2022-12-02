@@ -31,7 +31,7 @@ const apiConfig = {
     surveyTypeSubOp : service.analysis + version + '/analysis/survey_analysis_info',        // 설문조사 결과탭 응답자 통계 타입, 옵션 정보 조회
     vulgarismData : service.survey + version + '/survey/vulgarismList',                     // 설문 비속어 유무 목록 조회
 
-
+    createSurvey : service.survey + version + '/survey/reg',                                 // 설문 등록
 
     answerRegister: service.survey + version + '/answer/reg',                               // 설문 답변 등록
     answerEdit: service.survey + version + '/answer/mod',                                   // 설문 답변 수정
@@ -42,6 +42,7 @@ const apiConfig = {
     surveyCategoryList: service.survey + version +  '/survey/category/list',                // 설문 카테고리 조회
     surveyCategoryRegister: service.survey + version +  '/survey/category/reg',             // 설문 카테고리 생성
     surveyCategoryDelete: service.survey + version +  '/survey/category/del',               // 설문 카테고리 삭제
+    surveyCategorySelectList : service.survey + version + '/survey/category/selectlist'   // 설문 카테고리 조회(selectbox)
 }
 
 export default apiConfig;
