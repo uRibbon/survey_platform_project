@@ -2,17 +2,20 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, { createRequestActionTypes} from '../lib/createRequestSaga';
 import { delay, put, takeLatest, select, throttle } from 'redux-saga/effects';
 import {Map, List} from 'immutable';
-import { _ } from 'core-js';
 
 const ADD_QUESTION = 'question/add';
 const DELETE_QUESTION = 'question/delete';
 const EDIT_QUESTION_CONTENT = 'question/edit_question_content';
+const EDIT_QUESTION_TYPE = 'question/edit_question_type';
 
 export const addQuestion = createAction(ADD_QUESTION);
 export const deleteQuestion = createAction(DELETE_QUESTION);
 export const editQuestionContent = createAction(EDIT_QUESTION_CONTENT, ({ id, value, name }) => ({
     id, value, name
   }));
+export const editQuestionType = createAction(EDIT_QUESTION_TYPE, ({ id, value, name }) => ({
+id, value, name
+}));
 
 
 export function* questionSaga() {
@@ -86,6 +89,18 @@ const questions = handleActions({
                 return data;
             }
         });
+    },
+    [EDIT_QUESTION_TYPE] : (state, {payload: question }) => {
+        const text = question.value;
+        
+        return state.map(function(data) {
+            if (data.get("id") == question.id){
+                return data.set("questionType", text);
+            }else{
+                return data;
+            }
+        });
+
     },
 
   },

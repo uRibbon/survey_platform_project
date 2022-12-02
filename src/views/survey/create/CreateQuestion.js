@@ -16,6 +16,11 @@ const CreateQuestion = () => {
     dispatch(questionActions.editQuestionContent({id, value, name}));
   }
 
+  // 질문 유형 수정
+  function editQuestionType({id, value, name}) {
+    dispatch(questionActions.editQuestionType({id, value, name}));
+  }
+
   // 질문 삭제
   function deleteQuestion({id}) {
     dispatch(questionActions.deleteQuestion({id}));
@@ -29,6 +34,7 @@ const CreateQuestion = () => {
         key={question.get("id")}
         changeContent = {changeContent}
         deleteQuestion = {deleteQuestion}
+        editQuestionType = {editQuestionType}
         >
       </Question>
     )

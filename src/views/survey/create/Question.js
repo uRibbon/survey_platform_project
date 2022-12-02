@@ -15,26 +15,27 @@ import {
   CFormSelect,
 } from '@coreui/react'
 
-const Question = ({question, changeContent, deleteQuestion}) => {
+const Question = ({question, changeContent, deleteQuestion, editQuestionType}) => {
     const [answers, setAnswers] = useState([]);
 
-    // 내용 수정
+    // 질문 내용 수정
     function onChangeQuestionContent(e) {
         const { value, name } = e.target;
         const id = question.get("id");
         changeContent({id, value, name});
     }
 
+    //질문 유형 수정
+    function onChangeQuestionType(e) {
+        const { value, name } = e.target;
+        const id = question.get("id");
+        editQuestionType({id, value, name});
+    }
+
     // 삭제 클릭
     function onclickDeleteBtn(){
         const id = question.get("id");
         deleteQuestion({id});
-    }
-
-    function onChangeHandler(e) {
-        const { value, name } = e.target;
-        console.log(value);
-        console.log(name);
     }
 
 
@@ -68,7 +69,7 @@ const Question = ({question, changeContent, deleteQuestion}) => {
             <CCardBody>
             <CRow>
                 <CCol className="mb-3" xs={12}>
-                <CFormSelect name="answer_type" value={question.get("questionType")} label="Type" onChange={onChangeHandler}>
+                <CFormSelect name="answer_type" value={question.get("questionType")} label="Type" onChange={onChangeQuestionType}>
                     <option value="Sub">주관식</option>
                     <option value="NumMul">객관식(중복 허용)</option>
                     <option value="NumOnly">객관식(중복 불가)</option>

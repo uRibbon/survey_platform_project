@@ -30,28 +30,28 @@ const CreateSurveyInfo = (props) => {
             </CFormSelect>
             </CCol>
             <CCol xs={3}>
-            <CFormSelect label="로그인 여부" name="login_yn">
+            <CFormSelect label="설문 공개 선택" name="private_yn">
+                <option value="N">전체 공개</option>
+                {/* <option value="2">그룹 공개</option> */}
+                <option value="Y">비공개</option>
+            </CFormSelect>
+            </CCol>
+            <CCol xs={3}>
+            <CFormSelect label="피설문자 로그인 여부" name="login_yn">
                 <option value="Y">로그인 필수</option>
                 <option value="N">로그인 필요 없음</option>
             </CFormSelect>
             </CCol>
             <CCol xs={3}>
-            <CFormSelect label="설문 공개 선택" name="private_yn">
-                <option value="N">전체 공개</option>
-                <option value="2">그룹 공개</option>
-                <option value="Y">비공개</option>
-            </CFormSelect>
-            </CCol>
-            <CCol xs={3}>
-            <CFormSelect label="답변 수정 여부" name="modify_yn">
+            <CFormSelect label="피설문자 답변 수정 여부" name="modify_yn">
                 <option value="Y">수정 가능</option>
                 <option value="N">수정 불가능</option>
             </CFormSelect>
             </CCol>
             <CCol xs={3}>
-            <CFormSelect label="익명 여부 선택" name="annoy_yn">
+            <CFormSelect label="피설문자 익명 여부" name="annoy_yn">
                 <option value="Y">익명 가능</option>
-                <option value="N">수정 불가능</option>
+                <option value="N">익명 불가능</option>
             </CFormSelect>
             </CCol>
             <CCol xs={12}>
