@@ -29,6 +29,9 @@ const apiConfig = {
     surveyAnalysisData : service.analysis + version + '/analysis/survey_analysis',          // 설문 통계 데이터 조회(user)
     platformAnalysisData : service.analysis + version + '/analysis/platform_analysis',      // 설문 통계 데이터 조회(admin)
     surveyTypeSubOp : service.analysis + version + '/analysis/survey_analysis_info',        // 설문조사 결과탭 응답자 통계 타입, 옵션 정보 조회
+    vulgarismData : service.survey + version + '/survey/vulgarismList',                     // 설문 비속어 유무 목록 조회
+
+
 
     answerRegister: service.survey + version + '/answer/reg',                               // 설문 답변 등록
     answerEdit: service.survey + version + '/answer/mod',                                   // 설문 답변 수정

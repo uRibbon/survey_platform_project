@@ -10,11 +10,8 @@ import {
   CFormLabel,
   CFormTextarea,
   CRow,
-  CInputGroup,
   CListGroup,
   CListGroupItem,
-  CFormCheck,
-  CFormSelect,
   CImage,
 } from '@coreui/react'
 
@@ -26,15 +23,18 @@ const FormControl = () => {
   const current = decodeURI(window.location.href);
   const id = current.split("/")[6];
   let [groupId, setGroupId] = useState(id)
+  let [data, setData] = useState();
+
+  console.log(`/auth-service/v1/group/detail/${groupId}`)
 
   const groupInfo = async ()=>{
     const response = await axios.get(`/auth-service/v1/group/detail/${groupId}`)
+    console.log(response)
+    setData(response.data)
     localStorage.setItem('detail', JSON.stringify(response.data))
   }
 
-  useEffect(()=>{
-    groupInfo()
-  },[])
+  groupInfo()
 
   let A = JSON.parse(localStorage.getItem('detail'))
   const test = A.userList.map(userInfo =>{
@@ -42,8 +42,7 @@ const FormControl = () => {
       <CListGroupItem className="d-flex" key={userInfo.name}>
         <span>{userInfo.name} ({userInfo.mailAddr})</span>
       </CListGroupItem>
-  ) 
-  }
+  )}
   )
 
   return (

@@ -19,6 +19,7 @@ const groupCreate = React.lazy(() => import('./views/group/form/create'))
 const groupDetail = React.lazy(() => import('./views/group/detail/detail'))
 
 const ad_survey_analysis = React.lazy(() => import('./views/analysis/ad_survey_analysis'))
+const surveyVulgarismList= React.lazy(() => import('./views/analysis/survey_vulgarism'));
 
 const categoryList = React.lazy(() => import('./views/admin/CategoryList'))
 
@@ -90,6 +91,7 @@ const routes = [
 
   // 분석(ADMIN)
   { path: '/analysis/ad_survey_analysis', name: 'Ad Survey analysis', element: ad_survey_analysis },
+  { path: '/analysis/survey_vulgarism_list', name: 'Survey Vulgarism List', element: surveyVulgarismList },
 
   //카테고리 리스트 설정
   { path: '/admin/CategoryList', name: 'Category List', element: categoryList },
