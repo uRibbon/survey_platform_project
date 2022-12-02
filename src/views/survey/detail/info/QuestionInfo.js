@@ -47,6 +47,7 @@ const DetailInfo = (props) => {
     setAnswerList(answerList=>[...answerList, answerData])
   }
 
+  const accessToken = user.token.access_token;
   const sendAnswer = () => {
     axios.post(apiConfig.answerRegister,
       {
@@ -54,7 +55,7 @@ const DetailInfo = (props) => {
         answerDTOList: answerList
       })
       .then((response) => {
-        window.location.reload(`/#/survey/detail/${props.surId}`);
+        window.location.reload(`/#/survey/detail/${props.surId}`,{headers: {'Authorization': 'Bearer ' + accessToken }});
       })
   }
 
