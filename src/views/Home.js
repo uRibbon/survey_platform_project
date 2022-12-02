@@ -48,20 +48,28 @@ const Home = () => {
     <>
      <CRow className="mb-3">
         <CCarousel controls indicators dark>
-          {bestList.map(bestSurvey => (
-            <CCarouselItem key={bestSurvey.surId}>
-              <CButton href={"/#/survey/detail/"+bestSurvey.surId} color="light">
-                <div className='slider_img_wrap'>
-                  <CImage className="slider_img" src={imageArr[0]} alt="slide 1" />
-                </div>
-                <CCarouselCaption className="d-none d-md-block">
-                  <h2>{bestSurvey.surveyCategory.content}</h2>
-                  <h5>{bestSurvey.title}</h5>
-                  <p>{bestSurvey.description}</p>
-                </CCarouselCaption>
-              </CButton>
-            </CCarouselItem>
-          ))}
+          {
+          bestList.map(bestSurvey => {
+            if(bestSurvey != null){
+              return (
+              <>
+              <CCarouselItem key={bestSurvey.surId}>
+                <CButton href={"/#/survey/detail/"+bestSurvey.surId} color="light">
+                  <div className='slider_img_wrap'>
+                    <CImage className="slider_img" src={imageArr[0]} alt="slide 1" />
+                  </div>
+                  <CCarouselCaption className="d-none d-md-block">
+                    <h2>{bestSurvey.surveyCategory.content}</h2>
+                    <h5>{bestSurvey.title}</h5>
+                    <p>{bestSurvey.description}</p>
+                  </CCarouselCaption>
+                </CButton>
+              </CCarouselItem>
+              </>
+              )
+            }
+          })
+          }
         </CCarousel>
       </CRow>
       <CRow className="mb-3">
