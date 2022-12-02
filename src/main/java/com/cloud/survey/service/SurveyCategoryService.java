@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface SurveyCategoryService {
     PageResultDTO<SurveyCategoryDTO, SurveyCategory> getCategoryList(PageRequestDTO requestDTO);
+
+     List<SurveyCategoryDTO> getCategorySelectList();
+
     ResponseEntity<String> insertCategory(SurveyCategoryDTO surveyCategoryDTO);
     ResponseEntity<String> deleteCategory(List<Integer> surCatIdList);
 

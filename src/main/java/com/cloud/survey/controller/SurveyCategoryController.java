@@ -26,6 +26,11 @@ public class SurveyCategoryController {
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
+    @GetMapping("/selectlist")
+    public ResponseEntity<List<SurveyCategoryDTO>> getCategorySelectList() {
+        return new ResponseEntity<>( surveyCategoryService.getCategorySelectList(), HttpStatus.OK);
+    }
+
     @PostMapping("/reg")
     public ResponseEntity<String> registerCategory(@RequestBody SurveyCategoryDTO surveyCategoryDTO) {
         return surveyCategoryService.insertCategory(surveyCategoryDTO);

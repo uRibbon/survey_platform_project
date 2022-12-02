@@ -3,10 +3,13 @@ package com.cloud.survey.service;
 import com.cloud.survey.dto.PageRequestDTO;
 import com.cloud.survey.dto.PageResultDTO;
 import com.cloud.survey.dto.survey.SurveyCategoryDTO;
+import com.cloud.survey.dto.survey.SurveyDTO;
+import com.cloud.survey.entity.Survey;
 import com.cloud.survey.entity.SurveyCategory;
 import com.cloud.survey.repository.SurveyCategoryRepository;
 import com.cloud.survey.repository.SurveyRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -27,6 +31,9 @@ public class SurveyCategoryServiceImpl implements SurveyCategoryService {
     @Autowired
     private final SurveyRepository surveyRepository;
 
+    @Autowired
+    private final ModelMapper mapper;
+
     @Override
     public PageResultDTO<SurveyCategoryDTO, SurveyCategory> getCategoryList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("regDt").descending());
@@ -34,6 +41,19 @@ public class SurveyCategoryServiceImpl implements SurveyCategoryService {
         Function<SurveyCategory, SurveyCategoryDTO> fn = (surveyCategory -> entityToDTO(surveyCategory));
         return new PageResultDTO<>(surveyCategoryPage, fn);
     }
+
+    public List<SurveyCategoryDTO> getCategorySelectList(){
+        List<SurveyCategoryDTO> surveyCategoryDTOList = new ArrayList<>();
+        List<SurveyCategory> list = surveyCategoryRepository.findAll();
+
+        list.forEach(SurveyCategory -> {
+            SurveyCategoryDTO surveyCategoryDTO = mapper.map(SurveyCategory, SurveyCategoryDTO.class);
+            surveyCategoryDTOList.add(surveyCategoryDTO);
+        });
+
+        return surveyCategoryDTOList;
+    }
+
     @Override
     public ResponseEntity<String> insertCategory(SurveyCategoryDTO surveyCategoryDTO) {
         Integer surCatId = surveyCategoryRepository.findByContent(surveyCategoryDTO.getContent());
