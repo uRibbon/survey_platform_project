@@ -15,10 +15,7 @@ import java.util.Map;
 
 @FeignClient(value = "https://objectstorage.kr-central-1.kakaoi.io/v1")
 public interface KakaoStorageClient {
-    @RequestMapping(
-            method = RequestMethod.PUT,
-            value = "/{account}/{bucket_name}/{path}/{file}",
-            headers = {"Content-Type=text/plain"})
+    @PutMapping(value = "/{account}/{bucket_name}/{path}/{file}", consumes = "image/jpeg")
     Response fileUpload(
             @RequestHeader("X-Auth-Token") String authToken,
             @PathVariable("account") String account,

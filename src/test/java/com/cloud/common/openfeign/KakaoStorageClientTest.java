@@ -15,6 +15,7 @@
 //import javax.imageio.ImageWriter;
 //import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 //import javax.imageio.stream.ImageOutputStream;
+//import javax.xml.bind.DatatypeConverter;
 //import java.awt.image.BufferedImage;
 //import java.io.*;
 //import java.util.Iterator;
@@ -43,27 +44,24 @@
 //
 //    @Test
 //    void download() {
-//        Response response = kakaoStorageClient.fileDownload(getAuthToken(), account, bucketName, "user/7452fab1-621b-4840-98c2-bc121e3d74a9.jpg");
-//        System.out.println("response = " + response);
-//        System.out.println("response.body() = " + response.body());
-//
-//        ByteArrayOutputStream output = new ByteArrayOutputStream();
+//        Response response = kakaoStorageClient.fileDownload(getAuthToken(), account, bucketName, "user/18b1df4c-d552-4d93-8d46-5c9582c802e7.jpg");
 //        try {
-//            StreamUtils.copy(response.body().asInputStream(), output);
+//            String dataUrlString = "";
+//            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//            StreamUtils.copy(response.body().asInputStream(), outputStream);
+////            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+////            BufferedImage bufferedImage = ImageIO.read(inputStream);
+////
+////            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+////            ImageIO.write(bufferedImage, "jpg", baos);
+//
+//            String base64String = DatatypeConverter.printBase64Binary(outputStream.toByteArray());
+//            dataUrlString = "data:image/png;base64," + base64String;
+//            System.out.println("dataUrlString = " + dataUrlString);
+//
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        System.out.println("output = " + output.getClass().getName());
-//
-//        ByteArrayInputStream ba = new ByteArrayInputStream(output.toByteArray());
-//        try {
-//            BufferedImage bufferedImage = ImageIO.read(ba);
-//            File outputfile = new File("image.jpg");
-//            ImageIO.write(bufferedImage, "jpg", outputfile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
 //
 //
 //    }
