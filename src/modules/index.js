@@ -4,16 +4,18 @@ import auth, { authSaga } from './auth';
 import loading from './loading';
 import user, { userSaga } from './user';
 import questions, { questionSaga } from './questions';
+import survey, { surveySaga } from './survey';
 
 const rootReducer = combineReducers({
   auth,
   loading,
   user,
-  questions
+  questions,
+  survey
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), userSaga(), questionSaga()]);
+  yield all([authSaga(), userSaga(), questionSaga(), surveySaga() ]);
 }
 
 export default rootReducer;
