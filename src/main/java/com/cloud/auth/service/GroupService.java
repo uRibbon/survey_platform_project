@@ -1,10 +1,8 @@
 package com.cloud.auth.service;
 import com.cloud.auth.dto.GroupDTO;
-import com.cloud.auth.dto.GroupDetailDTO;
 import com.cloud.auth.dto.PageRequestDTO;
 import com.cloud.auth.dto.PageResultDTO;
 import com.cloud.auth.entity.Group;
-import com.cloud.auth.entity.GroupDetail;
 import com.cloud.auth.entity.User;
 
 import java.util.ArrayList;
@@ -12,24 +10,29 @@ import java.util.List;
 
 public interface GroupService {
 
-    GroupDetailDTO getOneGroupDetail(Integer groupId);
-    default GroupDetailDTO entityToDTO(GroupDetail groupDetail, List<User> userList) {
-        GroupDetailDTO groupDetailDTO = GroupDetailDTO.builder()
-                .groupId(groupDetail.getGroupId())
-                .groupName(groupDetail.getGroupName())
-                .groupDescription(groupDetail.getGroupDescription())
-                .groupCnt(groupDetail.getGroupCnt())
-                .userList(new ArrayList<>())
-                .regDt(groupDetail.getRegDt())
-                .modId(groupDetail.getModId())
-                .modDt(groupDetail.getModDt())
+    // 그룹 상세 정보 조회를 위한 DTO 변환
+
+    GroupDTO getOneGroupDetail(Integer groupId);
+
+    default GroupDTO entityToDTO(Group group, List<User> userList) {
+        GroupDTO groupDTO = GroupDTO.builder()
+                .groupId(group.getGroupId())
+                .groupName(group.getGroupName())
+                .groupDescription(group.getGroupDescription())
+                .groupCnt(group.getGroupCnt())
+                .prtcpList(new ArrayList<>())
+                .regDt(group.getRegDt())
+                .modId(group.getModId())
+                .modDt(group.getModDt())
                 .build();
         userList.forEach(user -> {
-            groupDetailDTO.addUserList(user);
+            groupDTO.addPrtcpList(user);
         });
-
-        return groupDetailDTO;
+        return groupDTO;
     }
+
+
+
 
     PageResultDTO<GroupDTO, Group> getGroupList(String userId, PageRequestDTO requestDTO);
 
@@ -54,23 +57,5 @@ public interface GroupService {
                 .delYn(dto.getDelYn())
                 .build();
         return group;
-    }
-
-    default GroupDTO entityToDTO(Group group, List<User> prtcpList) {
-        GroupDTO dto = GroupDTO.builder()
-                .groupId(group.getGroupId())
-                .groupName(group.getGroupName())
-                .groupCode(group.getGroupCode())
-                .groupDescription(group.getGroupDescription())
-                .groupCnt(group.getGroupCnt())
-                .regId(group.getUser().getUserId())
-                .prtcpList(new ArrayList<>())
-                .regDt(group.getRegDt())
-                .delYn(group.getDelYn())
-                .build();
-        prtcpList.forEach((user) -> {
-            dto.addPrtcpList(user);
-        });
-        return dto;
     }
 }

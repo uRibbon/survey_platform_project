@@ -1,13 +1,10 @@
 package com.cloud.auth.service;
 
 import com.cloud.auth.dto.GroupDTO;
-import com.cloud.auth.dto.GroupDetailDTO;
 import com.cloud.auth.dto.PageRequestDTO;
 import com.cloud.auth.dto.PageResultDTO;
 import com.cloud.auth.entity.Group;
-import com.cloud.auth.entity.GroupDetail;
 import com.cloud.auth.entity.User;
-import com.cloud.auth.repository.GroupDetailRepository;
 import com.cloud.auth.repository.GroupRepository;
 import com.cloud.auth.repository.UserGroupRepository;
 import com.cloud.auth.repository.UserRepository;
@@ -29,9 +26,6 @@ public class GroupServiceImpl implements GroupService {
     private final UserGroupRepository userGroupRepository;
 
     private final UserRepository userRepository;
-
-    private final GroupDetailRepository groupDetailRepository;
-
 
 
     // 그룹 리스트 조회
@@ -72,11 +66,12 @@ public class GroupServiceImpl implements GroupService {
     }
 
 
-    public GroupDetailDTO getOneGroupDetail(Integer groupId) {
-        GroupDetail groupDetail = groupDetailRepository.findByGroupId(groupId);
+    // 그룹 상세 조회
+    @Override
+    public GroupDTO getOneGroupDetail(Integer groupId) {
+        Group group = groupRepository.findByGroupId(groupId);
         List<User> userList = userGroupRepository.userList(groupId);
-        GroupDetailDTO groupDetailDTO = entityToDTO(groupDetail, userList);
-        return groupDetailDTO;
+        GroupDTO groupDTO = entityToDTO(group, userList);
+        return groupDTO;
     }
-
 }

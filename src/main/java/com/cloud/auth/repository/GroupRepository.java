@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 public interface GroupRepository extends JpaRepository<Group, Integer> {
 
+    // 그룹 상세 정보 조회
+    Group findByGroupId(Integer groupId);
+
+    // 존재하는 모든 그룹 정보 조회
     @Query("select g from Group g where g.delYn='N'")
     Page<Group> findExistGroup(Pageable pageable);
 
@@ -21,7 +24,7 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
     @Query(value = "UPDATE Group g SET g.delYn = 'Y' WHERE g.groupId =:groupId")
     void updateGroupDelY(Integer groupId);
 
-
+    // 해당 UserId의 그룹 정보 조회
     @Query(value = "SELECT g FROM Group g WHERE (g.user.userId = :userId) AND (g.delYn = 'N')")
     Group findByUserId(String userId);
 
