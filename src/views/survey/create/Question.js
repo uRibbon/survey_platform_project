@@ -102,7 +102,7 @@ const Question = ({question, changeContent, deleteQuestion, editQuestionType, ad
                             <CFormCheck key={question.get("id") +"_"+ option.get("queOptId")} type="checkbox" name={"NumMul" + question.get("id")} label={option.get("optionName")} /> 
                             </CCol>
                             <CCol xs={3}>
-                                <CButton id={"del"+option.get("queOptId")} className="float-end" color="danger" size="sm" shape="rounded-pill" variant="ghost" onClick={onclickDeleteAnswer}>X</CButton>
+                                <CButton id={"del"+question.get("id")+"_"+option.get("queOptId")} className="float-end" color="danger" size="sm" shape="rounded-pill" variant="ghost" onClick={onclickDeleteAnswer}>X</CButton>
                             </CCol>
                         </CRow>
                         </>
