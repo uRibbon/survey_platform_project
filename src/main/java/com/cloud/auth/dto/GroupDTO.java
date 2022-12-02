@@ -35,6 +35,10 @@ public class GroupDTO {
 
     private DelYn delYn;
 
+    private String isParticipated; // 참여
+
+    private String isCreated; // 생성
+
     // 그룹 참여자 정보
     private List<User> prtcpList;
 

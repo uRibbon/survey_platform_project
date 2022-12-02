@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 @Service
@@ -34,23 +35,35 @@ public class GroupServiceImpl implements GroupService {
 
         Pageable pageable = requestDTO.getPageable(Sort.by("groupId").descending());
         Page<Group> groupListPage = groupRepository.findExistGroup(pageable);
+
         Function<Group, GroupDTO> fn = ((group)->{
             List<User> prtcpList = userGroupRepository.userList(group.getGroupId());
-            return entityToDTO(group, prtcpList);
+            AtomicReference<String> participatedFlag = new AtomicReference<>("N"); // 참여 여부
+            if(prtcpList.size() > 0 ) {
+                prtcpList.forEach((prtcp) -> {
+                    if (prtcp.getUserId().equals(userId)) {
+                        participatedFlag.set("Y");
+                    }
+                });
+            }
+
+            String isParticipated = participatedFlag.get();
+            String isCreated = userId == group.getUser().getUserId() ? "Y": "N";
+
+            return entityToDTO(group, prtcpList, isParticipated, isCreated);
         });
+
         return new PageResultDTO<>(groupListPage, fn);
     }
 
     // 그룹 삭제
     @Override
     public Integer deleteGroup(Integer groupId) {
-        System.out.println("groupId = " + userGroupRepository.userList(groupId));
         // 값이 없으면 delete, return 1
         if(userGroupRepository.userList(groupId).isEmpty()) {
             groupRepository.updateGroupDelY(groupId);
             return 1;
         }
-
         // 값이 있으면 return 0
         else {
             return 0;
@@ -71,7 +84,9 @@ public class GroupServiceImpl implements GroupService {
     public GroupDTO getOneGroupDetail(Integer groupId) {
         Group group = groupRepository.findByGroupId(groupId);
         List<User> userList = userGroupRepository.userList(groupId);
-        GroupDTO groupDTO = entityToDTO(group, userList);
+        String isParticipated = null;
+        String isCreated = null;
+        GroupDTO groupDTO = entityToDTO(group, userList, isParticipated, isCreated);
         return groupDTO;
     }
 }

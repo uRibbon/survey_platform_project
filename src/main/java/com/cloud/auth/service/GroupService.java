@@ -11,10 +11,9 @@ import java.util.List;
 public interface GroupService {
 
     // 그룹 상세 정보 조회를 위한 DTO 변환
-
     GroupDTO getOneGroupDetail(Integer groupId);
 
-    default GroupDTO entityToDTO(Group group, List<User> userList) {
+    default GroupDTO entityToDTO(Group group, List<User> userList, String isParticipated, String isCreated) {
         GroupDTO groupDTO = GroupDTO.builder()
                 .groupId(group.getGroupId())
                 .groupName(group.getGroupName())
@@ -24,24 +23,14 @@ public interface GroupService {
                 .regDt(group.getRegDt())
                 .modId(group.getModId())
                 .modDt(group.getModDt())
+                .isParticipated(isParticipated)
+                .isCreated(isCreated)
                 .build();
         userList.forEach(user -> {
             groupDTO.addPrtcpList(user);
         });
         return groupDTO;
     }
-
-
-
-
-    PageResultDTO<GroupDTO, Group> getGroupList(String userId, PageRequestDTO requestDTO);
-
-    // 그룹 삭제
-    Integer deleteGroup(Integer groupId);
-
-    // 그룹 생성
-    void insertGroup(GroupDTO groupDTO);
-
 
     default Group dtoToEntity(GroupDTO dto, User user) {
         Group group = Group.builder()
@@ -58,4 +47,15 @@ public interface GroupService {
                 .build();
         return group;
     }
+
+    PageResultDTO<GroupDTO, Group> getGroupList(String userId, PageRequestDTO requestDTO);
+
+    // 그룹 삭제
+    Integer deleteGroup(Integer groupId);
+
+    // 그룹 생성
+    void insertGroup(GroupDTO groupDTO);
+
+
+
 }
