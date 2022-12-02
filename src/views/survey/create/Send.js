@@ -261,13 +261,6 @@ const Send = () => {
                 </CTableBody>
               </CTable>
             </CCardBody>
-            <CCardFooter>
-              <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <CButton type="submit" color="primary" className="me-md-2">
-                  Send
-                </CButton>
-              </div>
-            </CCardFooter>
           </CCard>
         </CCol>
       </CRow>
