@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(catalog = "user_db")
+@Table(name = "user_group")
 public class UserGroup {
 
     @Id
