@@ -31,10 +31,7 @@ import ReactImg_2 from 'src/assets/images/test5.jpeg';
 import axios from 'axios';
 import usePromise from 'src/lib/usePromise';
 import apiConfig from 'src/lib/apiConfig.js';
-import { Navigate } from 'react-router-dom';
-import PrtcpList from 'src/views/survey/list/PrtcpList';
-import { isCompositeComponent } from 'react-dom/test-utils';
-
+가
 const ClickParticipateBtn = () => {
   const [visible, setVisible] = useState(false)
   return (
@@ -70,6 +67,29 @@ const Grouplist = () => {
   const search = current.split("?")[1];
   const params = new URLSearchParams(search);
   const nowPage = params.get('page') ? params.get('page') : 1;
+
+  //user 정보 불러오기
+  const { user } = useSelector(({user})=> ({user:user.user}));
+
+  const loginUser = user.info.userId;
+
+  //token 가져오기
+  const accessToken = user.token.access_token;
+
+
+  // groupList 정보 가져오기 (usePromise && post)
+
+  // let pageData= {
+  //   totalPage: 0,
+  //   page: 1,
+  //   size: 0,
+  //   start: 0,
+  //   end: 0,
+  //   prev: false,
+  //   next: false,
+  //   pageList: []
+  // };
+
   // const [pageData, setPageData] = useState({
   //   totalPage: 0,
   //   page: 1,
@@ -81,7 +101,27 @@ const Grouplist = () => {
   //   pageList: []
   // })
 
-  let pageData= {
+  // const [groupList, setGroupList] = useState([])
+
+  // const [loading, response, error] = usePromise(() => {
+  //   return axios.post(apiConfig.groupList,
+  //   {},
+      // const headers = {
+      //   'Content-Type' : 'application/json',
+      //   'Authorization': 'Bearer ' + accessToken
+      // }
+  //{headers: {'Authorization': 'Bearer ' + accessToken }}) // token 서버로 보내기
+  // }, []);
+
+  // if(response != null) {
+  //   groupList = response.data.dtoList;
+  //   pageData.pageList = response.data.pageList;
+  //   pageData.page = response.data.page;
+  // }
+
+  ///------
+
+  const [pageData, setPageData] = useState({
     totalPage: 0,
     page: 1,
     size: 0,
@@ -90,46 +130,65 @@ const Grouplist = () => {
     prev: false,
     next: false,
     pageList: []
-  };
+  })
 
-  // const [setGroupList] = useState([])
+  const [groupList, setGroupList] = useState([])
 
-  //user 정보 불러오기
-  const { user } = useSelector(({user})=> ({user:user.user}));
+  axios.post(`${apiConfig.groupList}?page=${nowPage}`)
+    .then((response)=> {
+      setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+      setGroupList(response.data.dtoList)
 
-  const loginUser = user.info.userId;
-  console.log(loginUser);
+    })
 
+  // useState && get
+  // const pageData = useState({
+  //   totalPage: 0,
+  //   page: 1,
+  //   size: 0,
+  //   start: 0,
+  //   end: 0,
+  //   prev: false,
+  //   next: false,
+  //   pageList: []
+  // })
 
-  //token 가져오기
-  const accessToken = user.token.access_token;
-  //console.log(user)
+  // const [groupList, setGroupList] = useState([])
 
-  //token 서버로 보내기
-  const [loading, response, error] = usePromise(() => {
-    return axios.post(apiConfig.groupList + "?page="+ nowPage,
-    {},
-    {headers: {'Authorization': 'Bearer ' + accessToken }})
-  }, []);
+  // useState(async () => {
+  //   await axios.post(apiConfig.groupList + "?page=" + nowPage)
+  //     .then((response) => {
+  //       console.log(response.data)
+  //       setPageData(pageData => ({...pageData, ...response.data, page: nowPage}))
+  //       setCategoryList(response.data.dtoList)
+  //     })
+  // })
 
-  console.log(response);
+  //그룹 삭제 api 호출
+  const deleteGroup = (groupId) => {
+    axios.post(apiConfig.groupDelete,
+    {"groupId" : groupId},
+    {
+      headers: { "Content-Type": "multipart/form-data" }
+    }).then((response) => {
+      console.log("삭제 완료")
+    }).catch((error) => {
+      //console.log(error);
+    })
+  }
 
-  let groupList = []
-  let prtcpUser = []
-
-  if(response != null){
-    groupList = response.data.dtoList;
-    
-    pageData.pageList = response.data.pageList;
-    pageData.page = response.data.page;
-    
-    for (var i = 0; i < groupList.length; i++) {
-      prtcpUser.push([]);
-          for (var j = 0 ; j < groupList[i].prtcpList.length ; j++) {
-              prtcpUser[i].push(groupList[i].prtcpList[j].userId);
-          }
-    }
-    console.log(prtcpUser);
+  // 그룹 참여 api 호출
+  const prtcpGroup = (groupId, userId) => {
+    axios.post(apiConfig.groupPrtcp,
+      {"groupId" : groupId,
+            "userId" : userId},
+      {
+        headers: { "Content-Type": "multipart/form-data" }
+      }).then((response) => {
+      console.log("참여 완료")
+    }).catch((error) => {
+      //console.log(error);
+    })
   }
 
   return (
@@ -170,7 +229,7 @@ const Grouplist = () => {
               </CCardBody>
             </CCard>
             <CRow className="mb-4">
-              {groupList.map((groupList, prtcpUser)=> (
+              {groupList.map((groupList)=> (
                 <CCol lg={3} key = {groupList.groupId}>
                 <CCard className="mb-3">
                   <CCardImage orientation="top" src={ReactImg_2} />
@@ -186,14 +245,17 @@ const Grouplist = () => {
                   </CListGroup>
                   <CCardBody className="text-end">
                     <CButtonGroup>
-                    {prtcpUser === loginUser &&(
-                      <CButton color="success" variant="outline" size="sm">participate</CButton>
+                    {groupList.isParticipated === "N" &&(
+                      <CButton color="success" variant="outline" size="sm" onClick={(e) => {prtcpGroup(groupList.groupId, loginUser)}}>participate</CButton>
                     )}
-                    {groupList.regId === loginUser &&(
+                    {groupList.isParticipated === "Y" && (
                       <CButton color="primary" href={'#/group/detail/'+groupList.groupId} variant="outline" size="sm">detail</CButton>
                     )}
-                    {groupList.regId === loginUser &&(
-                      <CButton color="danger" variant="outline" size="sm">delete</CButton>
+                    {groupList.isCreated === "Y" && (
+                      <CButton color="primary" href={'#/group/detail/'+groupList.groupId} variant="outline" size="sm">detail</CButton>
+                    )}
+                    {groupList.isCreated === "Y" && (
+                      <CButton color="danger" variant="outline" size="sm" onClick={(e) => {deleteGroup(groupList.groupId)}}>delete</CButton>
                     )}
                     </CButtonGroup>
                   </CCardBody>
@@ -219,7 +281,7 @@ const Grouplist = () => {
                   </CPaginationItem>
                 )}
                 {pageData.pageList.map((idx) =>
-                  idx === parseInt(pageData.page) ? (
+                  idx === parseInt(pageData.page) ?(
                     <CPaginationItem active>{pageData.page}</CPaginationItem>
                   ) : (
                     <CPaginationItem>
