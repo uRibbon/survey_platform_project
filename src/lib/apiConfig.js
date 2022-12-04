@@ -15,6 +15,10 @@ const apiConfig = {
 
     userDetail : service.auth + version + '/user/detail',                                   // 사용자 상세정보 조회
     groupList : service.auth + version + '/group/list',                                     // 사용자 그룹 리스트 조회
+    groupDelete : service.auth + version + '/group/delete',                                 // 사용자 그룹 삭제
+    groupDetail : service.auth + version + '/group/detail',                                 // 사용자 그룹 상세 조회
+    groupPrtcp : service.auth + version + '/group/participate',                             // 사용자 그룹 참여
+    regGroup : service.auth + version + '/group/participate',                               // 사용자 그룹 생성
 
     signin : service.auth + version + '/auth/signin',                                       // 로그인
     refreshToken : service.auth + version + "/auth/refresh_token",                          // 토큰 리프레시
