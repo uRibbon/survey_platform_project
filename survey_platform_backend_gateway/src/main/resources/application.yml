@@ -1,0 +1,58 @@
+server:
+  port: 9000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defalutZone: http://localhost:8761/eureka
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId : true
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth-service/**
+        - id: common-service
+          uri: lb://COMMON-SERVICE
+          predicates:
+            - Path=/common-service/**
+        - id: survey-service
+          uri: lb://SURVEY-SERVICE
+          predicates:
+            - Path=/survey-service/**
+        - id: analysis-service
+          uri: lb://ANALYSIS-SERVICE
+          predicates:
+            - Path=/analysis-service/**
+        - id: point-service
+          uri: lb://POINT-SERVICE
+          predicates:
+            - Path=/point-service/**
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:5010/realms/team_cloud
+        registration:
+          keycloak:
+            client-id: team_cloud_client
+            client-secret: AvgjtsAvqQUNfo9DemEpANjMt3YrAtbt
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/keycloak'
+
+keycloak:
+  realm: team_cloud
+  resource: team_cloud_client
+  auth-server-url: http://localhost:5010/
