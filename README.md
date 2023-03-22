@@ -101,9 +101,9 @@
 
 #### 7) 생성, 참여 설문 리스트
 ![R1280x0-19](https://user-images.githubusercontent.com/114554407/226847047-55e8fade-0493-49af-80a7-d16009e1dde4.png)
-![R1280x0-20](https://user-images.githubusercontent.com/114554407/226847051-578e66d6-5e6c-4c0a-9a35-655e5749493c.png)
+![R1280x0-20](https://user-images.githubusercontent.com/114554407/226903231-b2961593-b046-4a41-b044-17aa3654d0f5.png)
 
-#### 9) 그룹 리스트
+#### 8) 그룹 리스트
 ![R1280x0-24](https://user-images.githubusercontent.com/114554407/226847410-f729af41-221b-48ae-86da-372f8db35ace.png)
 
 #### 9) 설문 조사 카테고리 관리(ADMIN)
