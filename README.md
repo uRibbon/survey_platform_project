@@ -1,5 +1,21 @@
-## 설문조사 기반 데이터 공유 플랫폼
- 
+# 설문조사 기반 데이터 공유 플랫폼
+
+### 0\. Index
+1. [프로젝트 소개](#1)<br>
+2. [팀원 소개](#2)<br>
+3. [기능 소개](#3)<br>
+4. [유스케이스 다이어그램](#4)<br>
+5. [기술 스택](#5)<br>
+6. [구현](#6)<br>
+   6-1. [DB](#6-1)<br>
+   6-2. [MSA](#6-2)<br>
+   6-3. [System Architecture](#6-3)<br>
+   6-4. [CI/CD](#6-4)<br>
+7. [프로젝트 관리](#7)<br>
+8. [UI](#8)<br>
+
+
+<a name="1"></a>
 ### 1\. 프로젝트 소개
 
 <img src="https://user-images.githubusercontent.com/114554407/226843540-7dcfdf0c-f803-41b4-a333-59759af79583.png" width="600"/>
@@ -7,12 +23,14 @@
 -   설문조사 플랫폼 : 설문 제작 기능 및 답변에 따른 통계 데이터 제공
 -   설문 데이터 허브: 공개 범위에 따른 설문 조사 결과 열람 및 엑셀 다운로드 기능 제공
 
+<a name="2"></a>
 ### 2\. 팀원 소개
 | **고솔비** | **서유리** | **신예나** | **오영주** |
 | --- | --- | --- | --- |
-| 설문조사, 질문, 답변 관리,<br>사용자 인증 및 권한 관리 | 그룹 관리 | 공통 코드 관리,<br>답변 관리 | 설문 결과 통계 조회,<br>비속어 자연어 처리 개발 |
+| PM,<br>설문조사, 질문, 답변 관리,<br>사용자 인증 및 권한 관리 | 그룹 관리 | 공통 코드 관리,<br>답변 관리 | 설문 결과 통계 조회,<br>비속어 자연어 처리 개발 |
 | [https://github.com/solbiko](https://github.com/solbiko) | [https://github.com/stella693](https://github.com/stella693) | [https://github.com/shinyena](https://github.com/shinyena) | [https://github.com/OYJ-hansung](https://github.com/OYJ-hansung) |
 
+<a name="3"></a>
 ### 3\. 기능 소개
 0.  사용자 인증 및 권한 (로그인, 회원가입, 회원정보수정, 회원탈퇴)
 1.  설문 조사 생성, 수정, 삭제
@@ -22,10 +40,12 @@
 5.  그룹 생성, 수정, 삭제를 통한 설문 대상자 지정 가능
 6.  어드민 권한 기능(플랫폼 사용자 통계 조회 및 비속어 설문 삭제 처리)
 
+<a name="4"></a>
 ### 4\. 유스케이스 다이어그램
 <img src="https://user-images.githubusercontent.com/114554407/226844339-7a32cf61-935b-42d3-b977-55d08504051f.png" width="600"/>
 
-### 5\. 기술스택
+<a name="5"></a>
+### 5\. 기술 스택
 
 -   Frontend:
 ![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black)
@@ -48,9 +68,10 @@
 -  Infra: 
 ![](https://img.shields.io/badge/KakaoiCloud-FFCD00?style=flat-square&logo=iCloud&logoColor=black)
 
-
+<a name="6"></a>
 ### 6\. 구현
 
+<a name="6-1"></a>
 #### 1) DB
 -   survey\_db : 설문, 질문 및 답변 정보 저장
 <img src="https://user-images.githubusercontent.com/114554407/226845467-6878fad2-6d2e-4827-9be3-bf5a91de1d5d.png" width="600"/>
@@ -67,17 +88,26 @@
 -   analysis\_db : 플랫폼,  설문 분석 정보 저장
 <img src="https://user-images.githubusercontent.com/114554407/226845755-6c35e932-4cad-4f17-99a9-68943f489347.png" width="600"/>
 
+<a name="6-2"></a>
 #### 2) MSA
 <img src="https://user-images.githubusercontent.com/114554407/226848437-41425dc2-c170-4a5c-94d1-50872b5160d4.png" width="600"/>
 
+<a name="6-3"></a>
 #### 3) System Architecture
 <img src="https://user-images.githubusercontent.com/114554407/226848262-b7d0aff8-1a60-4009-8d39-76057ed4ffa8.png" width="600"/>
 
+<a name="6-4"></a>
 #### 4)CI/CD
 <img src="https://user-images.githubusercontent.com/114554407/226849091-43b3d098-02ac-4a30-b185-708e6160fda5.png" width="600"/>
 
+<a name="7"></a>
+### 7\. 프로젝트 관리
+<img src="https://user-images.githubusercontent.com/114554407/226921532-3f7c4563-af6e-4241-834f-0ad26a8aac6e.png" width="600"/>
+<img src="https://user-images.githubusercontent.com/114554407/226920931-2d7eac1e-fc63-4a11-9a46-31f4914b89b6.png" width="600"/>
+<img src="https://user-images.githubusercontent.com/114554407/226920944-5255f670-44bc-4a1b-819c-04471b4d7643.png" width="600"/>
 
-### 7\. UI
+<a name="8"></a>
+### 8\. UI
 
 #### 1) 로그인 화면
 ![R1280x0-11](https://user-images.githubusercontent.com/114554407/226846369-3d094067-f519-4e2d-abc4-575785ecaeb1.png)
