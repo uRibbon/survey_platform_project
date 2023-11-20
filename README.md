@@ -28,7 +28,7 @@
 | **고솔비** | **서유리** | **신예나** | **오영주** |
 | --- | --- | --- | --- |
 | PM,<br>설문조사, 질문, 답변 관리,<br>사용자 인증 및 권한 관리 | 그룹 관리 | 공통 코드 관리,<br>답변 관리 | 설문 결과 통계 조회,<br>비속어 자연어 처리 개발 |
-| [https://github.com/solbiko](https://github.com/solbiko) | [https://github.com/stella693](https://github.com/uRibbon) | [https://github.com/shinyena](https://github.com/shinyena) | [https://github.com/OYJ-hansung](https://github.com/OYJ-hansung) |
+| [https://github.com/solbiko](https://github.com/solbiko) | [https://github.com/uRibbon](https://github.com/uRibbon) | [https://github.com/shinyena](https://github.com/shinyena) | [https://github.com/OYJ-hansung](https://github.com/OYJ-hansung) |
 
 <a name="3"></a>
 ### 3\. 기능 소개
